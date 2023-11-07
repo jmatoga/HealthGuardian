@@ -9,6 +9,7 @@ import java.util.concurrent.Executors;
 public class Server {
     public static void main(String[] args) {
         int port = 12345;
+        int ClientID=0;
         ServerSocket serverSocket;
 
         Connection connection = null;
@@ -23,7 +24,7 @@ public class Server {
 
             while (true) {
                 Socket clientSocket = serverSocket.accept(); // Akceptowanie połączenia od klienta
-                System.out.println("Nowy klient połączony.");
+                System.out.println("\nNowy klient połączony o id: " + ++ClientID);
 
                 // Obsługa klienta w nowym wątku
                 executor.execute(new ClientHandler(clientSocket));

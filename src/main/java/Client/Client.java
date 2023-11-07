@@ -1,5 +1,7 @@
 package Client;
 
+import com.healthguardian.HelloApplication;
+
 import java.io.*;
 import java.net.*;
 

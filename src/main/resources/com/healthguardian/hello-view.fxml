@@ -1,17 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.healthguardian.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea">
+<!--<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"-->
+<!--      fx:controller="com.healthguardian.HelloController">-->
+<!--  <padding>-->
+<!--    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>-->
+<!--  </padding>-->
 
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<!--  <Label fx:id="welcomeText"/>-->
+<!--  <Button text="Hello!" onAction="#onHelloButtonClick"/>-->
 
+<!--  <Button text="Przycisk 1" onAction="#handleButton1Click"/>-->
+<!--</VBox>-->
+
+  <!-- Pierwsza VBox -->
+  <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+<!--    <Label text="VBox 1"/>-->
+    <Button text="Log in" />
+<!--    <Button text="Przycisk 1.2"/>-->
+  </VBox>
+
+  <!-- Druga VBox -->
+  <VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
+<!--    <Label text="VBox 2"/>-->
+    <Button text="Przycisk 2.1" />
+<!--    <Button text="Przycisk 2.2"/>-->
+  </VBox>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+
+  <!-- Trzecia VBox (zagnieżdżona w pierwszej VBox) -->
+<!--  <VBox>-->
+<!--    <Label text="VBox 3 (zagnieżdżona)"/>-->
+<!--    <Button text="Przycisk 3.1"/>-->
+<!--    <Button text="Przycisk 3.2"/>-->
+<!--  </VBox>-->
+</GridPane>
