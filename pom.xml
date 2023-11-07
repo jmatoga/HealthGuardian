@@ -24,8 +24,14 @@
       <artifactId>javafx-fxml</artifactId>
       <version>17.0.6</version>
     </dependency>
+    <dependency>
+      <groupId>mysql</groupId> <!-- Zmienić na odpowiednią bazę danych -->
+      <artifactId>mysql-connector-java</artifactId> <!-- Zmienić na odpowiednią bazę danych -->
+      <version>8.0.23</version> <!-- Zaktualizować do najnowszej wersji -->
+    </dependency>
 
-<dependency>
+
+    <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
       <version>${junit.version}</version>
@@ -58,7 +64,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>com.healthguardian.healthguardian/com.healthguardian.healthguardian.HelloApplication</mainClass>
+              <mainClass>com.healthguardian.healthguardian/com.healthguardian.HelloApplication</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>
