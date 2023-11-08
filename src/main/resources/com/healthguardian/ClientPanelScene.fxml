@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane prefHeight="401.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Scenes.ClientPanelController">
+   <children>
+      <Circle fill="#23ff1f" layoutX="305.0" layoutY="194.0" radius="154.0" stroke="BLACK" strokeType="INSIDE" />
+      <Line endX="83.29289245605469" endY="136.0" layoutX="196.0" layoutY="143.0" startX="-3.7071075439453125" startY="67.0" strokeWidth="10.0" />
+      <Line endX="83.29289245605469" endY="136.0" layoutX="197.0" layoutY="143.0" startX="209.0" startY="-24.0" strokeWidth="10.0" />
+   </children>
+</AnchorPane>
