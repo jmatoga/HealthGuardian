@@ -89,7 +89,8 @@ public class Server {
 
             // Sprawdź, czy zapytanie zwróciło wynik
             if (resultSet.next()) {
-                   // Client client = this;
+               // Client.setUser_id();
+                 //  Client client = ;
 //                setUser_id
 //                =resultSet.getInt("user_id");
                 System.out.println("Correct password.");

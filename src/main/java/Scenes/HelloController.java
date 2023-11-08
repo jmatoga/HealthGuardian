@@ -67,7 +67,6 @@ public class HelloController {
                 loginStatusLabel.setTextFill(Paint.valueOf("0x2aff00"));
                 loginStatusLabel.setText("Logged succesfully!");
 
-
                 Platform.runLater(() -> {
                     try {
                         Thread.sleep(1500);
