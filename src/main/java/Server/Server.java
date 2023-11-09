@@ -69,7 +69,7 @@ public class Server {
         try {
             // Nawiązywanie połączenia z bazą danych
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthguardian", "root", "root");
-            System.out.println("Database connection succesful.");
+            System.out.println("Database connection successful.");
 
             // Zapytanie SQL do sprawdzenia hasła
             String sql = "SELECT username,user_id FROM user_pass WHERE username = ? AND password_hash = SHA2(CONCAT(?, (SELECT salt FROM user_pass WHERE username=?)), 256)";
@@ -108,11 +108,16 @@ public class Server {
                 if (resultSet != null) resultSet.close();
                 if (statement != null) statement.close();
                 if (connection != null) connection.close();
+                System.out.println("Database connection closed successfully.");
             } catch (SQLException e) {
                 e.printStackTrace();
                 System.err.println("Error while closing resources: " + e.getMessage());
             }
         }
         return false;
+    }
+
+    public static int checkUserId() {
+        return 0;
     }
 }

@@ -1,23 +1,15 @@
 package Scenes;
 
-import com.healthguardian.HelloApplication;
+import com.healthguardian.WindowApplication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.util.Objects;
-import java.io.IOException;
-
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 public class SceneSwitch {
     public SceneSwitch(AnchorPane currentAnchorPane, String fxml) throws IOException {
-        AnchorPane nextAnchorPane = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource(fxml)));
+        AnchorPane nextAnchorPane = FXMLLoader.load(Objects.requireNonNull(WindowApplication.class.getResource(fxml)));
         currentAnchorPane.getChildren().removeAll();
         currentAnchorPane.getChildren().setAll(nextAnchorPane);
     }

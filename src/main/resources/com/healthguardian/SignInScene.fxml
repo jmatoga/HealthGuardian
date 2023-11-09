@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="signInScene" prefHeight="468.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Scenes.SignInController">
+   <children>
+      <ImageView fx:id="imageView" fitHeight="502.0" fitWidth="877.0" layoutX="-45.0" layoutY="2.0" onMouseClicked="#unHighlightButtonsOnImageView" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../photos/signInSceneImageView.png" />
+         </image></ImageView>
+      <Button layoutX="375.0" layoutY="419.0" mnemonicParsing="false" text="Sign In" />
+      <TextField fx:id="firstName" layoutX="327.0" layoutY="194.0" onKeyPressed="#enterPressedInField" promptText="First name" />
+      <TextField fx:id="email" layoutX="326.0" layoutY="253.0" onKeyPressed="#enterPressedInField" promptText="e-mail" />
+      <TextField fx:id="lastName" layoutX="327.0" layoutY="223.0" onKeyPressed="#enterPressedInField" promptText="Last name" />
+      <ComboBox fx:id="comboBoxId" layoutX="256.0" layoutY="283.0" prefHeight="25.0" prefWidth="65.0" />
+      <TextField fx:id="phoneNumber" layoutX="326.0" layoutY="283.0" onKeyPressed="#enterPressedInField" promptText="Phone number" />
+      <TextField fx:id="pesel" layoutX="326.0" layoutY="314.0" onKeyPressed="#enterPressedInField" promptText="PESEL" />
+      <TextField fx:id="username" layoutX="326.0" layoutY="345.0" onKeyPressed="#enterPressedInField" promptText="Username" />
+      <PasswordField fx:id="password" layoutX="326.0" layoutY="376.0" onKeyPressed="#enterPressedInField" promptText="Password" />
+      <Label fx:id="signInStatus" alignment="CENTER" layoutX="255.0" layoutY="161.0" prefHeight="25.0" prefWidth="282.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+   </children>
+</AnchorPane>

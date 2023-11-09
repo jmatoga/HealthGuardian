@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="helloScene" prefHeight="508.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Scenes.LogInController">
+   <children>
+      <ImageView fx:id="imageView" fitHeight="507.0" fitWidth="897.0" layoutX="-36.0" layoutY="1.0" onMouseClicked="#unHighlightButtonsOnImageView" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../photos/logInSceneImageView.png" />
+         </image></ImageView>
+   <!--    <Label text="VBox 1"/>-->
+    <Button fx:id="logInButton" layoutX="385.0" layoutY="440.0" onAction="#logInButtonClicked" text="Log in" />
+      <TextField fx:id="username" layoutX="316.0" layoutY="373.0" onKeyPressed="#enterPressedInField" prefHeight="25.0" prefWidth="187.0" promptText="Username" />
+      <PasswordField fx:id="password" layoutX="316.0" layoutY="404.0" onKeyPressed="#enterPressedInField" prefHeight="25.0" prefWidth="187.0" promptText="Password" />
+      <Label fx:id="loggingStatus" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="340.0" prefHeight="25.0" prefWidth="373.0" textFill="RED">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></Label>
+      <Button fx:id="signInButton" layoutX="736.0" layoutY="466.0" mnemonicParsing="false" onAction="#SignInButtonClicked" prefHeight="16.0" prefWidth="58.0" text="Sign in" />
+      <ImageView fitHeight="53.0" fitWidth="58.0" layoutX="14.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../photos/iconImage.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
