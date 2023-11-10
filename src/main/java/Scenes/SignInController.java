@@ -66,11 +66,11 @@ public class SignInController implements Initializable {
     private void checkWrittenText() {
         if (firstName.getText().isEmpty() || lastName.getText().isEmpty() || email.getText().isEmpty() || phoneNumber.getText().isEmpty() || pesel.getText().isEmpty() || username.getText().isEmpty() || password.getText().isEmpty())
             signInStatus.setText("You have to fill all gaps!");
-        else if (firstName.getText().contains(" "))
-            signInStatus.setText("Wrong first name, space inside!");
-        else if (lastName.getText().contains(" "))
-            signInStatus.setText("Wrong last name, space inside!");
-        else if (!email.getText().contains("@") || email.getText().contains(" ") || email.getText().lastIndexOf('@') != email.getText().indexOf('@')) // if contains 2 @
+        else if (firstName.getText().contains(" ") || !firstName.getText().matches("^[a-zA-Z]+$"))
+            signInStatus.setText("Wrong first name!");
+        else if (lastName.getText().contains(" ") || !lastName.getText().matches("^[a-zA-Z]+$"))
+            signInStatus.setText("Wrong last name!");
+        else if (!email.getText().contains("@") || email.getText().contains(" ") || email.getText().lastIndexOf('@') != email.getText().indexOf('@') || email.getText().length() < 7 ) // if contains 2 @
             signInStatus.setText("Wrong email!");
         else if (phoneNumber.getText().length() != 9 || !phoneNumber.getText().matches("\\d+"))
             signInStatus.setText("Wrong phone number!");

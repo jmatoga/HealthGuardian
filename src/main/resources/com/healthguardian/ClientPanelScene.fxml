@@ -1,12 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="401.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Scenes.ClientPanelController">
+<AnchorPane minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #00FA9A);" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Scenes.ClientPanelController">
    <children>
-      <Circle fill="#23ff1f" layoutX="305.0" layoutY="194.0" radius="154.0" stroke="BLACK" strokeType="INSIDE" />
-      <Line endX="83.29289245605469" endY="136.0" layoutX="196.0" layoutY="143.0" startX="-3.7071075439453125" startY="67.0" strokeWidth="10.0" />
-      <Line endX="83.29289245605469" endY="136.0" layoutX="197.0" layoutY="143.0" startX="209.0" startY="-24.0" strokeWidth="10.0" />
+      <HBox accessibleRole="IMAGE_VIEW" prefHeight="140.0" prefWidth="1920.0" style="-fx-background-color: #1E90FF; -fx-border-color: black;" />
+      <Button fx:id="ePrescriptionButton" layoutX="67.0" layoutY="150.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="E-PRESCRIPTION" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="160.0">
+         <font>
+            <Font name="Arial Black" size="22.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="eReferralButton" layoutX="85.0" layoutY="150.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="E-REFERRAL" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="160.0">
+         <font>
+            <Font name="Arial Black" size="22.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="testScheduleButton" layoutX="587.0" layoutY="150.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="TEST SCHEDULE" AnchorPane.leftAnchor="680.0" AnchorPane.topAnchor="160.0">
+         <font>
+            <Font name="Arial Black" size="22.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="findingsButton" layoutX="859.0" layoutY="150.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="FINDINGS" AnchorPane.leftAnchor="990.0" AnchorPane.topAnchor="160.0">
+         <font>
+            <Font name="Arial Black" size="22.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="eContactWithADoctorButton" layoutX="1337.0" layoutY="150.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="E-CONTACT WITH&#10;A DOCTOR" textAlignment="CENTER" AnchorPane.leftAnchor="1300.0" AnchorPane.topAnchor="160.0">
+         <font>
+            <Font name="Arial Black" size="22.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="listOfClinicsButton" layoutX="1610.0" layoutY="160.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="LIST OF CLINICS" AnchorPane.leftAnchor="1610.0" AnchorPane.topAnchor="160.0">
+         <font>
+            <Font name="Arial Black" size="22.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="MessageButton" contentDisplay="GRAPHIC_ONLY" layoutX="1610.0" layoutY="335.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="335.0">
+         <graphic>
+            <ImageView fitHeight="70.0" fitWidth="70.0">
+               <image>
+                  <Image url="@../../photos/letter_icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Arial Black" size="22.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <ImageView fitHeight="600.0" fitWidth="600.0" layoutX="60.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="300.0">
+         <image>
+            <Image url="@../../photos/iconImage.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="dateLabel" layoutX="80.0" layoutY="1036.0" prefHeight="30.0" prefWidth="401.0" text="date" textFill="#0a0a0a">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

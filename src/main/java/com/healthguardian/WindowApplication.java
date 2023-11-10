@@ -16,7 +16,8 @@ public class WindowApplication extends Application {
 
         //VBox layout = new VBox(10);
         //layout.getChildren().addAll(button1, fxmlLoader.load());
-        Scene scene = new Scene(fxmlLoader.load(), 800, 500); // Szerokość i wysokość sceny
+        //Scene scene = new Scene(fxmlLoader.load(), 800, 500); // Szerokość i wysokość sceny
+        Scene scene = new Scene(fxmlLoader.load()); // Szerokość i wysokość sceny
         Image icon = new Image(String.valueOf(WindowApplication.class.getResource("/photos/iconImage.png")));
         stage.getIcons().add(icon);
         //Scene scene1 = new Scene(fxmlLoader.load(), 820, 540);
