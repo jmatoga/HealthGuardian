@@ -77,9 +77,9 @@
             <Image url="@../../photos/iconImage.png" />
          </image>
       </ImageView>
-      <Label fx:id="dateLabel" layoutX="80.0" layoutY="1036.0" prefHeight="30.0" prefWidth="401.0" text="date" textFill="#0a0a0a">
+      <Label fx:id="DateLabel" layoutX="90.0" layoutY="1039.0" prefHeight="17.0" prefWidth="403.0">
          <font>
-            <Font size="20.0" />
+            <Font size="15.0" />
          </font>
       </Label>
    </children>
