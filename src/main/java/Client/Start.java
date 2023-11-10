@@ -8,15 +8,13 @@ public class Start {
         WindowApplication windowApplication = new WindowApplication();
 
         // Uruchom klienta w oddzielnym wątku
-        Thread clientThread = new Thread(() -> {
-            client.connectToServer(args);
-        });
+        Thread clientThread = new Thread(client::connectToServer);
         clientThread.start();
 
         // Wyświetl okno klienta
         //SwingUtilities.invokeLater(() -> {
-            windowApplication.main(args);
-            System.exit(0);
+            windowApplication.startWindow();
+            //System.exit(0);
         //});
     }
 }
