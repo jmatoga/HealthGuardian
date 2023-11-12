@@ -100,6 +100,9 @@ public class ClientPanelController implements Initializable {
     private Button SMIButton;
 
     @FXML
+    private Button logOutButton;
+
+    @FXML
     private AnchorPane clientPanelScene;
 
     @FXML
@@ -162,13 +165,17 @@ public class ClientPanelController implements Initializable {
         new SceneSwitch("ShortMedicalInterviewScene.fxml");
     }
 
+    @FXML
+    private void LogOutButtonClicked(ActionEvent event) throws  IOException{
+        new SceneSwitch("LogInScene.fxml", 800, 500, false, false, "HealthGuardian");
+    }
+
     private void getUserDataFromDB() throws IOException {
         int user_id = Client.user_id;
         String user_id_str = Integer.toString(user_id);
         message.sendGetNameMessage(SendToServer, user_id_str);
         String serverAnswer = Client.rreader(ReadFromServer);
 
-        System.out.println(serverAnswer);
         String[] userData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
 
         firstNameLabel.setText(userData[0]);
@@ -194,10 +201,12 @@ public class ClientPanelController implements Initializable {
         }
 
 
+
         // Utwórz Timeline do cyklicznego odświeżania daty co sekundę
-        //Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> updateDateTime()));
-//        timeline.setCycleCount(Timeline.INDEFINITE);
-//        timeline.play();
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> updateDateTime()));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+
     }
 
     private void updateDateTime() {
@@ -211,8 +220,13 @@ public class ClientPanelController implements Initializable {
         String formattedDateTime = currentDateTime.format(formatter);
 
         // Ustaw sformatowaną datę i godzinę jako tekst etykiety
-        dateLabel.setText(formattedDateTime);
-        System.out.println(formattedDateTime);
+        this.dateLabel.setText(formattedDateTime);
+
+        if (this.dateLabel != null) {
+            this.dateLabel.setText(formattedDateTime);
+        } else {
+            System.err.println("dateLabel is null");
+        }
     }
 
 
