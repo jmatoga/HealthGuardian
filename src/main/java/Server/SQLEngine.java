@@ -12,15 +12,12 @@ public class SQLEngine {
     private final String password;
 
     public SQLEngine(String host, int port, String database, String username, String password) {
-        // LINK TO ADMIN ACCESS: https://client.filess.io/?username=HealthGuardian_alloweager&server=5he.h.filess.io:3307&db=HealthGuardian_alloweager&password=2c2673f30c0d5912c63a30445aeb6dde46e713d0&driver=server
-
         // old (local) database //connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthguardian", "root", "root");
         this.url = "jdbc:mysql://" + host + ":" + port + "/" + database;
         this.username = username;
         this.password = password;
     }
 
-    //Connection connection = DriverManager.getConnection("jdbc:mysql://5he.h.filess.io:3307/HealthGuardian_alloweager", "HealthGuardian_alloweager", "2c2673f30c0d5912c63a30445aeb6dde46e713d0");
     public Connection connectToDataBase(Connection connection, int clientId) {
         try {
             connection = DriverManager.getConnection(url, username, password);
@@ -86,7 +83,6 @@ public class SQLEngine {
         ResultSet resultSet = null;
 
         try {
-            //connection = DriverManager.getConnection("jdbc:mysql://5he.h.filess.io:3307/HealthGuardian_alloweager", "HealthGuardian_alloweager", "2c2673f30c0d5912c63a30445aeb6dde46e713d0");
             connection = connectToDataBase(connection, clientID);
             String sql = "SELECT username,user_id FROM user_pass WHERE username = ? AND password_hash = SHA2(CONCAT(?, (SELECT salt FROM user_pass WHERE username=?)), 256)";
             preparedStatement = connection.prepareStatement(sql);
