@@ -2,39 +2,30 @@ package ScenesControllers;
 
 import com.healthguardian.WindowApplication;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
-
+import javafx.scene.Scene;
 import java.io.IOException;
-import java.util.Objects;
 
 public class SceneSwitch {
-    public SceneSwitch(AnchorPane currentAnchorPane, String fxml) throws IOException {
-        AnchorPane nextAnchorPane = FXMLLoader.load(Objects.requireNonNull(WindowApplication.class.getResource(fxml)));
-        currentAnchorPane.getChildren().removeAll();
-        currentAnchorPane.getChildren().setAll(nextAnchorPane);
+    public SceneSwitch(String newFxmlScene) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(WindowApplication.class.getResource(newFxmlScene));
+        Scene scene = new Scene(fxmlLoader.load(), WindowApplication.primaryStage.getWidth(), WindowApplication.primaryStage.getHeight());
+        WindowApplication.primaryStage.setScene(scene);
     }
 
-
-
-
-//        private Stage stage;
-//        private Scene scene;
-//        private Parent root;
-//
-//        public void switchToScene1(ActionEvent event) throws IOException {
-//            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
-//            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//            scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.show();
-//        }
-//
-//        public void switchToScene2(ActionEvent event) throws IOException {
-//            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ClientPanelScene.fxml")));
-//            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//            scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.show();
-//        }
+    public SceneSwitch(String newFxmlScene, int width, int height, boolean ifMaximized, boolean ifResizable) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(WindowApplication.class.getResource(newFxmlScene));
+        Scene scene = new Scene(fxmlLoader.load(), width, height);
+        WindowApplication.primaryStage.setScene(scene);
+        WindowApplication.primaryStage.setMaximized(ifMaximized); // Fullscreen in window if true
+        WindowApplication.primaryStage.setResizable(ifResizable);
     }
 
+    public SceneSwitch(String newFxmlScene, int width, int height, boolean ifMaximized, boolean ifResizable, String newTitle) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(WindowApplication.class.getResource(newFxmlScene));
+        Scene scene = new Scene(fxmlLoader.load(), width, height);
+        WindowApplication.primaryStage.setScene(scene);
+        WindowApplication.primaryStage.setMaximized(ifMaximized); // Fullscreen in window if true
+        WindowApplication.primaryStage.setResizable(ifResizable);
+        WindowApplication.primaryStage.setTitle(newTitle);
+    }
+}

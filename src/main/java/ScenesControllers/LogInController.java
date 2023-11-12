@@ -68,12 +68,12 @@ public class LogInController{
     private AnchorPane helloScene;
 
     @FXML
-    private void logInButtonClicked(ActionEvent event) throws IOException, InterruptedException {
+    private void logInButtonClicked(ActionEvent event) throws IOException{
         checkWrittenText();
     }
 
     @FXML
-    private void enterPressedInField(KeyEvent event) throws IOException, InterruptedException {
+    private void enterPressedInField(KeyEvent event) throws IOException{
         if (event.getCode() == KeyCode.ENTER)
             checkWrittenText();
     }
@@ -86,14 +86,10 @@ public class LogInController{
 
     @FXML
     private void SignInButtonClicked(ActionEvent event) throws IOException {
-        new SceneSwitch(helloScene, "SignInScene.fxml");
+        new SceneSwitch("SignInScene.fxml", 800, 500, false, false);
     }
 
-//    private Stage stage;
-//    private Scene scene;
-//    private Parent root;
-
-    private void checkWrittenText() throws IOException, InterruptedException {
+    private void checkWrittenText() throws IOException{
         if (username.getText().isEmpty() && password.getText().isEmpty())
             loggingStatus.setText("Username and Password can't be empty!");
         else if (!username.getText().isEmpty() && password.getText().isEmpty())
@@ -117,26 +113,17 @@ public class LogInController{
                         Thread.sleep(1000);
                         username.setText("");
                         password.setText("");
-                        //new SceneSwitch(helloScene, "ClientPanelScene.fxml");
-                        WindowApplication.primaryStage.setTitle("HealthGuardian - clientID: " + Client.clientId + " ,user_id: " + Client.user_id);
-                        FXMLLoader fxmlLoader = new FXMLLoader(WindowApplication.class.getResource("ClientPanelScene.fxml"));
-                        Scene scene = new Scene(fxmlLoader.load(), 1500, 900); // Szerokość i wysokość sceny
-                        WindowApplication.primaryStage.setScene(scene);
-                        WindowApplication.primaryStage.setMaximized(true); // Fullscreen in window
-
-//                      Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ClientPanelScene.fxml")));
-//                      stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//                      scene = new Scene(root);
-//                      stage.setScene(scene);
-//                      stage.show();
+                        new SceneSwitch("ClientPanelScene.fxml", 1920, 1000, true, true,"HealthGuardian - clientID: " + Client.clientId + " ,user_id: " + Client.user_id);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                 });
-            } else
+            } else {
+                Platform.runLater(() -> System.out.println(serverAnswer));
                 loggingStatus.setText("Wrong username or password!");
+            }
         }
     }
 }
