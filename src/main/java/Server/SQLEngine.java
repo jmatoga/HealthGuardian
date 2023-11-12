@@ -54,18 +54,14 @@ public class SQLEngine {
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) { // if username and password exist in database in same user
-                System.out.println("Correct password.");
-                //clientOut.println("Server: Correct password."); // Send a message to the client
+                System.out.println("Correct password.\n");
 
                 returnStatement[0] = "true";
                 returnStatement[1] = String.valueOf(resultSet.getInt("user_id"));
-                System.out.println("tak");
 
                 return returnStatement;
             } else {
-                System.out.println("Wrong password.");
-                //clientOut.println("Server: Wrong password."); // Send a message to the client
-                System.out.println("nie");
+                System.out.println("Wrong password.\n");
 
                 returnStatement[0] = "false";
                 returnStatement[1] = "-1";

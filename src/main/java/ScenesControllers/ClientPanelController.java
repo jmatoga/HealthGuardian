@@ -30,7 +30,6 @@ public class ClientPanelController implements Initializable {
 
     @FXML
     private Label dateLabel;
-
     private static Message message;
     private static BufferedReader ReadFromServer;
     private static PrintWriter SendToServer;
@@ -42,8 +41,8 @@ public class ClientPanelController implements Initializable {
 
         // Utwórz Timeline do cyklicznego odświeżania daty co sekundę
         //Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> updateDateTime()));
-//        timeline.setCycleCount(Timeline.INDEFINITE);
-//        timeline.play();
+        //timeline.setCycleCount(Timeline.INDEFINITE);
+        //timeline.play();
     }
 
     private void updateDateTime() {

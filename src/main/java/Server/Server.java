@@ -14,15 +14,27 @@ public class Server {
     private static ServerSocket serverSocket;
 
     // DB properties
-    private static final String DBhost = "5he.h.filess.io";
-    private static final int DBPort = 3307;
-    private static final String DBName = "HealthGuardian_alloweager";
-    private static final String DBusername = "HealthGuardian_alloweager";
-    private static final String DBpassword = "2c2673f30c0d5912c63a30445aeb6dde46e713d0";
+    private static String DBhost;
+    private static int DBPort;
+    private static String DBName;
+    private static String DBusername;
+    private static String DBpassword;
     private static SQLEngine sqlEngine;
 
     public static void main(String[] args) throws IOException {
         int clientId = 0;
+
+        String fileName = "src/main/resources/Secret/passwords.txt";
+        // Read passwords from file
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            Server.DBhost = br.readLine();
+            Server.DBPort = Integer.parseInt(br.readLine());
+            Server.DBName = br.readLine();
+            Server.DBusername = br.readLine();
+            Server.DBpassword = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // Create server socket
         try {

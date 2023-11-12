@@ -1,7 +1,9 @@
 package ScenesControllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -11,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.lang.String;
 
 import java.net.URL;
@@ -51,10 +54,26 @@ public class SignInController implements Initializable {
     @FXML
     private Label signInStatus;
 
+    @FXML
+    private Button logInButton;
+
+    @FXML
+    private Button signInButton;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBoxId.getItems().addAll("+48","+69");
         comboBoxId.getSelectionModel().selectFirst();
+    }
+
+    @FXML
+    private void SignInButtonClicked(ActionEvent event) {
+        checkWrittenText();
+    }
+
+    @FXML
+    private void LogInButtonClicked(ActionEvent event) throws IOException {
+        new SceneSwitch("LogInScene.fxml", 800, 500, false, false);
     }
 
     @FXML
@@ -82,31 +101,7 @@ public class SignInController implements Initializable {
             signInStatus.setText("Wrong password!");
         else {
             System.out.println("dsa");
-//            if (Server.chceckUsernameAndPasswordInDataBase(username.getText(), password.getText())) {
-//                signInStatus.setTextFill(Paint.valueOf("0x2aff00")); // green color
-//                signInStatus.setText("Signed in succesfully!");
-//
-//
-//                Platform.runLater(() -> {
-//                    try {
-//                        Thread.sleep(1500);
-//                        username.setText("");
-//                        password.setText("");
-//                        new SceneSwitch(signInScene, "ClientPanelScene.fxml");
-////                      Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ClientPanelScene.fxml")));
-////                      stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-////                      scene = new Scene(root);
-////                      stage.setScene(scene);
-////                      stage.show();
-//                    } catch (InterruptedException e) {
-//                        // Obsłuż ewentualny wyjątek spowodowany przerwaniem uśpienia
-//                        e.printStackTrace();
-//                    } catch (IOException e) {
-//                        throw new RuntimeException(e);
-//                    }
-//                });
-//            } else
-//                signInStatus.setText("Wrong username or password!");
+
         }
     }
 

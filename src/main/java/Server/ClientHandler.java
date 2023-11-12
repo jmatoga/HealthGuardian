@@ -66,7 +66,7 @@ class ClientHandler implements Callable<String> {
             }
         } catch (IOException e) {
             //e.printStackTrace();
-            System.out.println("Client with id: " + Client.clientId + " disconnected.");
+            System.out.println("Client with id: " + Client.clientId + " disconnected."); // TODO repair clientID
         }
         return "Task completed";
     }
