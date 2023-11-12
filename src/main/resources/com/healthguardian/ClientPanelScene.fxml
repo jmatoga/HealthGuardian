@@ -73,9 +73,9 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <ImageView fitHeight="600.0" fitWidth="600.0" layoutX="60.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="300.0">
+      <ImageView fitHeight="600.0" fitWidth="600.0" layoutX="60.0" layoutY="516.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="516.0">
          <image>
-            <Image url="@../../photos/iconImage.png" />
+            <Image url="@../../photos/1.png" />
          </image>
       </ImageView>
       <Label fx:id="DateLabel" layoutX="80.0" layoutY="1003.0" prefHeight="17.0" prefWidth="403.0" text="date">
