@@ -1,4 +1,4 @@
-package Scenes;
+package ScenesControllers;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

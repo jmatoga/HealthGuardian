@@ -1,4 +1,4 @@
-package Scenes;
+package ScenesControllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

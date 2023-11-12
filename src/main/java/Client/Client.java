@@ -1,6 +1,6 @@
 package Client;
 
-import Scenes.LogInController;
+import ScenesControllers.LogInController;
 import utils.Message;
 
 import java.io.*;

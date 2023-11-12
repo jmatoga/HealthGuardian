@@ -18,7 +18,7 @@ The workspace contains two folders by default, where:
 
 -  `Server`: the folder to maintain sources of server
 
--  `Scenes`: the folder to maintain scenes dependencies
+-  `ScenesControllers`: the folder to maintain scenes dependencies
 
 -  `Resources`: the folder to maintain layout and view of application
 

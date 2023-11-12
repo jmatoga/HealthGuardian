@@ -7,6 +7,6 @@ module com.healthguardian.healthguardian {
 
     opens com.healthguardian to javafx.fxml;
     exports com.healthguardian;
-    exports Scenes;
-    opens Scenes to javafx.fxml;
+    exports ScenesControllers;
+    opens ScenesControllers to javafx.fxml;
 }

@@ -1,7 +1,7 @@
 package com.healthguardian;
 
 import Client.Client;
-import Scenes.LogInController;
+import ScenesControllers.LogInController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

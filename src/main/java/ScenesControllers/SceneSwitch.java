@@ -1,4 +1,4 @@
-package Scenes;
+package ScenesControllers;
 
 import com.healthguardian.WindowApplication;
 import javafx.fxml.FXMLLoader;

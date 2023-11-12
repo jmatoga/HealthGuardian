@@ -1,4 +1,4 @@
-package Scenes;
+package ScenesControllers;
 
 import Client.Client;
 import com.healthguardian.WindowApplication;
