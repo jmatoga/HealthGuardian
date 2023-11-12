@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Scenes.ClientPanelController">
+<AnchorPane minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.ClientPanelController">
    <children>
       <HBox accessibleRole="IMAGE_VIEW" prefHeight="140.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #243ddd 50%, #344ffe 75%); -fx-border-color: black;" />
       <Button fx:id="ePrescriptionButton" layoutX="67.0" layoutY="150.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="E-PRESCRIPTION" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="160.0">

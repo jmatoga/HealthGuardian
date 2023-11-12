@@ -32,8 +32,18 @@ public class LogInController{
         LogInController.message = message;
         LogInController.ReadFromServer = ReadFromServer;
         LogInController.SendToServer = SendToServer;
-        System.out.println(SendToServer);
-        System.out.println(ReadFromServer);
+    }
+
+    public static Message getMessageResources() {
+        return message;
+    }
+
+    public static BufferedReader getReadFromServerResources() {
+        return ReadFromServer;
+    }
+
+    public static PrintWriter getSendToServerResources() {
+        return SendToServer;
     }
 
     @FXML
@@ -120,7 +130,6 @@ public class LogInController{
 //                      stage.setScene(scene);
 //                      stage.show();
                     } catch (InterruptedException e) {
-                        // Obsłuż ewentualny wyjątek spowodowany przerwaniem uśpienia
                         e.printStackTrace();
                     } catch (IOException e) {
                         throw new RuntimeException(e);

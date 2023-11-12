@@ -35,14 +35,14 @@ public class SQLEngine {
         return connection;
     }
 
-    public String[] loginToAccount(int clientID, String inputUsername, String inputPassword) {
+    String[] loginToAccount(int clientID, String inputUsername, String inputPassword) {
         String[] returnStatement = {"false", "-1"};
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
-       try {
+        try {
             //connection = DriverManager.getConnection("jdbc:mysql://5he.h.filess.io:3307/HealthGuardian_alloweager", "HealthGuardian_alloweager", "2c2673f30c0d5912c63a30445aeb6dde46e713d0");
             connection = connectToDataBase(connection, clientID);
             String sql = "SELECT username,user_id FROM user_pass WHERE username = ? AND password_hash = SHA2(CONCAT(?, (SELECT salt FROM user_pass WHERE username=?)), 256)";

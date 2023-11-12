@@ -40,7 +40,7 @@ public class Server {
         } catch (Exception e) {
             System.out.println(Color.ColorString(e.getMessage(), Color.ANSI_RED));
             e.printStackTrace();
-            System.exit(-1);
+            System.exit(-2);
         }
 
         // Listen for client connections

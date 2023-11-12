@@ -33,6 +33,7 @@ class ClientHandler implements Callable<String> {
                 if (serverMessage != null) {
                     System.out.println("Server: Received message from client: " + serverMessage);
                 }
+
                 if (serverMessage.startsWith("PRINT:")) {
                     // Print the message, excluding the "PRINT:" prefix
                     System.out.println(serverMessage.substring(6));
@@ -53,13 +54,11 @@ class ClientHandler implements Callable<String> {
                     String password = loginInfo[2];
 
                     String[] loginResult = sqlEngine.loginToAccount(Integer.parseInt(clientId),username, password);
-                    System.out.println();
-                    System.out.println();
+
                     if(Boolean.parseBoolean(loginResult[0])) {
                         SendToClient.println(""); // This is message to the client reader
                         SendToClient.println("Logged successfully. Your user_id: " + loginResult[1]); // This is message to the LogInController
-                    }
-                    else {
+                    } else {
                         SendToClient.println(""); // This is message to the client reader
                         SendToClient.println("Wrong password."); // This is message to the LogInController
                     }
