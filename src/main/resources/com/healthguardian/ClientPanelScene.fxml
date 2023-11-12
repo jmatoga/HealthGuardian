@@ -4,11 +4,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #00FA9A);" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Scenes.ClientPanelController">
+<AnchorPane minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Scenes.ClientPanelController">
    <children>
-      <HBox accessibleRole="IMAGE_VIEW" prefHeight="140.0" prefWidth="1920.0" style="-fx-background-color: #1E90FF; -fx-border-color: black;" />
+      <HBox accessibleRole="IMAGE_VIEW" prefHeight="140.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #243ddd 50%, #344ffe 75%); -fx-border-color: black;" />
       <Button fx:id="ePrescriptionButton" layoutX="67.0" layoutY="150.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="E-PRESCRIPTION" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="160.0">
          <font>
             <Font name="Arial Black" size="22.0" />
@@ -77,10 +78,128 @@
             <Image url="@../../photos/iconImage.png" />
          </image>
       </ImageView>
-      <Label fx:id="DateLabel" layoutX="90.0" layoutY="1039.0" prefHeight="17.0" prefWidth="403.0">
+      <Label fx:id="DateLabel" layoutX="80.0" layoutY="1003.0" prefHeight="17.0" prefWidth="403.0" text="date">
          <font>
-            <Font size="15.0" />
+            <Font size="18.0" />
          </font>
       </Label>
+      <VBox layoutX="980.0" layoutY="378.0" prefHeight="112.0" prefWidth="280.0">
+         <children>
+            <Label fx:id="firstNameLabel" prefHeight="35.0" prefWidth="287.0" text="First_Name" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="lastNameLabel" prefHeight="35.0" prefWidth="284.0" text="Last_Name" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="birthDateLabel" prefHeight="35.0" prefWidth="287.0" text="Birth_Date" textAlignment="CENTER">
+               <font>
+                  <Font name="System Italic" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="980.0" layoutY="518.0" prefHeight="255.0" prefWidth="280.0">
+         <children>
+            <Label fx:id="weightLabel" prefHeight="27.0" prefWidth="285.0" text="weight:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="heightLabel" prefHeight="27.0" prefWidth="285.0" text="height:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="ageLabel" prefHeight="27.0" prefWidth="285.0" text="age: ">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="temperatureLabel" prefHeight="27.0" prefWidth="285.0" text="temperature: ">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label fx:id="presureLabel" prefHeight="27.0" prefWidth="285.0" text="presure: ">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="dateOfLastUpdateLabel" prefHeight="86.0" prefWidth="280.0" text="date of last update:&#10;dd.mm.rrrr">
+               <font>
+                  <Font name="System Italic" size="20.0" />
+               </font>
+               <padding>
+                  <Insets top="25.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+      <Button fx:id="editDataButton" layoutX="990.0" layoutY="828.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="148.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="EDIT DATA">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="SMIButton" layoutX="814.0" layoutY="950.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="500.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d3b2b2); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #950000; -fx-border-width: 5; -fx-border-radius: 3; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="SHORT MEDICAL INTERVIEW">
+         <font>
+            <Font name="Arial Black" size="22.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.9605262875556946" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Button>
+      <Button fx:id="settingsButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="SETTINGS">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="medicalHistoryButton" layoutX="1620.0" layoutY="764.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="MEDICAL HISTORY" textFill="#ff9200">
+         <font>
+            <Font name="Arial Black" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="presurrePanelButton" layoutX="1620.0" layoutY="645.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="PRESURE PANEL" textFill="#05ff00">
+         <font>
+            <Font name="Arial Black" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
    </children>
 </AnchorPane>
