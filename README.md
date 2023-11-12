@@ -13,14 +13,19 @@
 ## Folder Structure
 
 The workspace contains two folders by default, where:
+* `java`: the folder to maintain core backend of application
+  
+   - `Client`: the folder to maintain sources of client
 
--  `Client`: the folder to maintain sources of client
+   -  `Server`: the folder to maintain sources of server
 
--  `Server`: the folder to maintain sources of server
+   -  `ScenesControllers`: the folder to maintain scenes dependencies
 
--  `ScenesControllers`: the folder to maintain scenes dependencies
+*  `Resources`: the folder to maintain layout and view of application
 
--  `Resources`: the folder to maintain layout and view of application
+   - `com.healthguardian`: the folder to maintain layout of scenes in fxml type
+
+   - `photos`: the folder to maintain photos/backgrounds
 
 Meanwhile, the compiled output files will be generated in the `bin` folder by default.
 
