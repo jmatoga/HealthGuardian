@@ -4,7 +4,6 @@ import Client.Client;
 import com.healthguardian.WindowApplication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import Server.Server;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,11 +17,24 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
+import utils.Message;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 
+public class LogInController{
+    private static Message message;
+    private static BufferedReader ReadFromServer;
+    private static PrintWriter SendToServer;
 
-public class LogInController {
+    public static void setLogInController(Message message, BufferedReader ReadFromServer, PrintWriter SendToServer) {
+        LogInController.message = message;
+        LogInController.ReadFromServer = ReadFromServer;
+        LogInController.SendToServer = SendToServer;
+        System.out.println(SendToServer);
+        System.out.println(ReadFromServer);
+    }
 
     @FXML
     private TextField username;
@@ -46,13 +58,12 @@ public class LogInController {
     private AnchorPane helloScene;
 
     @FXML
-    private void logInButtonClicked(ActionEvent event){
-        Server.e();
+    private void logInButtonClicked(ActionEvent event) throws IOException, InterruptedException {
         checkWrittenText();
     }
 
     @FXML
-    private void enterPressedInField(KeyEvent event){
+    private void enterPressedInField(KeyEvent event) throws IOException, InterruptedException {
         if (event.getCode() == KeyCode.ENTER)
             checkWrittenText();
     }
@@ -72,7 +83,7 @@ public class LogInController {
 //    private Scene scene;
 //    private Parent root;
 
-    private void checkWrittenText() {
+    private void checkWrittenText() throws IOException, InterruptedException {
         if (username.getText().isEmpty() && password.getText().isEmpty())
             loggingStatus.setText("Username and Password can't be empty!");
         else if (!username.getText().isEmpty() && password.getText().isEmpty())
@@ -80,25 +91,29 @@ public class LogInController {
         else if (username.getText().isEmpty() && !password.getText().isEmpty())
             loggingStatus.setText("Username can't be empty!");
         else {
-            String[] tempArray = Server.chceckUsernameAndPasswordInDataBase(Client.clientId, username.getText(), password.getText());
-            if (Boolean.parseBoolean(tempArray[0])) {
-                Client.user_id = Integer.parseInt(tempArray[1]);
-                System.out.println("user_id: " + Client.user_id);
+            message.sendLoginMessage(SendToServer, Client.clientId + "," + username.getText() + "," + password.getText());
+            String serverAnswer = Client.rreader(ReadFromServer);
+
+            if (serverAnswer.startsWith("Logged successfully. Your user_id: ") && Integer.parseInt(serverAnswer.substring(35)) > 0) {
+                Client.user_id = Integer.parseInt(serverAnswer.substring(35));
 
                 loggingStatus.setTextFill(Paint.valueOf("0x2aff00")); // green color
                 loggingStatus.setText("Logged succesfully!");
 
                 Platform.runLater(() -> {
                     try {
-                        Thread.sleep(1500);
+                        System.out.println(serverAnswer);
+
+                        Thread.sleep(1000);
                         username.setText("");
                         password.setText("");
-                        System.out.println("aaaaa" + Client.clientId);
                         //new SceneSwitch(helloScene, "ClientPanelScene.fxml");
                         WindowApplication.primaryStage.setTitle("HealthGuardian - clientID: " + Client.clientId + " ,user_id: " + Client.user_id);
                         FXMLLoader fxmlLoader = new FXMLLoader(WindowApplication.class.getResource("ClientPanelScene.fxml"));
                         Scene scene = new Scene(fxmlLoader.load(), 1500, 900); // Szerokość i wysokość sceny
                         WindowApplication.primaryStage.setScene(scene);
+                        WindowApplication.primaryStage.setMaximized(true); // Fullscreen in window
+
 //                      Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ClientPanelScene.fxml")));
 //                      stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 //                      scene = new Scene(root);
@@ -116,6 +131,3 @@ public class LogInController {
         }
     }
 }
-
-
-

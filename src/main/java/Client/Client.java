@@ -1,48 +1,59 @@
 package Client;
 
 import Scenes.LogInController;
-import Scenes.SignInController;
-import com.healthguardian.WindowApplication;
+import utils.Message;
 
 import java.io.*;
 import java.net.*;
-import java.util.Scanner;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Client {
     public static int user_id=-1;
     public static int clientId=-1;
-    public void connectToServer() {
+    private static final Lock lock = new ReentrantLock();
+
+    public static void reader(BufferedReader ReadFromServer) {
+        try {
+            while (true) {
+                //String serverMessage = ReadFromServer.readLine();
+                String serverMessage = rreader(ReadFromServer);
+                if (serverMessage != null)
+                    System.out.println("Client: Received message from server: " + serverMessage);
+                else
+                    System.out.println("Something went wrong! Server sent null message.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static synchronized String rreader(BufferedReader ReadFromServer) throws IOException {
+        try {
+            lock.lock();
+            return ReadFromServer.readLine();
+        } finally {
+            lock.unlock();
+        }
+    }
+    public static void main(String[] args) {
         String serverAddress = "localhost";
         int serverPort = 12345;
+        // Create message object
+        Message message = new Message();
 
         try (Socket clientSocket = new Socket(serverAddress, serverPort);
-             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)
+             BufferedReader ReadFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+             PrintWriter SendToServer = new PrintWriter(clientSocket.getOutputStream(), true)
         ) {
-            out.println("Hi server!");
-            String response = in.readLine();
-            clientId = Integer.parseInt(response.substring(15));
+            LogInController.setLogInController(message,ReadFromServer,SendToServer);
+            clientId = Integer.parseInt(ReadFromServer.readLine());
             System.out.println("ClientID: " + clientId);
-            System.out.println(in.readLine());
 
-            //LogInController.getClientId();
-
-//            System.out.println("\n>>>> ");
-//            String text = scanner.nextLine();
-//            System.out.printf(text);
-//
-            while(true) {
-                Thread.sleep(5000);
-                System.out.println("d");
-            }
+            reader(ReadFromServer);
 
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
         }
-//        catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 }

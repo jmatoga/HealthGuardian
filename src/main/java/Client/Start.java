@@ -8,7 +8,10 @@ public class Start {
         WindowApplication windowApplication = new WindowApplication();
 
         // Uruchom klienta w oddzielnym wątku
-        Thread clientThread = new Thread(client::connectToServer);
+        Thread clientThread = new Thread(() -> {
+            client.main(args);
+            // Dodaj logikę obsługi klienta
+        });
         clientThread.start();
 
         // Wyświetl okno klienta
