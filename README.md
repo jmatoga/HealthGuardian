@@ -3,6 +3,7 @@
 ***
 <div align="center">
  <b>HealthGuardian: Smart Health Monitoring</b>
+ Work in progress... 
 </div> 
 
 ***
@@ -34,6 +35,7 @@ Firstly you have to run a server app.
  
 ## Starting Client
 Client will only work if server is started.
+To start client you have to run `start` class
 
 ## Dependency Management
 
