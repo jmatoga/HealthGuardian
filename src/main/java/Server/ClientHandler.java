@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Arrays;
 import java.util.concurrent.Callable;
 
 class ClientHandler implements Callable<String> {
@@ -62,6 +63,12 @@ class ClientHandler implements Callable<String> {
                         SendToClient.println(""); // This is message to the client reader
                         SendToClient.println("Wrong password."); // This is message to the LogInController
                     }
+                } else if (serverMessage.startsWith("GET_USER_DATA:")) {
+                    String userId = serverMessage.substring(14);
+
+                    String[] nameResult = sqlEngine.getData(Client.clientId, userId);
+                    SendToClient.println("");
+                    SendToClient.println(Arrays.toString(nameResult));
                 }
             }
         } catch (IOException e) {

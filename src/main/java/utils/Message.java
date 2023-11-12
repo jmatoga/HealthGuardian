@@ -22,4 +22,7 @@ public class Message {
     public void sendRegisterMessage(PrintWriter writer, String message) {
         writer.println("REGISTER:" + message);
     }
+    public void sendGetNameMessage(PrintWriter writer, String message) {
+        writer.println("GET_USER_DATA:" + message);
+    }
 }

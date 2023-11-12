@@ -7,10 +7,10 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="1000.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.ClientPanelController">
+<AnchorPane fx:id="clientPanelScene" prefHeight="1000.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.ClientPanelController">
    <children>
-      <HBox accessibleRole="IMAGE_VIEW" prefHeight="140.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #243ddd 50%, #344ffe 75%); -fx-border-color: black;" />
-      <Button fx:id="ePrescriptionButton" layoutX="67.0" layoutY="150.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="E-PRESCRIPTION" AnchorPane.bottomAnchor="760.0" AnchorPane.leftAnchor="60.0">
+      <HBox accessibleRole="IMAGE_VIEW" prefHeight="140.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #243ddd 50%, #344ffe 75%); -fx-border-color: black;" AnchorPane.topAnchor="0.0" />
+      <Button fx:id="ePrescriptionButton" layoutX="67.0" layoutY="150.0" mnemonicParsing="false" onAction="#ePrescriptionButtonClicked" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="E-PRESCRIPTION" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="160.0">
          <font>
             <Font name="Arial Black" size="22.0" />
          </font>
@@ -18,7 +18,7 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button fx:id="eReferralButton" layoutX="85.0" layoutY="150.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="E-REFERRAL" AnchorPane.bottomAnchor="760.0" AnchorPane.leftAnchor="370.0">
+      <Button fx:id="eReferralButton" layoutX="85.0" layoutY="150.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="E-REFERRAL" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="160.0">
          <font>
             <Font name="Arial Black" size="22.0" />
          </font>
@@ -26,7 +26,7 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button fx:id="testScheduleButton" layoutX="587.0" layoutY="150.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="TEST SCHEDULE" AnchorPane.bottomAnchor="760.0" AnchorPane.leftAnchor="680.0">
+      <Button fx:id="testScheduleButton" layoutX="587.0" layoutY="150.0" mnemonicParsing="false" onAction="#testScheduleButtonClicked" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="TEST SCHEDULE" AnchorPane.leftAnchor="680.0" AnchorPane.topAnchor="160.0">
          <font>
             <Font name="Arial Black" size="22.0" />
          </font>
@@ -34,7 +34,7 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button fx:id="findingsButton" layoutX="859.0" layoutY="150.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="FINDINGS" AnchorPane.bottomAnchor="760.0" AnchorPane.leftAnchor="990.0">
+      <Button fx:id="findingsButton" layoutX="859.0" layoutY="150.0" mnemonicParsing="false" onAction="#findingsButtonClicked" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="FINDINGS" AnchorPane.leftAnchor="990.0" AnchorPane.topAnchor="160.0">
          <font>
             <Font name="Arial Black" size="22.0" />
          </font>
@@ -42,7 +42,7 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button fx:id="eContactWithADoctorButton" layoutX="1337.0" layoutY="150.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="E-CONTACT WITH&#10;A DOCTOR" textAlignment="CENTER" AnchorPane.bottomAnchor="760.0" AnchorPane.leftAnchor="1300.0">
+      <Button fx:id="eContactWithADoctorButton" layoutX="1337.0" layoutY="150.0" mnemonicParsing="false" onAction="#eContactWithADoctorButtonClicked" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="E-CONTACT WITH&#10;A DOCTOR" textAlignment="CENTER" AnchorPane.leftAnchor="1300.0" AnchorPane.topAnchor="160.0">
          <font>
             <Font name="Arial Black" size="22.0" />
          </font>
@@ -50,7 +50,7 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button fx:id="listOfClinicsButton" layoutX="1610.0" layoutY="160.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="LIST OF CLINICS" AnchorPane.bottomAnchor="760.0" AnchorPane.leftAnchor="1610.0">
+      <Button fx:id="listOfClinicsButton" layoutX="1610.0" layoutY="160.0" mnemonicParsing="false" onAction="#listOfClinicsButtonClicked" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="LIST OF CLINICS" AnchorPane.leftAnchor="1610.0" AnchorPane.topAnchor="160.0">
          <font>
             <Font name="Arial Black" size="22.0" />
          </font>
@@ -58,7 +58,7 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button fx:id="MessageButton" contentDisplay="GRAPHIC_ONLY" layoutX="1610.0" layoutY="335.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" AnchorPane.bottomAnchor="579.0" AnchorPane.rightAnchor="50.0">
+      <Button fx:id="MessageButton" contentDisplay="GRAPHIC_ONLY" layoutX="1610.0" layoutY="335.0" mnemonicParsing="false" onAction="#messageButtonClicked" prefHeight="70.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" AnchorPane.bottomAnchor="579.0" AnchorPane.rightAnchor="50.0">
          <graphic>
             <ImageView fitHeight="70.0" fitWidth="70.0">
                <image>
@@ -145,7 +145,7 @@
             </Label>
          </children>
       </VBox>
-      <Button fx:id="editDataButton" layoutX="990.0" layoutY="828.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="148.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="EDIT DATA" AnchorPane.bottomAnchor="140.0" AnchorPane.rightAnchor="790.0">
+      <Button fx:id="editDataButton" layoutX="990.0" layoutY="828.0" mnemonicParsing="false" onAction="#editDataButtonClicked" prefHeight="50.0" prefWidth="148.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="EDIT DATA" AnchorPane.bottomAnchor="140.0" AnchorPane.rightAnchor="790.0">
          <font>
             <Font name="Arial Bold Italic" size="18.0" />
          </font>
@@ -153,7 +153,7 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button fx:id="SMIButton" layoutX="814.0" layoutY="950.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="500.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d3b2b2); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #950000; -fx-border-width: 5; -fx-border-radius: 3; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="SHORT MEDICAL INTERVIEW" AnchorPane.bottomAnchor="20.0">
+      <Button fx:id="SMIButton" layoutX="814.0" layoutY="950.0" mnemonicParsing="false" onAction="#SMIButtonClicked" prefHeight="80.0" prefWidth="500.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d3b2b2); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #950000; -fx-border-width: 5; -fx-border-radius: 3; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="SHORT MEDICAL INTERVIEW" AnchorPane.bottomAnchor="20.0">
          <font>
             <Font name="Arial Black" size="22.0" />
          </font>
@@ -177,7 +177,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="settingsButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="SETTINGS" AnchorPane.bottomAnchor="20.0">
+      <Button fx:id="settingsButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#settingsButtonClicked" prefHeight="55.0" prefWidth="160.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="SETTINGS" AnchorPane.bottomAnchor="20.0">
          <font>
             <Font name="Arial Bold Italic" size="18.0" />
          </font>
@@ -185,7 +185,7 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button fx:id="medicalHistoryButton" layoutX="1620.0" layoutY="764.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="MEDICAL HISTORY" textFill="#ff9200" AnchorPane.bottomAnchor="170.0" AnchorPane.rightAnchor="40.0">
+      <Button fx:id="medicalHistoryButton" layoutX="1620.0" layoutY="764.0" mnemonicParsing="false" onAction="#medicalHistoryButtonClicked" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="MEDICAL HISTORY" textFill="#ff9200" AnchorPane.bottomAnchor="170.0" AnchorPane.rightAnchor="40.0">
          <font>
             <Font name="Arial Black" size="18.0" />
          </font>
@@ -193,7 +193,7 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button fx:id="presurrePanelButton" layoutX="1620.0" layoutY="645.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="PRESURE PANEL" textFill="#05ff00" AnchorPane.bottomAnchor="280.0" AnchorPane.rightAnchor="40.0">
+      <Button fx:id="presurePanelButton" layoutX="1620.0" layoutY="645.0" mnemonicParsing="false" onAction="#presurePanelButtonClicked" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="PRESURE PANEL" textFill="#05ff00" AnchorPane.bottomAnchor="280.0" AnchorPane.rightAnchor="40.0">
          <font>
             <Font name="Arial Black" size="18.0" />
          </font>

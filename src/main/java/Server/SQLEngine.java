@@ -35,6 +35,49 @@ public class SQLEngine {
         return connection;
     }
 
+    String[] getData(int clientID, String user_id){
+        String[] returnStatement = {"Error", "Error", "Error", "Error", "Error", "Error", "Error"};
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT first_Name, last_name, user_data.age, user_data.weight, user_data.height, user_data.systolic_pressure, user_data.diastolic_pressure FROM user NATURAL JOIN user_data WHERE user_id = ?;";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user_id);  // username
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) { // if username and password exist in database in same user
+                System.out.println("Getted User Data.");
+
+                returnStatement[0] = String.valueOf(resultSet.getString("first_name"));
+                returnStatement[1] = String.valueOf(resultSet.getString("last_name"));
+                returnStatement[2] = String.valueOf(resultSet.getString("user_data.age"));
+                returnStatement[3] = String.valueOf(resultSet.getString("user_data.weight"));
+                returnStatement[4] = String.valueOf(resultSet.getString("user_data.height"));
+                returnStatement[5] = String.valueOf(resultSet.getString("user_data.systolic_pressure"));
+                returnStatement[6] = String.valueOf(resultSet.getString("user_data.diastolic_pressure"));
+
+                return returnStatement;
+
+            } else {
+                System.out.println("DataBase Error, First Name is empty!.");
+
+                returnStatement[0] = "false1";
+
+                return returnStatement;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
     String[] loginToAccount(int clientID, String inputUsername, String inputPassword) {
         String[] returnStatement = {"false", "-1"};
 
