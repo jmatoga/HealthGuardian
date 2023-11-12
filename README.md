@@ -1,5 +1,14 @@
 # HealthGuardian
-HealthGuardian: Smart Health Monitoring
+
+***
+<div align="center">
+ <b>HealthGuardian: Smart Health Monitoring</b>
+</div> 
+
+***
+#
+
+**Java-based**, **multithreaded**, **TCP-based** and **clinet-server** `health application` project to monitor and analyze the user's health condition with a mechanism for assessing the need for a doctor's consultation and the ability to store and share health data history. 
 
 ## Folder Structure
 
