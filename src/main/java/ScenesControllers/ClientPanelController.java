@@ -71,6 +71,7 @@ public class ClientPanelController implements Initializable {
     @FXML
     private Button testScheduleButton;
 
+
     @FXML
     private Button findingsButton;
 
