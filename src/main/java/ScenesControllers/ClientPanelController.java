@@ -167,7 +167,7 @@ public class ClientPanelController implements Initializable {
 
     @FXML
     private void LogOutButtonClicked(ActionEvent event) throws  IOException{
-        new SceneSwitch("LogInScene.fxml", 800, 500, 800, 500, false, false, "HealthGuardian");
+        new SceneSwitch("LogInScene.fxml", 820, 500, 800, 500, false, false, "HealthGuardian");
     }
 
     private void getUserDataFromDB() throws IOException {

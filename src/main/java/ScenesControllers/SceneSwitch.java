@@ -26,8 +26,6 @@ public class SceneSwitch {
         WindowApplication.primaryStage.setScene(scene);
         WindowApplication.primaryStage.setMaximized(ifMaximized); // Fullscreen in window if true
         WindowApplication.primaryStage.setResizable(ifResizable);
-        WindowApplication.primaryStage.setMaxHeight(height);
-        WindowApplication.primaryStage.setMaxWidth(width);
         WindowApplication.primaryStage.setTitle(newTitle);
     }
 

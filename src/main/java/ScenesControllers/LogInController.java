@@ -19,11 +19,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import utils.Message;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 public class LogInController{
+
+    private final Toolkit toolkit = Toolkit.getDefaultToolkit();
+    private int screenWidth = toolkit.getScreenSize().width;
+    private int screenHeight = toolkit.getScreenSize().height;
     private static Message message;
     private static BufferedReader ReadFromServer;
     private static PrintWriter SendToServer;
@@ -113,7 +118,7 @@ public class LogInController{
                         Thread.sleep(1000);
                         username.setText("");
                         password.setText("");
-                        new SceneSwitch("ClientPanelScene.fxml", 1920, 1080, true, true,"HealthGuardian - clientID: " + Client.clientId + " ,user_id: " + Client.user_id);
+                        new SceneSwitch("ClientPanelScene.fxml", 1920, 1080, screenWidth, screenHeight, true, true,"HealthGuardian - clientID: " + Client.clientId + " ,user_id: " + Client.user_id);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (IOException e) {

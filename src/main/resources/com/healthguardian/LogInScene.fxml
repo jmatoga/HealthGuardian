@@ -6,18 +6,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="helloScene" prefHeight="508.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.LogInController">
+<AnchorPane fx:id="helloScene" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.LogInController">
    <children>
-      <ImageView fx:id="imageView" fitHeight="507.0" fitWidth="897.0" layoutX="-36.0" layoutY="1.0" onMouseClicked="#unHighlightButtonsOnImageView" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageView" fitHeight="500.0" fitWidth="800.0" layoutX="1.0" layoutY="1.0" onMouseClicked="#unHighlightButtonsOnImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
          <image>
             <Image url="@../../photos/logInSceneImageView.png" />
          </image></ImageView>
    <!--    <Label text="VBox 1"/>-->
-    <Button fx:id="logInButton" layoutX="385.0" layoutY="440.0" onAction="#logInButtonClicked" text="Log in" AnchorPane.bottomAnchor="43.0" />
-      <Button fx:id="signInButton" layoutX="736.0" layoutY="466.0" mnemonicParsing="false" onAction="#SignInButtonClicked" prefHeight="16.0" prefWidth="58.0" text="Sign in" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
-      <TextField fx:id="username" layoutX="316.0" layoutY="373.0" onKeyPressed="#enterPressedInField" prefHeight="25.0" prefWidth="187.0" promptText="Username" AnchorPane.bottomAnchor="110.0" />
-      <PasswordField fx:id="password" layoutX="316.0" layoutY="404.0" onKeyPressed="#enterPressedInField" prefHeight="25.0" prefWidth="187.0" promptText="Password" AnchorPane.bottomAnchor="79.0" />
-      <Label fx:id="loggingStatus" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="340.0" prefHeight="25.0" prefWidth="373.0" textFill="RED" AnchorPane.bottomAnchor="143.0">
+    <Button fx:id="logInButton" layoutX="385.0" layoutY="440.0" onAction="#logInButtonClicked" text="Log in" AnchorPane.bottomAnchor="40.0" />
+      <Button fx:id="signInButton" layoutX="736.0" layoutY="466.0" mnemonicParsing="false" onAction="#SignInButtonClicked" prefHeight="16.0" prefWidth="58.0" text="Sign in" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+      <TextField fx:id="username" layoutX="316.0" layoutY="373.0" onKeyPressed="#enterPressedInField" prefHeight="25.0" prefWidth="187.0" promptText="Username" AnchorPane.bottomAnchor="105.0" />
+      <PasswordField fx:id="password" layoutX="316.0" layoutY="404.0" onKeyPressed="#enterPressedInField" prefHeight="25.0" prefWidth="187.0" promptText="Password" AnchorPane.bottomAnchor="75.0" />
+      <Label fx:id="loggingStatus" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="340.0" prefHeight="25.0" prefWidth="373.0" textFill="RED" AnchorPane.bottomAnchor="135.0">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
