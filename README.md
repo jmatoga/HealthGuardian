@@ -3,7 +3,7 @@
 ***
 <div align="center">
  <b>HealthGuardian: Smart Health Monitoring</b>
- Work in progress... 
+ <br>Work in progress... 
 </div> 
 
 ***
