@@ -1,7 +1,9 @@
 package Server;
 
+import Client.Start;
 import utils.Color;
 
+import java.net.SocketException;
 import java.sql.*;
 
 import static Client.Client.clientId;
@@ -23,6 +25,13 @@ public class SQLEngine {
             connection = DriverManager.getConnection(url, username, password);
             System.out.println("Database connection successful. (For ClientID: " + clientId + ")");
         } catch (SQLException e) {
+            if(e.getSQLState().equals("08S01"))
+                System.out.println(Color.ColorString("ERROR! No internet connection!", Color.ANSI_RED));
+
+            //System.out.println(e.getSQLState());
+           // System.exit(0);
+            //Thread.currentThread().interrupt();
+            // TODO zamknąć klienta
             throw new RuntimeException(e);
         } catch (Exception e) {
             System.out.println(Color.ColorString(e.getMessage(), Color.ANSI_RED));
@@ -84,6 +93,7 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
+            System.out.println(connection);
             String sql = "SELECT username,user_id FROM user_pass WHERE username = ? AND password_hash = SHA2(CONCAT(?, (SELECT salt FROM user_pass WHERE username=?)), 256)";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, inputUsername);  // username

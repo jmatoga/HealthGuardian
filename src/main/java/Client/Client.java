@@ -46,13 +46,13 @@ public class Client {
              BufferedReader ReadFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
              PrintWriter SendToServer = new PrintWriter(clientSocket.getOutputStream(), true)
         ) {
-            LogInController.setLogInController(message,ReadFromServer,SendToServer);
+            LogInController.setLogInController(message, ReadFromServer, SendToServer);
             clientId = Integer.parseInt(ReadFromServer.readLine());
             System.out.println("ClientID: " + clientId);
 
             reader(ReadFromServer);
 
-        } catch (IOException e) {
+        } catch(IOException e) {
             e.printStackTrace();
         }
     }

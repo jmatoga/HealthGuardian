@@ -26,6 +26,20 @@ public class SceneSwitch {
         WindowApplication.primaryStage.setScene(scene);
         WindowApplication.primaryStage.setMaximized(ifMaximized); // Fullscreen in window if true
         WindowApplication.primaryStage.setResizable(ifResizable);
+        WindowApplication.primaryStage.setMaxHeight(height);
+        WindowApplication.primaryStage.setMaxWidth(width);
         WindowApplication.primaryStage.setTitle(newTitle);
+    }
+
+    public SceneSwitch(String newFxmlScene,int width, int height, int MaxWidth, int MaxHeight, boolean ifMaximized, boolean ifResizable, String newTitle) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(WindowApplication.class.getResource(newFxmlScene));
+        Scene scene = new Scene(fxmlLoader.load(), width, height);
+        WindowApplication.primaryStage.setScene(scene);
+        WindowApplication.primaryStage.setResizable(!ifResizable);
+        WindowApplication.primaryStage.setMaxHeight(MaxHeight);
+        WindowApplication.primaryStage.setMaxWidth(MaxWidth);
+        WindowApplication.primaryStage.setTitle(newTitle);
+        WindowApplication.primaryStage.setResizable(ifResizable);
+        WindowApplication.primaryStage.setMaximized(ifMaximized); // Fullscreen in window if true
     }
 }

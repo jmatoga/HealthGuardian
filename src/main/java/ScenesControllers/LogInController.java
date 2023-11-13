@@ -113,7 +113,7 @@ public class LogInController{
                         Thread.sleep(1000);
                         username.setText("");
                         password.setText("");
-                        new SceneSwitch("ClientPanelScene.fxml", 1920, 1000, true, true,"HealthGuardian - clientID: " + Client.clientId + " ,user_id: " + Client.user_id);
+                        new SceneSwitch("ClientPanelScene.fxml", 1920, 1080, true, true,"HealthGuardian - clientID: " + Client.clientId + " ,user_id: " + Client.user_id);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (IOException e) {

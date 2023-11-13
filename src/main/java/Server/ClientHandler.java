@@ -53,7 +53,6 @@ class ClientHandler implements Callable<String> {
                     String clientId = loginInfo[0];
                     String username = loginInfo[1];
                     String password = loginInfo[2];
-
                     String[] loginResult = sqlEngine.loginToAccount(Integer.parseInt(clientId),username, password);
 
                     if(Boolean.parseBoolean(loginResult[0])) {

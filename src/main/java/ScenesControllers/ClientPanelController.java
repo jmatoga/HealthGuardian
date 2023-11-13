@@ -167,7 +167,7 @@ public class ClientPanelController implements Initializable {
 
     @FXML
     private void LogOutButtonClicked(ActionEvent event) throws  IOException{
-        new SceneSwitch("LogInScene.fxml", 800, 500, false, false, "HealthGuardian");
+        new SceneSwitch("LogInScene.fxml", 800, 500, 800, 500, false, false, "HealthGuardian");
     }
 
     private void getUserDataFromDB() throws IOException {
@@ -186,7 +186,6 @@ public class ClientPanelController implements Initializable {
         presureLabel.setText("last pressure: " + userData[5] + "/" + userData[6]);
         ageLabel.setText("age: " + userData[2]);
         //dateOfLastUpdateLabel.setText(serverAnswer);
-
     }
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -200,13 +199,10 @@ public class ClientPanelController implements Initializable {
             throw new RuntimeException(e);
         }
 
-
-
         // Utwórz Timeline do cyklicznego odświeżania daty co sekundę
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> updateDateTime()));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1), event -> updateDateTime()));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
-
     }
 
     private void updateDateTime() {
@@ -228,6 +224,4 @@ public class ClientPanelController implements Initializable {
             System.err.println("dateLabel is null");
         }
     }
-
-
 }
