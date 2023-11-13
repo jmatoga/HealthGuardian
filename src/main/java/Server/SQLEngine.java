@@ -1,5 +1,6 @@
 package Server;
 
+import Client.Client;
 import Client.Start;
 import ScenesControllers.SceneSwitch;
 import com.healthguardian.WindowApplication;

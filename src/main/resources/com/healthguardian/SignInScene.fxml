@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="signInScene" prefHeight="468.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.SignInController">
+<AnchorPane fx:id="signInScene" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.SignInController">
    <children>
-      <ImageView fx:id="imageView" fitHeight="502.0" fitWidth="877.0" layoutX="-45.0" layoutY="2.0" onMouseClicked="#unHighlightButtonsOnImageView" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageView" fitHeight="500.0" fitWidth="800.0" layoutX="-4.0" layoutY="1.0" onMouseClicked="#unHighlightButtonsOnImageView" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../photos/signInSceneImageView.png" />
          </image></ImageView>
