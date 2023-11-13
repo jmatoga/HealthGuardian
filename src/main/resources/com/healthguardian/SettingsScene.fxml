@@ -1,14 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ScenesControllers.SettingsController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="settingsScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.SettingsController">
+    <children>
+        <HBox accessibleRole="IMAGE_VIEW" prefHeight="140.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #243ddd 50%, #344ffe 75%); -fx-border-color: black;" AnchorPane.topAnchor="0.0" />
+        <Button fx:id="userPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#userPanelButtonClicked" prefHeight="55.0" prefWidth="160.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="USER PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+            <font>
+                <Font name="Arial Bold Italic" size="18.0" />
+            </font>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Button>
+        <HBox layoutX="474.0" layoutY="358.0" prefHeight="550.0" prefWidth="1045.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="520.0">
+            <children>
+                <VBox prefHeight="550.0" prefWidth="401.0">
+                    <children>
+                        <CheckBox fx:id="settingsCheckBox1" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" text="SETTINGS_1">
+                            <font>
+                                <Font name="System Bold" size="34.0" />
+                            </font>
+                        </CheckBox>
+                        <Label fx:id="settingsDescription1Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" text="Settings - description&#10;111">
+                            <font>
+                                <Font name="System Italic" size="18.0" />
+                            </font>
+                        </Label>
+                        <CheckBox fx:id="settingsCheckBox2" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" text="SETTINGS_2">
+                            <font>
+                                <Font name="System Bold" size="34.0" />
+                            </font>
+                        </CheckBox>
+                        <Label fx:id="settingsDescription2Label" alignment="TOP_LEFT" layoutX="10.0" layoutY="70.0" prefHeight="50.0" prefWidth="400.0" text="Settings2 - description&#10;222">
+                            <font>
+                                <Font name="System Italic" size="18.0" />
+                            </font>
+                        </Label>
+                        <CheckBox fx:id="settingsCheckBox3" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" text="SETTINGS_3">
+                            <font>
+                                <Font name="System Bold" size="34.0" />
+                            </font>
+                        </CheckBox>
+                        <Label fx:id="settingsDescription3Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" text="Settings3 - description&#10;333">
+                            <font>
+                                <Font name="System Italic" size="18.0" />
+                            </font>
+                        </Label>
+                        <CheckBox fx:id="settingsCheckBox4" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" text="SETTINGS_4">
+                            <font>
+                                <Font name="System Bold" size="34.0" />
+                            </font>
+                        </CheckBox>
+                        <Label fx:id="settingsDescription4Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" text="Settings4 - description&#10;444">
+                            <font>
+                                <Font name="System Italic" size="18.0" />
+                            </font>
+                        </Label>
+                        <CheckBox fx:id="settingsCheckBox5" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" text="SETTINGS_5">
+                            <font>
+                                <Font name="System Bold" size="34.0" />
+                            </font>
+                        </CheckBox>
+                        <Label fx:id="settingsDescription5Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" text="Settings5 - description&#10;555">
+                            <font>
+                                <Font name="System Italic" size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox prefHeight="550.0" prefWidth="245.0" />
+                <VBox prefHeight="550.0" prefWidth="401.0">
+                    <children>
+                        <CheckBox fx:id="settingsCheckBox6" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" text="SETTINGS_6">
+                            <font>
+                                <Font name="System Bold" size="34.0" />
+                            </font>
+                        </CheckBox>
+                        <Label fx:id="settingsDescription6Label" alignment="TOP_LEFT" layoutX="10.0" layoutY="70.0" prefHeight="50.0" prefWidth="400.0" text="Settings6 - description&#10;666">
+                            <font>
+                                <Font name="System Italic" size="18.0" />
+                            </font>
+                        </Label>
+                        <CheckBox fx:id="settingsCheckBox7" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" text="SETTINGS_7">
+                            <font>
+                                <Font name="System Bold" size="34.0" />
+                            </font>
+                        </CheckBox>
+                        <Label fx:id="settingsDescription7Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" text="Settings7 - description&#10;777">
+                            <font>
+                                <Font name="System Italic" size="18.0" />
+                            </font>
+                        </Label>
+                        <CheckBox fx:id="settingsCheckBox8" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" text="SETTINGS_8">
+                            <font>
+                                <Font name="System Bold" size="34.0" />
+                            </font>
+                        </CheckBox>
+                        <Label fx:id="settingsDescription8Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" text="Settings8 - description&#10;888">
+                            <font>
+                                <Font name="System Italic" size="18.0" />
+                            </font>
+                        </Label>
+                        <CheckBox fx:id="settingsCheckBox9" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" text="SETTINGS_9">
+                            <font>
+                                <Font name="System Bold" size="34.0" />
+                            </font>
+                        </CheckBox>
+                        <Label fx:id="settingsDescription9Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" text="Settings9 - description&#10;999">
+                            <font>
+                                <Font name="System Italic" size="18.0" />
+                            </font>
+                        </Label>
+                        <CheckBox fx:id="settingsCheckBox10" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" text="SETTINGS_10">
+                            <font>
+                                <Font name="System Bold" size="34.0" />
+                            </font>
+                        </CheckBox>
+                        <Label fx:id="settingsDescription10Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" text="Settings10 - description&#10;000">
+                            <font>
+                                <Font name="System Italic" size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+        <Label layoutX="833.0" layoutY="202.0" text="SETTINGS" AnchorPane.bottomAnchor="775.0" AnchorPane.leftAnchor="830.0">
+            <font>
+                <Font name="System Bold" size="70.0" />
+            </font>
+        </Label>
+    </children>
 </AnchorPane>
