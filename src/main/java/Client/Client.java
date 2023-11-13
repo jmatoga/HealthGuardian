@@ -1,10 +1,12 @@
 package Client;
 
 import ScenesControllers.LogInController;
+import utils.Color;
 import utils.Message;
 
 import java.io.*;
 import java.net.*;
+import java.util.Arrays;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -52,6 +54,9 @@ public class Client {
 
             reader(ReadFromServer);
 
+        }  catch (java.net.ConnectException e) {
+            System.out.println(Color.ColorString("ERROR! Server is not started!", Color.ANSI_RED));
+            System.exit(-1);
         } catch(IOException e) {
             e.printStackTrace();
         }

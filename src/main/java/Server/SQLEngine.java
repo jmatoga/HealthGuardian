@@ -1,6 +1,10 @@
 package Server;
 
 import Client.Start;
+import ScenesControllers.SceneSwitch;
+import com.healthguardian.WindowApplication;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import utils.Color;
 
 import java.net.SocketException;
@@ -25,18 +29,15 @@ public class SQLEngine {
             connection = DriverManager.getConnection(url, username, password);
             System.out.println("Database connection successful. (For ClientID: " + clientId + ")");
         } catch (SQLException e) {
-            if(e.getSQLState().equals("08S01"))
+            if(e.getSQLState().equals("08S01")) {
                 System.out.println(Color.ColorString("ERROR! No internet connection!", Color.ANSI_RED));
-
-            //System.out.println(e.getSQLState());
-           // System.exit(0);
-            //Thread.currentThread().interrupt();
-            // TODO zamknąć klienta
+                System.exit(-1);
+            }
             throw new RuntimeException(e);
         } catch (Exception e) {
             System.out.println(Color.ColorString(e.getMessage(), Color.ANSI_RED));
             e.printStackTrace();
-            System.exit(-1);
+            System.exit(-2);
         }
         return connection;
     }
