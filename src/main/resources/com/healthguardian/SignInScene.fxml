@@ -7,21 +7,21 @@
 
 <AnchorPane fx:id="signInScene" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.SignInController">
    <children>
-      <ImageView fx:id="imageView" fitHeight="500.0" fitWidth="800.0" layoutX="-4.0" layoutY="1.0" onMouseClicked="#unHighlightButtonsOnImageView" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageView" fitHeight="500.0" fitWidth="800.0" layoutX="2.0" layoutY="1.0" onMouseClicked="#unHighlightButtonsOnImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../../photos/signInSceneImageView.png" />
          </image></ImageView>
-      <Button fx:id="signInButton" layoutX="375.0" layoutY="419.0" mnemonicParsing="false" onAction="#SignInButtonClicked" text="Sign in" />
-      <Button fx:id="logInButton" layoutX="740.0" layoutY="465.0" mnemonicParsing="false" onAction="#LogInButtonClicked" text="Log in" />
-      <TextField fx:id="firstName" layoutX="327.0" layoutY="194.0" onKeyPressed="#enterPressedInField" promptText="First name" />
-      <TextField fx:id="lastName" layoutX="327.0" layoutY="223.0" onKeyPressed="#enterPressedInField" promptText="Last name" />
-      <TextField fx:id="email" layoutX="326.0" layoutY="253.0" onKeyPressed="#enterPressedInField" promptText="e-mail" />
-      <ComboBox fx:id="comboBoxId" layoutX="256.0" layoutY="283.0" prefHeight="25.0" prefWidth="65.0" />
-      <TextField fx:id="phoneNumber" layoutX="326.0" layoutY="283.0" onKeyPressed="#enterPressedInField" promptText="Phone number" />
-      <TextField fx:id="pesel" layoutX="326.0" layoutY="314.0" onKeyPressed="#enterPressedInField" promptText="PESEL" />
-      <TextField fx:id="username" layoutX="326.0" layoutY="345.0" onKeyPressed="#enterPressedInField" promptText="Username" />
-      <PasswordField fx:id="password" layoutX="326.0" layoutY="376.0" onKeyPressed="#enterPressedInField" promptText="Password" />
-      <Label fx:id="signInStatus" alignment="CENTER" layoutX="255.0" layoutY="161.0" prefHeight="25.0" prefWidth="282.0" textFill="RED">
+      <Button fx:id="signInButton" layoutX="375.0" layoutY="419.0" mnemonicParsing="false" onAction="#SignInButtonClicked" text="Sign in" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="370.0" />
+      <Button fx:id="logInButton" layoutX="740.0" layoutY="465.0" mnemonicParsing="false" onAction="#LogInButtonClicked" text="Log in" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+      <TextField fx:id="firstName" layoutX="327.0" layoutY="194.0" onKeyPressed="#enterPressedInField" promptText="First name" AnchorPane.bottomAnchor="280.0" AnchorPane.leftAnchor="325.0" />
+      <TextField fx:id="lastName" layoutX="327.0" layoutY="223.0" onKeyPressed="#enterPressedInField" promptText="Last name" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="325.0" />
+      <TextField fx:id="email" layoutX="326.0" layoutY="253.0" onKeyPressed="#enterPressedInField" promptText="e-mail" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="325.0" />
+      <ComboBox fx:id="comboBoxId" layoutX="256.0" layoutY="283.0" prefHeight="25.0" prefWidth="65.0" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="255.0" />
+      <TextField fx:id="phoneNumber" layoutX="326.0" layoutY="283.0" onKeyPressed="#enterPressedInField" promptText="Phone number" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="325.0" />
+      <TextField fx:id="pesel" layoutX="326.0" layoutY="314.0" onKeyPressed="#enterPressedInField" promptText="PESEL" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="325.0" />
+      <TextField fx:id="username" layoutX="326.0" layoutY="345.0" onKeyPressed="#enterPressedInField" promptText="Username" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="325.0" />
+      <PasswordField fx:id="password" layoutX="326.0" layoutY="376.0" onKeyPressed="#enterPressedInField" promptText="Password" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="325.0" />
+      <Label fx:id="signInStatus" alignment="CENTER" layoutX="255.0" layoutY="161.0" prefHeight="25.0" prefWidth="282.0" textFill="RED" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="255.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Label>
