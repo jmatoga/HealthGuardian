@@ -28,10 +28,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class ClientPanelController implements Initializable {
-
-    //private volatile boolean stop = false;
-
-    private static Message message;
+    private static final Message message = new Message();
     private static BufferedReader ReadFromServer;
     private static PrintWriter SendToServer;
 
@@ -173,7 +170,7 @@ public class ClientPanelController implements Initializable {
     private void getUserDataFromDB() throws IOException {
         int user_id = Client.user_id;
         String user_id_str = Integer.toString(user_id);
-        message.sendGetNameMessage(SendToServer, user_id_str);
+        message.sendGetNameMessage(SendToServer,Client.clientId  + "," + user_id_str);
         String serverAnswer = Client.rreader(ReadFromServer);
 
         String[] userData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
@@ -189,9 +186,8 @@ public class ClientPanelController implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        ClientPanelController.message = LogInController.getMessageResources();
-        ClientPanelController.ReadFromServer = LogInController.getReadFromServerResources();
-        ClientPanelController.SendToServer = LogInController.getSendToServerResources();
+        ClientPanelController.ReadFromServer = Client.ReadFromServer;
+        ClientPanelController.SendToServer = Client.SendToServer;
 
         try {
             getUserDataFromDB();

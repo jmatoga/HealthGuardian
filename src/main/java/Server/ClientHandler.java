@@ -49,10 +49,10 @@ class ClientHandler implements Callable<String> {
                     break;
                 } else if (serverMessage.startsWith("LOGIN:")) {
                     // TODO move this to separate function
-                    String[] loginInfo = serverMessage.substring(6).split(",");
-                    String clientId = loginInfo[0];
-                    String username = loginInfo[1];
-                    String password = loginInfo[2];
+                    String[] resources = serverMessage.substring(6).split(",");
+                    String clientId = resources[0];
+                    String username = resources[1];
+                    String password = resources[2];
                     String[] loginResult = sqlEngine.loginToAccount(Integer.parseInt(clientId),username, password);
 
                     if(Boolean.parseBoolean(loginResult[0])) {
@@ -63,11 +63,29 @@ class ClientHandler implements Callable<String> {
                         SendToClient.println("Wrong password."); // This is message to the LogInController
                     }
                 } else if (serverMessage.startsWith("GET_USER_DATA:")) {
-                    String userId = serverMessage.substring(14);
+                    String[] resources = serverMessage.substring(14).split(",");
+                    String clientId = resources[0];
+                    String userId = resources[1];
 
-                    String[] nameResult = sqlEngine.getData(Client.clientId, userId);
+                    String[] dataResult = sqlEngine.getData(Integer.parseInt(clientId), userId);
                     SendToClient.println("");
-                    SendToClient.println(Arrays.toString(nameResult));
+                    SendToClient.println(Arrays.toString(dataResult));
+                } else if (serverMessage.startsWith("CHECK_IF_USER_EXISTS:")) {
+                    String[] resources = serverMessage.substring(21).split(",");
+                    String clientId = resources[0];
+                    String username = resources[1];
+
+                    boolean existingResult = sqlEngine.checkIfUserExists(Integer.parseInt(clientId), username);
+                    SendToClient.println(""); // This is message to the client reader
+                    SendToClient.println("EXISTING RESULT:" + existingResult); // This is message to the LogInController
+                } else if (serverMessage.startsWith("CHECK_ONE_TIME_CODE:")) {
+                    String[] resources = serverMessage.substring(20).split(",");
+                    String clientId = resources[0];
+                    String oneTimeCode = resources[1];
+
+                    boolean codeResult = sqlEngine.checkOneTimeCode(Integer.parseInt(clientId), oneTimeCode);
+                    SendToClient.println(""); // This is message to the client reader
+                    SendToClient.println("CODE RESULT:" + codeResult); // This is message to the LogInController
                 }
             }
         } catch (IOException e) {

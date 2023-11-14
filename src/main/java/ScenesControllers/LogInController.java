@@ -1,12 +1,11 @@
 package ScenesControllers;
 
 import Client.Client;
-import com.healthguardian.WindowApplication;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -23,33 +22,16 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class LogInController{
-
+public class LogInController implements Initializable {
     private final Toolkit toolkit = Toolkit.getDefaultToolkit();
-    private int screenWidth = toolkit.getScreenSize().width;
-    private int screenHeight = toolkit.getScreenSize().height;
-    private static Message message;
+    private final int screenWidth = toolkit.getScreenSize().width;
+    private final int screenHeight = toolkit.getScreenSize().height;
+    private static final Message message = new Message();
     private static BufferedReader ReadFromServer;
     private static PrintWriter SendToServer;
-
-    public static void setLogInController(Message message, BufferedReader ReadFromServer, PrintWriter SendToServer) {
-        LogInController.message = message;
-        LogInController.ReadFromServer = ReadFromServer;
-        LogInController.SendToServer = SendToServer;
-    }
-
-    public static Message getMessageResources() {
-        return message;
-    }
-
-    public static BufferedReader getReadFromServerResources() {
-        return ReadFromServer;
-    }
-
-    public static PrintWriter getSendToServerResources() {
-        return SendToServer;
-    }
 
     @FXML
     private TextField username;
@@ -130,5 +112,11 @@ public class LogInController{
                 loggingStatus.setText("Wrong username or password!");
             }
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        LogInController.ReadFromServer = Client.ReadFromServer;
+        LogInController.SendToServer = Client.SendToServer;
     }
 }

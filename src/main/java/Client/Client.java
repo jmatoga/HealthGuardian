@@ -13,6 +13,8 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Client {
     public static int user_id=-1;
     public static int clientId=-1;
+    public static BufferedReader ReadFromServer;
+    public static PrintWriter SendToServer;
     private static final Lock lock = new ReentrantLock();
 
     public static void reader(BufferedReader ReadFromServer) {
@@ -41,14 +43,14 @@ public class Client {
     public static void main(String[] args) {
         String serverAddress = "localhost";
         int serverPort = 12345;
-        // Create message object
-        Message message = new Message();
 
         try (Socket clientSocket = new Socket(serverAddress, serverPort);
              BufferedReader ReadFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
              PrintWriter SendToServer = new PrintWriter(clientSocket.getOutputStream(), true)
         ) {
-            LogInController.setLogInController(message, ReadFromServer, SendToServer);
+            Client.ReadFromServer = ReadFromServer;
+            Client.SendToServer = SendToServer;
+
             clientId = Integer.parseInt(ReadFromServer.readLine());
             System.out.println("ClientID: " + clientId);
 

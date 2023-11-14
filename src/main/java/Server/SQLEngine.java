@@ -28,7 +28,7 @@ public class SQLEngine {
     public Connection connectToDataBase(Connection connection, int clientId) {
         try {
             connection = DriverManager.getConnection(url, username, password);
-            System.out.println("Database connection successful. (For ClientID: " + clientId + ")");
+            System.out.println(Color.ColorString("Database connection successful. (For ClientID: " + clientId + ")", Color.ANSI_GREEN_BACKGROUND));
         } catch (SQLException e) {
             if(e.getSQLState().equals("08S01")) {
                 System.out.println(Color.ColorString("ERROR! No internet connection!", Color.ANSI_RED));
@@ -54,11 +54,11 @@ public class SQLEngine {
             connection = connectToDataBase(connection, clientID);
             String sql = "SELECT first_Name, last_name, user_data.age, user_data.weight, user_data.height, user_data.systolic_pressure, user_data.diastolic_pressure FROM user NATURAL JOIN user_data WHERE user_id = ?;";
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, user_id);  // username
+            preparedStatement.setString(1, user_id);
 
             resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) { // if username and password exist in database in same user
+            if (resultSet.next()) {
                 System.out.println("Getted User Data.");
 
                 returnStatement[0] = String.valueOf(resultSet.getString("first_name"));
@@ -84,6 +84,62 @@ public class SQLEngine {
             disconnectFromDataBase(resultSet, preparedStatement, connection);
         }
         return returnStatement;
+    }
+
+    boolean checkIfUserExists(int clientID, String username){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT username FROM user_pass WHERE username = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);  // username
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) { // if username exist in database
+                System.out.println("User exists!");
+                return true;
+            } else {
+                System.out.println("Correct, username free to use.");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return true;
+    }
+
+    boolean checkOneTimeCode(int clientID, String oneTimeCode){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT code FROM one_time_code WHERE code = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, oneTimeCode);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) { // if code exist in database
+                System.out.println("Correct code!");
+                return true;
+            } else {
+                System.out.println("Wrong code!");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return true;
     }
 
     String[] loginToAccount(int clientID, String inputUsername, String inputPassword) {
@@ -133,7 +189,7 @@ public class SQLEngine {
             if (resultSet != null) resultSet.close();
             if (preparedStatement != null) preparedStatement.close();
             if (connection != null) connection.close();
-            System.out.println("Database connection closed successfully.");
+            System.out.println(Color.ColorString("Database connection closed successfully.\n", Color.ANSI_GREEN));
         } catch (SQLException e) {
             e.printStackTrace();
             System.err.println("Error while closing resources: " + e.getMessage());
