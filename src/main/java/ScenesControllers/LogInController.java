@@ -2,6 +2,8 @@ package ScenesControllers;
 
 import Client.Client;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +18,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
+import javafx.util.Duration;
 import utils.Message;
 
 import java.awt.*;
@@ -76,7 +79,7 @@ public class LogInController implements Initializable {
         new SceneSwitch("SignInScene.fxml", 800, 500, false, false);
     }
 
-    private void checkWrittenText() throws IOException{
+    private void checkWrittenText() throws IOException {
         if (username.getText().isEmpty() && password.getText().isEmpty())
             loggingStatus.setText("Username and Password can't be empty!");
         else if (!username.getText().isEmpty() && password.getText().isEmpty())
@@ -89,27 +92,28 @@ public class LogInController implements Initializable {
 
             if (serverAnswer.startsWith("Logged successfully. Your user_id: ") && Integer.parseInt(serverAnswer.substring(35)) > 0) {
                 Client.user_id = Integer.parseInt(serverAnswer.substring(35));
-
                 loggingStatus.setTextFill(Paint.valueOf("0x2aff00")); // green color
                 loggingStatus.setText("Logged succesfully!");
+                username.setText("");
+                password.setText("");
+                logInButton.requestFocus();
+                System.out.println(serverAnswer);
 
-                Platform.runLater(() -> {
-                    try {
-                        System.out.println(serverAnswer);
+                Timeline timeline = new Timeline(
+                        new KeyFrame(Duration.millis(500), event -> {
+                            try {
+                                new SceneSwitch("ClientPanelScene.fxml", 1920, 1080, screenWidth, screenHeight, true, true,"HealthGuardian - clientID: " + Client.clientId + " ,user_id: " + Client.user_id);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        })
+                );
+                timeline.setCycleCount(1);
+                timeline.play();
 
-                        Thread.sleep(1000);
-                        username.setText("");
-                        password.setText("");
-                        new SceneSwitch("ClientPanelScene.fxml", 1920, 1080, screenWidth, screenHeight, true, true,"HealthGuardian - clientID: " + Client.clientId + " ,user_id: " + Client.user_id);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
             } else {
-                Platform.runLater(() -> System.out.println(serverAnswer));
                 loggingStatus.setText("Wrong username or password!");
+                System.out.println(serverAnswer);
             }
         }
     }

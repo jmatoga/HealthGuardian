@@ -172,7 +172,7 @@ public class ClientPanelController implements Initializable {
         String user_id_str = Integer.toString(user_id);
         message.sendGetNameMessage(SendToServer,Client.clientId  + "," + user_id_str);
         String serverAnswer = Client.rreader(ReadFromServer);
-
+        System.out.println(serverAnswer);
         String[] userData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
 
         firstNameLabel.setText(userData[0]);

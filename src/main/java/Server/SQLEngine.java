@@ -1,33 +1,24 @@
 package Server;
 
-import Client.Client;
-import Client.Start;
-import ScenesControllers.SceneSwitch;
-import com.healthguardian.WindowApplication;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import utils.Color;
 
-import java.net.SocketException;
 import java.sql.*;
-
-import static Client.Client.clientId;
 
 public class SQLEngine {
     private final String url;
-    private final String username;
-    private final String password;
+    private final String DBusername;
+    private final String DBpassword;
 
-    public SQLEngine(String host, int port, String database, String username, String password) {
+    public SQLEngine(String host, int port, String database, String DBusername, String DBpassword) {
         // old (local) database //connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthguardian", "root", "root");
         this.url = "jdbc:mysql://" + host + ":" + port + "/" + database;
-        this.username = username;
-        this.password = password;
+        this.DBusername = DBusername;
+        this.DBpassword = DBpassword;
     }
 
     public Connection connectToDataBase(Connection connection, int clientId) {
         try {
-            connection = DriverManager.getConnection(url, username, password);
+            connection = DriverManager.getConnection(url, DBusername, DBpassword);
             System.out.println(Color.ColorString("Database connection successful. (For ClientID: " + clientId + ")", Color.ANSI_GREEN_BACKGROUND));
         } catch (SQLException e) {
             if(e.getSQLState().equals("08S01")) {
@@ -114,7 +105,7 @@ public class SQLEngine {
         return true;
     }
 
-    boolean checkOneTimeCode(int clientID, String oneTimeCode){
+    boolean checkOneTimeCode(int clientID, String oneTimeCode, String firstname, String lastname, String email, String phoneNumber, String pesel, String username, String password){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -129,6 +120,41 @@ public class SQLEngine {
 
             if (resultSet.next()) { // if code exist in database
                 System.out.println("Correct code!");
+
+                String getMaxUserIdSql = "SELECT MAX(user_id) AS max_user_id FROM user";
+                String getSaltSql = "SET @salt = SUBSTRING(MD5(RAND()), 1, 16)";
+                String insertUserSql = "INSERT INTO user (user_id, first_name, last_name, phone, email, adress) VALUES (?, ?, ?, ?, ?, \"null\")";
+                String insertUserPassSql = "INSERT INTO user_pass (username, password_hash, salt, user_id) VALUES (?, SHA2(CONCAT(?, @salt), 256), @salt, ?)";
+
+                // get Max user_id from Database
+                preparedStatement = connection.prepareStatement(getMaxUserIdSql);
+                resultSet = preparedStatement.executeQuery();
+                resultSet.next();
+                int maxUserId = resultSet.getInt("max_user_id");
+
+                // generate salt
+                preparedStatement = connection.prepareStatement(getSaltSql);
+                preparedStatement.executeUpdate();
+
+                // insert into user table
+                preparedStatement = connection.prepareStatement(insertUserSql);
+                preparedStatement.setInt(1, maxUserId + 1);
+                preparedStatement.setString(2, firstname);
+                preparedStatement.setString(3, lastname);
+                preparedStatement.setString(4, phoneNumber);
+                preparedStatement.setString(5, email);
+                                                            // TODO change adress as not required
+                //preparedStatement.setString(6, pesel); // TODO add pesel to user table
+                preparedStatement.executeUpdate();
+
+                // insert into user_pass table
+                preparedStatement = connection.prepareStatement(insertUserPassSql);
+                preparedStatement.setString(1, username);
+                preparedStatement.setString(2, password);
+                preparedStatement.setInt(3, maxUserId + 1);
+                preparedStatement.executeUpdate();
+
+                System.out.println("User added successfully");
                 return true;
             } else {
                 System.out.println("Wrong code!");
@@ -139,7 +165,7 @@ public class SQLEngine {
         } finally {
             disconnectFromDataBase(resultSet, preparedStatement, connection);
         }
-        return true;
+        return false;
     }
 
     String[] loginToAccount(int clientID, String inputUsername, String inputPassword) {
@@ -151,7 +177,6 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
-            System.out.println(connection);
             String sql = "SELECT username,user_id FROM user_pass WHERE username = ? AND password_hash = SHA2(CONCAT(?, (SELECT salt FROM user_pass WHERE username=?)), 256)";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, inputUsername);  // username
@@ -161,14 +186,14 @@ public class SQLEngine {
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) { // if username and password exist in database in same user
-                System.out.println("Correct password.\n");
+                System.out.println("Correct password.");
 
                 returnStatement[0] = "true";
                 returnStatement[1] = String.valueOf(resultSet.getInt("user_id"));
 
                 return returnStatement;
             } else {
-                System.out.println("Wrong password.\n");
+                System.out.println("Wrong password.");
 
                 returnStatement[0] = "false";
                 returnStatement[1] = "-1";

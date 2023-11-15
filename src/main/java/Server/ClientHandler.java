@@ -82,8 +82,15 @@ class ClientHandler implements Callable<String> {
                     String[] resources = serverMessage.substring(20).split(",");
                     String clientId = resources[0];
                     String oneTimeCode = resources[1];
+                    String firstname = resources[2];
+                    String lastname = resources[3];
+                    String email = resources[4];
+                    String phoneNumber = resources[5];
+                    String pesel = resources[6];
+                    String username = resources[7];
+                    String password = resources[8];
 
-                    boolean codeResult = sqlEngine.checkOneTimeCode(Integer.parseInt(clientId), oneTimeCode);
+                    boolean codeResult = sqlEngine.checkOneTimeCode(Integer.parseInt(clientId), oneTimeCode, firstname, lastname, email, phoneNumber, pesel, username, password);
                     SendToClient.println(""); // This is message to the client reader
                     SendToClient.println("CODE RESULT:" + codeResult); // This is message to the LogInController
                 }
