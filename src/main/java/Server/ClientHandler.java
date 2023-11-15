@@ -90,7 +90,7 @@ class ClientHandler implements Callable<String> {
                     String username = resources[7];
                     String password = resources[8];
 
-                    boolean codeResult = sqlEngine.checkOneTimeCode(Integer.parseInt(clientId), oneTimeCode, firstname, lastname, email, phoneNumber, pesel, username, password);
+                    String codeResult = sqlEngine.checkOneTimeCode(Integer.parseInt(clientId), oneTimeCode, firstname, lastname, email, phoneNumber, pesel, username, password);
                     SendToClient.println(""); // This is message to the client reader
                     SendToClient.println("CODE RESULT:" + codeResult); // This is message to the LogInController
                 }

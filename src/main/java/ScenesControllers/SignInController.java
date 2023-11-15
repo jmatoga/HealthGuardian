@@ -89,6 +89,21 @@ public class SignInController implements Initializable {
 
     @FXML
     private void SignInButtonClicked(ActionEvent event) throws IOException {
+        signInUser();
+    }
+
+    @FXML
+    private void LogInButtonClicked(ActionEvent event) throws IOException {
+        new SceneSwitch("LogInScene.fxml", 800, 500, false, false);
+    }
+
+    @FXML
+    private void enterPressedInField(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER)
+            signInUser();
+    }
+
+    private void signInUser() throws IOException {
         if(checkWrittenText()) {
             message.checkIfUserExists(SendToServer, Client.clientId + "," + username.getText());
 
@@ -128,7 +143,7 @@ public class SignInController implements Initializable {
                                 Timeline timeline = new Timeline(
                                         new KeyFrame(Duration.millis(1300), TimeEvent -> {
                                             try {
-                                new SceneSwitch("LogInScene.fxml", 800, 500, false, false);
+                                                new SceneSwitch("LogInScene.fxml", 800, 500, false, false);
                                             } catch (IOException e) {
                                                 throw new RuntimeException(e);
                                             }
@@ -137,10 +152,14 @@ public class SignInController implements Initializable {
                                 timeline.setCycleCount(1);
                                 timeline.play();
 
-                            } else {
+                            } else if (serverAnswer1.startsWith("CODE RESULT:") && serverAnswer1.substring(12).equals("false")){
                                 alertEvent.consume(); // cancel closing
                                 label.setTextFill(Paint.valueOf("#ff0000"));
                                 label.setText("Wrong code!");
+                            } else {
+                                alertEvent.consume(); // cancel closing
+                                label.setTextFill(Paint.valueOf("#ff0000"));
+                                label.setText("Error in database!");
                             }
                         } catch (IOException e) {
                             throw new RuntimeException(e);
@@ -179,17 +198,6 @@ public class SignInController implements Initializable {
         alert.getDialogPane().setContent(vBox);
 
         return alert;
-    }
-
-    @FXML
-    private void LogInButtonClicked(ActionEvent event) throws IOException {
-        new SceneSwitch("LogInScene.fxml", 800, 500, false, false);
-    }
-
-    @FXML
-    private void enterPressedInField(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER)
-            checkWrittenText();
     }
 
     private boolean checkWrittenText() {

@@ -105,7 +105,7 @@ public class SQLEngine {
         return true;
     }
 
-    boolean checkOneTimeCode(int clientID, String oneTimeCode, String firstname, String lastname, String email, String phoneNumber, String pesel, String username, String password){
+    String checkOneTimeCode(int clientID, String oneTimeCode, String firstname, String lastname, String email, String phoneNumber, String pesel, String username, String password){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -154,18 +154,17 @@ public class SQLEngine {
                 preparedStatement.setInt(3, maxUserId + 1);
                 preparedStatement.executeUpdate();
 
-                System.out.println("User added successfully");
-                return true;
+                return "true";
             } else {
                 System.out.println("Wrong code!");
-                return false;
+                return "false";
             }
         } catch (SQLException e) {
             System.err.println("Error while executing SELECT: " + e.getMessage());
         } finally {
             disconnectFromDataBase(resultSet, preparedStatement, connection);
         }
-        return false;
+        return "error";
     }
 
     String[] loginToAccount(int clientID, String inputUsername, String inputPassword) {

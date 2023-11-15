@@ -11,7 +11,7 @@
          <image>
             <Image url="@../../photos/signInSceneImageView.png" />
          </image></ImageView>
-      <Button fx:id="signInButton" layoutX="375.0" layoutY="419.0" mnemonicParsing="false" onAction="#SignInButtonClicked" text="Sign in" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="370.0" />
+      <Button fx:id="signInButton" layoutX="375.0" layoutY="419.0" mnemonicParsing="false" onAction="#SignInButtonClicked" onKeyPressed="#enterPressedInField" text="Sign in" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="370.0" />
       <Button fx:id="logInButton" layoutX="740.0" layoutY="465.0" mnemonicParsing="false" onAction="#LogInButtonClicked" text="Log in" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
       <TextField fx:id="firstName" layoutX="327.0" layoutY="194.0" onKeyPressed="#enterPressedInField" promptText="First name" AnchorPane.bottomAnchor="280.0" AnchorPane.leftAnchor="325.0" />
       <TextField fx:id="lastName" layoutX="327.0" layoutY="223.0" onKeyPressed="#enterPressedInField" promptText="Last name" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="325.0" />
