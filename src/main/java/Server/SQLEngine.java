@@ -112,13 +112,13 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String sql = "SELECT code FROM one_time_code WHERE code = ?";
+            String sql = "DELETE FROM one_time_code WHERE code = ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, oneTimeCode);
 
-            resultSet = preparedStatement.executeQuery();
+            int rowsAffected = preparedStatement.executeUpdate();
 
-            if (resultSet.next()) { // if code exist in database
+            if (rowsAffected == 1) { // if changed rows = 1 then code exist in database
                 System.out.println("Correct code!");
 
                 String getMaxUserIdSql = "SELECT MAX(user_id) AS max_user_id FROM user";
