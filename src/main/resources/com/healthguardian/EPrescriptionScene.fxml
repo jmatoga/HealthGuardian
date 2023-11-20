@@ -4,12 +4,96 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="EPrescriptionScene" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.EPrescriptionController">
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+<AnchorPane minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.EPrescriptionController">
    <children>
-      <Label fx:id="tempLabel" layoutX="165.0" layoutY="154.0" text="e- precription panel">
+      <HBox accessibleRole="IMAGE_VIEW" prefHeight="140.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #243ddd 50%, #344ffe 75%); -fx-border-color: black;" AnchorPane.bottomAnchor="940.0" />
+      <Button fx:id="userPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="USER PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
          <font>
-            <Font size="31.0" />
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Label layoutX="682.0" layoutY="148.0" text="E-PRESCRIPTION" AnchorPane.bottomAnchor="829.0" AnchorPane.leftAnchor="682.0">
+         <font>
+            <Font name="System Bold" size="70.0" />
          </font>
       </Label>
+      <Pane layoutX="78.0" layoutY="273.0" prefHeight="650.0" prefWidth="700.0">
+         <children>
+            <ImageView fx:id="previewImageView" fitHeight="650.0" fitWidth="700.0" layoutX="4.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+      <ScrollPane layoutX="813.0" layoutY="273.0" prefHeight="685.0" prefWidth="825.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="825.0" prefWidth="808.0">
+               <children>
+                  <GridPane gridLinesVisible="true" layoutX="7.0" layoutY="7.0" prefHeight="100.0" prefWidth="100.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />fx:controller="ScenesControllers.EPrescriptionController"
+                     </rowConstraints>
+                  </GridPane>
+                  <GridPane layoutX="496.0" layoutY="182.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <Button fx:id="printButton" layoutX="602.0" layoutY="958.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="PRINT">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="sendButton" layoutX="465.0" layoutY="958.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="SEND">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="saveButton" layoutX="331.0" layoutY="958.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="SAVE">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
    </children>
 </AnchorPane>

@@ -1,12 +1,16 @@
 package ScenesControllers;
 
 import Client.Client;
+import com.healthguardian.WindowApplication;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -16,6 +20,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import utils.Message;
 
 import java.io.BufferedReader;
@@ -25,6 +33,7 @@ import java.lang.String;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class SignInController implements Initializable {
     private static final Message message = new Message();
@@ -80,6 +89,21 @@ public class SignInController implements Initializable {
 
     @FXML
     private void SignInButtonClicked(ActionEvent event) throws IOException {
+        signInUser();
+    }
+
+    @FXML
+    private void LogInButtonClicked(ActionEvent event) throws IOException {
+        new SceneSwitch("LogInScene.fxml", 800, 500, false, false);
+    }
+
+    @FXML
+    private void enterPressedInField(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER)
+            signInUser();
+    }
+
+    private void signInUser() throws IOException {
         if(checkWrittenText()) {
             message.checkIfUserExists(SendToServer, Client.clientId + "," + username.getText());
 
@@ -99,18 +123,16 @@ public class SignInController implements Initializable {
                         label.setTextFill(Paint.valueOf("#ff0000"));
                         label.setText("Empty code!");
                     } else {
-                        message.checkOneTimeCode(SendToServer, Client.clientId + "," + inputField.getText());
+                        message.checkOneTimeCode(SendToServer, Client.clientId + "," + inputField.getText() + "," + firstName.getText() + "," + lastName.getText() + "," + email.getText() + "," + phoneNumber.getText() + "," + pesel.getText() + "," + username.getText() + "," + password.getText());
                         String serverAnswer1;
+
                         try {
                             serverAnswer1 = Client.rreader(ReadFromServer);
-                            Platform.runLater(() -> {
-                                System.out.println(serverAnswer1);
-                            });
-                            if (serverAnswer1.startsWith("CODE RESULT:") && serverAnswer1.substring(12).equals("true")) {
-                                label.setTextFill(Paint.valueOf("0x2aff00")); // green color // TODO
-                                label.setText("Signed in correctly!");
+                            System.out.println(serverAnswer1);
 
-                                System.out.println("aaaa");
+                            if (serverAnswer1.startsWith("CODE RESULT:") && serverAnswer1.substring(12).equals("true")) {
+                                signInStatus.setTextFill(Paint.valueOf("0x2aff00")); // green color
+                                signInStatus.setText("Signed in succesfully!");
                                 firstName.setText("");
                                 lastName.setText("");
                                 email.setText("");
@@ -118,12 +140,26 @@ public class SignInController implements Initializable {
                                 pesel.setText("");
                                 username.setText("");
                                 password.setText("");
-                                new SceneSwitch("LogInScene.fxml", 800, 500, false, false);
+                                Timeline timeline = new Timeline(
+                                        new KeyFrame(Duration.millis(1300), TimeEvent -> {
+                                            try {
+                                                new SceneSwitch("LogInScene.fxml", 800, 500, false, false);
+                                            } catch (IOException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        }
+                                        ));
+                                timeline.setCycleCount(1);
+                                timeline.play();
 
-                            } else {
+                            } else if (serverAnswer1.startsWith("CODE RESULT:") && serverAnswer1.substring(12).equals("false")){
                                 alertEvent.consume(); // cancel closing
                                 label.setTextFill(Paint.valueOf("#ff0000"));
                                 label.setText("Wrong code!");
+                            } else {
+                                alertEvent.consume(); // cancel closing
+                                label.setTextFill(Paint.valueOf("#ff0000"));
+                                label.setText("Error in database!");
                             }
                         } catch (IOException e) {
                             throw new RuntimeException(e);
@@ -162,17 +198,6 @@ public class SignInController implements Initializable {
         alert.getDialogPane().setContent(vBox);
 
         return alert;
-    }
-
-    @FXML
-    private void LogInButtonClicked(ActionEvent event) throws IOException {
-        new SceneSwitch("LogInScene.fxml", 800, 500, false, false);
-    }
-
-    @FXML
-    private void enterPressedInField(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER)
-            checkWrittenText();
     }
 
     private boolean checkWrittenText() {

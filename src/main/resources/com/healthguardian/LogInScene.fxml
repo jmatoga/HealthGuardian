@@ -13,7 +13,7 @@
             <Image url="@../../photos/logInSceneImageView.png" />
          </image></ImageView>
    <!--    <Label text="VBox 1"/>-->
-    <Button fx:id="logInButton" layoutX="385.0" layoutY="440.0" onAction="#logInButtonClicked" text="Log in" AnchorPane.bottomAnchor="40.0" />
+    <Button fx:id="logInButton" layoutX="385.0" layoutY="440.0" onAction="#logInButtonClicked" onKeyPressed="#enterPressedInField" text="Log in" AnchorPane.bottomAnchor="40.0" />
       <Button fx:id="signInButton" layoutX="736.0" layoutY="466.0" mnemonicParsing="false" onAction="#SignInButtonClicked" prefHeight="16.0" prefWidth="58.0" text="Sign in" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
       <TextField fx:id="username" layoutX="316.0" layoutY="373.0" onKeyPressed="#enterPressedInField" prefHeight="25.0" prefWidth="187.0" promptText="Username" AnchorPane.bottomAnchor="105.0" />
       <PasswordField fx:id="password" layoutX="316.0" layoutY="404.0" onKeyPressed="#enterPressedInField" prefHeight="25.0" prefWidth="187.0" promptText="Password" AnchorPane.bottomAnchor="75.0" />
