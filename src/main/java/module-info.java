@@ -3,6 +3,7 @@ module com.healthguardian.healthguardian {
     requires javafx.fxml;
     requires java.sql;
     requires java.desktop;
+    requires org.apache.pdfbox;
 
 
     opens com.healthguardian to javafx.fxml;
