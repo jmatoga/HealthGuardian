@@ -1,0 +1,9 @@
+.custom-scroll-pane {
+    -fx-vbar-policy: as-needed; /* Pokaż suwak pionowy tylko wtedy, gdy jest to konieczne */
+
+    /* Ustaw szerokość suwaka pionowego */
+    -fx-vbar-width: 20;
+
+    /* Możesz dostosować także inne właściwości suwaka, na przykład kolor */
+    -fx-vbar-fill: #336699; /* Niebieski kolor suwaka pionowego */
+}
