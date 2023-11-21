@@ -38,7 +38,7 @@ public class SQLEngine {
     }
 
     String[] getData(int clientID, String user_id){
-        String[] returnStatement = {"Error", "Error", "No data", "No data", "No data", "No data", "No data"};
+        String[] returnStatement = {"Error", "Error", "No data", "No data", "No data", "No data", "No data", "No data" , "No data"};
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -46,7 +46,7 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String sql = "SELECT first_name, last_name, birth_date, user_basic_data_table.weight, user_basic_data_table.height, user_basic_data_table.systolic_pressure, user_basic_data_table.diastolic_pressure FROM user_table NATURAL JOIN user_basic_data_table WHERE user_id = ?;";
+            String sql = "SELECT first_name, last_name, birth_date, user_basic_data_table.weight, user_basic_data_table.height, user_basic_data_table.temperature, user_basic_data_table.systolic_pressure, user_basic_data_table.diastolic_pressure, user_basic_data_table.entry_date FROM user_table NATURAL JOIN user_basic_data_table WHERE user_id = ?;";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, user_id);
 
@@ -55,15 +55,18 @@ public class SQLEngine {
             boolean ifResultSetHasNext = resultSet.next();
             returnStatement[0] = String.valueOf(resultSet.getString("first_name"));
             returnStatement[1] = String.valueOf(resultSet.getString("last_name"));
+            System.out.println(resultSet.getDate("birth_date"));
 
             if (ifResultSetHasNext && resultSet.getDate("birth_date") != null) {
                 System.out.println("Getted User Data.");
 
-                returnStatement[2] = String.valueOf(resultSet.getDate("birth_date").toLocalDate().until(LocalDate.now()).getYears());
+                returnStatement[2] = String.valueOf(resultSet.getDate("birth_date"));
                 returnStatement[3] = String.valueOf(resultSet.getString("user_basic_data_table.weight"));
                 returnStatement[4] = String.valueOf(resultSet.getString("user_basic_data_table.height"));
-                returnStatement[5] = String.valueOf(resultSet.getString("user_basic_data_table.systolic_pressure"));
-                returnStatement[6] = String.valueOf(resultSet.getString("user_basic_data_table.diastolic_pressure"));
+                returnStatement[5] = String.valueOf(resultSet.getString("user_basic_data_table.temperature"));
+                returnStatement[6] = String.valueOf(resultSet.getString("user_basic_data_table.systolic_pressure"));
+                returnStatement[7] = String.valueOf(resultSet.getString("user_basic_data_table.diastolic_pressure"));
+                returnStatement[8] = String.valueOf(resultSet.getDate("user_basic_data_table.entry_date"));
 
             } else if (ifResultSetHasNext) {
                 System.out.println("First login! Insert data.");
@@ -75,6 +78,8 @@ public class SQLEngine {
                 returnStatement[4] = "Error";
                 returnStatement[5] = "Error";
                 returnStatement[6] = "Error";
+                returnStatement[7] = "Error";
+                returnStatement[8] = "Error";
             }
 
             return returnStatement;
@@ -134,7 +139,7 @@ public class SQLEngine {
                 String getMaxUserIdSql = "SELECT MAX(user_id) AS max_user_id FROM user_table";
                 String getSaltSql = "SET @salt = SUBSTRING(MD5(RAND()), 1, 16)";
                 String insertUserSql = "INSERT INTO user_table (user_id, first_name, last_name, phone, email, pesel) VALUES (?, ?, ?, ?, ?, ?)";
-                String insertUserSqlData = "INSERT INTO user_basic_data_table (entry_date, user_id) VALUES (?, ?)";
+                String insertUserSqlData = "INSERT INTO user_basic_data_table (user_id) VALUES (?)";
                 String insertUserPassSql = "INSERT INTO user_pass_table (username, password_hash, salt, user_id) VALUES (?, SHA2(CONCAT(?, @salt), 256), @salt, ?)";
 
                 // get Max user_id from Database
@@ -159,7 +164,6 @@ public class SQLEngine {
 
                 // insert into user_basic_data_table
                 preparedStatement = connection.prepareStatement(insertUserSqlData);
-                preparedStatement.setDate(1, Date.valueOf(LocalDate.now()));
                 preparedStatement.setInt(2, maxUserId + 1);
                 preparedStatement.executeUpdate();
 
@@ -221,6 +225,45 @@ public class SQLEngine {
            disconnectFromDataBase(resultSet, preparedStatement, connection);
         }
         return returnStatement;
+    }
+
+    String insertUserBasicData(int clientID, String birthdayDate, String weight, String height, String temperature, String systolic_pressure, String diastolic_pressure, String entryDate, String userId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String insertUserBasicDataSql = "UPDATE user_basic_data_table SET weight = ?, height = ?, systolic_pressure = ?, diastolic_pressure = ?, temperature = ?, entry_date = ? WHERE user_id = ?";
+            String updateUserTableSql = "UPDATE user_table SET birth_date = ? WHERE user_id = ?";
+
+            // insert into user basic date table
+            preparedStatement = connection.prepareStatement(insertUserBasicDataSql);
+            preparedStatement.setDouble(1, Double.parseDouble(weight));
+            preparedStatement.setDouble(2, Double.parseDouble(height));
+            preparedStatement.setInt(3, Integer.parseInt(systolic_pressure));
+            preparedStatement.setInt(4, Integer.parseInt(diastolic_pressure));
+            preparedStatement.setDouble(5, Double.parseDouble(temperature));
+            preparedStatement.setDate(6, Date.valueOf(entryDate));
+            preparedStatement.setInt(7, Integer.parseInt(userId));
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println("r: " + rowsAffected);
+
+            preparedStatement = connection.prepareStatement(updateUserTableSql);
+            preparedStatement.setDate(1, Date.valueOf(birthdayDate));
+            preparedStatement.setInt(2, Integer.parseInt(userId));
+            int rowsAffected1 = preparedStatement.executeUpdate();
+            System.out.println("r1: " + rowsAffected1);
+
+            if(rowsAffected == 1 && rowsAffected1 == 1)
+                return "Inserted user basic data correctly.";
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return "Error while inserting user basic data.";
     }
 
     private static void disconnectFromDataBase(ResultSet resultSet, PreparedStatement preparedStatement, Connection connection) {
