@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
 
@@ -68,8 +69,9 @@ class ClientHandler implements Callable<String> {
                     String userId = resources[1];
 
                     String[] dataResult = sqlEngine.getData(Integer.parseInt(clientId), userId);
-                    SendToClient.println("");
-                    SendToClient.println(Arrays.toString(dataResult));
+                    SendToClient.println(""); // This is message to the client reader
+                    SendToClient.println(Arrays.toString(dataResult)); // This is message to the LogInController
+
                 } else if (serverMessage.startsWith("CHECK_IF_USER_EXISTS:")) {
                     String[] resources = serverMessage.substring(21).split(",");
                     String clientId = resources[0];
@@ -78,6 +80,7 @@ class ClientHandler implements Callable<String> {
                     boolean existingResult = sqlEngine.checkIfUserExists(Integer.parseInt(clientId), username);
                     SendToClient.println(""); // This is message to the client reader
                     SendToClient.println("EXISTING RESULT:" + existingResult); // This is message to the LogInController
+
                 } else if (serverMessage.startsWith("CHECK_ONE_TIME_CODE:")) {
                     String[] resources = serverMessage.substring(20).split(",");
                     String clientId = resources[0];
@@ -93,6 +96,21 @@ class ClientHandler implements Callable<String> {
                     String codeResult = sqlEngine.checkOneTimeCode(Integer.parseInt(clientId), oneTimeCode, firstname, lastname, email, phoneNumber, pesel, username, password);
                     SendToClient.println(""); // This is message to the client reader
                     SendToClient.println("CODE RESULT:" + codeResult); // This is message to the LogInController
+                } else if (serverMessage.startsWith("INSERT_USER_BASIC_DATA:")) {
+                    String[] resources = serverMessage.substring(23).split(",");
+                    String clientId = resources[0];
+                    String birthdayDate = resources[1];
+                    String weight = resources[2];
+                    String height = resources[3];
+                    String temperature = resources[4];
+                    String systolic_pressure = resources[5];
+                    String diastolic_pressure = resources[6];
+                    String entryDate = resources[7];
+                    String userId = resources[8];
+
+                    String codeResult = sqlEngine.insertUserBasicData(Integer.parseInt(clientId), birthdayDate, weight, height, temperature, systolic_pressure, diastolic_pressure, entryDate, userId);
+                    SendToClient.println(""); // This is message to the client reader
+                    SendToClient.println("INSERTING USER BASIC DATA RESULT:" + codeResult); // This is message to the LogInController
                 }
             }
         } catch (IOException e) {

@@ -14,7 +14,9 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.PDFRenderer;
 import utils.Message;
 
-import java.awt.image.BufferedImage;
+//import javafx.scene.image.Image;
+
+import java.awt.image.BufferedImage; // TODO
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
