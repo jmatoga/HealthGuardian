@@ -10,11 +10,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import utils.Message;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,6 +28,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+
+import static javafx.scene.paint.Color.GREEN;
 
 public class ClientPanelController implements Initializable {
     private static final Message message = new Message();
@@ -167,6 +171,20 @@ public class ClientPanelController implements Initializable {
         new SceneSwitch("LogInScene.fxml", 820, 500, 800, 500, false, false, "HealthGuardian");
     }
 
+    @FXML
+    private void initializeHoverEffect() {
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(GREEN);  // Change color as per your preference
+
+        ePrescriptionButton.setOnMouseEntered(e -> {
+            ePrescriptionButton.setEffect(shadow);
+        });
+
+        ePrescriptionButton.setOnMouseExited(e -> {
+            ePrescriptionButton.setEffect(null);
+        });
+    }
+
     private void getUserDataFromDB() throws IOException {
         int user_id = Client.user_id;
         String user_id_str = Integer.toString(user_id);
@@ -186,6 +204,7 @@ public class ClientPanelController implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
+        initializeHoverEffect();
         ClientPanelController.ReadFromServer = Client.ReadFromServer;
         ClientPanelController.SendToServer = Client.SendToServer;
 
