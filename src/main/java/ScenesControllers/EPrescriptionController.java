@@ -2,6 +2,7 @@ package ScenesControllers;
 
 
 import Client.Client;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -38,7 +39,10 @@ public class EPrescriptionController implements Initializable {
     @FXML
     private ImageView previewImageView;
 
-
+    @FXML
+    private void userPanelButtonClicked(ActionEvent event) throws IOException {
+        new SceneSwitch("ClientPanelScene.fxml");
+    }
 
     private void loadPDF() {
         try {
