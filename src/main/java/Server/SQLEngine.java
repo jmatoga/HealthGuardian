@@ -3,6 +3,8 @@ package Server;
 import utils.Color;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class SQLEngine {
     private final String url;
@@ -43,30 +45,28 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String sql = "SELECT first_Name, last_name, user_data.age, user_data.weight, user_data.height, user_data.systolic_pressure, user_data.diastolic_pressure FROM user NATURAL JOIN user_data WHERE user_id = ?;";
+            String sql = "SELECT first_name, last_name, birth_date, user_basic_data_table.weight, user_basic_data_table.height, user_basic_data_table.systolic_pressure, user_basic_data_table.diastolic_pressure FROM user_table NATURAL JOIN user_basic_data_table WHERE user_id = ?;";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, user_id);
 
             resultSet = preparedStatement.executeQuery();
-
+            // TODO czy jest birth_date
             if (resultSet.next()) {
                 System.out.println("Getted User Data.");
 
                 returnStatement[0] = String.valueOf(resultSet.getString("first_name"));
                 returnStatement[1] = String.valueOf(resultSet.getString("last_name"));
-                returnStatement[2] = String.valueOf(resultSet.getString("user_data.age"));
-                returnStatement[3] = String.valueOf(resultSet.getString("user_data.weight"));
-                returnStatement[4] = String.valueOf(resultSet.getString("user_data.height"));
-                returnStatement[5] = String.valueOf(resultSet.getString("user_data.systolic_pressure"));
-                returnStatement[6] = String.valueOf(resultSet.getString("user_data.diastolic_pressure"));
+                returnStatement[2] = String.valueOf(LocalDate.parse(resultSet.getString("birth_date")).until(LocalDate.now()).getYears());
+                returnStatement[3] = String.valueOf(resultSet.getString("user_basic_data_table.weight"));
+                returnStatement[4] = String.valueOf(resultSet.getString("user_basic_data_table.height"));
+                returnStatement[5] = String.valueOf(resultSet.getString("user_basic_data_table.systolic_pressure"));
+                returnStatement[6] = String.valueOf(resultSet.getString("user_basic_data_table.diastolic_pressure"));
 
                 return returnStatement;
 
             } else {
-                System.out.println("DataBase Error, First Name is empty!.");
-
-                returnStatement[0] = "false1";
-
+                System.out.println("First login! Insert data.");
+                returnStatement[0] = "firstLogin-insertData";
                 return returnStatement;
             }
         } catch (SQLException e) {
@@ -84,7 +84,7 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String sql = "SELECT username FROM user_pass WHERE username = ?";
+            String sql = "SELECT username FROM user_pass_table WHERE username = ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, username);  // username
 
@@ -112,7 +112,7 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String sql = "DELETE FROM one_time_code WHERE code = ?";
+            String sql = "DELETE FROM one_time_code_table WHERE one_time_code = ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, oneTimeCode);
 
@@ -121,10 +121,11 @@ public class SQLEngine {
             if (rowsAffected == 1) { // if changed rows = 1 then code exist in database
                 System.out.println("Correct code!");
 
-                String getMaxUserIdSql = "SELECT MAX(user_id) AS max_user_id FROM user";
+                String getMaxUserIdSql = "SELECT MAX(user_id) AS max_user_id FROM user_table";
                 String getSaltSql = "SET @salt = SUBSTRING(MD5(RAND()), 1, 16)";
-                String insertUserSql = "INSERT INTO user (user_id, first_name, last_name, phone, email, adress) VALUES (?, ?, ?, ?, ?, \"null\")";
-                String insertUserPassSql = "INSERT INTO user_pass (username, password_hash, salt, user_id) VALUES (?, SHA2(CONCAT(?, @salt), 256), @salt, ?)";
+                String insertUserSql = "INSERT INTO user_table (user_id, first_name, last_name, phone, email, pesel) VALUES (?, ?, ?, ?, ?, ?)";
+                String insertUserSqlData = "INSERT INTO user_basic_data_table (entry_date, user_id) VALUES (?, ?)";
+                String insertUserPassSql = "INSERT INTO user_pass_table (username, password_hash, salt, user_id) VALUES (?, SHA2(CONCAT(?, @salt), 256), @salt, ?)";
 
                 // get Max user_id from Database
                 preparedStatement = connection.prepareStatement(getMaxUserIdSql);
@@ -143,11 +144,16 @@ public class SQLEngine {
                 preparedStatement.setString(3, lastname);
                 preparedStatement.setString(4, phoneNumber);
                 preparedStatement.setString(5, email);
-                                                            // TODO change adress as not required
-                //preparedStatement.setString(6, pesel); // TODO add pesel to user table
+                preparedStatement.setString(6, pesel);
                 preparedStatement.executeUpdate();
 
-                // insert into user_pass table
+                // insert into user_basic_data_table
+                preparedStatement = connection.prepareStatement(insertUserSqlData);
+                preparedStatement.setDate(1, Date.valueOf(LocalDate.now()));
+                preparedStatement.setInt(2, maxUserId + 1);
+                preparedStatement.executeUpdate();
+
+                // insert into user_pass_table table
                 preparedStatement = connection.prepareStatement(insertUserPassSql);
                 preparedStatement.setString(1, username);
                 preparedStatement.setString(2, password);
@@ -176,7 +182,7 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String sql = "SELECT username,user_id FROM user_pass WHERE username = ? AND password_hash = SHA2(CONCAT(?, (SELECT salt FROM user_pass WHERE username=?)), 256)";
+            String sql = "SELECT username,user_id FROM user_pass_table WHERE username = ? AND password_hash = SHA2(CONCAT(?, (SELECT salt FROM user_pass_table WHERE username=?)), 256)";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, inputUsername);  // username
             preparedStatement.setString(2, inputPassword);  // password

@@ -8,10 +8,19 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import utils.Message;
@@ -191,6 +200,47 @@ public class ClientPanelController implements Initializable {
         message.sendGetNameMessage(SendToServer,Client.clientId  + "," + user_id_str);
         String serverAnswer = Client.rreader(ReadFromServer);
         System.out.println(serverAnswer);
+        if(serverAnswer.startsWith("[firstLogin-insertData")) {
+            TextField inputField = new TextField();
+            TextField inputField1 = new TextField();
+            DatePicker datePicker = new DatePicker();
+            Label label = new Label("");
+            Alert alert = createDataAlert(inputField, inputField1, datePicker, label);
+
+            alert.setOnCloseRequest(alertEvent -> {
+                if (inputField.getText().isEmpty()) {
+                    alertEvent.consume(); // cancel closing
+                    label.setTextFill(Paint.valueOf("#ff0000"));
+                    label.setText("Empty code!");
+                } else {
+                    //message.checkOneTimeCode(SendToServer, Client.clientId + "," + inputField.getText() + "," + firstName.getText() + "," + lastName.getText() + "," + email.getText() + "," + phoneNumber.getText() + "," + pesel.getText() + "," + username.getText() + "," + password.getText());
+                    String serverAnswer1="";
+                    System.out.println("aaaaa");
+
+//                    try {
+//                        //serverAnswer1 = Client.rreader(ReadFromServer);
+//                        //System.out.println(serverAnswer1);
+//
+//                        if (serverAnswer1.startsWith("CODE RESULT:") && serverAnswer1.substring(12).equals("true")) {
+//
+//
+//                        } else if (serverAnswer1.startsWith("CODE RESULT:") && serverAnswer1.substring(12).equals("false")){
+//                            alertEvent.consume(); // cancel closing
+//                            label.setTextFill(Paint.valueOf("#ff0000"));
+//                            label.setText("Wrong code!");
+//                        } else {
+//                            alertEvent.consume(); // cancel closing
+//                            label.setTextFill(Paint.valueOf("#ff0000"));
+//                            label.setText("Error in database!");
+//                        }
+//                    } catch (Exception e) {
+//                        throw new RuntimeException(e);
+//                    }
+                }
+            });
+            Platform.runLater(alert::showAndWait);
+        }
+
         String[] userData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
 
         firstNameLabel.setText(userData[0]);
@@ -201,6 +251,36 @@ public class ClientPanelController implements Initializable {
         presureLabel.setText("last pressure: " + userData[5] + "/" + userData[6]);
         ageLabel.setText("age: " + userData[2]);
         //dateOfLastUpdateLabel.setText(serverAnswer);
+    }
+
+    private Alert createDataAlert(TextField inputField, TextField inputField1, DatePicker datePicker, Label label) {
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+
+        label.setMinWidth(100);
+        label.setMinHeight(30);
+        label.setStyle("-fx-font-size: 20; -fx-font-weight: bold;");
+        grid.add(new Label("Birth date:"), 0, 0);
+        grid.add(datePicker, 1, 0);
+        grid.add(new Label("Birth date:"), 0, 1);
+        grid.add(inputField, 1, 1);
+        grid.add(new Label("Birth date:"), 0, 2);
+        grid.add(inputField1, 1, 2);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Insert data:");
+        alert.setHeaderText("Write below your data.");
+        ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        alert.getButtonTypes().setAll(okButtonType);
+
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(label, grid);
+        vBox.setAlignment(Pos.CENTER);
+        alert.getDialogPane().setContent(vBox);
+
+        return alert;
     }
 
     public void initialize(URL location, ResourceBundle resources) {
