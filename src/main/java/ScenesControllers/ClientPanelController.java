@@ -177,7 +177,10 @@ public class ClientPanelController implements Initializable {
         message.sendGetNameMessage(SendToServer,Client.clientId  + "," + user_id_str);
         String serverAnswer = Client.rreader(ReadFromServer);
         System.out.println(serverAnswer);
-        if(serverAnswer.startsWith("[firstLogin-insertData")) {
+
+        String[] userData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
+
+        if(userData[2].equals("No data")) {
             TextField inputField = new TextField();
             TextField inputField1 = new TextField();
             DatePicker datePicker = new DatePicker();
@@ -218,7 +221,6 @@ public class ClientPanelController implements Initializable {
             Platform.runLater(alert::showAndWait);
         }
 
-        String[] userData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
 
         firstNameLabel.setText(userData[0]);
         lastNameLabel.setText(userData[1]);

@@ -68,8 +68,9 @@ class ClientHandler implements Callable<String> {
                     String userId = resources[1];
 
                     String[] dataResult = sqlEngine.getData(Integer.parseInt(clientId), userId);
-                    SendToClient.println("");
-                    SendToClient.println(Arrays.toString(dataResult));
+                    SendToClient.println(""); // This is message to the client reader
+                    SendToClient.println(Arrays.toString(dataResult)); // This is message to the LogInController
+
                 } else if (serverMessage.startsWith("CHECK_IF_USER_EXISTS:")) {
                     String[] resources = serverMessage.substring(21).split(",");
                     String clientId = resources[0];
@@ -78,6 +79,7 @@ class ClientHandler implements Callable<String> {
                     boolean existingResult = sqlEngine.checkIfUserExists(Integer.parseInt(clientId), username);
                     SendToClient.println(""); // This is message to the client reader
                     SendToClient.println("EXISTING RESULT:" + existingResult); // This is message to the LogInController
+
                 } else if (serverMessage.startsWith("CHECK_ONE_TIME_CODE:")) {
                     String[] resources = serverMessage.substring(20).split(",");
                     String clientId = resources[0];

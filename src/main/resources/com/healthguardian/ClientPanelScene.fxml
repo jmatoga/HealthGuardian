@@ -102,7 +102,7 @@
                   <Font name="Consolas Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="dateOfLastUpdateLabel" prefHeight="86.0" prefWidth="280.0" text="date of last update:&#10;dd.mm.rrrr" textFill="WHITE">
+            <Label fx:id="dateOfLastUpdateLabel" prefHeight="86.0" prefWidth="300.0" text="date of last update:&#10;--.--.----" textFill="WHITE">
                <font>
                   <Font name="Consolas Bold" size="20.0" />
                </font>
@@ -232,7 +232,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="presurePanelButton" layoutX="1620.0" layoutY="645.0" mnemonicParsing="false" onAction="#presurePanelButtonClicked" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9ecf0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00b9c2; -fx-border-width: 4; -fx-border-radius: 3; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="PRESURE PANEL" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="700.0">
+      <Button fx:id="presurePanelButton" layoutX="1620.0" layoutY="645.0" mnemonicParsing="false" onAction="#presurePanelButtonClicked" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9ecf0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00b9c2; -fx-border-width: 4; -fx-border-radius: 3; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="PRESSURE PANEL" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="700.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>

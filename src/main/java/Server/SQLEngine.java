@@ -5,6 +5,7 @@ import utils.Color;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 
 public class SQLEngine {
     private final String url;
@@ -37,7 +38,7 @@ public class SQLEngine {
     }
 
     String[] getData(int clientID, String user_id){
-        String[] returnStatement = {"Error", "Error", "Error", "Error", "Error", "Error", "Error"};
+        String[] returnStatement = {"Error", "Error", "No data", "No data", "No data", "No data", "No data"};
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -50,25 +51,34 @@ public class SQLEngine {
             preparedStatement.setString(1, user_id);
 
             resultSet = preparedStatement.executeQuery();
-            // TODO czy jest birth_date
-            if (resultSet.next()) {
+
+            boolean ifResultSetHasNext = resultSet.next();
+            returnStatement[0] = String.valueOf(resultSet.getString("first_name"));
+            returnStatement[1] = String.valueOf(resultSet.getString("last_name"));
+
+            if (ifResultSetHasNext && resultSet.getDate("birth_date") != null) {
                 System.out.println("Getted User Data.");
 
-                returnStatement[0] = String.valueOf(resultSet.getString("first_name"));
-                returnStatement[1] = String.valueOf(resultSet.getString("last_name"));
-                returnStatement[2] = String.valueOf(LocalDate.parse(resultSet.getString("birth_date")).until(LocalDate.now()).getYears());
+                returnStatement[2] = String.valueOf(resultSet.getDate("birth_date").toLocalDate().until(LocalDate.now()).getYears());
                 returnStatement[3] = String.valueOf(resultSet.getString("user_basic_data_table.weight"));
                 returnStatement[4] = String.valueOf(resultSet.getString("user_basic_data_table.height"));
                 returnStatement[5] = String.valueOf(resultSet.getString("user_basic_data_table.systolic_pressure"));
                 returnStatement[6] = String.valueOf(resultSet.getString("user_basic_data_table.diastolic_pressure"));
 
-                return returnStatement;
-
-            } else {
+            } else if (ifResultSetHasNext) {
                 System.out.println("First login! Insert data.");
-                returnStatement[0] = "firstLogin-insertData";
-                return returnStatement;
+            } else {
+                System.out.println("Error in database while getting user data.");
+
+                returnStatement[2] = "Error";
+                returnStatement[3] = "Error";
+                returnStatement[4] = "Error";
+                returnStatement[5] = "Error";
+                returnStatement[6] = "Error";
             }
+
+            return returnStatement;
+
         } catch (SQLException e) {
             System.err.println("Error while executing SELECT: " + e.getMessage());
         } finally {
