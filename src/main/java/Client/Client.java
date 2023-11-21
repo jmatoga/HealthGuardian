@@ -24,8 +24,8 @@ public class Client {
                 String serverMessage = rreader(ReadFromServer);
                 if (serverMessage != null)
                     System.out.println("Client: Received message from server: " + serverMessage);
-                else
-                    System.out.println("Something went wrong! Server sent null message.");
+                //else
+                    //System.out.println("Something went wrong! Server sent null message.");
             }
         } catch (IOException e) {
             e.printStackTrace();
