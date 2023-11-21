@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="clientPanelScene" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.ClientPanelController">
    <children>
-      <ImageView fitHeight="1100.0" fitWidth="1930.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-20.0">
+      <ImageView fitHeight="1100.0" fitWidth="1930.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../../photos/background_1.png" />
          </image>
