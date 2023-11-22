@@ -3,7 +3,6 @@ package ScenesControllers;
 import Client.Client;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,10 +26,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
-import java.sql.Date;
-import java.sql.SQLOutput;
-import java.text.BreakIterator;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -42,6 +37,9 @@ public class ClientPanelController implements Initializable {
     private static final Message message = new Message();
     private static BufferedReader ReadFromServer;
     private static PrintWriter SendToServer;
+
+    @FXML
+    private Label dataUpdatedStatusLabel;
 
     @FXML
     private Label dateLabel;
@@ -167,7 +165,65 @@ public class ClientPanelController implements Initializable {
 
     @FXML
     private void editDataButtonClicked(ActionEvent event) throws  IOException{
-        new SceneSwitch("EditDataScene.fxml");
+        GridPane grid = new GridPane();
+        TextField inputFieldWeight = new TextField();
+        TextField inputFieldHeight = new TextField();
+        TextField inputFieldTemperature = new TextField();
+        TextField inputFieldPressure1 = new TextField();
+        TextField inputFieldPressure2 = new TextField();
+        Label label = new Label("");
+        label.setTextFill(Paint.valueOf("#ff0000"));
+        Alert alert = createEditDataAlert(grid, inputFieldWeight, inputFieldHeight, inputFieldTemperature, inputFieldPressure1, inputFieldPressure2, label);
+
+        alert.setOnCloseRequest(alertEvent -> {
+            if(checkEditData(alertEvent, inputFieldWeight, inputFieldHeight, inputFieldTemperature, inputFieldPressure1, inputFieldPressure2, label)) {
+                message.updateUserBasicData(SendToServer, Client.clientId + "," + "withoutBirthdayDate" + "," + inputFieldWeight.getText() + "," + inputFieldHeight.getText() + "," + inputFieldTemperature.getText() + "," + inputFieldPressure1.getText() + "," + inputFieldPressure2.getText() + "," + LocalDate.now() + "," + Client.user_id);
+                try {
+                    String serverAnswer = Client.rreader(ReadFromServer);
+                    System.out.println(serverAnswer);
+                    if (serverAnswer.equals("Updated user basic data correctly.")) {
+                        getUserDataFromDB();
+                        dataUpdatedStatusLabel.setText("Data updated correctly!");
+                    } else
+                        dataUpdatedStatusLabel.setText("Error while updating!");
+
+                    Timeline timeline = new Timeline(
+                            new KeyFrame(Duration.millis(2000), TimeEvent -> {
+                                dataUpdatedStatusLabel.setText("");
+                            }));
+                    timeline.setCycleCount(1);
+                    timeline.play();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        alert.showAndWait();
+    }
+
+    private boolean checkEditData(DialogEvent alertEvent, TextField inputFieldWeight, TextField inputFieldHeight, TextField inputFieldTemperature, TextField inputFieldPressure1, TextField inputFieldPressure2, Label label) {
+        if (inputFieldWeight.getText().isEmpty() || inputFieldHeight.getText().isEmpty() || inputFieldTemperature.getText().isEmpty() || inputFieldPressure1.getText().isEmpty() || inputFieldPressure2.getText().isEmpty()) {
+            alertEvent.consume(); // cancel closing alert on ok button pressed
+            label.setText("Fill all labels!");
+        } else if (!inputFieldWeight.getText().matches("\\d*\\.?\\d+") || Float.parseFloat(inputFieldWeight.getText()) >= 250.0 || Float.parseFloat(inputFieldWeight.getText()) <= 30.0) {
+            alertEvent.consume(); // cancel closing alert on ok button pressed
+            label.setText("Wrong Weight!");
+        } else if (!inputFieldHeight.getText().matches("\\d*\\.?\\d+") || Float.parseFloat(inputFieldHeight.getText()) >= 250.0 || Float.parseFloat(inputFieldHeight.getText()) <= 100.0) {
+            alertEvent.consume(); // cancel closing alert on ok button pressed
+            label.setText("Wrong Height!");
+        } else if (!inputFieldTemperature.getText().matches("\\d*\\.?\\d+") || Float.parseFloat(inputFieldTemperature.getText()) >= 50.0 || Float.parseFloat(inputFieldTemperature.getText()) <= 20.0) {
+            alertEvent.consume(); // cancel closing alert on ok button pressed
+            label.setText("Wrong Temperature!");
+        } else if (!inputFieldPressure1.getText().matches("\\d+") || Float.parseFloat(inputFieldPressure1.getText()) >= 250.0 || Float.parseFloat(inputFieldPressure1.getText()) <= 50.0) {
+            alertEvent.consume(); // cancel closing alert on ok button pressed
+            label.setText("Wrong systolic pressure parametr!");
+        } else if (!inputFieldPressure2.getText().matches("\\d+") || Float.parseFloat(inputFieldPressure2.getText()) >= 150.0 || Float.parseFloat(inputFieldPressure2.getText()) <= 30.0) {
+            alertEvent.consume(); // cancel closing alert on ok button pressed
+            label.setText("Wrong diastolic pressure parametr!");
+        } else
+            return true;
+
+        return false;
     }
 
     @FXML
@@ -225,71 +281,42 @@ public class ClientPanelController implements Initializable {
             });
 
             alert.setOnCloseRequest(alertEvent -> {
-                if (inputFieldWeight.getText().isEmpty() || inputFieldHeight.getText().isEmpty() || inputFieldTemperature.getText().isEmpty() || inputFieldPressure1.getText().isEmpty() || inputFieldPressure2.getText().isEmpty()) {
-                    alertEvent.consume(); // cancel closing alert on ok button pressed
-                    System.out.println(datePicker.getValue());
-                    label.setText("Fill all labels!");
-                } else if (datePicker.getValue().toString().isEmpty() || !datePicker.getValue().toString().matches("\\d{4}-\\d+-\\d+") || datePicker.getValue().isAfter(LocalDate.now())) {
+                if (datePicker.getValue().toString().isEmpty() || !datePicker.getValue().toString().matches("\\d{4}-\\d+-\\d+") || datePicker.getValue().isAfter(LocalDate.now())) {
                     alertEvent.consume(); // cancel closing alert on ok button pressed
                     label.setText("Wrong Date!");
-                } else if (!inputFieldWeight.getText().matches("\\d*\\.?\\d+") || Float.parseFloat(inputFieldWeight.getText()) >= 250.0 || Float.parseFloat(inputFieldWeight.getText()) <= 30.0) {
-                    alertEvent.consume(); // cancel closing alert on ok button pressed
-                    label.setText("Wrong Weight!");
-                } else if (!inputFieldHeight.getText().matches("\\d*\\.?\\d+") || Float.parseFloat(inputFieldHeight.getText()) >= 250.0 || Float.parseFloat(inputFieldHeight.getText()) <= 100.0) {
-                    alertEvent.consume(); // cancel closing alert on ok button pressed
-                    label.setText("Wrong Height!");
-                } else if (!inputFieldTemperature.getText().matches("\\d*\\.?\\d+") || Float.parseFloat(inputFieldTemperature.getText()) >= 50.0 || Float.parseFloat(inputFieldTemperature.getText()) <= 20.0) {
-                    alertEvent.consume(); // cancel closing alert on ok button pressed
-                    label.setText("Wrong Temperature!");
-                } else if (!inputFieldPressure1.getText().matches("\\d+") || Float.parseFloat(inputFieldPressure1.getText()) >= 250.0 || Float.parseFloat(inputFieldPressure1.getText()) <= 50.0) {
-                    alertEvent.consume(); // cancel closing alert on ok button pressed
-                    label.setText("Wrong systolic pressure parametr!");
-                } else if (!inputFieldPressure2.getText().matches("\\d+") || Float.parseFloat(inputFieldPressure2.getText()) >= 150.0 || Float.parseFloat(inputFieldPressure2.getText()) <= 30.0) {
-                    alertEvent.consume(); // cancel closing alert on ok button pressed
-                    label.setText("Wrong diastolic pressure parametr!");
-                }
-                else {
-                    message.insertUserBasicData(SendToServer, Client.clientId + "," + datePicker.getValue() + "," + inputFieldWeight.getText() + "," + inputFieldHeight.getText() + "," + inputFieldTemperature.getText() + "," + inputFieldPressure1.getText() + "," + inputFieldPressure2.getText() + "," + LocalDate.now() + "," + Client.user_id);
-                    try {
-                        String serverAnswer1 = Client.rreader(ReadFromServer);
-                        System.out.println(serverAnswer1);
-                        message.sendGetNameMessage(SendToServer,Client.clientId  + "," + user_id_str);
-                        String serverAnswer2 = Client.rreader(ReadFromServer);
-                        System.out.println(serverAnswer2);
+                } else if(checkEditData(alertEvent, inputFieldWeight, inputFieldHeight, inputFieldTemperature, inputFieldPressure1, inputFieldPressure2, label)) {
+                    message.updateUserBasicData(SendToServer, Client.clientId + "," + datePicker.getValue() + "," + inputFieldWeight.getText() + "," + inputFieldHeight.getText() + "," + inputFieldTemperature.getText() + "," + inputFieldPressure1.getText() + "," + inputFieldPressure2.getText() + "," + LocalDate.now() + "," + Client.user_id);
 
-                        String[] userData1 = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
+                    if(userData[2].equals("No data")) {
+                        try {
+                            String serverAnswer1 = Client.rreader(ReadFromServer);
+                            System.out.println(serverAnswer1);
+                            getUserDataFromDB();
 
+                            if (!userData[2].equals("No data"))
+                                dataUpdatedStatusLabel.setText("Data updated correctly!");
+                             else
+                                dataUpdatedStatusLabel.setText("Error while updating!");
 
-                        // TODO showing after inserting data
-                        firstNameLabel.setText(userData1[0]);
-                        lastNameLabel.setText(userData1[1]);
-                        birthDateLabel.setText(userData1[2]);
-                        weightLabel.setText("weight: " + userData1[3]);
-                        heightLabel.setText("height: " + userData1[4]);
-                        ageLabel.setText("age: " + LocalDate.parse(userData1[2]).until(LocalDate.now()).getYears());
-                        temperatureLabel.setText("temperature: " + userData1[5]);
-                        presureLabel.setText("last pressure: " + userData1[6] + "/" + userData1[7]);
-                        dateOfLastUpdateLabel.setText("date of last update:\n" + userData1[8]);
-//
-//
-//                        } else if (serverAnswer1.startsWith("CODE RESULT:") && serverAnswer1.substring(12).equals("false")){
-//                            alertEvent.consume(); // cancel closing
-//                            label.setTextFill(Paint.valueOf("#ff0000"));
-//                            label.setText("Wrong code!");
-//                        } else {
-//                            alertEvent.consume(); // cancel closing
-//                            label.setTextFill(Paint.valueOf("#ff0000"));
-//                            label.setText("Error in database!");
-//                        }
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
+                            Timeline timeline = new Timeline(
+                                    new KeyFrame(Duration.millis(2000), TimeEvent -> {
+                                        dataUpdatedStatusLabel.setText("");
+                                    }));
+                            timeline.setCycleCount(1);
+                            timeline.play();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             });
             Platform.runLater(alert::showAndWait);
             ageLabel.setText("age: " + userData[2]);
-        } else
+            presureLabel.setText("last pressure: " + userData[6]);
+        } else {
             ageLabel.setText("age: " + LocalDate.parse(userData[2]).until(LocalDate.now()).getYears());
+            presureLabel.setText("last pressure: " + userData[6] + "/" + userData[7]);
+        }
 
         firstNameLabel.setText(userData[0]);
         lastNameLabel.setText(userData[1]);
@@ -297,12 +324,22 @@ public class ClientPanelController implements Initializable {
         weightLabel.setText("weight: " + userData[3]);
         heightLabel.setText("height: " + userData[4]);
         temperatureLabel.setText("temperature: " + userData[5]);
-        presureLabel.setText("last pressure: " + userData[6] + "/" + userData[7]);
         dateOfLastUpdateLabel.setText("date of last update:\n" + userData[8]);
     }
 
     private Alert createDataAlert(TextField inputFieldWeight, TextField inputFieldHeight, TextField inputFieldTemperature, TextField inputFieldPressure1, TextField inputFieldPressure2, DatePicker datePicker, Label label) {
         GridPane grid = new GridPane();
+
+        grid.add(new Label("Birth date:"), 0, 0);
+        datePicker.setMinWidth(100);
+        datePicker.setMaxWidth(100);
+        datePicker.setPromptText(LocalDate.now().getDayOfMonth() + "." + LocalDate.now().getMonthValue() + "." + LocalDate.now().getYear());
+        grid.add(datePicker, 1, 0);
+
+        return createEditDataAlert(grid, inputFieldWeight, inputFieldHeight, inputFieldTemperature, inputFieldPressure1, inputFieldPressure2, label);
+    }
+
+    private Alert createEditDataAlert(GridPane grid, TextField inputFieldWeight, TextField inputFieldHeight, TextField inputFieldTemperature, TextField inputFieldPressure1, TextField inputFieldPressure2, Label label) {
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
@@ -327,12 +364,6 @@ public class ClientPanelController implements Initializable {
         label.setMinWidth(100);
         label.setMinHeight(30);
         label.setStyle("-fx-font-size: 20; -fx-font-weight: bold;");
-
-        grid.add(new Label("Birth date:"), 0, 0);
-        datePicker.setMinWidth(100);
-        datePicker.setMaxWidth(100);
-        datePicker.setPromptText(LocalDate.now().getDayOfMonth() + "." + LocalDate.now().getMonthValue() + "." + LocalDate.now().getYear());
-        grid.add(datePicker, 1, 0);
 
         grid.add(new Label("Weight:"), 0, 1);
         inputFieldWeight.setPromptText("75.23");
@@ -382,23 +413,16 @@ public class ClientPanelController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        // Utwórz Timeline do cyklicznego odświeżania daty co sekundę
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1), event -> updateDateTime()));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
 
     private void updateDateTime() {
-        // Pobierz aktualną datę i godzinę
         LocalDateTime currentDateTime = LocalDateTime.now();
-
-        // Utwórz formatter daty i godziny
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
-        // Sformatuj datę i godzinę jako tekst
+        // Set as text
         String formattedDateTime = currentDateTime.format(formatter);
-
-        // Ustaw sformatowaną datę i godzinę jako tekst etykiety
         this.dateLabel.setText(formattedDateTime);
 
         if (this.dateLabel != null) {
