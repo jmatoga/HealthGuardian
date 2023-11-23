@@ -4,6 +4,8 @@ module com.healthguardian.healthguardian {
     requires java.sql;
     requires java.desktop;
     requires org.apache.pdfbox;
+    requires javafx.swing;
+    requires javafx.web;
     //requires org.apache.pdfbox;
 
 
