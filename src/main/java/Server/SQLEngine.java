@@ -3,9 +3,6 @@ package Server;
 import utils.Color;
 
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Arrays;
 
 public class SQLEngine {
     private final String url;
@@ -55,7 +52,6 @@ public class SQLEngine {
             boolean ifResultSetHasNext = resultSet.next();
             returnStatement[0] = String.valueOf(resultSet.getString("first_name"));
             returnStatement[1] = String.valueOf(resultSet.getString("last_name"));
-            System.out.println(resultSet.getDate("birth_date"));
 
             if (ifResultSetHasNext && resultSet.getDate("birth_date") != null) {
                 System.out.println("Getted User Data.");
@@ -227,7 +223,7 @@ public class SQLEngine {
         return returnStatement;
     }
 
-    String insertUserBasicData(int clientID, String birthdayDate, String weight, String height, String temperature, String systolic_pressure, String diastolic_pressure, String entryDate, String userId) {
+    String updateUserBasicData(int clientID, String birthdayDate, String weight, String height, String temperature, String systolic_pressure, String diastolic_pressure, String entryDate, String userId) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -247,23 +243,27 @@ public class SQLEngine {
             preparedStatement.setDate(6, Date.valueOf(entryDate));
             preparedStatement.setInt(7, Integer.parseInt(userId));
             int rowsAffected = preparedStatement.executeUpdate();
-            System.out.println("r: " + rowsAffected);
 
-            preparedStatement = connection.prepareStatement(updateUserTableSql);
-            preparedStatement.setDate(1, Date.valueOf(birthdayDate));
-            preparedStatement.setInt(2, Integer.parseInt(userId));
-            int rowsAffected1 = preparedStatement.executeUpdate();
-            System.out.println("r1: " + rowsAffected1);
+            int rowsAffected1 = 0;
+            if(!birthdayDate.equals("withoutBirthdayDate")) {
+                preparedStatement = connection.prepareStatement(updateUserTableSql);
+                preparedStatement.setDate(1, Date.valueOf(birthdayDate));
+                preparedStatement.setInt(2, Integer.parseInt(userId));
+                rowsAffected1 = preparedStatement.executeUpdate();
+            } else
+                rowsAffected1 = 1;
 
-            if(rowsAffected == 1 && rowsAffected1 == 1)
-                return "Inserted user basic data correctly.";
-
+            if(rowsAffected == 1 && rowsAffected1 == 1) {
+                System.out.println("Updated user basic data correctly.");
+                return "Updated user basic data correctly.";
+            }
         } catch (SQLException e) {
             System.err.println("Error while executing SELECT: " + e.getMessage());
         } finally {
             disconnectFromDataBase(resultSet, preparedStatement, connection);
         }
-        return "Error while inserting user basic data.";
+        System.out.println(Color.ColorString("Error while updating user basic data.", Color.ANSI_RED));
+        return "Error while updating user basic data.";
     }
 
     private static void disconnectFromDataBase(ResultSet resultSet, PreparedStatement preparedStatement, Connection connection) {

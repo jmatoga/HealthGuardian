@@ -3,11 +3,7 @@ package ScenesControllers;
 import com.healthguardian.WindowApplication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import utils.Message;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class SceneSwitch {
     public SceneSwitch(String newFxmlScene) throws IOException {

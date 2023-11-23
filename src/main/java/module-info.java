@@ -4,11 +4,9 @@ module com.healthguardian.healthguardian {
     requires java.sql;
     requires java.desktop;
     requires org.apache.pdfbox;
+    Pdf_to_image
     requires javafx.swing;
     requires javafx.web;
-    //requires org.apache.pdfbox;
-
-
     opens com.healthguardian to javafx.fxml;
     exports com.healthguardian;
     exports ScenesControllers;

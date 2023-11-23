@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
 
@@ -96,7 +95,7 @@ class ClientHandler implements Callable<String> {
                     String codeResult = sqlEngine.checkOneTimeCode(Integer.parseInt(clientId), oneTimeCode, firstname, lastname, email, phoneNumber, pesel, username, password);
                     SendToClient.println(""); // This is message to the client reader
                     SendToClient.println("CODE RESULT:" + codeResult); // This is message to the LogInController
-                } else if (serverMessage.startsWith("INSERT_USER_BASIC_DATA:")) {
+                } else if (serverMessage.startsWith("UPDATE_USER_BASIC_DATA:")) {
                     String[] resources = serverMessage.substring(23).split(",");
                     String clientId = resources[0];
                     String birthdayDate = resources[1];
@@ -108,9 +107,9 @@ class ClientHandler implements Callable<String> {
                     String entryDate = resources[7];
                     String userId = resources[8];
 
-                    String codeResult = sqlEngine.insertUserBasicData(Integer.parseInt(clientId), birthdayDate, weight, height, temperature, systolic_pressure, diastolic_pressure, entryDate, userId);
+                    String updateResult = sqlEngine.updateUserBasicData(Integer.parseInt(clientId), birthdayDate, weight, height, temperature, systolic_pressure, diastolic_pressure, entryDate, userId);
                     SendToClient.println(""); // This is message to the client reader
-                    SendToClient.println("INSERTING USER BASIC DATA RESULT:" + codeResult); // This is message to the LogInController
+                    SendToClient.println(updateResult); // This is message to the LogInController
                 }
             }
         } catch (IOException e) {

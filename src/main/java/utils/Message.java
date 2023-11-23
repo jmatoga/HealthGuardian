@@ -30,7 +30,7 @@ public class Message {
     public void checkOneTimeCode(PrintWriter writer, String message) {
         writer.println("CHECK_ONE_TIME_CODE:" + message);
     }
-    public void insertUserBasicData(PrintWriter writer, String message) {
-        writer.println("INSERT_USER_BASIC_DATA:" + message);
+    public void updateUserBasicData(PrintWriter writer, String message) {
+        writer.println("UPDATE_USER_BASIC_DATA:" + message);
     }
 }

@@ -69,7 +69,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox layoutX="292.0" layoutY="403.0" prefHeight="255.0" prefWidth="290.0" AnchorPane.rightAnchor="1343.0">
+      <VBox layoutX="292.0" layoutY="403.0" prefHeight="255.0" prefWidth="280.0" AnchorPane.rightAnchor="1353.0">
          <children>
             <Label fx:id="weightLabel" prefHeight="27.0" prefWidth="285.0" text="weight:" textFill="WHITE">
                <font>
@@ -97,7 +97,7 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <Label fx:id="presureLabel" prefHeight="27.0" prefWidth="292.0" text="pressure: " textFill="WHITE">
+            <Label fx:id="presureLabel" prefHeight="27.0" prefWidth="287.0" text="pressure:" textFill="WHITE">
                <font>
                   <Font name="Consolas Bold" size="20.0" />
                </font>
@@ -400,5 +400,26 @@
             </RadialGradient>
          </textFill>
       </Button>
+      <Label fx:id="dataUpdatedStatusLabel" layoutX="250.0" layoutY="247.0" prefHeight="53.0" prefWidth="315.0">
+         <font>
+            <Font size="30.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.0833333358168602" green="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.7916666865348816" green="1.0" blue="0.8125" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
    </children>
 </AnchorPane>

@@ -147,8 +147,7 @@ public class SignInController implements Initializable {
                                             } catch (IOException e) {
                                                 throw new RuntimeException(e);
                                             }
-                                        }
-                                        ));
+                                        }));
                                 timeline.setCycleCount(1);
                                 timeline.play();
 

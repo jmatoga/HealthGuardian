@@ -65,7 +65,7 @@ public class EPrescriptionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadPDF();
+        //loadPDF();
         EPrescriptionController.ReadFromServer = Client.ReadFromServer;
         EPrescriptionController.SendToServer = Client.SendToServer;
     }
