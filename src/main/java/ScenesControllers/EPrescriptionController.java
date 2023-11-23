@@ -8,14 +8,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.PDFRenderer;
 import utils.Message;
+import javafx.embed.swing.SwingFXUtils;
 
-//import javafx.scene.image.Image;
 
 import java.awt.image.BufferedImage; // TODO
 import java.io.BufferedReader;
@@ -34,28 +33,29 @@ public class EPrescriptionController implements Initializable {
     private Button userPanelButton;
 
     @FXML
-    private AnchorPane ePrescriptionScene;
+    private ImageView previewImageView;
 
     @FXML
-    private ImageView previewImageView;
+    private AnchorPane ePrescriptionScene;
+
 
     @FXML
     private void userPanelButtonClicked(ActionEvent event) throws IOException {
         new SceneSwitch("ClientPanelScene.fxml");
     }
 
+
     private void loadPDF() {
         try {
-
             File file = new File("src/main/resources/photos/e-prescription.pdf");
             PDDocument doc1 = Loader.loadPDF(file);
 
             PDFRenderer pr = new PDFRenderer (doc1);
             BufferedImage bi = pr.renderImageWithDPI(0, 300);
-            WritableImage writableImage = new WritableImage(bi.getWidth(), bi.getHeight());
 
+            Image fxImage = SwingFXUtils.toFXImage(bi, null);
 
-            previewImageView.setImage(writableImage);
+            previewImageView.setImage(fxImage);
 
             doc1.close();
         } catch (IOException e) {

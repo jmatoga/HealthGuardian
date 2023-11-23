@@ -16,11 +16,11 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.EPrescriptionController">
+<AnchorPane fx:id="ePrescriptionScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.EPrescriptionController">
    <children>
       <ImageView fitHeight="1110.0" fitWidth="1930.0" layoutX="8.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../../photos/background_1.png" />
+            <Image url="@../../photos/bg2.jpg" />
          </image>
       </ImageView>
       <Button fx:id="userPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#userPanelButtonClicked" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00476e; -fx-border-width: 3; -fx-border-radius: 2; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="USER PANEL" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="950.0">
@@ -68,9 +68,9 @@
             </RadialGradient>
          </textFill>
       </Label>
-      <Pane layoutX="78.0" layoutY="273.0" opacity="0.2" prefHeight="610.0" prefWidth="700.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="280.0">
+      <Pane layoutX="253.0" layoutY="273.0" prefHeight="616.0" prefWidth="407.0" style="-fx-border-color: orange; -fx-border-width: 3;" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="280.0">
          <children>
-            <ImageView fx:id="previewImageView" fitHeight="610.0" fitWidth="700.0" layoutX="4.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="previewImageView" fitHeight="610.0" fitWidth="399.0" layoutX="4.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
       <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="813.0" layoutY="273.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefHeight="610.0" prefWidth="820.0" vbarPolicy="ALWAYS" AnchorPane.leftAnchor="880.0" AnchorPane.topAnchor="280.0">
