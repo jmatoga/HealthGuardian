@@ -3,6 +3,7 @@ package Server;
 import utils.Color;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class SQLEngine {
     private final String url;
@@ -43,13 +44,14 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String sql = "SELECT first_name, last_name, birth_date, user_basic_data_table.weight, user_basic_data_table.height, user_basic_data_table.temperature, user_basic_data_table.systolic_pressure, user_basic_data_table.diastolic_pressure, user_basic_data_table.entry_date FROM user_table NATURAL JOIN user_basic_data_table WHERE user_id = ?;";
+            String sql = "SELECT first_name, last_name, birth_date, user_basic_data_table.weight, user_basic_data_table.height, user_basic_data_table.temperature, user_basic_data_table.systolic_pressure, user_basic_data_table.diastolic_pressure, user_basic_data_table.entry_date FROM user_table LEFT JOIN user_basic_data_table on user_table.user_id = user_basic_data_table.user_id AND (SELECT MAX(entry_date) FROM user_basic_data_table WHERE user_id = user_table.user_id) WHERE user_table.user_id = ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, user_id);
 
             resultSet = preparedStatement.executeQuery();
 
             boolean ifResultSetHasNext = resultSet.next();
+
             returnStatement[0] = String.valueOf(resultSet.getString("first_name"));
             returnStatement[1] = String.valueOf(resultSet.getString("last_name"));
 
@@ -64,7 +66,7 @@ public class SQLEngine {
                 returnStatement[7] = String.valueOf(resultSet.getString("user_basic_data_table.diastolic_pressure"));
                 returnStatement[8] = String.valueOf(resultSet.getDate("user_basic_data_table.entry_date"));
 
-            } else if (ifResultSetHasNext) {
+            } else if (ifResultSetHasNext && resultSet.getDate("birth_date") == null) {
                 System.out.println("First login! Insert data.");
             } else {
                 System.out.println("Error in database while getting user data.");
@@ -135,7 +137,7 @@ public class SQLEngine {
                 String getMaxUserIdSql = "SELECT MAX(user_id) AS max_user_id FROM user_table";
                 String getSaltSql = "SET @salt = SUBSTRING(MD5(RAND()), 1, 16)";
                 String insertUserSql = "INSERT INTO user_table (user_id, first_name, last_name, phone, email, pesel) VALUES (?, ?, ?, ?, ?, ?)";
-                String insertUserSqlData = "INSERT INTO user_basic_data_table (user_id) VALUES (?)";
+                //String insertUserSqlData = "INSERT INTO user_basic_data_table (user_id) VALUES (?)";
                 String insertUserPassSql = "INSERT INTO user_pass_table (username, password_hash, salt, user_id) VALUES (?, SHA2(CONCAT(?, @salt), 256), @salt, ?)";
 
                 // get Max user_id from Database
@@ -159,9 +161,9 @@ public class SQLEngine {
                 preparedStatement.executeUpdate();
 
                 // insert into user_basic_data_table
-                preparedStatement = connection.prepareStatement(insertUserSqlData);
-                preparedStatement.setInt(2, maxUserId + 1);
-                preparedStatement.executeUpdate();
+//                preparedStatement = connection.prepareStatement(insertUserSqlData);
+//                preparedStatement.setInt(1, maxUserId + 1);
+//                preparedStatement.executeUpdate();
 
                 // insert into user_pass_table table
                 preparedStatement = connection.prepareStatement(insertUserPassSql);
@@ -230,33 +232,65 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String insertUserBasicDataSql = "UPDATE user_basic_data_table SET weight = ?, height = ?, systolic_pressure = ?, diastolic_pressure = ?, temperature = ?, entry_date = ? WHERE user_id = ?";
-            String updateUserTableSql = "UPDATE user_table SET birth_date = ? WHERE user_id = ?";
+            String howManyRowsSql = "SELECT COUNT(*) FROM user_basic_data_table WHERE user_id = ?";
 
-            // insert into user basic date table
-            preparedStatement = connection.prepareStatement(insertUserBasicDataSql);
-            preparedStatement.setDouble(1, Double.parseDouble(weight));
-            preparedStatement.setDouble(2, Double.parseDouble(height));
-            preparedStatement.setInt(3, Integer.parseInt(systolic_pressure));
-            preparedStatement.setInt(4, Integer.parseInt(diastolic_pressure));
-            preparedStatement.setDouble(5, Double.parseDouble(temperature));
-            preparedStatement.setDate(6, Date.valueOf(entryDate));
-            preparedStatement.setInt(7, Integer.parseInt(userId));
-            int rowsAffected = preparedStatement.executeUpdate();
+            // check how many logs exist in database
+            preparedStatement = connection.prepareStatement(howManyRowsSql);
+            preparedStatement.setInt(1, Integer.parseInt(userId));
+            resultSet = preparedStatement.executeQuery();
 
-            int rowsAffected1 = 0;
-            if(!birthdayDate.equals("withoutBirthdayDate")) {
-                preparedStatement = connection.prepareStatement(updateUserTableSql);
-                preparedStatement.setDate(1, Date.valueOf(birthdayDate));
-                preparedStatement.setInt(2, Integer.parseInt(userId));
-                rowsAffected1 = preparedStatement.executeUpdate();
-            } else
-                rowsAffected1 = 1;
-
-            if(rowsAffected == 1 && rowsAffected1 == 1) {
-                System.out.println("Updated user basic data correctly.");
-                return "Updated user basic data correctly.";
+            int rowCount = 0;
+            if(resultSet.next()) {
+                rowCount = resultSet.getInt(1);
             }
+
+            if(rowCount >= 0 && rowCount <= 4) {
+                String insertUserBasicDataSql = "INSERT INTO user_basic_data_table (weight, height, systolic_pressure, diastolic_pressure, temperature, entry_date, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                String updateUserTableSql = "UPDATE user_table SET birth_date = ? WHERE user_id = ?";
+
+                // insert into user basic date table
+                preparedStatement = connection.prepareStatement(insertUserBasicDataSql);
+                preparedStatement.setDouble(1, Double.parseDouble(weight));
+                preparedStatement.setDouble(2, Double.parseDouble(height));
+                preparedStatement.setInt(3, Integer.parseInt(systolic_pressure));
+                preparedStatement.setInt(4, Integer.parseInt(diastolic_pressure));
+                preparedStatement.setDouble(5, Double.parseDouble(temperature));
+                preparedStatement.setTimestamp(6, Timestamp.valueOf(entryDate));
+                preparedStatement.setInt(7, Integer.parseInt(userId));
+                int rowsAffected = preparedStatement.executeUpdate();
+
+                int rowsAffected1 = 0;
+                if(!birthdayDate.equals("withoutBirthdayDate")) {
+                    preparedStatement = connection.prepareStatement(updateUserTableSql);
+                    preparedStatement.setDate(1, Date.valueOf(birthdayDate));
+                    preparedStatement.setInt(2, Integer.parseInt(userId));
+                    rowsAffected1 = preparedStatement.executeUpdate();
+                } else
+                    rowsAffected1 = 1;
+
+                if(rowsAffected == 1 && rowsAffected1 == 1) {
+                    System.out.println("Updated user basic data correctly.");
+                    return "Updated user basic data correctly.";
+                }
+            } else if (rowCount == 5) {
+                String updateUserBasicDataSql = "UPDATE user_basic_data_table SET weight = ?, height = ?, systolic_pressure = ?, diastolic_pressure = ?, temperature = ?, entry_date = ? WHERE user_ID = ? AND entry_date = (SELECT MIN_DATE.entry_date FROM (SELECT MIN(entry_date) as entry_date FROM user_basic_data_table WHERE user_id = ?) AS MIN_DATE)";
+                preparedStatement = connection.prepareStatement(updateUserBasicDataSql);
+                preparedStatement.setDouble(1, Double.parseDouble(weight));
+                preparedStatement.setDouble(2, Double.parseDouble(height));
+                preparedStatement.setInt(3, Integer.parseInt(systolic_pressure));
+                preparedStatement.setInt(4, Integer.parseInt(diastolic_pressure));
+                preparedStatement.setDouble(5, Double.parseDouble(temperature));
+                preparedStatement.setTimestamp(6, Timestamp.valueOf(entryDate)); // date with time
+                preparedStatement.setInt(7, Integer.parseInt(userId));
+                preparedStatement.setInt(8, Integer.parseInt(userId));
+                int rowsAffected = preparedStatement.executeUpdate();
+
+                if(rowsAffected == 1) {
+                    System.out.println("Updated user basic data correctly.");
+                    return "Updated user basic data correctly.";
+                }
+            }
+
         } catch (SQLException e) {
             System.err.println("Error while executing SELECT: " + e.getMessage());
         } finally {

@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="clientPanelScene" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.ClientPanelController">
+<AnchorPane fx:id="clientPanelScene" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.ClientPanelController">
    <children>
       <ImageView fitHeight="1100.0" fitWidth="1930.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -81,12 +81,12 @@
                   <Font name="Consolas Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="ageLabel" prefHeight="27.0" prefWidth="285.0" text="age: " textFill="WHITE">
+            <Label fx:id="ageLabel" prefHeight="27.0" prefWidth="285.0" text="age:" textFill="WHITE">
                <font>
                   <Font name="Consolas Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="temperatureLabel" prefHeight="43.0" prefWidth="292.0" text="temperature: " textFill="WHITE">
+            <Label fx:id="temperatureLabel" prefHeight="43.0" prefWidth="292.0" text="temperature:" textFill="WHITE">
                <font>
                   <Font name="Consolas Bold" size="20.0" />
                </font>
@@ -97,7 +97,7 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <Label fx:id="presureLabel" prefHeight="27.0" prefWidth="287.0" text="pressure:" textFill="WHITE">
+            <Label fx:id="pressureLabel" prefHeight="27.0" prefWidth="287.0" text="last pressure:" textFill="WHITE">
                <font>
                   <Font name="Consolas Bold" size="20.0" />
                </font>
@@ -414,7 +414,7 @@
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="0.7916666865348816" green="1.0" blue="0.8125" />
+                        <Color red="0.7921568751335144" green="1.0" blue="0.8117647171020508" />
                      </color>
                   </Stop>
                </stops>
