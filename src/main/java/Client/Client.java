@@ -7,6 +7,7 @@ import utils.Message;
 import java.io.*;
 import java.net.*;
 import java.util.Arrays;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -16,33 +17,55 @@ public class Client {
     public static BufferedReader ReadFromServer;
     public static PrintWriter SendToServer;
     private static final Lock lock = new ReentrantLock();
+    public static String lastServerMessage = "a";
+    private static final Condition condition = lock.newCondition();
 
-    public static void reader(BufferedReader ReadFromServer) {
+    public static synchronized void reader(BufferedReader ReadFromServer) {
         try {
             while (true) {
-                //String serverMessage = ReadFromServer.readLine();
-                String serverMessage = rreader(ReadFromServer);
-                if (serverMessage != null)
+                String serverMessage = ReadFromServer.readLine();
+               // String serverMessage = rreader(ReadFromServer, false);
+                //System.out.println("a");
+
+                if (serverMessage != null) {
+                    lock.lock();
+                    condition.await();
                     System.out.println("Client: Received message from server: " + serverMessage);
+                    lastServerMessage = serverMessage;
+                    condition.signalAll();
+                    lock.unlock();
+                }
                 else
                     throw new RuntimeException("Something went wrong! Server sent a null message.");
+
             }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (RuntimeException e) {
             System.err.println(e.getMessage());
             System.exit(10);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public static synchronized String rreader(BufferedReader ReadFromServer) throws IOException {
-        try {
-            lock.lock();
-            return ReadFromServer.readLine();
-        } finally {
-            lock.unlock();
-        }
-    }
+//    public static synchronized String rreader(BufferedReader ReadFromServer, boolean ifTrue) throws IOException {
+//        try {
+//            //lock.lock();
+//            if(ifTrue) {
+//                rreader(ReadFromServer, false).wait();
+//                return ReadFromServer.readLine();
+//            }
+//            else
+//                return "";
+//
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        } finally {
+//            //lock.unlock();
+//            rreader(ReadFromServer, false).notifyAll();
+//        }
+//    }
     public static void main(String[] args) {
         String serverAddress = "localhost";
         int serverPort = 12345;

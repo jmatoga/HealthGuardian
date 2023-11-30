@@ -180,7 +180,9 @@ public class ClientPanelController implements Initializable {
                 message.updateUserBasicData(SendToServer, Client.clientId + "," + "withoutBirthdayDate" + "," + inputFieldWeight.getText() + "," + inputFieldHeight.getText() + "," + inputFieldTemperature.getText() + "," + inputFieldPressure1.getText() + "," + inputFieldPressure2.getText() + "," + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "," + Client.user_id);
 
                 try {
-                    String serverAnswer = Client.rreader(ReadFromServer);
+                    //String serverAnswer = Client.rreader(ReadFromServer, true);
+                    String serverAnswer = Client.lastServerMessage;
+
                     System.out.println(serverAnswer);
                     if (serverAnswer.equals("Updated user basic data correctly.")) {
                         getUserDataFromDB();
@@ -258,7 +260,9 @@ public class ClientPanelController implements Initializable {
         int user_id = Client.user_id;
         String user_id_str = Integer.toString(user_id);
         message.sendGetNameMessage(SendToServer,Client.clientId  + "," + user_id_str);
-        String serverAnswer = Client.rreader(ReadFromServer);
+       // String serverAnswer = Client.rreader(ReadFromServer, true);
+        String serverAnswer = Client.lastServerMessage;
+
 
         if(serverAnswer != null)
             System.out.println(serverAnswer);
@@ -293,7 +297,9 @@ public class ClientPanelController implements Initializable {
 
                     if(userData[2].equals("No data")) {
                         try {
-                            String serverAnswer1 = Client.rreader(ReadFromServer);
+                            //String serverAnswer1 = Client.rreader(ReadFromServer, true);
+                            String serverAnswer1 = Client.lastServerMessage;
+
                             System.out.println(serverAnswer1);
                             getUserDataFromDB();
 

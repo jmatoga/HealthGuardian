@@ -107,7 +107,9 @@ public class SignInController implements Initializable {
         if(checkWrittenText()) {
             message.checkIfUserExists(SendToServer, Client.clientId + "," + username.getText());
 
-            String serverAnswer = Client.rreader(ReadFromServer);
+            //String serverAnswer = Client.rreader(ReadFromServer, true);
+            String serverAnswer = Client.lastServerMessage;
+
             Platform.runLater(() -> {
                 System.out.println(serverAnswer);
             });
@@ -126,8 +128,10 @@ public class SignInController implements Initializable {
                         message.checkOneTimeCode(SendToServer, Client.clientId + "," + inputField.getText() + "," + firstName.getText() + "," + lastName.getText() + "," + email.getText() + "," + phoneNumber.getText() + "," + pesel.getText() + "," + username.getText() + "," + password.getText());
                         String serverAnswer1;
 
-                        try {
-                            serverAnswer1 = Client.rreader(ReadFromServer);
+                       // try {
+                            //serverAnswer1 = Client.rreader(ReadFromServer, true);
+                            serverAnswer1 = Client.lastServerMessage;
+
                             System.out.println(serverAnswer1);
 
                             if (serverAnswer1.startsWith("CODE RESULT:") && serverAnswer1.substring(12).equals("true")) {
@@ -160,9 +164,10 @@ public class SignInController implements Initializable {
                                 label.setTextFill(Paint.valueOf("#ff0000"));
                                 label.setText("Error in database!");
                             }
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
+                        //}
+                        //catch (IOException e) {
+//                            throw new RuntimeException(e);
+//                        }
                     }
                 });
 

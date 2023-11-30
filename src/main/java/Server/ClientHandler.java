@@ -56,10 +56,10 @@ class ClientHandler implements Callable<String> {
                     String[] loginResult = sqlEngine.loginToAccount(Integer.parseInt(clientId),username, password);
 
                     if(Boolean.parseBoolean(loginResult[0])) {
-                        SendToClient.println(""); // This is message to the client reader
+                        //SendToClient.println(""); // This is message to the client reader
                         SendToClient.println("Logged successfully. Your user_id: " + loginResult[1]); // This is message to the LogInController
                     } else {
-                        SendToClient.println(""); // This is message to the client reader
+                        //SendToClient.println(""); // This is message to the client reader
                         SendToClient.println("Wrong password."); // This is message to the LogInController
                     }
                 } else if (serverMessage.startsWith("GET_USER_DATA:")) {
@@ -68,7 +68,7 @@ class ClientHandler implements Callable<String> {
                     String userId = resources[1];
 
                     String[] dataResult = sqlEngine.getData(Integer.parseInt(clientId), userId);
-                    SendToClient.println(""); // This is message to the client reader
+                    //SendToClient.println(""); // This is message to the client reader
                     SendToClient.println(Arrays.toString(dataResult)); // This is message to the LogInController
 
                 } else if (serverMessage.startsWith("CHECK_IF_USER_EXISTS:")) {
@@ -77,7 +77,7 @@ class ClientHandler implements Callable<String> {
                     String username = resources[1];
 
                     boolean existingResult = sqlEngine.checkIfUserExists(Integer.parseInt(clientId), username);
-                    SendToClient.println(""); // This is message to the client reader
+                   // SendToClient.println(""); // This is message to the client reader
                     SendToClient.println("EXISTING RESULT:" + existingResult); // This is message to the LogInController
 
                 } else if (serverMessage.startsWith("CHECK_ONE_TIME_CODE:")) {
@@ -93,7 +93,7 @@ class ClientHandler implements Callable<String> {
                     String password = resources[8];
 
                     String codeResult = sqlEngine.checkOneTimeCode(Integer.parseInt(clientId), oneTimeCode, firstname, lastname, email, phoneNumber, pesel, username, password);
-                    SendToClient.println(""); // This is message to the client reader
+                   // SendToClient.println(""); // This is message to the client reader
                     SendToClient.println("CODE RESULT:" + codeResult); // This is message to the LogInController
                 } else if (serverMessage.startsWith("UPDATE_USER_BASIC_DATA:")) {
                     String[] resources = serverMessage.substring(23).split(",");
@@ -108,7 +108,7 @@ class ClientHandler implements Callable<String> {
                     String userId = resources[8];
 
                     String updateResult = sqlEngine.updateUserBasicData(Integer.parseInt(clientId), birthdayDate, weight, height, temperature, systolic_pressure, diastolic_pressure, entryDate, userId);
-                    SendToClient.println(""); // This is message to the client reader
+                  //  SendToClient.println(""); // This is message to the client reader
                     SendToClient.println(updateResult); // This is message to the LogInController
                 }
             }
