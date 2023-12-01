@@ -66,7 +66,7 @@ public class ClientPanelController implements Initializable {
     private Label ageLabel;
 
     @FXML
-    private Label presureLabel;
+    private Label pressureLabel;
 
     @FXML
     private Label dateOfLastUpdateLabel;
@@ -174,7 +174,7 @@ public class ClientPanelController implements Initializable {
     }
 
     @FXML
-    private void editDataButtonClicked(ActionEvent event) throws  IOException{
+    private void editDataButtonClicked(ActionEvent event) {
         GridPane grid = new GridPane();
         TextField inputFieldWeight = new TextField();
         TextField inputFieldHeight = new TextField();
@@ -187,15 +187,19 @@ public class ClientPanelController implements Initializable {
 
         alert.setOnCloseRequest(alertEvent -> {
             if(checkEditData(alertEvent, inputFieldWeight, inputFieldHeight, inputFieldTemperature, inputFieldPressure1, inputFieldPressure2, label)) {
-                message.updateUserBasicData(SendToServer, Client.clientId + "," + "withoutBirthdayDate" + "," + inputFieldWeight.getText() + "," + inputFieldHeight.getText() + "," + inputFieldTemperature.getText() + "," + inputFieldPressure1.getText() + "," + inputFieldPressure2.getText() + "," + LocalDate.now() + "," + Client.user_id);
+                message.updateUserBasicData(SendToServer, Client.clientId + "," + "withoutBirthdayDate" + "," + inputFieldWeight.getText() + "," + inputFieldHeight.getText() + "," + inputFieldTemperature.getText() + "," + inputFieldPressure1.getText() + "," + inputFieldPressure2.getText() + "," + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "," + Client.user_id);
+
                 try {
                     String serverAnswer = Client.rreader(ReadFromServer);
                     System.out.println(serverAnswer);
                     if (serverAnswer.equals("Updated user basic data correctly.")) {
                         getUserDataFromDB();
                         dataUpdatedStatusLabel.setText("Data updated correctly!");
-                    } else
+                    } else {
+                        System.out.println("TUUUUUUUUUUUUUUUUU2");
                         dataUpdatedStatusLabel.setText("Error while updating!");
+
+                    }
 
                     Timeline timeline = new Timeline(
                             new KeyFrame(Duration.millis(2000), TimeEvent -> {
@@ -295,7 +299,7 @@ public class ClientPanelController implements Initializable {
                     alertEvent.consume(); // cancel closing alert on ok button pressed
                     label.setText("Wrong Date!");
                 } else if(checkEditData(alertEvent, inputFieldWeight, inputFieldHeight, inputFieldTemperature, inputFieldPressure1, inputFieldPressure2, label)) {
-                    message.updateUserBasicData(SendToServer, Client.clientId + "," + datePicker.getValue() + "," + inputFieldWeight.getText() + "," + inputFieldHeight.getText() + "," + inputFieldTemperature.getText() + "," + inputFieldPressure1.getText() + "," + inputFieldPressure2.getText() + "," + LocalDate.now() + "," + Client.user_id);
+                    message.updateUserBasicData(SendToServer, Client.clientId + "," + datePicker.getValue() + "," + inputFieldWeight.getText() + "," + inputFieldHeight.getText() + "," + inputFieldTemperature.getText() + "," + inputFieldPressure1.getText() + "," + inputFieldPressure2.getText() + "," + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "," + Client.user_id);
 
                     if(userData[2].equals("No data")) {
                         try {
@@ -303,7 +307,7 @@ public class ClientPanelController implements Initializable {
                             System.out.println(serverAnswer1);
                             getUserDataFromDB();
 
-                            if (!userData[2].equals("No data"))
+                            if (serverAnswer1.equals("Updated user basic data correctly."))
                                 dataUpdatedStatusLabel.setText("Data updated correctly!");
                              else
                                 dataUpdatedStatusLabel.setText("Error while updating!");
@@ -322,10 +326,10 @@ public class ClientPanelController implements Initializable {
             });
             Platform.runLater(alert::showAndWait);
             ageLabel.setText("age: " + userData[2]);
-            presureLabel.setText("last pressure: " + userData[6]);
+            pressureLabel.setText("last pressure: " + userData[6]);
         } else {
             ageLabel.setText("age: " + LocalDate.parse(userData[2]).until(LocalDate.now()).getYears());
-            presureLabel.setText("last pressure: " + userData[6] + "/" + userData[7]);
+            pressureLabel.setText("last pressure: " + userData[6] + "/" + userData[7]);
         }
 
         firstNameLabel.setText(userData[0]);
@@ -377,26 +381,40 @@ public class ClientPanelController implements Initializable {
         label.setStyle("-fx-font-size: 20; -fx-font-weight: bold;");
 
         grid.add(new Label("Weight:"), 0, 1);
-        inputFieldWeight.setPromptText("75.23");
+        if(weightLabel.getText().substring(7).isEmpty())
+            inputFieldWeight.setPromptText("75.23");
+        else
+           inputFieldWeight.setPromptText(weightLabel.getText().substring(8));
         grid.add(inputFieldWeight, 1, 1);
         grid.add(new Label("kg"), 2, 1);
 
         grid.add(new Label("Height:"), 0, 2);
-        inputFieldHeight.setPromptText("183.23");
+        if(heightLabel.getText().substring(7).isEmpty())
+            inputFieldHeight.setPromptText("183.23");
+        else
+           inputFieldHeight.setPromptText(heightLabel.getText().substring(8));
         grid.add(inputFieldHeight, 1, 2);
         grid.add(new Label("cm"), 2, 2);
 
         grid.add(new Label("Temperature:"), 0, 3);
-        inputFieldTemperature.setPromptText("36.6");
+        if(temperatureLabel.getText().substring(12).isEmpty())
+            inputFieldTemperature.setPromptText("36.6");
+        else
+            inputFieldTemperature.setPromptText(temperatureLabel.getText().substring(13));
         grid.add(inputFieldTemperature, 1, 3);
         grid.add(new Label("°C"), 2, 3);
 
         grid.add(new Label("Pressure:"), 0, 4);
-        inputFieldPressure1.setPromptText("120");
+        if(pressureLabel.getText().substring(14).isEmpty()) {
+            inputFieldPressure1.setPromptText("120");
+            inputFieldPressure2.setPromptText("80");
+        } else {
+            inputFieldPressure1.setPromptText(pressureLabel.getText().substring(15, pressureLabel.getText().indexOf("/")));
+            inputFieldPressure2.setPromptText(pressureLabel.getText().substring(pressureLabel.getText().indexOf("/") + 1));
+        }
         grid.add(inputFieldPressure1, 1, 4);
         grid.add(new Label("/"), 2, 4);
-        inputFieldPressure2.setPromptText("80");
-        inputFieldPressure2.setTranslateX(-14);
+        inputFieldPressure2.setTranslateX(-14); // to move back "/" to the left
         grid.add(inputFieldPressure2, 3, 4);
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
