@@ -8,6 +8,6 @@ module com.healthguardian.healthguardian {
     requires javafx.web;
     opens com.healthguardian to javafx.fxml;
     exports com.healthguardian;
-    exports ScenesControllers;
     opens ScenesControllers to javafx.fxml;
+    exports ScenesControllers;
 }

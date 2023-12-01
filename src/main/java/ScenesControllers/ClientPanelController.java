@@ -72,6 +72,12 @@ public class ClientPanelController implements Initializable {
     private Label dateOfLastUpdateLabel;
 
     @FXML
+    Label bmiLabel;
+
+    @FXML
+    Label bmiStatusLabel;
+
+    @FXML
     private Button ePrescriptionButton;
 
     @FXML
@@ -111,7 +117,11 @@ public class ClientPanelController implements Initializable {
     private Button logOutButton;
 
     @FXML
-    private AnchorPane clientPanelScene;
+    AnchorPane clientPanelScene;
+
+    public AnchorPane getPane() {
+        return clientPanelScene;
+    }
 
     @FXML
     private void ePrescriptionButtonClicked(ActionEvent event) throws IOException {
@@ -125,7 +135,7 @@ public class ClientPanelController implements Initializable {
 
     @FXML
     private void testScheduleButtonClicked(ActionEvent event) throws IOException {
-        new SceneSwitch("TestScheduleScene.fxml");
+        new SceneSwitch("ExaminationScheduleScene.fxml");
     }
 
     @FXML
@@ -237,7 +247,7 @@ public class ClientPanelController implements Initializable {
     }
 
     @FXML
-    private void initializeHoverEffect() {
+    void initializeHoverEffect() {
         DropShadow shadow = new DropShadow();
         shadow.setColor(GREEN);  // Change color as per your preference
 
@@ -325,6 +335,7 @@ public class ClientPanelController implements Initializable {
         heightLabel.setText("height: " + userData[4]);
         temperatureLabel.setText("temperature: " + userData[5]);
         dateOfLastUpdateLabel.setText("date of last update:\n" + userData[8]);
+        calculateBMI(Double.parseDouble(userData[3]), Double.parseDouble(userData[4]));
     }
 
     private Alert createDataAlert(TextField inputFieldWeight, TextField inputFieldHeight, TextField inputFieldTemperature, TextField inputFieldPressure1, TextField inputFieldPressure2, DatePicker datePicker, Label label) {
@@ -430,5 +441,32 @@ public class ClientPanelController implements Initializable {
         } else {
             System.err.println("dateLabel is null");
         }
+    }
+
+    public double calculateBMI(double weight, double height) {
+        // TODO
+        boolean settingsBMI = true;
+        if(settingsBMI) {
+            height = height / 100; // convert height from cm to m
+            double bmi = weight / (height * height);
+
+            bmiStatusLabel.setText(String.format("%.2f", bmi));
+
+
+            //bmiLabel.setVisible(true);
+            if (bmi < 18.5) {
+                bmiStatusLabel.setTextFill(Paint.valueOf("#f54040"));
+            } else if (bmi >= 18.5 && bmi < 25.0) {
+                bmiStatusLabel.setTextFill(Paint.valueOf("#40f546"));
+            } else if (bmi >= 25.0 && bmi < 30.0) {
+                bmiStatusLabel.setTextFill(Paint.valueOf("#f5bb40"));
+            } else {
+                bmiStatusLabel.setTextFill(Paint.valueOf("#f54040"));
+            }
+
+            return bmi;
+        }
+       // return 0;
+        return 0;
     }
 }
