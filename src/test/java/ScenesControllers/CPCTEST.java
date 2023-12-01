@@ -1,6 +1,7 @@
 package ScenesControllers;//package ScenesControllers;
 
 import ScenesControllers.ClientPanelController;
+import com.healthguardian.WindowApplication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,7 +21,7 @@ public class CPCTEST extends ApplicationTest {
     public void start(Stage stage) throws Exception {
         FxToolkit.registerPrimaryStage();
         // Tu można dodać kod do tworzenia sceny i ładowania kontrolera
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ClientPanelController.fxml"));
+        FXMLLoader loader = new FXMLLoader(WindowApplication.class.getResource("ClientPanelScene.fxml"));
         Parent root = loader.load();
         controller = loader.getController();
         Scene scene = new Scene(root);
