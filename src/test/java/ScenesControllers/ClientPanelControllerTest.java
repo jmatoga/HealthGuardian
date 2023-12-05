@@ -1,61 +1,96 @@
 package ScenesControllers;
 
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import javafx.scene.paint.Paint;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.TestWatcher;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.testfx.api.FxRobot;
+import org.testfx.framework.junit5.ApplicationExtension;
+import utils.Color;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.doNothing;
-
+import static org.testfx.api.FxAssert.assertContext;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.base.NodeMatchers.isVisible;
-import static org.testfx.matcher.control.LabeledMatchers.hasText;
-//import static org.testfx.matcher.control.LabeledMatchers.isVisible;
 
-public class ClientPanelControllerTest {
-    private ClientPanelController controller;
+@ExtendWith(ApplicationExtension.class)
+class ClientPanelControllerTest {
+
+    private final ClientPanelController controller = new ClientPanelController();
+    private boolean testSuccess = false;
 
     @BeforeEach
-    public void setUp() {
-        controller = Mockito.spy(new ClientPanelController());
-        //controller.bmiStatusLabel = new Label(); // Inicjalizacja pola bmiStatusLabel
-        //controller.bmiLabel = new Label();
-        //controller.bmiStatusLabel = new Label();
-        //controller = new ClientPanelController();
+    void setUp() {
+        controller.setBmiStatusLabel(new Label());
+        controller.setBmiLabel(new Label());
     }
 
     @Test
-    public void testGetUserDataFromDB_CalculatesBMI() {
-//        double weight = 70.0;
-//        double height = 175;
-//
-//        doNothing().when(controller).initializeHoverEffect(); // Ignoring the call method because it is irrelevant to this test
-//
-//        // Act
-//        controller.calculateBMI(weight, height);
-//
-//        double expectedBMI = 22.86;
-//        double actualBMI = controller.calculateBMI(weight, height);
-//
-        
-        double[][] testCases = {
-                {40.0, 140.0, 16.33},   // niska waga, niski wzrost
-                {70.0, 175.0, 22.86},   // normalna waga, normalny wzrost
-                {90.0, 180.0, 27.78},   // nadwaga, normalny wzrost
-                {120.0, 185.0, 35.07}  // otyłość, normalny wzrost
-        };
+    @DisplayName("Test for calculateBMI method when BMI is under 18.5")
+    void calculateBMIUnderweightTest() {
+        verifyThat(controller.getBmiStatusLabel(), isVisible());
+        verifyThat(controller.getBmiLabel(), isVisible());
 
-        for (double[] testCase : testCases) {
-            double weight = testCase[0];
-            double height = testCase[1];
-            double expectedBMI = testCase[2];
+        controller.calculateBMI(50.0, 170.0);
+        assertEquals(Paint.valueOf("#f54040"), controller.getBmiStatusLabel().getTextFill()); // Expected color red for underweight
+        assertEquals("17.30", controller.getBmiStatusLabel().getText());
 
-            double actualBMI = controller.calculateBMI(weight, height);
-            assertEquals(expectedBMI, actualBMI, 0.01); // Verify that the BMI calculation is closest to the expected value with a tolerance of 0.01
-        }
+        testSuccess = true;
+    }
+
+    @Test
+    @DisplayName("Test for calculateBMI method when BMI is between 18.5 and 24.9")
+    void calculateBMICorrectWeightTest() {
+        verifyThat(controller.getBmiStatusLabel(), isVisible());
+        verifyThat(controller.getBmiLabel(), isVisible());
+
+        controller.calculateBMI(65.0, 175.0);
+        assertEquals(Paint.valueOf("#40f546"), controller.getBmiStatusLabel().getTextFill()); // Expected green color for correct weight
+        assertEquals("21.22", controller.getBmiStatusLabel().getText());
+
+        testSuccess = true;
+    }
+
+    @Test
+    @DisplayName("Test for calculateBMI method when BMI is between 25.0 and 29.99")
+    void calculateBMIOverweightTest() {
+        verifyThat(controller.getBmiStatusLabel(), isVisible());
+        verifyThat(controller.getBmiLabel(), isVisible());
+
+        controller.calculateBMI(90.0, 180.0);
+        assertEquals(Paint.valueOf("#f5bb40"), controller.getBmiStatusLabel().getTextFill()); // Expected yellow for overweight
+        assertEquals("27.78", controller.getBmiStatusLabel().getText());
+
+        testSuccess = true;
+    }
+
+    @Test
+    @DisplayName("Test for calculateBMI method when BMI is above 30.0")
+    void calculateBMIObesityTest() {
+        verifyThat(controller.getBmiStatusLabel(), isVisible());
+        verifyThat(controller.getBmiLabel(), isVisible());
+
+        controller.calculateBMI(100.0, 165.0);
+        assertEquals(Paint.valueOf("#f54040"), controller.getBmiStatusLabel().getTextFill()); // Expected color red for obesity
+        assertEquals("36.73", controller.getBmiStatusLabel().getText());
+
+        testSuccess = true;
+    }
+
+    @AfterEach
+    public void testResult(TestInfo testInfo) {
+        if (testSuccess)
+            System.out.println(Color.ColorString(testInfo.getDisplayName() + " executed successfully!", Color.ANSI_GREEN));
+        else
+            System.out.println(Color.ColorString(testInfo.getDisplayName() + " failed!", Color.ANSI_RED));
+    }
+
+    @AfterAll
+    static void afterAll() {
+        System.out.println(Color.ColorString("All tests have been conducted.", Color.ANSI_BLACK_BACKGROUND));
     }
 }

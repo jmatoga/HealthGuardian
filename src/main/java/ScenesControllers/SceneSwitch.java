@@ -2,6 +2,8 @@ package ScenesControllers;
 
 import com.healthguardian.WindowApplication;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import java.io.IOException;
 

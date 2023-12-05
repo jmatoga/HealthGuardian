@@ -29,6 +29,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import static javafx.scene.paint.Color.GREEN;
@@ -72,10 +73,10 @@ public class ClientPanelController implements Initializable {
     private Label dateOfLastUpdateLabel;
 
     @FXML
-    Label bmiLabel;
+    private Label bmiLabel;
 
     @FXML
-    Label bmiStatusLabel;
+    private Label bmiStatusLabel;
 
     @FXML
     private Button ePrescriptionButton;
@@ -264,7 +265,7 @@ public class ClientPanelController implements Initializable {
         });
     }
 
-    private void getUserDataFromDB() throws IOException {
+    void getUserDataFromDB() throws IOException {
         int user_id = Client.user_id;
         String user_id_str = Integer.toString(user_id);
         message.sendGetNameMessage(SendToServer,Client.clientId  + "," + user_id_str);
@@ -436,10 +437,13 @@ public class ClientPanelController implements Initializable {
         ClientPanelController.ReadFromServer = Client.ReadFromServer;
         ClientPanelController.SendToServer = Client.SendToServer;
 
-        try {
-            getUserDataFromDB();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if(ClientPanelController.ReadFromServer != null && ClientPanelController.SendToServer != null) {
+
+            try {
+                getUserDataFromDB();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1), event -> updateDateTime()));
@@ -461,17 +465,14 @@ public class ClientPanelController implements Initializable {
         }
     }
 
-    public double calculateBMI(double weight, double height) {
+    void calculateBMI(double weight, double height) {
         // TODO
         boolean settingsBMI = true;
         if(settingsBMI) {
             height = height / 100; // convert height from cm to m
             double bmi = weight / (height * height);
 
-            bmiStatusLabel.setText(String.format("%.2f", bmi));
-
-
-            //bmiLabel.setVisible(true);
+            bmiLabel.setVisible(true);
             if (bmi < 18.5) {
                 bmiStatusLabel.setTextFill(Paint.valueOf("#f54040"));
             } else if (bmi >= 18.5 && bmi < 25.0) {
@@ -482,9 +483,26 @@ public class ClientPanelController implements Initializable {
                 bmiStatusLabel.setTextFill(Paint.valueOf("#f54040"));
             }
 
-            return bmi;
+            bmiStatusLabel.setText(String.format(Locale.US, "%.2f", bmi)); // Locale.US to use "." instead of "," in double
         }
-       // return 0;
-        return 0;
+    }
+
+    public Label getBmiStatusLabel() {
+        return bmiStatusLabel;
+    }
+
+    public Label getBmiLabel() {
+        return bmiLabel;
+    }
+
+    void setBmiStatusLabel(Label bmiStatusLabel) {
+        this.bmiStatusLabel = bmiStatusLabel;
+    }
+
+    void setBmiLabel(Label bmiLabel) {
+        this.bmiLabel = bmiLabel;
     }
 }
+
+
+
