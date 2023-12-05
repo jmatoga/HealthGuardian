@@ -9,6 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
@@ -95,80 +97,84 @@ public class SignInControllerTest {
         testSuccess = true;
     }
 
-    @Test
     @DisplayName("Test for Invalid First Name")
-    public void testCheckWrittenText_InvalidFirstName() {
+    @ParameterizedTest(name = "Test {index} for Invalid First Name: \"{0}\"")
+    @ValueSource(strings = {"John Doe", "John11Doe", "John Doe1", "John!Doe", " "})
+    public void testCheckWrittenText_InvalidFirstName(String firstName) {
         setLabelsWithRightText();
-        controller.setFirstName("John Doe");
+        controller.setFirstName(firstName);
 
         assertFalse(controller.checkWrittenText());
         assertEquals("Wrong first name!", controller.getSignInStatus().getText());
         testSuccess = true;
     }
 
-    @Test
     @DisplayName("Test for Invalid Last Name")
-    public void testCheckWrittenText_InvalidLastName() {
+    @ParameterizedTest(name = "Test {index} for Invalid Last Name: \"{0}\"")
+    @ValueSource(strings = {"John Doe", "John11Doe", "John Doe1", "John!Doe", " "})
+    public void testCheckWrittenText_InvalidLastName(String lastName) {
         setLabelsWithRightText();
-        controller.setLastName("John Doe");
+        controller.setLastName(lastName);
 
-        assertFalse(controller.checkWrittenText());
-        assertEquals("Wrong last name!", controller.getSignInStatus().getText());
-        controller.setLastName("John11Doe");
         assertFalse(controller.checkWrittenText());
         assertEquals("Wrong last name!", controller.getSignInStatus().getText());
         testSuccess = true;
     }
 
-    @Test
     @DisplayName("Test for Invalid Email")
-    public void testCheckWrittenText_InvalidEmail() {
+    @ParameterizedTest(name = "Test {index} for Invalid Email: \"{0}\"")
+    @ValueSource(strings = {"john.doe@example", "john.doeexample.com", "johndoe@examplecom", "johnd oe@example.com", "john@doe@example.com", " ", "jo", "aaaa@a.c"})
+    public void testCheckWrittenText_InvalidEmail(String email) {
         setLabelsWithRightText();
-        controller.setEmail("john.doe@example");
+        controller.setEmail(email);
 
         assertFalse(controller.checkWrittenText());
         assertEquals("Wrong email!", controller.getSignInStatus().getText());
         testSuccess = true;
     }
 
-    @Test
     @DisplayName("Test for Invalid Phone Number")
-    public void testCheckWrittenText_InvalidPhoneNumber() {
+    @ParameterizedTest(name = "Test {index} for Invalid Phone Number: \"{0}\"")
+    @ValueSource(strings = {"1234567", "1234567890", "12345678a", "!12345678", " "})
+    public void testCheckWrittenText_InvalidPhoneNumber(String phoneNumber) {
         setLabelsWithRightText();
-        controller.setPhoneNumber("1234567");
+        controller.setPhoneNumber(phoneNumber);
 
         assertFalse(controller.checkWrittenText());
         assertEquals("Wrong phone number!", controller.getSignInStatus().getText());
         testSuccess = true;
     }
 
-    @Test
     @DisplayName("Test for Invalid Pesel")
-    public void testCheckWrittenText_InvalidPesel() {
+    @ParameterizedTest(name = "Test {index} for Invalid Pesel: \"{0}\"")
+    @ValueSource(strings = {"1234567890", "123456789012", "1234567890a", "!12345678901", " "})
+    public void testCheckWrittenText_InvalidPesel(String pesel) {
         setLabelsWithRightText();
-        controller.setPesel("1234567890");
+        controller.setPesel(pesel);
 
         assertFalse(controller.checkWrittenText());
         assertEquals("Wrong pesel!", controller.getSignInStatus().getText());
         testSuccess = true;
     }
 
-    @Test
     @DisplayName("Test for Invalid Username")
-    public void testCheckWrittenText_InvalidUsername() {
+    @ParameterizedTest(name = "Test {index} for Invalid Username: \"{0}\"")
+    @ValueSource(strings = {"john doe", " "})
+    public void testCheckWrittenText_InvalidUsername(String username) {
         setLabelsWithRightText();
-        controller.setUsername("john doe");
+        controller.setUsername(username);
 
         assertFalse(controller.checkWrittenText());
         assertEquals("Wrong username, space inside!", controller.getSignInStatus().getText());
         testSuccess = true;
     }
 
-    @Test
     @DisplayName("Test for Invalid Password")
-    public void testCheckWrittenText_InvalidPassword() {
+    @ParameterizedTest(name = "Test {index} for Invalid Password: \"{0}\"")
+    @ValueSource(strings = {"password with space", " "})
+    public void testCheckWrittenText_InvalidPassword(String password) {
         setLabelsWithRightText();
-        controller.setPassword("password with space");
+        controller.setPassword(password);
 
         assertFalse(controller.checkWrittenText());
         assertEquals("Wrong password!", controller.getSignInStatus().getText());
