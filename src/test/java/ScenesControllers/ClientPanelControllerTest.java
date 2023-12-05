@@ -31,7 +31,7 @@ class ClientPanelControllerTest {
 
     @Test
     @DisplayName("Test for calculateBMI method when BMI is under 18.5")
-    void calculateBMIUnderweightTest() {
+    void testCalculateBMI_Underweight() {
         verifyThat(controller.getBmiStatusLabel(), isVisible());
         verifyThat(controller.getBmiLabel(), isVisible());
 
@@ -44,7 +44,7 @@ class ClientPanelControllerTest {
 
     @Test
     @DisplayName("Test for calculateBMI method when BMI is between 18.5 and 24.9")
-    void calculateBMICorrectWeightTest() {
+    void testCalculateBMI_CorrectWeight() {
         verifyThat(controller.getBmiStatusLabel(), isVisible());
         verifyThat(controller.getBmiLabel(), isVisible());
 
@@ -57,7 +57,7 @@ class ClientPanelControllerTest {
 
     @Test
     @DisplayName("Test for calculateBMI method when BMI is between 25.0 and 29.99")
-    void calculateBMIOverweightTest() {
+    void testCalculateBMI_Overweight() {
         verifyThat(controller.getBmiStatusLabel(), isVisible());
         verifyThat(controller.getBmiLabel(), isVisible());
 
@@ -70,7 +70,7 @@ class ClientPanelControllerTest {
 
     @Test
     @DisplayName("Test for calculateBMI method when BMI is above 30.0")
-    void calculateBMIObesityTest() {
+    void testCalculateBMI_Obesity() {
         verifyThat(controller.getBmiStatusLabel(), isVisible());
         verifyThat(controller.getBmiLabel(), isVisible());
 
@@ -84,7 +84,7 @@ class ClientPanelControllerTest {
     @AfterEach
     public void testResult(TestInfo testInfo) {
         if (testSuccess)
-            System.out.println(Color.ColorString(testInfo.getDisplayName() + " executed successfully!", Color.ANSI_GREEN));
+            System.out.println(Color.ColorString(testInfo.getDisplayName() + " passed successfully!", Color.ANSI_GREEN));
         else
             System.out.println(Color.ColorString(testInfo.getDisplayName() + " failed!", Color.ANSI_RED));
     }

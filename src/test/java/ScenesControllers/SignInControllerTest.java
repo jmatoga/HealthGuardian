@@ -1,32 +1,22 @@
 package ScenesControllers;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
-import org.testfx.matcher.control.LabeledMatchers;
-import org.testfx.api.FxRobot;
-import static org.testfx.util.NodeQueryUtils.*;
-
-
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import utils.Color;
 
 import java.io.IOException;
 
-import static java.lang.Thread.sleep;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
 
 @ExtendWith(ApplicationExtension.class)
 public class SignInControllerTest {
@@ -54,7 +44,8 @@ public class SignInControllerTest {
     }
 
     @Test
-    public void testCheckWrittenText_RightValues(FxRobot robot) throws IOException {
+    @DisplayName("Test for Valid Inputs in GUI (robot)")
+    public void testCheckWrittenText_ValidInputsGUI(FxRobot robot){
         //controller = mock(SignInController.class);
         robot.clickOn("#firstName").write("John");
         robot.clickOn("#lastName").write("Doe");
@@ -63,8 +54,6 @@ public class SignInControllerTest {
         robot.clickOn("#pesel").write("12345678901");
         robot.clickOn("#username").write("johndoe");
         robot.clickOn("#password").write("password");
-        //robot.clickOn("#signInButton");
-        //doNothing().when(controller).signInUser();
 
         controller.setFirstName(robot.lookup("#firstName").query());
         controller.setLastName(robot.lookup("#lastName").query());
@@ -73,27 +62,26 @@ public class SignInControllerTest {
         controller.setPesel(robot.lookup("#pesel").query());
         controller.setUsername(robot.lookup("#username").query());
         controller.setPassword(robot.lookup("#password").query());
-        //assertEquals("John", textField.getText());
 
-        //System.out.println(controller.getFirstName().getText());
         assertTrue(controller.checkWrittenText());
+        assertEquals("", controller.getSignInStatus().getText());
         testSuccess = true;
     }
 
     @Test
-    public void testCheckWrittenText_AllFieldsEmpty1(FxRobot robot) {
+    @DisplayName("Test for Empty Values")
+    public void testCheckWrittenText_AllFieldsEmpty(FxRobot robot) {
         robot.clickOn("#signInButton");
-
         //robot.clickOn(".button");
 
         assertFalse(controller.checkWrittenText());
-        assertThat(controller.getSignInStatus(), LabeledMatchers.hasText("You have to fill all gaps!"));
         assertEquals("You have to fill all gaps!", controller.getSignInStatus().getText());
         testSuccess = true;
     }
 
     @Test
-    public void testCheckWrittenText_ValidInput1() {
+    @DisplayName("Test for Valid Inputs")
+    public void testCheckWrittenText_ValidInputs() {
         controller.setFirstName("John");
         controller.setLastName("Doe");
         controller.setEmail("johndoe@example.com");
@@ -104,12 +92,11 @@ public class SignInControllerTest {
 
         assertTrue(controller.checkWrittenText());
         assertEquals("", controller.getSignInStatus().getText());
-
-        //assertThat(controller.getSignInStatus(), LabeledMatchers.hasText(""));
         testSuccess = true;
     }
 
     @Test
+    @DisplayName("Test for Invalid First Name")
     public void testCheckWrittenText_InvalidFirstName() {
         setLabelsWithRightText();
         controller.setFirstName("John Doe");
@@ -120,6 +107,7 @@ public class SignInControllerTest {
     }
 
     @Test
+    @DisplayName("Test for Invalid Last Name")
     public void testCheckWrittenText_InvalidLastName() {
         setLabelsWithRightText();
         controller.setLastName("John Doe");
@@ -133,6 +121,7 @@ public class SignInControllerTest {
     }
 
     @Test
+    @DisplayName("Test for Invalid Email")
     public void testCheckWrittenText_InvalidEmail() {
         setLabelsWithRightText();
         controller.setEmail("john.doe@example");
@@ -143,6 +132,7 @@ public class SignInControllerTest {
     }
 
     @Test
+    @DisplayName("Test for Invalid Phone Number")
     public void testCheckWrittenText_InvalidPhoneNumber() {
         setLabelsWithRightText();
         controller.setPhoneNumber("1234567");
@@ -153,6 +143,7 @@ public class SignInControllerTest {
     }
 
     @Test
+    @DisplayName("Test for Invalid Pesel")
     public void testCheckWrittenText_InvalidPesel() {
         setLabelsWithRightText();
         controller.setPesel("1234567890");
@@ -163,6 +154,7 @@ public class SignInControllerTest {
     }
 
     @Test
+    @DisplayName("Test for Invalid Username")
     public void testCheckWrittenText_InvalidUsername() {
         setLabelsWithRightText();
         controller.setUsername("john doe");
@@ -173,6 +165,7 @@ public class SignInControllerTest {
     }
 
     @Test
+    @DisplayName("Test for Invalid Password")
     public void testCheckWrittenText_InvalidPassword() {
         setLabelsWithRightText();
         controller.setPassword("password with space");
@@ -181,21 +174,6 @@ public class SignInControllerTest {
         assertEquals("Wrong password!", controller.getSignInStatus().getText());
         testSuccess = true;
     }
-
-//    @Test
-//    public void testCheckWrittenText_ValidInput() {
-//        SignInController controller = new SignInController();
-//        controller.firstName.setText("John");
-//        controller.lastName.setText("Doe");
-//        controller.email.setText("john.doe@example.com");
-//        controller.phoneNumber.setText("123456789");
-//        controller.pesel.setText("12345678901");
-//        controller.username.setText("johndoe");
-//        controller.password.setText("password");
-//
-//        assertTrue(controller.checkWrittenText());
-//        assertEquals("", controller.signInStatus.getText());
-//    }
 
     private void setLabelsWithRightText() {
         controller.setFirstName("John");
@@ -210,7 +188,7 @@ public class SignInControllerTest {
     @AfterEach
     public void testResult(TestInfo testInfo) {
         if (testSuccess)
-            System.out.println(Color.ColorString(testInfo.getDisplayName() + " executed successfully!", Color.ANSI_GREEN));
+            System.out.println(Color.ColorString(testInfo.getDisplayName() + " passed successfully!", Color.ANSI_GREEN));
         else
             System.out.println(Color.ColorString(testInfo.getDisplayName() + " failed!", Color.ANSI_RED));
     }
