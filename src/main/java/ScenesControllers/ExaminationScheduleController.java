@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import utils.Message;
 
@@ -16,7 +15,7 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MessagesController implements Initializable {
+public class ExaminationScheduleController implements Initializable {
     private static final Message message = new Message();
     private static BufferedReader ReadFromServer;
     private static PrintWriter SendToServer;
@@ -27,6 +26,8 @@ public class MessagesController implements Initializable {
     @FXML
     private AnchorPane listOfClinicsScene;
 
+    @FXML
+    private WebView mapWebView;
 
     @FXML
     private void userPanelButtonClicked(ActionEvent event) throws IOException {
@@ -35,7 +36,7 @@ public class MessagesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        MessagesController.ReadFromServer = Client.ReadFromServer;
-        MessagesController.SendToServer = Client.SendToServer;
+        ExaminationScheduleController.ReadFromServer = Client.ReadFromServer;
+        ExaminationScheduleController.SendToServer = Client.SendToServer;
     }
 }

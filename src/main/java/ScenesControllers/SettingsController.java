@@ -1,15 +1,23 @@
 package ScenesControllers;
 
+import Client.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import utils.Message;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class SettingsController {
+
+    private static final Message message = new Message();
+    private static BufferedReader ReadFromServer;
+    private static PrintWriter SendToServer;
 
     @FXML
     private Label settingsDescription1Label;
@@ -79,6 +87,8 @@ public class SettingsController {
 
     @FXML
     private void userPanelButtonClicked(ActionEvent event) throws IOException {
+        SettingsController.ReadFromServer = Client.ReadFromServer;
+        SettingsController.SendToServer = Client.SendToServer;
         new SceneSwitch("ClientPanelScene.fxml");
     }
 

@@ -1,14 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ScenesControllers.PressurePanelController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="listOfClinicsScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.PressurePanelController">
+    <children>
+        <ImageView fitHeight="1110.0" fitWidth="1930.0" layoutX="8.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@../../photos/bg2.jpg" />
+            </image>
+        </ImageView>
+        <Button fx:id="userPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#userPanelButtonClicked" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00476e; -fx-border-width: 3; -fx-border-radius: 2; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="USER PANEL" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="950.0">
+            <font>
+                <Font name="Consolas Bold" size="20.0" />
+            </font>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <textFill>
+                <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.28700000047683716" green="0.7103614211082458" blue="0.8199999928474426" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color green="0.27843138575553894" blue="0.4313725531101227" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </RadialGradient>
+            </textFill>
+        </Button>
+        <Label layoutX="796.0" layoutY="67.0" text="PRESSURE" AnchorPane.leftAnchor="796.0" AnchorPane.topAnchor="67.0">
+            <font>
+                <Font name="Consolas Bold" size="70.0" />
+            </font>
+            <textFill>
+                <RadialGradient centerX="0.5165745856353591" centerY="0.5" radius="0.6264367816091954">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color green="0.9868420958518982" blue="0.47697368264198303" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </RadialGradient>
+            </textFill>
+        </Label>
+      <VBox layoutX="650.0" layoutY="189.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Pane fx:id="pressureLabel1" prefHeight="80.0" prefWidth="600.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Bold" size="60.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="pressureLabel2" prefHeight="80.0" prefWidth="600.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Bold" size="60.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="pressureLabel3" prefHeight="80.0" prefWidth="600.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Bold" size="60.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="pressureLabel4" prefHeight="80.0" prefWidth="600.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Bold" size="60.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="pressureLabel5" prefHeight="80.0" prefWidth="600.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Bold" size="60.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+      <LineChart layoutX="441.0" layoutY="628.0" prefHeight="400.0" prefWidth="1019.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <VBox layoutX="1384.0" layoutY="217.0" prefHeight="300.0" prefWidth="400.0">
+         <children>
+            <Label alignment="TOP_CENTER" prefHeight="40.0" prefWidth="400.0" text="How to make an examiantion?" textAlignment="CENTER" textFill="#1dff00">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="howToMakeExaminationLabel" alignment="TOP_LEFT" prefHeight="260.0" prefWidth="400.0" text="how to make examination - description" textFill="#f9fffe">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <FlowPane fx:id="AlertPane" layoutX="244.0" layoutY="245.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Pane prefHeight="108.0" prefWidth="71.0" />
+            <ImageView fitHeight="150.0" fitWidth="300.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../photos/alert_150x150.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" prefHeight="110.0" prefWidth="300.0" text="YOUR BLOOD PRESSURE IS &#10;TOO HIGH, MAKE AN &#10;APPOINTMENT WITH &#10;A DOCTOR!!!" textAlignment="CENTER" textFill="#dd0000">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </FlowPane>
+    </children>
 </AnchorPane>

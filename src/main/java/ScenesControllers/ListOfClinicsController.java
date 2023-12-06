@@ -1,5 +1,6 @@
 package ScenesControllers;
 
+import Client.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,9 +36,17 @@ public class ListOfClinicsController implements Initializable {
         new SceneSwitch("ClientPanelScene.fxml");
     }
 
+    @FXML
+    public void testScheduleButtonClicked(ActionEvent actionEvent) throws IOException{
+         new SceneSwitch("ExaminationScheduleScene.fxml");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ListOfClinicsController.ReadFromServer = Client.ReadFromServer;
+        ListOfClinicsController.SendToServer = Client.SendToServer;
         WebEngine webEngine = mapWebView.getEngine();
         webEngine.load("https://www.google.com/maps/d/embed?mid=1HLLCItcY4KPaE8gYwBNYODyiSOAXCX8&hl=pl&ehbc=2E312F");
     }
+
 }
