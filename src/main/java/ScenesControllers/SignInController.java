@@ -1,7 +1,6 @@
 package ScenesControllers;
 
 import Client.Client;
-import com.healthguardian.WindowApplication;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -10,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -20,9 +18,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import utils.Message;
 
@@ -33,7 +28,6 @@ import java.lang.String;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class SignInController implements Initializable {
     private static final Message message = new Message();
@@ -41,7 +35,7 @@ public class SignInController implements Initializable {
     private static PrintWriter SendToServer;
 
     @FXML
-    private AnchorPane signInScene;
+    AnchorPane signInScene;
 
     @FXML
     private ComboBox<String> comboBoxId;
@@ -81,7 +75,7 @@ public class SignInController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        comboBoxId.getItems().addAll("+48","+69");
+        comboBoxId.getItems().addAll("+48");
         comboBoxId.getSelectionModel().selectFirst();
         SignInController.ReadFromServer = Client.ReadFromServer;
         SignInController.SendToServer = Client.SendToServer;
@@ -103,7 +97,7 @@ public class SignInController implements Initializable {
             signInUser();
     }
 
-    private void signInUser() throws IOException {
+    void signInUser() throws IOException {
         if(checkWrittenText()) {
             message.checkIfUserExists(SendToServer, Client.clientId + "," + username.getText());
 
@@ -199,14 +193,14 @@ public class SignInController implements Initializable {
         return alert;
     }
 
-    private boolean checkWrittenText() {
+    boolean checkWrittenText() {
         if (firstName.getText().isEmpty() || lastName.getText().isEmpty() || email.getText().isEmpty() || phoneNumber.getText().isEmpty() || pesel.getText().isEmpty() || username.getText().isEmpty() || password.getText().isEmpty())
             signInStatus.setText("You have to fill all gaps!");
         else if (firstName.getText().contains(" ") || !firstName.getText().matches("^[a-zA-Z]+$"))
             signInStatus.setText("Wrong first name!");
         else if (lastName.getText().contains(" ") || !lastName.getText().matches("^[a-zA-Z]+$"))
             signInStatus.setText("Wrong last name!");
-        else if (!email.getText().contains("@") || !email.getText().contains(".") || email.getText().contains(" ") || email.getText().lastIndexOf('.') != email.getText().indexOf('.') || email.getText().lastIndexOf('@') != email.getText().indexOf('@') || email.getText().length() < 6 ) // if contains 2 @ or 2 .
+        else if (!email.getText().contains("@") || !email.getText().contains(".") || email.getText().contains(" ") || email.getText().lastIndexOf('.') != email.getText().indexOf('.') || email.getText().lastIndexOf('@') != email.getText().indexOf('@') || email.getText().length() < 6 || email.getText().indexOf(".", email.getText().indexOf("@")) != email.getText().lastIndexOf(".") || email.getText().substring(email.getText().lastIndexOf(".")).length() <= 2) // if contains 2 @ or 2 . , . should be after @ , after . should be at least 2 chars
             signInStatus.setText("Wrong email!");
         else if (phoneNumber.getText().length() != 9 || !phoneNumber.getText().matches("\\d+"))
             signInStatus.setText("Wrong phone number!");
@@ -220,7 +214,6 @@ public class SignInController implements Initializable {
             signInStatus.setText("");
             return true;
         }
-
         return false;
     }
 
@@ -228,5 +221,81 @@ public class SignInController implements Initializable {
     private void unHighlightButtonsOnImageView(MouseEvent event) {
         if (event.getEventType() == MouseEvent.MOUSE_CLICKED)
             imageView.requestFocus();
+    }
+
+    public void setFirstName(String s) {
+        firstName.setText(s);
+    }
+
+    public void setLastName(String s) {
+        lastName.setText(s);
+    }
+
+    public void setEmail(String s) {
+        email.setText(s);
+    }
+
+    public void setPhoneNumber(String s) {
+        phoneNumber.setText(s);
+    }
+
+    public void setPesel(String s) {
+        pesel.setText(s);
+    }
+
+    public void setUsername(String s) {
+        username.setText(s);
+    }
+
+    public void setPassword(String s) {
+        password.setText(s);
+    }
+
+    public Label getSignInStatus() {
+        return signInStatus;
+    }
+
+    public void setFirstName(TextField firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(TextField lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(TextField email) {
+        this.email = email;
+    }
+
+    public void setPhoneNumber(TextField phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setPesel(TextField pesel) {
+        this.pesel = pesel;
+    }
+
+    public void setUsername(TextField username) {
+        this.username = username;
+    }
+
+    public void setPassword(TextField password) {
+        this.password = password;
+    }
+
+    public void setSignInStatus(Label signInStatus) {
+        this.signInStatus = signInStatus;
+    }
+
+    public void setSignInButton(Button signInButton) {
+        this.signInButton = signInButton;
+    }
+
+    public Button getSignInButton() {
+        return signInButton;
+    }
+
+    public TextField getFirstName() {
+        return firstName;
     }
 }
