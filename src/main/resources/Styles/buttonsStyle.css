@@ -1,41 +1,3 @@
-.button
-{
-    -fx-background-color: #239c9c;
-}
-.button:hover
-{
-    -fx-background-color: #000c9c;
-
-}
-.button:pressed
-{
-    -fx-background-color: #111c9c;
-
-}
-
-.user_panel-button
-{
-    -fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4);
-    -fx-background-insets: 0, 1;
-    -fx-background-radius: 5;
-    -fx-border-color: #a0a0a0;
-    -fx-border-width: 1;
-    -fx-border-radius: 5;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-}
-.user_panel-button:hover
-{
-    -fx-background-color: linear-gradient(to bottom, #e6e6e6, #bfbfbf);
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 2 );
-    -fx-border-color: #8c8c8c;
-}
-.user_panel-button:pressed
-{
-    -fx-background-color: linear-gradient(to bottom, #bfbfbf, #e6e6e6);
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
-    -fx-border-color: #a0a0a0;
-}
-
 .lightgreen-button
 {
     -fx-background-color: linear-gradient(to bottom, #ffffff, #b9f0cc);
@@ -151,5 +113,3 @@
     -fx-background-color: linear-gradient(to bottom, #6ebcc8, #b3eced);
     -fx-border-color: #007d86;
 }
-
-
