@@ -3,7 +3,6 @@ package Server;
 import utils.Color;
 
 import java.sql.*;
-import java.time.LocalDate;
 
 public class SQLEngine {
     private final String url;
@@ -56,7 +55,7 @@ public class SQLEngine {
             returnStatement[1] = String.valueOf(resultSet.getString("last_name"));
 
             if (ifResultSetHasNext && resultSet.getDate("birth_date") != null) {
-                System.out.println("Getted User Data.");
+                System.out.println("User Data getted correctly.");
 
                 returnStatement[2] = String.valueOf(resultSet.getDate("birth_date"));
                 returnStatement[3] = String.valueOf(resultSet.getString("user_basic_data_table.weight"));
@@ -306,10 +305,84 @@ public class SQLEngine {
             if (resultSet != null) resultSet.close();
             if (preparedStatement != null) preparedStatement.close();
             if (connection != null) connection.close();
-            System.out.println(Color.ColorString("Database connection closed successfully.\n", Color.ANSI_GREEN));
+            System.out.println(Color.ColorString("Database connection closed successfully.", Color.ANSI_GREEN));
         } catch (SQLException e) {
             e.printStackTrace();
             System.err.println("Error while closing resources: " + e.getMessage());
         }
+    }
+
+    String[] getSettings(int clientID, String user_id){
+        String[] returnStatement = {"Error", "Error", "Error", "Error", "Error"};
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT * FROM settings_table WHERE user_id = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()) {
+                System.out.println("Settings getted correctly.");
+                returnStatement[0] = String.valueOf(resultSet.getString("bmi_setting"));
+                returnStatement[1] = String.valueOf(resultSet.getString("age_setting"));
+                returnStatement[2] = String.valueOf(resultSet.getString("currentDate_setting"));
+                returnStatement[3] = String.valueOf(resultSet.getString("settings_no_4"));
+                returnStatement[4] = String.valueOf(resultSet.getString("settings_no_5"));
+            } else
+                System.out.println("Error in database while getting settings.");
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    String setSettings(int clientID, String user_id, String bmi_setting, String age_setting, String currentDate_setting, String settings_no_4, String settings_no_5){
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "UPDATE settings_table SET bmi_setting = ?, age_setting = ?, currentDate_setting = ?, settings_no_4 = ?, settings_no_5 = ? WHERE user_id = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, bmi_setting);
+            preparedStatement.setString(2, age_setting);
+            preparedStatement.setString(3, currentDate_setting);
+            preparedStatement.setString(4, settings_no_4);
+            preparedStatement.setString(5, settings_no_5);
+            preparedStatement.setInt(6, Integer.parseInt(user_id));
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if(rowsAffected == 1) {
+                System.out.println("Settings changed correctly.");
+                returnStatement = "Settings changed correctly.";
+
+            } else {
+                System.out.println("Error in database while setting settings.");
+                returnStatement = "Error in database while setting settings.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
     }
 }

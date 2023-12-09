@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.ERefferalController">
+<AnchorPane minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.ERefferalController">
     <children>
         <ImageView fitHeight="1110.0" fitWidth="1930.0" layoutX="8.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
                 <Image url="@../../photos/background_1.png" />
             </image>
         </ImageView>
-        <Button fx:id="userPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00476e; -fx-border-width: 3; -fx-border-radius: 2; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="USER PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+        <Button fx:id="userPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" styleClass="darkblue-button" stylesheets="@../../Styles/buttonsStyle.css" text="USER PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
@@ -243,7 +252,7 @@
                 </AnchorPane>
             </content>
         </ScrollPane>
-        <Button fx:id="printButton" layoutX="520.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00476e; -fx-border-width: 3; -fx-border-radius: 2; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="PRINT" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="520.0">
+        <Button fx:id="printButton" layoutX="520.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../../Styles/buttonsStyle.css" text="PRINT" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="520.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
@@ -267,7 +276,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Button fx:id="sendButton" layoutX="383.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00476e; -fx-border-width: 3; -fx-border-radius: 2; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="SEND" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="360.0">
+        <Button fx:id="sendButton" layoutX="383.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../../Styles/buttonsStyle.css" text="SEND" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="360.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
@@ -291,7 +300,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Button fx:id="saveButton" layoutX="249.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00476e; -fx-border-width: 3; -fx-border-radius: 2; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="SAVE" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0">
+        <Button fx:id="saveButton" layoutX="249.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../../Styles/buttonsStyle.css" text="SAVE" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>

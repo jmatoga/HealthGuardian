@@ -32,7 +32,7 @@ class ClientHandler implements Callable<String> {
                 String serverMessage = ReadFromClient.readLine();
 
                 if (serverMessage != null) {
-                    System.out.println("Server: Received message from client: " + serverMessage);
+                    System.out.println("\nServer: Received message from client: " + serverMessage);
                 }
 
                 if (serverMessage.startsWith("PRINT:")) {
@@ -70,6 +70,29 @@ class ClientHandler implements Callable<String> {
                     String[] dataResult = sqlEngine.getData(Integer.parseInt(clientId), userId);
                     SendToClient.println(""); // This is message to the client reader
                     SendToClient.println(Arrays.toString(dataResult)); // This is message to the LogInController
+
+                } else if (serverMessage.startsWith("GET_SETTINGS:")) {
+                    String[] resources = serverMessage.substring(13).split(",");
+                    String clientId = resources[0];
+                    String userId = resources[1];
+
+                    String[] settingsResult = sqlEngine.getSettings(Integer.parseInt(clientId), userId);
+                    SendToClient.println(""); // This is message to the client reader
+                    SendToClient.println(Arrays.toString(settingsResult)); // This is message to the LogInController
+
+                } else if (serverMessage.startsWith("SET_SETTINGS:")) {
+                    String[] resources = serverMessage.substring(13).split(",");
+                    String clientId = resources[0];
+                    String userId = resources[1];
+                    String bmiSetting = resources[2];
+                    String ageSetting = resources[3];
+                    String dateSetting = resources[4];
+                    String setting4 = resources[5];
+                    String setting5 = resources[6];
+
+                    String settingsChangedResult = sqlEngine.setSettings(Integer.parseInt(clientId), userId, bmiSetting, ageSetting, dateSetting, setting4, setting5);
+                    SendToClient.println(""); // This is message to the client reader
+                    SendToClient.println(settingsChangedResult); // This is message to the LogInController
 
                 } else if (serverMessage.startsWith("CHECK_IF_USER_EXISTS:")) {
                     String[] resources = serverMessage.substring(21).split(",");

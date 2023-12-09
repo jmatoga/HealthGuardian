@@ -1,29 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="signInScene" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.SignInController">
+<AnchorPane fx:id="signInScene" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.SignInController">
    <children>
       <ImageView fx:id="imageView" fitHeight="500.0" fitWidth="800.0" layoutX="2.0" layoutY="1.0" onMouseClicked="#unHighlightButtonsOnImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../../photos/signInSceneImageView.png" />
          </image></ImageView>
-      <Button fx:id="signInButton" layoutX="375.0" layoutY="419.0" mnemonicParsing="false" onAction="#SignInButtonClicked" onKeyPressed="#enterPressedInField" text="Sign in" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="370.0" />
-      <Button fx:id="logInButton" layoutX="740.0" layoutY="465.0" mnemonicParsing="false" onAction="#LogInButtonClicked" text="Log in" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
-      <TextField fx:id="firstName" layoutX="327.0" layoutY="194.0" onKeyPressed="#enterPressedInField" promptText="First name" AnchorPane.bottomAnchor="280.0" AnchorPane.leftAnchor="325.0" />
-      <TextField fx:id="lastName" layoutX="327.0" layoutY="223.0" onKeyPressed="#enterPressedInField" promptText="Last name" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="325.0" />
-      <TextField fx:id="email" layoutX="326.0" layoutY="253.0" onKeyPressed="#enterPressedInField" promptText="e-mail" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="325.0" />
-      <ComboBox fx:id="comboBoxId" layoutX="256.0" layoutY="283.0" prefHeight="25.0" prefWidth="65.0" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="255.0" />
-      <TextField fx:id="phoneNumber" layoutX="326.0" layoutY="283.0" onKeyPressed="#enterPressedInField" promptText="Phone number" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="325.0" />
-      <TextField fx:id="pesel" layoutX="326.0" layoutY="314.0" onKeyPressed="#enterPressedInField" promptText="PESEL" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="325.0" />
-      <TextField fx:id="username" layoutX="326.0" layoutY="345.0" onKeyPressed="#enterPressedInField" promptText="Username" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="325.0" />
-      <PasswordField fx:id="password" layoutX="326.0" layoutY="376.0" onKeyPressed="#enterPressedInField" promptText="Password" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="325.0" />
+      <Button fx:id="signInButton" layoutX="356.0" layoutY="435.0" mnemonicParsing="false" onAction="#SignInButtonClicked" onKeyPressed="#enterPressedInField" prefHeight="31.0" prefWidth="80.0" styleClass="turquoise-button" stylesheets="@../../Styles/buttonsStyle.css" text="SIGN IN" AnchorPane.bottomAnchor="34.0">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.28700000047683716" green="0.7103614211082458" blue="0.8199999928474426" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color green="0.21052631735801697" blue="0.20701754093170166" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Button>
+      <TextField fx:id="firstName" layoutX="320.0" layoutY="180.0" onKeyPressed="#enterPressedInField" promptText="First name" styleClass="turquoise-textfield" stylesheets="@../../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="287.0" AnchorPane.leftAnchor="320.0" />
+      <TextField fx:id="lastName" layoutX="320.0" layoutY="215.0" onKeyPressed="#enterPressedInField" promptText="Last name" styleClass="turquoise-textfield" stylesheets="@../../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="252.0" AnchorPane.leftAnchor="320.0" />
+      <TextField fx:id="email" layoutX="320.0" layoutY="250.0" onKeyPressed="#enterPressedInField" promptText="e-mail" styleClass="turquoise-textfield" stylesheets="@../../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="217.0" AnchorPane.leftAnchor="320.0" />
+      <ComboBox fx:id="comboBoxId" layoutX="224.0" layoutY="281.0" maxHeight="-Infinity" prefHeight="41.0" prefWidth="90.0" scaleY="0.78" styleClass="turquoise-textfield" stylesheets="@../../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="178.0" AnchorPane.leftAnchor="224.0" />
+      <TextField fx:id="phoneNumber" layoutX="319.0" layoutY="285.0" onKeyPressed="#enterPressedInField" promptText="Phone number" styleClass="turquoise-textfield" stylesheets="@../../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="182.0" AnchorPane.leftAnchor="319.0" />
+      <TextField fx:id="pesel" layoutX="319.0" layoutY="320.0" onKeyPressed="#enterPressedInField" promptText="PESEL" styleClass="turquoise-textfield" stylesheets="@../../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="147.0" AnchorPane.leftAnchor="319.0" />
+      <TextField fx:id="username" layoutX="319.0" layoutY="355.0" onKeyPressed="#enterPressedInField" promptText="Username" styleClass="turquoise-textfield" stylesheets="@../../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="112.0" AnchorPane.leftAnchor="319.0" />
+      <PasswordField fx:id="password" layoutX="319.0" layoutY="390.0" onKeyPressed="#enterPressedInField" promptText="Password" styleClass="turquoise-textfield" stylesheets="@../../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="319.0" />
       <Label fx:id="signInStatus" alignment="CENTER" layoutX="255.0" layoutY="161.0" prefHeight="25.0" prefWidth="282.0" textFill="RED" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="255.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Label>
+      <Button fx:id="logInButton" layoutX="716.0" layoutY="456.0" mnemonicParsing="false" onAction="#LogInButtonClicked" prefHeight="31.0" prefWidth="67.0" styleClass="turquoise-button" stylesheets="@../../Styles/buttonsStyle.css" text="LOG IN" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="17.0">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.28700000047683716" green="0.7103614211082458" blue="0.8199999928474426" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color green="0.21052631735801697" blue="0.20701754093170166" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Button>
    </children>
 </AnchorPane>

@@ -1,0 +1,17 @@
+.turquoise-textfield {
+    -fx-background-color: linear-gradient(to bottom, #e6f7f8, #9cd6db);
+    -fx-background-radius: 5;
+    -fx-border-color: #007d86;
+    -fx-border-width: 3;
+    -fx-border-radius: 3;
+    -fx-padding: 5 10; /* Dodanie wewnętrznego marginesu */
+}
+
+.turquoise-textfield {
+    -fx-background-color: linear-gradient(to bottom, #e6f7f8, #9cd6db);
+    -fx-background-radius: 5;
+    -fx-border-color: #007d86;
+    -fx-border-width: 3;
+    -fx-border-radius: 3;
+    -fx-padding: 5 10; /* Dodanie wewnętrznego marginesu */
+}

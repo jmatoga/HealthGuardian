@@ -33,4 +33,12 @@ public class Message {
     public void updateUserBasicData(PrintWriter writer, String message) {
         writer.println("UPDATE_USER_BASIC_DATA:" + message);
     }
+
+    public void sendGetSettingsMessage(PrintWriter writer, String message) {
+        writer.println("GET_SETTINGS:" + message);
+    }
+
+    public void sendSetSettingsMessage(PrintWriter writer, String message) {
+        writer.println("SET_SETTINGS:" + message);
+    }
 }

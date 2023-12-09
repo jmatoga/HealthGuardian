@@ -55,7 +55,7 @@ public class Client {
             Client.SendToServer = SendToServer;
 
             clientId = Integer.parseInt(ReadFromServer.readLine());
-            System.out.println("ClientID: " + clientId);
+            System.out.println(Color.ColorString("ClientID: " + clientId + "\n", Color.ANSI_CYAN));
 
             reader(ReadFromServer);
 

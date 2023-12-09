@@ -9,53 +9,49 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="settingsScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.SettingsController">
+<AnchorPane fx:id="settingsScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.SettingsController">
     <children>
         <ImageView fitHeight="1110.0" fitWidth="1930.0" layoutX="8.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
                 <Image url="@../../photos/background_1.png" />
             </image>
         </ImageView>
-        <Button fx:id="userPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#userPanelButtonClicked" prefHeight="55.0" prefWidth="160.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #a0a0a0; -fx-border-width: 1; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="USER PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
-            <font>
-                <Font name="Arial Bold Italic" size="18.0" />
-            </font>
-            <opaqueInsets>
-                <Insets />
-            </opaqueInsets>
-        </Button>
         <HBox layoutX="474.0" layoutY="358.0" prefHeight="550.0" prefWidth="1045.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="520.0">
             <children>
                 <VBox prefHeight="550.0" prefWidth="401.0">
                     <children>
-                        <CheckBox fx:id="settingsCheckBox1" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" text="SETTINGS_1">
+                        <CheckBox fx:id="bmiSettingsCheckBox" mnemonicParsing="false" onAction="#setBmiSettingsCheckBox" prefHeight="60.0" prefWidth="400.0" text="Hide bmi">
                             <font>
                                 <Font name="System Bold" size="34.0" />
                             </font>
                         </CheckBox>
-                        <Label fx:id="settingsDescription1Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" text="Settings - description&#10;111">
+                        <Label fx:id="settingsDescription1Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" text="This setting hides the bmi label.">
                             <font>
                                 <Font name="System Italic" size="18.0" />
                             </font>
                         </Label>
-                        <CheckBox fx:id="settingsCheckBox2" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" text="SETTINGS_2">
+                        <CheckBox fx:id="ageSettingsCheckBox" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#setAgeSettingsCheckBox" prefHeight="60.0" prefWidth="400.0" text="Hide age">
                             <font>
                                 <Font name="System Bold" size="34.0" />
                             </font>
                         </CheckBox>
-                        <Label fx:id="settingsDescription2Label" alignment="TOP_LEFT" layoutX="10.0" layoutY="70.0" prefHeight="50.0" prefWidth="400.0" text="Settings2 - description&#10;222">
+                        <Label fx:id="settingsDescription2Label" alignment="TOP_LEFT" layoutX="10.0" layoutY="70.0" prefHeight="50.0" prefWidth="400.0" text="This setting hides the age label.">
                             <font>
                                 <Font name="System Italic" size="18.0" />
                             </font>
                         </Label>
-                        <CheckBox fx:id="settingsCheckBox3" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" text="SETTINGS_3">
+                        <CheckBox fx:id="dateSettingsCheckBox" mnemonicParsing="false" onAction="#setDateSettingsCheckBox" prefHeight="60.0" prefWidth="400.0" text="Hide current date">
                             <font>
                                 <Font name="System Bold" size="34.0" />
                             </font>
                         </CheckBox>
-                        <Label fx:id="settingsDescription3Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" text="Settings3 - description&#10;333">
+                        <Label fx:id="settingsDescription3Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" text="This setting hides current time and date.">
                             <font>
                                 <Font name="System Italic" size="18.0" />
                             </font>
@@ -144,5 +140,74 @@
                 <Font name="System Bold" size="70.0" />
             </font>
         </Label>
+        <Label fx:id="settingsSavedStatusLabel" layoutX="788.0" layoutY="893.0" prefHeight="53.0" prefWidth="369.0" textAlignment="CENTER" AnchorPane.bottomAnchor="134.0">
+            <font>
+                <Font size="30.0" />
+            </font>
+            <textFill>
+                <LinearGradient endX="1.0" endY="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.0833333358168602" green="1.0" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="0.7921568751335144" green="1.0" blue="0.8117647171020508" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+        </Label>
+      <Button fx:id="saveSettingsButton" layoutX="873.0" layoutY="975.0" mnemonicParsing="false" onAction="#saveSettingsButtonClicked" prefHeight="55.0" prefWidth="190.0" styleClass="lightgreen-button" stylesheets="@../../Styles/buttonsStyle.css" text="SAVE SETTINGS" AnchorPane.bottomAnchor="70.0">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.22807016968727112" green="0.8552631735801697" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.11138523370027542" green="0.30263158679008484" blue="0.047636453062295914" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <Button fx:id="userPanelButton" layoutX="1704.0" layoutY="975.0" mnemonicParsing="false" onAction="#userPanelButtonClicked" prefHeight="55.0" prefWidth="170.0" styleClass="darkblue-button" stylesheets="@../../Styles/buttonsStyle.css" text="USER PANEL" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="40.0">
+         <font>
+            <Font name="Consolas Bold" size="24.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.28700000047683716" green="0.7103614211082458" blue="0.8199999928474426" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color green="0.27843138575553894" blue="0.4313725531101227" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Button>
     </children>
 </AnchorPane>

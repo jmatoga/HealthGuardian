@@ -254,7 +254,7 @@ public class ClientPanelController implements Initializable {
     @FXML
     void initializeHoverEffect() {
         DropShadow shadow = new DropShadow();
-        shadow.setColor(GREEN);  // Change color as per your preference
+        shadow.setColor(GREEN);
 
         ePrescriptionButton.setOnMouseEntered(e -> {
             ePrescriptionButton.setEffect(shadow);
@@ -266,9 +266,7 @@ public class ClientPanelController implements Initializable {
     }
 
     void getUserDataFromDB() throws IOException {
-        int user_id = Client.user_id;
-        String user_id_str = Integer.toString(user_id);
-        message.sendGetNameMessage(SendToServer,Client.clientId  + "," + user_id_str);
+        message.sendGetNameMessage(SendToServer,Client.clientId  + "," + Client.user_id);
         String serverAnswer = Client.rreader(ReadFromServer);
 
         if(serverAnswer != null)
@@ -341,6 +339,24 @@ public class ClientPanelController implements Initializable {
         temperatureLabel.setText("temperature: " + userData[5]);
         dateOfLastUpdateLabel.setText("date of last update:\n" + userData[8]);
         calculateBMI(Double.parseDouble(userData[3]), Double.parseDouble(userData[4]));
+    }
+
+    private void getSettingsFromDB() throws IOException {
+        message.sendGetSettingsMessage(SendToServer,Client.clientId  + "," + Client.user_id);
+        String serverAnswer = Client.rreader(ReadFromServer);
+        System.out.println(serverAnswer);
+        String[] settingsData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
+
+        if(settingsData[0].equals("false")) {
+            bmiLabel.setVisible(true);
+            bmiStatusLabel.setVisible(true);
+        } else {
+            bmiLabel.setVisible(false);
+            bmiStatusLabel.setVisible(false);
+        }
+
+        ageLabel.setVisible(settingsData[1].equals("false"));
+        dateLabel.setVisible(settingsData[2].equals("false"));
     }
 
     private Alert createDataAlert(TextField inputFieldWeight, TextField inputFieldHeight, TextField inputFieldTemperature, TextField inputFieldPressure1, TextField inputFieldPressure2, DatePicker datePicker, Label label) {
@@ -438,17 +454,19 @@ public class ClientPanelController implements Initializable {
         ClientPanelController.SendToServer = Client.SendToServer;
 
         if(ClientPanelController.ReadFromServer != null && ClientPanelController.SendToServer != null) {
-
             try {
                 getUserDataFromDB();
+                getSettingsFromDB();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1), event -> updateDateTime()));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
+            if(dateLabel.isVisible()) {
+                Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1), event -> updateDateTime()));
+                timeline.setCycleCount(Timeline.INDEFINITE);
+                timeline.play();
+            }
+        }
     }
 
     private void updateDateTime() {

@@ -1,0 +1,155 @@
+.button
+{
+    -fx-background-color: #239c9c;
+}
+.button:hover
+{
+    -fx-background-color: #000c9c;
+
+}
+.button:pressed
+{
+    -fx-background-color: #111c9c;
+
+}
+
+.user_panel-button
+{
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #d4d4d4);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5;
+    -fx-border-color: #a0a0a0;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+.user_panel-button:hover
+{
+    -fx-background-color: linear-gradient(to bottom, #e6e6e6, #bfbfbf);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 2 );
+    -fx-border-color: #8c8c8c;
+}
+.user_panel-button:pressed
+{
+    -fx-background-color: linear-gradient(to bottom, #bfbfbf, #e6e6e6);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
+    -fx-border-color: #a0a0a0;
+}
+
+.lightgreen-button
+{
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #b9f0cc);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5;
+    -fx-border-color: #007052;
+    -fx-border-width: 4;
+    -fx-border-radius: 3;
+    -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);
+}
+.lightgreen-button:hover
+{
+    -fx-background-color: linear-gradient(to bottom, #ccffcc, #7be699);
+    -fx-border-color: #005731;
+}
+
+.lightgreen-button:pressed
+{
+    -fx-background-color: linear-gradient(to bottom, #7be699, #ccffcc);
+    -fx-border-color: #007052;
+}
+
+.darkblue-button
+{
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5;
+    -fx-border-color: #00476e;
+    -fx-border-width: 3;
+    -fx-border-radius: 2;
+    -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);
+}
+.darkblue-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #d1e7ff, #a9c9e3);
+    -fx-border-color: #00294d;
+}
+.darkblue-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #a9c9e3, #d1e7ff);
+    -fx-border-color: #00476e;
+}
+
+.lightblue-button
+{
+    -fx-background-color:  linear-gradient(to bottom, #ffffff, #b9ecf0);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5;
+    -fx-border-color: #00b9c2;
+    -fx-border-width: 4;
+    -fx-border-radius: 3;
+    -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);
+}
+.lightblue-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #c4f0f5, #94d9e2);
+    -fx-border-color: #008ba3;
+}
+.lightblue-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #94d9e2, #c4f0f5);
+    -fx-border-color: #00b9c2;
+}
+
+.darkred-button
+{
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #d3b2b2);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5;
+    -fx-border-color: #950000;
+    -fx-border-width: 5;
+    -fx-border-radius: 3;
+    -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);
+}
+.darkred-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #ffcfcf, #ff9b9b);
+    -fx-border-color: #7d0000;
+}
+.darkred-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #ff9b9b, #ffcfcf);
+    -fx-border-color: #950000;
+}
+
+.lightorange-button
+{
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #f0d8b9);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5;
+    -fx-border-color: #c37200;
+    -fx-border-width: 4;
+    -fx-border-radius: 3;
+    -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);
+}
+.lightorange-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #ffe6bf, #ffcc80);
+    -fx-border-color: #ff7a00;
+}
+.lightorange-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #ffcc80, #ffe6bf);
+    -fx-border-color: #c37200;
+}
+
+.turquoise-button {
+    -fx-background-color: linear-gradient(to bottom, #e6f7f8, #9cd6db);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5;
+    -fx-border-color: #007d86;
+    -fx-border-width: 3;
+    -fx-border-radius: 2;
+    -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);
+}
+.turquoise-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #b3eced, #6ebcc8);
+    -fx-border-color: #005c63;
+}
+.turquoise-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #6ebcc8, #b3eced);
+    -fx-border-color: #007d86;
+}
+
+
