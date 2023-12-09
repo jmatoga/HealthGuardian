@@ -1,6 +1,7 @@
 package ScenesControllers;
 
 import Client.Client;
+import Client.Start;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -27,8 +28,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+
 
 public class LogInController implements Initializable {
+    private static final Lock lock = new ReentrantLock();
+
     private final Toolkit toolkit = Toolkit.getDefaultToolkit();
     private final int screenWidth = toolkit.getScreenSize().width;
     private final int screenHeight = toolkit.getScreenSize().height;
@@ -58,12 +65,12 @@ public class LogInController implements Initializable {
     private AnchorPane helloScene;
 
     @FXML
-    private void logInButtonClicked(ActionEvent event) throws IOException{
+    private void logInButtonClicked(ActionEvent event) throws IOException, InterruptedException {
         checkWrittenText();
     }
 
     @FXML
-    private void enterPressedInField(KeyEvent event) throws IOException{
+    private void enterPressedInField(KeyEvent event) throws IOException, InterruptedException {
         if (event.getCode() == KeyCode.ENTER)
             checkWrittenText();
     }
@@ -79,7 +86,7 @@ public class LogInController implements Initializable {
         new SceneSwitch("SignInScene.fxml", 800, 500, false, false);
     }
 
-    private void checkWrittenText() throws IOException {
+    private void checkWrittenText() throws IOException, InterruptedException {
         if (username.getText().isEmpty() && password.getText().isEmpty())
             loggingStatus.setText("Username and Password can't be empty!");
         else if (!username.getText().isEmpty() && password.getText().isEmpty())
@@ -87,36 +94,41 @@ public class LogInController implements Initializable {
         else if (username.getText().isEmpty() && !password.getText().isEmpty())
             loggingStatus.setText("Username can't be empty!");
         else {
+
             message.sendLoginMessage(SendToServer, Client.clientId + "," + username.getText() + "," + password.getText());
+            //Client.reader(ReadFromServer);
             //String serverAnswer = Client.rreader(ReadFromServer, true);
-            String serverAnswer = Client.lastServerMessage;
-            System.out.println("tu: " + serverAnswer);
 
-            if (serverAnswer.startsWith("Logged successfully. Your user_id: ") && Integer.parseInt(serverAnswer.substring(35)) > 0) {
-                Client.user_id = Integer.parseInt(serverAnswer.substring(35));
-                loggingStatus.setTextFill(Paint.valueOf("0x2aff00")); // green color
-                loggingStatus.setText("Logged succesfully!");
-                username.setText("");
-                password.setText("");
-                logInButton.requestFocus();
-                System.out.println(serverAnswer);
+                String serverAnswer = Client.lastServerMessage;
+                System.out.println("tu: " + serverAnswer);
 
-                Timeline timeline = new Timeline(
-                        new KeyFrame(Duration.millis(500), event -> {
-                            try {
-                                new SceneSwitch("ClientPanelScene.fxml", 1920, 1080, screenWidth, screenHeight, true, true,"HealthGuardian - clientID: " + Client.clientId + " ,user_id: " + Client.user_id);
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-                        })
-                );
-                timeline.setCycleCount(1);
-                timeline.play();
+                if (serverAnswer.startsWith("Logged successfully. Your user_id: ") && Integer.parseInt(serverAnswer.substring(35)) > 0) {
+                    Client.user_id = Integer.parseInt(serverAnswer.substring(35));
+                    loggingStatus.setTextFill(Paint.valueOf("0x2aff00")); // green color
+                    loggingStatus.setText("Logged succesfully!");
+                    username.setText("");
+                    password.setText("");
+                    logInButton.requestFocus();
+                    System.out.println(serverAnswer);
 
-            } else {
-                loggingStatus.setText("Wrong username or password!");
-                System.out.println(serverAnswer);
-            }
+                    Timeline timeline = new Timeline(
+                            new KeyFrame(Duration.millis(500), event -> {
+                                try {
+                                    new SceneSwitch("ClientPanelScene.fxml", 1920, 1080, screenWidth, screenHeight, true, true, "HealthGuardian - clientID: " + Client.clientId + " ,user_id: " + Client.user_id);
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            })
+                    );
+                    timeline.setCycleCount(1);
+                    timeline.play();
+
+
+                } else {
+                    loggingStatus.setText("Wrong username or password!");
+                    System.out.println(serverAnswer);
+                }
+
         }
     }
 

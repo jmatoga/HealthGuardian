@@ -17,7 +17,7 @@ public class Client {
     public static BufferedReader ReadFromServer;
     public static PrintWriter SendToServer;
     private static final Lock lock = new ReentrantLock();
-    public static String lastServerMessage = "a";
+    public static String lastServerMessage = "kkkkkkk";
     private static final Condition condition = lock.newCondition();
 
     public static synchronized void reader(BufferedReader ReadFromServer) {
@@ -26,16 +26,19 @@ public class Client {
                 String serverMessage = ReadFromServer.readLine();
                // String serverMessage = rreader(ReadFromServer, false);
                 //System.out.println("a");
+                System.out.println("XDDDDD1");
+                Client.lastServerMessage = "aha";
 
                 if (serverMessage != null) {
                     lock.lock();
-                    condition.await();
+                    Start.clientThread.wait();
+
+                    //condition.await();
                     System.out.println("Client: Received message from server: " + serverMessage);
-                    lastServerMessage = serverMessage;
-                    condition.signalAll();
-                    lock.unlock();
-                }
-                else
+                    Client.lastServerMessage = serverMessage;
+                    //condition.signalAll();
+                    Start.clientThread.notify();
+                } else
                     throw new RuntimeException("Something went wrong! Server sent a null message.");
 
             }
@@ -44,6 +47,8 @@ public class Client {
         } catch (RuntimeException e) {
             System.err.println(e.getMessage());
             System.exit(10);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -79,6 +84,7 @@ public class Client {
 
             clientId = Integer.parseInt(ReadFromServer.readLine());
             System.out.println("ClientID: " + clientId);
+            lastServerMessage = "gggg";
 
             reader(ReadFromServer);
 
