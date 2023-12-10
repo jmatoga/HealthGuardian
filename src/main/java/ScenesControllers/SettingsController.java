@@ -1,6 +1,8 @@
 package ScenesControllers;
 
 import Client.Client;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,6 +11,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
+import javafx.util.Duration;
 import utils.Message;
 
 import java.io.BufferedReader;
@@ -103,7 +106,7 @@ public class SettingsController implements Initializable {
         } else {
             System.out.println("ON");
 
-           // message.sendPrintMessage(SendToServer, "BMI_OFF");
+            // message.sendPrintMessage(SendToServer, "BMI_OFF");
         }
     }
 
@@ -115,7 +118,7 @@ public class SettingsController implements Initializable {
         } else {
             System.out.println("ON");
 
-           // message.sendPrintMessage(SendToServer, "BMI_OFF");
+            // message.sendPrintMessage(SendToServer, "BMI_OFF");
         }
     }
 
@@ -127,7 +130,7 @@ public class SettingsController implements Initializable {
         } else {
             System.out.println("ON");
 
-           // message.sendPrintMessage(SendToServer, "BMI_OFF");
+            // message.sendPrintMessage(SendToServer, "BMI_OFF");
         }
     }
 
@@ -135,24 +138,37 @@ public class SettingsController implements Initializable {
     private void userPanelButtonClicked(ActionEvent event) throws IOException {
         new SceneSwitch("ClientPanelScene.fxml");
     }
+
     @FXML
     private void saveSettingsButtonClicked(ActionEvent event) throws IOException {
-        message.sendSetSettingsMessage(SendToServer,Client.clientId  + "," + Client.user_id + "," + bmiSettingsCheckBox.isSelected() + "," + ageSettingsCheckBox.isSelected() + "," + dateSettingsCheckBox.isSelected() + "," + settingsCheckBox4.isSelected() + "," + settingsCheckBox5.isSelected());
+        message.sendSetSettingsMessage(SendToServer, Client.clientId + "," + Client.user_id + "," + bmiSettingsCheckBox.isSelected() + "," + ageSettingsCheckBox.isSelected() + "," + dateSettingsCheckBox.isSelected() + "," + settingsCheckBox4.isSelected() + "," + settingsCheckBox5.isSelected());
         String serverAnswer = Client.rreader(ReadFromServer);
 
-        if(serverAnswer.equals("Settings changed correctly."))
+        if (serverAnswer.equals("Settings changed correctly.")) {
             settingsSavedStatusLabel.setText("Settings changed correctly!");
-        else {
+
+            Timeline timeline = new Timeline(
+                    new KeyFrame(Duration.millis(1300), TimeEvent -> {
+                        try {
+                            settingsSavedStatusLabel.setText("");
+                            new SceneSwitch("ClientPanelScene.fxml");
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }));
+            timeline.setCycleCount(1);
+            timeline.play();
+        } else {
             settingsSavedStatusLabel.setTextFill(Paint.valueOf("RED"));
             settingsSavedStatusLabel.setText("Something went wrong!");
         }
     }
 
     private void getSettingsFromDB() throws IOException {
-        message.sendGetSettingsMessage(SendToServer,Client.clientId  + "," + Client.user_id);
+        message.sendGetSettingsMessage(SendToServer, Client.clientId + "," + Client.user_id);
         String serverAnswer = Client.rreader(ReadFromServer);
         System.out.println(serverAnswer);
-        String[] settingsData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
+        String[] settingsData = serverAnswer.substring(1, serverAnswer.length() - 1).split(", ");
 
         bmiSettingsCheckBox.setSelected(settingsData[0].equals("true"));
         ageSettingsCheckBox.setSelected(settingsData[1].equals("true"));
