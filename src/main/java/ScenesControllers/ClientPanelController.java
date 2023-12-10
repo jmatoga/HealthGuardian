@@ -251,20 +251,6 @@ public class ClientPanelController implements Initializable {
         new SceneSwitch("LogInScene.fxml", 820, 500, 800, 500, false, false, "HealthGuardian");
     }
 
-    @FXML
-    void initializeHoverEffect() {
-        DropShadow shadow = new DropShadow();
-        shadow.setColor(GREEN);
-
-        ePrescriptionButton.setOnMouseEntered(e -> {
-            ePrescriptionButton.setEffect(shadow);
-        });
-
-        ePrescriptionButton.setOnMouseExited(e -> {
-            ePrescriptionButton.setEffect(null);
-        });
-    }
-
     void getUserDataFromDB() throws IOException {
         message.sendGetNameMessage(SendToServer,Client.clientId  + "," + Client.user_id);
         String serverAnswer = Client.rreader(ReadFromServer);
@@ -449,7 +435,6 @@ public class ClientPanelController implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        initializeHoverEffect();
         ClientPanelController.ReadFromServer = Client.ReadFromServer;
         ClientPanelController.SendToServer = Client.SendToServer;
 
