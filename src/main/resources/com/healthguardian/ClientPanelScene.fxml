@@ -432,7 +432,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="bmiStatusLabel" layoutX="632.0" layoutY="412.0" prefHeight="35.0" prefWidth="53.0" textFill="WHITE">
+      <Label fx:id="bmiStatusLabel" layoutX="632.0" layoutY="412.0" prefHeight="35.0" prefWidth="53.0" textFill="WHITE" visible="false">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

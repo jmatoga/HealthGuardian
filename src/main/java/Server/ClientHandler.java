@@ -1,6 +1,7 @@
 package Server;
 
 import Client.Client;
+import utils.Color;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -136,9 +137,8 @@ class ClientHandler implements Callable<String> {
                 }
             }
         } catch (IOException e) {
-            //e.printStackTrace();
-            System.out.println("Client with id: " + Client.clientId + " disconnected."); // TODO repair clientID
+            System.out.println("Client with id: " + Color.ColorString("" + clientId, Color.ANSI_BLACK_BACKGROUND) + " disconnected.");
         }
-        return "Task completed";
+        return "Error with ClientHandler!";
     }
 }

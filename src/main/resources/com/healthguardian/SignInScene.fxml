@@ -52,7 +52,7 @@
       <TextField fx:id="pesel" layoutX="319.0" layoutY="320.0" onKeyPressed="#enterPressedInField" promptText="PESEL" styleClass="turquoise-textfield" stylesheets="@../../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="147.0" AnchorPane.leftAnchor="319.0" />
       <TextField fx:id="username" layoutX="319.0" layoutY="355.0" onKeyPressed="#enterPressedInField" promptText="Username" styleClass="turquoise-textfield" stylesheets="@../../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="112.0" AnchorPane.leftAnchor="319.0" />
       <PasswordField fx:id="password" layoutX="319.0" layoutY="390.0" onKeyPressed="#enterPressedInField" promptText="Password" styleClass="turquoise-textfield" stylesheets="@../../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="319.0" />
-      <Label fx:id="signInStatus" alignment="CENTER" layoutX="255.0" layoutY="161.0" prefHeight="25.0" prefWidth="282.0" textFill="RED" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="255.0">
+      <Label fx:id="signInStatus" alignment="CENTER" layoutX="255.0" layoutY="146.0" prefHeight="25.0" prefWidth="282.0" textFill="RED" AnchorPane.bottomAnchor="329.0" AnchorPane.leftAnchor="255.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Label>

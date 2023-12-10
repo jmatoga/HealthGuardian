@@ -138,6 +138,7 @@ public class SQLEngine {
                 String insertUserSql = "INSERT INTO user_table (user_id, first_name, last_name, phone, email, pesel) VALUES (?, ?, ?, ?, ?, ?)";
                 //String insertUserSqlData = "INSERT INTO user_basic_data_table (user_id) VALUES (?)";
                 String insertUserPassSql = "INSERT INTO user_pass_table (username, password_hash, salt, user_id) VALUES (?, SHA2(CONCAT(?, @salt), 256), @salt, ?)";
+                String insertSettingsSql = "INSERT INTO settings_table (bmi_setting, age_setting, currentDate_setting, settings_no_4, settings_no_5, user_id) VALUES ('false', 'false', 'false', 'false', 'false', ?)";
 
                 // get Max user_id from Database
                 preparedStatement = connection.prepareStatement(getMaxUserIdSql);
@@ -163,6 +164,11 @@ public class SQLEngine {
 //                preparedStatement = connection.prepareStatement(insertUserSqlData);
 //                preparedStatement.setInt(1, maxUserId + 1);
 //                preparedStatement.executeUpdate();
+
+                // insert into settings_table
+                preparedStatement = connection.prepareStatement(insertSettingsSql);
+                preparedStatement.setInt(1, maxUserId + 1);
+                preparedStatement.executeUpdate();
 
                 // insert into user_pass_table table
                 preparedStatement = connection.prepareStatement(insertUserPassSql);

@@ -5,7 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
 import java.io.IOException;
+
+import static java.lang.System.exit;
 
 public class WindowApplication extends Application {
     public static Stage primaryStage;
@@ -25,5 +28,6 @@ public class WindowApplication extends Application {
 
     public void startWindow() {
         launch();
+        exit(0);
     }
 }
