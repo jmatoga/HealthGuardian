@@ -39,7 +39,7 @@ public class Server {
         // Create server socket
         try {
             serverSocket = new ServerSocket(SERVER_PORT);
-            System.out.println("Server is listening on port: " + SERVER_PORT);
+            System.out.println("Server is listening on port: " + Color.ColorString("" + SERVER_PORT, Color.ANSI_CYAN));
         } catch (IOException e) {
             System.out.println("Server could not listen on port " + SERVER_PORT);
             System.exit(-1);
