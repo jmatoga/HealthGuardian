@@ -3,6 +3,7 @@ package Server;
 import utils.Color;
 
 import java.sql.*;
+import java.util.Arrays;
 
 public class SQLEngine {
     private final String url;
@@ -19,7 +20,7 @@ public class SQLEngine {
     public Connection connectToDataBase(Connection connection, int clientId) {
         try {
             connection = DriverManager.getConnection(url, DBusername, DBpassword);
-            System.out.println(Color.ColorString("Database connection successful. (For ClientID: " + clientId + ")", Color.ANSI_GREEN_BACKGROUND));
+            System.out.println(Color.ColorString("Database connection successful. (For ClientID: ", Color.ANSI_GREEN_BACKGROUND) + Color.ColorString("" + clientId, Color.ANSI_BLACK_BACKGROUND) + Color.ColorString(")", Color.ANSI_GREEN_BACKGROUND));
         } catch (SQLException e) {
             if(e.getSQLState().equals("08S01")) {
                 System.out.println(Color.ColorString("ERROR! No internet connection!", Color.ANSI_RED));
@@ -390,5 +391,50 @@ public class SQLEngine {
             disconnectFromDataBase(resultSet, preparedStatement, connection);
         }
         return returnStatement;
+    }
+
+    String[][] getClinics(int clientID) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT * FROM clinic_table";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            if(rowCount <= 0) {
+                System.out.println("Error in database while getting list of clinics.");
+                returnStatement[0][0] = "Error";
+                return returnStatement;
+            }
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
     }
 }

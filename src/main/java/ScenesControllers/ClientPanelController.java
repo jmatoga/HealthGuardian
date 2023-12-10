@@ -196,11 +196,8 @@ public class ClientPanelController implements Initializable {
                     if (serverAnswer.equals("Updated user basic data correctly.")) {
                         getUserDataFromDB();
                         dataUpdatedStatusLabel.setText("Data updated correctly!");
-                    } else {
-                        System.out.println("TUUUUUUUUUUUUUUUUU2");
+                    } else
                         dataUpdatedStatusLabel.setText("Error while updating!");
-
-                    }
 
                     Timeline timeline = new Timeline(
                             new KeyFrame(Duration.millis(2000), TimeEvent -> {

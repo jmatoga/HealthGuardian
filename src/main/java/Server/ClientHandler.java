@@ -72,6 +72,13 @@ class ClientHandler implements Callable<String> {
                     SendToClient.println(""); // This is message to the client reader
                     SendToClient.println(Arrays.toString(dataResult)); // This is message to the LogInController
 
+                } else if (serverMessage.startsWith("GET_CLINICS:")) {
+                    String clientId = serverMessage.substring(12);
+
+                    String[][] dataResult = sqlEngine.getClinics(Integer.parseInt(clientId));
+                    SendToClient.println(""); // This is message to the client reader
+                    SendToClient.println(Arrays.deepToString(dataResult)); // This is message to the LogInController
+
                 } else if (serverMessage.startsWith("GET_SETTINGS:")) {
                     String[] resources = serverMessage.substring(13).split(",");
                     String clientId = resources[0];

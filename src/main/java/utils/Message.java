@@ -41,4 +41,7 @@ public class Message {
     public void sendSetSettingsMessage(PrintWriter writer, String message) {
         writer.println("SET_SETTINGS:" + message);
     }
+    public void sendGetClinicsMessage(PrintWriter writer, String message) {
+        writer.println("GET_CLINICS:" + message);
+    }
 }
