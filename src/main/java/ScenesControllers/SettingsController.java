@@ -99,42 +99,6 @@ public class SettingsController implements Initializable {
     private AnchorPane settingsScene;
 
     @FXML
-    private void setBmiSettingsCheckBox(ActionEvent event) {
-        if (bmiSettingsCheckBox.isSelected()) {
-            System.out.println("OFF");
-
-        } else {
-            System.out.println("ON");
-
-            // message.sendPrintMessage(SendToServer, "BMI_OFF");
-        }
-    }
-
-    @FXML
-    private void setAgeSettingsCheckBox(ActionEvent event) {
-        if (bmiSettingsCheckBox.isSelected()) {
-            System.out.println("OFF");
-            //message.sendPrintMessage(SendToServer, "BMI");
-        } else {
-            System.out.println("ON");
-
-            // message.sendPrintMessage(SendToServer, "BMI_OFF");
-        }
-    }
-
-    @FXML
-    private void setDateSettingsCheckBox(ActionEvent event) {
-        if (bmiSettingsCheckBox.isSelected()) {
-            System.out.println("OFF");
-            //message.sendPrintMessage(SendToServer, "BMI");
-        } else {
-            System.out.println("ON");
-
-            // message.sendPrintMessage(SendToServer, "BMI_OFF");
-        }
-    }
-
-    @FXML
     private void userPanelButtonClicked(ActionEvent event) throws IOException {
         new SceneSwitch("ClientPanelScene.fxml");
     }
