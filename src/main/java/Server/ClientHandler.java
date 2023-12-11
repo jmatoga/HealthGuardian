@@ -33,14 +33,13 @@ class ClientHandler implements Callable<String> {
                 String serverMessage = ReadFromClient.readLine();
 
                 if (serverMessage != null) {
-                    if(serverMessage.toLowerCase().contains("error"))
+                    if (serverMessage.toLowerCase().contains("error"))
                         System.out.println("\nClient " + Color.ColorString("" + clientId, Color.ANSI_BLACK_BACKGROUND) + ": " + Color.ColorString(serverMessage.substring(0, serverMessage.indexOf(":")) + ": Error inside!", Color.ANSI_RED));
-                    else if(serverMessage.toLowerCase().contains("no data") || serverMessage.toLowerCase().contains("nodata"))
+                    else if (serverMessage.toLowerCase().contains("no data") || serverMessage.toLowerCase().contains("nodata"))
                         System.out.println("\nClient " + Color.ColorString("" + clientId, Color.ANSI_BLACK_BACKGROUND) + ": " + Color.ColorString(serverMessage.substring(0, serverMessage.indexOf(":")) + ": No data inside!", Color.ANSI_YELLOW));
                     else
                         System.out.println("\nClient " + Color.ColorString("" + clientId, Color.ANSI_BLACK_BACKGROUND) + ": " + serverMessage.substring(0, serverMessage.indexOf(":")));
-                }
-                else
+                } else
                     System.out.println(Color.ColorString("ERROR! Something went wrong! Server send null message.", Color.ANSI_RED));
 
                 if (serverMessage.startsWith("PRINT:")) {
@@ -61,9 +60,9 @@ class ClientHandler implements Callable<String> {
                     String clientId = resources[0];
                     String username = resources[1];
                     String password = resources[2];
-                    String[] loginResult = sqlEngine.loginToAccount(Integer.parseInt(clientId),username, password);
+                    String[] loginResult = sqlEngine.loginToAccount(Integer.parseInt(clientId), username, password);
 
-                    if(Boolean.parseBoolean(loginResult[0])) {
+                    if (Boolean.parseBoolean(loginResult[0])) {
                         SendToClient.println("Logged successfully. Your user_id: " + loginResult[1]);
                     } else {
                         SendToClient.println("Wrong password.");
@@ -81,6 +80,13 @@ class ClientHandler implements Callable<String> {
 
                     String[][] dataResult = sqlEngine.getClinics(Integer.parseInt(clientId));
                     SendToClient.println(Arrays.deepToString(dataResult));
+                } else if (serverMessage.startsWith("GET_MESSAGES:")) {
+                    String[] resources = serverMessage.substring(13).split(",");
+                    String clientId = resources[0];
+                    String userId = resources[1];
+
+                    String[][] messagesResult = sqlEngine.getMessages(Integer.parseInt(clientId), Integer.parseInt(userId));
+                    SendToClient.println(Arrays.deepToString(messagesResult));
 
                 } else if (serverMessage.startsWith("GET_SETTINGS:")) {
                     String[] resources = serverMessage.substring(13).split(",");
