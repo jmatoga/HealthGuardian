@@ -4,21 +4,15 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Paint;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.TestWatcher;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import utils.Color;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.testfx.api.FxAssert.assertContext;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.base.NodeMatchers.isVisible;
 
 @ExtendWith(ApplicationExtension.class)
-class ClientPanelControllerTest {
+class ClientPanelControllerIntegrationTest {
 
     private final ClientPanelController controller = new ClientPanelController();
     private boolean testSuccess = false;

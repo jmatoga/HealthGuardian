@@ -14,7 +14,6 @@ import javafx.scene.control.*;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
 
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
@@ -32,7 +31,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import static javafx.scene.paint.Color.GREEN;
 
 public class ClientPanelController implements Initializable {
     private static final Message message = new Message();
@@ -120,6 +118,8 @@ public class ClientPanelController implements Initializable {
     @FXML
     AnchorPane clientPanelScene;
 
+    private boolean ifCalcualteBMI = false;
+
     public AnchorPane getPane() {
         return clientPanelScene;
     }
@@ -196,11 +196,8 @@ public class ClientPanelController implements Initializable {
                     if (serverAnswer.equals("Updated user basic data correctly.")) {
                         getUserDataFromDB();
                         dataUpdatedStatusLabel.setText("Data updated correctly!");
-                    } else {
-                        System.out.println("TUUUUUUUUUUUUUUUUU2");
+                    } else
                         dataUpdatedStatusLabel.setText("Error while updating!");
-
-                    }
 
                     Timeline timeline = new Timeline(
                             new KeyFrame(Duration.millis(2000), TimeEvent -> {
@@ -251,24 +248,8 @@ public class ClientPanelController implements Initializable {
         new SceneSwitch("LogInScene.fxml", 820, 500, 800, 500, false, false, "HealthGuardian");
     }
 
-    @FXML
-    void initializeHoverEffect() {
-        DropShadow shadow = new DropShadow();
-        shadow.setColor(GREEN);  // Change color as per your preference
-
-        ePrescriptionButton.setOnMouseEntered(e -> {
-            ePrescriptionButton.setEffect(shadow);
-        });
-
-        ePrescriptionButton.setOnMouseExited(e -> {
-            ePrescriptionButton.setEffect(null);
-        });
-    }
-
     void getUserDataFromDB() throws IOException {
-        int user_id = Client.user_id;
-        String user_id_str = Integer.toString(user_id);
-        message.sendGetNameMessage(SendToServer,Client.clientId  + "," + user_id_str);
+        message.sendGetNameMessage(SendToServer,Client.clientId  + "," + Client.user_id);
         String serverAnswer = Client.rreader(ReadFromServer);
 
         if(serverAnswer != null)
@@ -278,6 +259,8 @@ public class ClientPanelController implements Initializable {
         String[] userData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
 
         if(userData[2].equals("No data")) {
+            bmiLabel.setVisible(false);
+            bmiStatusLabel.setVisible(false);
             TextField inputFieldWeight = new TextField();
             TextField inputFieldHeight = new TextField();
             TextField inputFieldTemperature = new TextField();
@@ -319,6 +302,8 @@ public class ClientPanelController implements Initializable {
                                     }));
                             timeline.setCycleCount(1);
                             timeline.play();
+                            bmiLabel.setVisible(true);
+                            bmiStatusLabel.setVisible(true);
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -331,6 +316,7 @@ public class ClientPanelController implements Initializable {
         } else {
             ageLabel.setText("age: " + LocalDate.parse(userData[2]).until(LocalDate.now()).getYears());
             pressureLabel.setText("last pressure: " + userData[6] + "/" + userData[7]);
+            calculateBMI(Double.parseDouble(userData[3]), Double.parseDouble(userData[4]));
         }
 
         firstNameLabel.setText(userData[0]);
@@ -340,7 +326,26 @@ public class ClientPanelController implements Initializable {
         heightLabel.setText("height: " + userData[4]);
         temperatureLabel.setText("temperature: " + userData[5]);
         dateOfLastUpdateLabel.setText("date of last update:\n" + userData[8]);
-        calculateBMI(Double.parseDouble(userData[3]), Double.parseDouble(userData[4]));
+    }
+
+    private void getSettingsFromDB() throws IOException {
+        message.sendGetSettingsMessage(SendToServer,Client.clientId  + "," + Client.user_id);
+        String serverAnswer = Client.rreader(ReadFromServer);
+        System.out.println(serverAnswer);
+        String[] settingsData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
+
+        if(settingsData[0].equals("false")) {
+            bmiLabel.setVisible(true);
+            bmiStatusLabel.setVisible(true);
+            ifCalcualteBMI = true;
+        } else {
+            bmiLabel.setVisible(false);
+            bmiStatusLabel.setVisible(false);
+            ifCalcualteBMI = false;
+        }
+
+        ageLabel.setVisible(settingsData[1].equals("false"));
+        dateLabel.setVisible(settingsData[2].equals("false"));
     }
 
     private Alert createDataAlert(TextField inputFieldWeight, TextField inputFieldHeight, TextField inputFieldTemperature, TextField inputFieldPressure1, TextField inputFieldPressure2, DatePicker datePicker, Label label) {
@@ -433,22 +438,23 @@ public class ClientPanelController implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        initializeHoverEffect();
         ClientPanelController.ReadFromServer = Client.ReadFromServer;
         ClientPanelController.SendToServer = Client.SendToServer;
 
         if(ClientPanelController.ReadFromServer != null && ClientPanelController.SendToServer != null) {
-
             try {
+                getSettingsFromDB();
                 getUserDataFromDB();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1), event -> updateDateTime()));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
+            if(dateLabel.isVisible()) {
+                Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1), event -> updateDateTime()));
+                timeline.setCycleCount(Timeline.INDEFINITE);
+                timeline.play();
+            }
+        }
     }
 
     private void updateDateTime() {
@@ -466,13 +472,10 @@ public class ClientPanelController implements Initializable {
     }
 
     void calculateBMI(double weight, double height) {
-        // TODO
-        boolean settingsBMI = true;
-        if(settingsBMI) {
+        if(ifCalcualteBMI) {
             height = height / 100; // convert height from cm to m
             double bmi = weight / (height * height);
 
-            bmiLabel.setVisible(true);
             if (bmi < 18.5) {
                 bmiStatusLabel.setTextFill(Paint.valueOf("#f54040"));
             } else if (bmi >= 18.5 && bmi < 25.0) {
@@ -503,6 +506,3 @@ public class ClientPanelController implements Initializable {
         this.bmiLabel = bmiLabel;
     }
 }
-
-
-

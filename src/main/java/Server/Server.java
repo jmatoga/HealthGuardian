@@ -39,7 +39,7 @@ public class Server {
         // Create server socket
         try {
             serverSocket = new ServerSocket(SERVER_PORT);
-            System.out.println("Server is listening on port: " + SERVER_PORT);
+            System.out.println("Server is listening on port: " + Color.ColorString("" + SERVER_PORT, Color.ANSI_CYAN));
         } catch (IOException e) {
             System.out.println("Server could not listen on port " + SERVER_PORT);
             System.exit(-1);
@@ -58,7 +58,7 @@ public class Server {
         // Listen for client connections
         while (true) {
             Socket clientSocket = serverSocket.accept(); // Accept new connection from Client
-            System.out.println("\nNew client connected with id: " + ++clientId);
+            System.out.println("\nNew client connected with id: " + Color.ColorString("" + ++clientId, Color.ANSI_BLACK_BACKGROUND));
             //System.out.println("\nNew client connected with id: " + clientSocket.getInetAddress().getHostAddress());
 
             // Submit new task to thread pool
