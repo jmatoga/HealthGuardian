@@ -142,7 +142,7 @@ public class SettingsController implements Initializable {
     @FXML
     private void saveSettingsButtonClicked(ActionEvent event) throws IOException {
         message.sendSetSettingsMessage(SendToServer, Client.clientId + "," + Client.user_id + "," + bmiSettingsCheckBox.isSelected() + "," + ageSettingsCheckBox.isSelected() + "," + dateSettingsCheckBox.isSelected() + "," + settingsCheckBox4.isSelected() + "," + settingsCheckBox5.isSelected());
-        String serverAnswer = Client.rreader(ReadFromServer);
+        String serverAnswer = ReadFromServer.readLine();
 
         if (serverAnswer.equals("Settings changed correctly.")) {
             settingsSavedStatusLabel.setText("Settings changed correctly!");
@@ -166,8 +166,8 @@ public class SettingsController implements Initializable {
 
     private void getSettingsFromDB() throws IOException {
         message.sendGetSettingsMessage(SendToServer, Client.clientId + "," + Client.user_id);
-        String serverAnswer = Client.rreader(ReadFromServer);
-        System.out.println(serverAnswer);
+        String serverAnswer = ReadFromServer.readLine();
+        System.out.println("Server: " + serverAnswer);
         String[] settingsData = serverAnswer.substring(1, serverAnswer.length() - 1).split(", ");
 
         bmiSettingsCheckBox.setSelected(settingsData[0].equals("true"));

@@ -20,7 +20,7 @@ public class SQLEngine {
     public Connection connectToDataBase(Connection connection, int clientId) {
         try {
             connection = DriverManager.getConnection(url, DBusername, DBpassword);
-            System.out.println(Color.ColorString("Database connection successful. (For ClientID: ", Color.ANSI_GREEN_BACKGROUND) + Color.ColorString("" + clientId, Color.ANSI_BLACK_BACKGROUND) + Color.ColorString(")", Color.ANSI_GREEN_BACKGROUND));
+            System.out.println(Color.ColorString("Database connection successful. (For ClientID: ", Color.ANSI_GREEN_BACKGROUND) + Color.ColorBgString(Color.ANSI_GREEN_BACKGROUND,"" + clientId, Color.ANSI_BLACK) + Color.ColorString(")", Color.ANSI_GREEN_BACKGROUND));
         } catch (SQLException e) {
             if(e.getSQLState().equals("08S01")) {
                 System.out.println(Color.ColorString("ERROR! No internet connection!", Color.ANSI_RED));

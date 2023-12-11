@@ -98,7 +98,7 @@ public class ClientPanelController implements Initializable {
     private Button MessageButton;
 
     @FXML
-    private Button presurePanelButton;
+    private Button pressurePanelButton;
 
     @FXML
     private Button medicalHistoryButton;
@@ -160,8 +160,8 @@ public class ClientPanelController implements Initializable {
     }
 
     @FXML
-    private void presurePanelButtonClicked(ActionEvent event) throws  IOException{
-        new SceneSwitch("PresurePanelScene.fxml");
+    private void pressurePanelButtonClicked(ActionEvent event) throws  IOException{
+        new SceneSwitch("PressurePanelScene.fxml");
     }
 
     @FXML
@@ -191,8 +191,8 @@ public class ClientPanelController implements Initializable {
                 message.updateUserBasicData(SendToServer, Client.clientId + "," + "withoutBirthdayDate" + "," + inputFieldWeight.getText() + "," + inputFieldHeight.getText() + "," + inputFieldTemperature.getText() + "," + inputFieldPressure1.getText() + "," + inputFieldPressure2.getText() + "," + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "," + Client.user_id);
 
                 try {
-                    String serverAnswer = Client.rreader(ReadFromServer);
-                    System.out.println(serverAnswer);
+                    String serverAnswer = ReadFromServer.readLine();
+                    System.out.println("Server: " + serverAnswer);
                     if (serverAnswer.equals("Updated user basic data correctly.")) {
                         getUserDataFromDB();
                         dataUpdatedStatusLabel.setText("Data updated correctly!");
@@ -250,12 +250,9 @@ public class ClientPanelController implements Initializable {
 
     void getUserDataFromDB() throws IOException {
         message.sendGetNameMessage(SendToServer,Client.clientId  + "," + Client.user_id);
-        String serverAnswer = Client.rreader(ReadFromServer);
+        String serverAnswer = ReadFromServer.readLine();
+        System.out.println("Server: " + serverAnswer);
 
-        if(serverAnswer != null)
-            System.out.println(serverAnswer);
-
-        assert serverAnswer != null;
         String[] userData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
 
         if(userData[2].equals("No data")) {
@@ -287,8 +284,9 @@ public class ClientPanelController implements Initializable {
 
                     if(userData[2].equals("No data")) {
                         try {
-                            String serverAnswer1 = Client.rreader(ReadFromServer);
-                            System.out.println(serverAnswer1);
+                            String serverAnswer1 = ReadFromServer.readLine();
+                            System.out.println("Server: " + serverAnswer1);
+
                             getUserDataFromDB();
 
                             if (serverAnswer1.equals("Updated user basic data correctly."))
@@ -330,8 +328,8 @@ public class ClientPanelController implements Initializable {
 
     private void getSettingsFromDB() throws IOException {
         message.sendGetSettingsMessage(SendToServer,Client.clientId  + "," + Client.user_id);
-        String serverAnswer = Client.rreader(ReadFromServer);
-        System.out.println(serverAnswer);
+        String serverAnswer = ReadFromServer.readLine();
+        System.out.println("Server: " + serverAnswer);
         String[] settingsData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
 
         if(settingsData[0].equals("false")) {
@@ -505,4 +503,8 @@ public class ClientPanelController implements Initializable {
     void setBmiLabel(Label bmiLabel) {
         this.bmiLabel = bmiLabel;
     }
+
+    public void recommendationsPanelBuittonClicked(ActionEvent actionEvent) {
+    }
 }
+
