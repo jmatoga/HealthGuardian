@@ -7,8 +7,8 @@ module com.healthguardian.healthguardian {
     requires org.apache.pdfbox;
     requires javafx.swing;
     requires javafx.web;
-    opens com.healthguardian to javafx.fxml;
-    exports com.healthguardian;
+    opens Client to javafx.fxml;
+    exports Client;
     opens ScenesControllers to javafx.fxml;
     exports ScenesControllers;
 }

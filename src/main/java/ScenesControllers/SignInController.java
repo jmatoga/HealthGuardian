@@ -19,6 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
+import utils.Color;
 import utils.Message;
 
 import java.io.BufferedReader;
@@ -88,7 +89,7 @@ public class SignInController implements Initializable {
 
     @FXML
     private void LogInButtonClicked(ActionEvent event) throws IOException {
-        new SceneSwitch("LogInScene.fxml", 800, 500, false, false);
+        new SceneSwitch("/ScenesLayout/LogInScene.fxml", 800, 500, false, false);
     }
 
     @FXML
@@ -102,7 +103,7 @@ public class SignInController implements Initializable {
             message.checkIfUserExists(SendToServer, Client.clientId + "," + username.getText());
 
             String serverAnswer = ReadFromServer.readLine();
-            System.out.println("Server: " + serverAnswer);
+            System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
 
             if (serverAnswer.startsWith("EXISTING RESULT:") && serverAnswer.substring(16).equals("false")) {
                 TextField inputField = new TextField();
@@ -120,7 +121,7 @@ public class SignInController implements Initializable {
 
                         try {
                             serverAnswer1 = ReadFromServer.readLine();
-                            System.out.println("Server: " + serverAnswer1);
+                            System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer1);
 
                             if (serverAnswer1.startsWith("CODE RESULT:") && serverAnswer1.substring(12).equals("true")) {
                                 signInStatus.setTextFill(Paint.valueOf("0x2aff00")); // green color
@@ -135,7 +136,7 @@ public class SignInController implements Initializable {
                                 Timeline timeline = new Timeline(
                                         new KeyFrame(Duration.millis(1300), TimeEvent -> {
                                             try {
-                                                new SceneSwitch("LogInScene.fxml", 800, 500, false, false);
+                                                new SceneSwitch("/ScenesLayout/LogInScene.fxml", 800, 500, false, false);
                                             } catch (IOException e) {
                                                 throw new RuntimeException(e);
                                             }

@@ -9,11 +9,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
@@ -30,7 +25,7 @@ public class SignInControllerEndToEndTest {
 
     @Start
     private void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/healthguardian/SignInScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/ScenesLayout/SignInScene.fxml"));
         stage.setScene(new Scene(root, 800, 500));
         stage.show();
     }

@@ -1,4 +1,4 @@
-package com.healthguardian;
+package Client;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,15 +11,15 @@ import java.io.IOException;
 
 import static java.lang.System.exit;
 
-public class WindowApplication extends Application {
+public class ClientWindow extends Application {
     public static Stage primaryStage;
 
     @Override
     public void start(Stage stage) throws IOException {
-        WindowApplication.primaryStage = stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(WindowApplication.class.getResource("LogInScene.fxml"));
+        ClientWindow.primaryStage = stage;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ScenesLayout/LogInScene.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 500); // Width and height
-        Image icon = new Image(String.valueOf(WindowApplication.class.getResource("/photos/iconImage.png")));
+        Image icon = new Image(String.valueOf(ClientWindow.class.getResource("/Images/iconImage.png")));
         stage.getIcons().add(icon);
         stage.setTitle("HealthGuardian");
         stage.setScene(scene);

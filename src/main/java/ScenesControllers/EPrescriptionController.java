@@ -41,7 +41,7 @@ public class EPrescriptionController implements Initializable {
 
     @FXML
     private void userPanelButtonClicked(ActionEvent event) throws IOException {
-        new SceneSwitch("ClientPanelScene.fxml");
+        new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml");
     }
 
 

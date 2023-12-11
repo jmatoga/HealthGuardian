@@ -95,12 +95,12 @@ public class ListOfClinicsController implements Initializable {
 
     @FXML
     private void userPanelButtonClicked(ActionEvent event) throws IOException {
-        new SceneSwitch("ClientPanelScene.fxml");
+        new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml");
     }
 
     @FXML
     public void testScheduleButtonClicked(ActionEvent actionEvent) throws IOException{
-         new SceneSwitch("ExaminationScheduleScene.fxml");
+         new SceneSwitch("/ScenesLayout/ExaminationScheduleScene.fxml");
     }
 
     @Override
@@ -121,7 +121,7 @@ public class ListOfClinicsController implements Initializable {
     private void getClilincsFromDB() throws IOException {
         message.sendGetClinicsMessage( SendToServer,"" + Client.clientId);
         String serverAnswer = ReadFromServer.readLine();
-        System.out.println("Server: " + serverAnswer);
+        System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
         String[] clinicsData = serverAnswer.substring(2, serverAnswer.length() - 2).split("], \\[");
 
         for (int i = 0; i < clinicsData.length; i++) {

@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
+import utils.Color;
 import utils.Message;
 
 import java.io.BufferedReader;
@@ -100,7 +101,7 @@ public class SettingsController implements Initializable {
 
     @FXML
     private void userPanelButtonClicked(ActionEvent event) throws IOException {
-        new SceneSwitch("ClientPanelScene.fxml");
+        new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml");
     }
 
     @FXML
@@ -115,7 +116,7 @@ public class SettingsController implements Initializable {
                     new KeyFrame(Duration.millis(1300), TimeEvent -> {
                         try {
                             settingsSavedStatusLabel.setText("");
-                            new SceneSwitch("ClientPanelScene.fxml");
+                            new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -131,7 +132,7 @@ public class SettingsController implements Initializable {
     private void getSettingsFromDB() throws IOException {
         message.sendGetSettingsMessage(SendToServer, Client.clientId + "," + Client.user_id);
         String serverAnswer = ReadFromServer.readLine();
-        System.out.println("Server: " + serverAnswer);
+        System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
         String[] settingsData = serverAnswer.substring(1, serverAnswer.length() - 1).split(", ");
 
         bmiSettingsCheckBox.setSelected(settingsData[0].equals("true"));
