@@ -1,6 +1,5 @@
 package Client;
 
-import com.healthguardian.WindowApplication;
 import utils.Color;
 
 import java.io.BufferedReader;
@@ -14,7 +13,7 @@ public class Client {
     public static int clientId=-1;
     public static BufferedReader ReadFromServer;
     public static PrintWriter SendToServer;
-    public static WindowApplication windowApplication = new WindowApplication();
+    public static ClientWindow windowApplication = new ClientWindow();
 
     public static void main(String[] args) {
         Thread clientThread = new Thread(() -> {

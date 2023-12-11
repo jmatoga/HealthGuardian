@@ -17,7 +17,7 @@
     <children>
         <ImageView blendMode="DIFFERENCE" fitHeight="1100.0" fitWidth="1930.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
-                <Image url="@../../photos/background_1.png" />
+                <Image url="@../Images/background_1.png" />
             </image>
         </ImageView>
         <VBox layoutX="171.0" layoutY="168.0" prefHeight="112.0" prefWidth="280.0">

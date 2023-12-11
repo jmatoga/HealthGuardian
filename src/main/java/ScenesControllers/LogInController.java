@@ -19,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
+import utils.Color;
 import utils.Message;
 
 import java.awt.*;
@@ -76,7 +77,7 @@ public class LogInController implements Initializable {
 
     @FXML
     private void SignInButtonClicked(ActionEvent event) throws IOException {
-        new SceneSwitch("SignInScene.fxml", 800, 500, false, false);
+        new SceneSwitch("/ScenesLayout/SignInScene.fxml", 800, 500, false, false);
     }
 
     private void checkWrittenText() throws IOException {
@@ -89,7 +90,7 @@ public class LogInController implements Initializable {
         else {
             message.sendLoginMessage(SendToServer, Client.clientId + "," + username.getText() + "," + password.getText());
             String serverAnswer = ReadFromServer.readLine();
-            System.out.println("Server: " + serverAnswer);
+            System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
 
             if (serverAnswer.startsWith("Logged successfully. Your user_id: ") && Integer.parseInt(serverAnswer.substring(35)) > 0) {
                 Client.user_id = Integer.parseInt(serverAnswer.substring(35));
@@ -102,7 +103,7 @@ public class LogInController implements Initializable {
                 Timeline timeline = new Timeline(
                         new KeyFrame(Duration.millis(500), event -> {
                             try {
-                                new SceneSwitch("ClientPanelScene.fxml", 1920, 1080, screenWidth, screenHeight, true, true,"HealthGuardian - clientID: " + Client.clientId + " ,user_id: " + Client.user_id);
+                                new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml", 1920, 1080, screenWidth, screenHeight, true, true,"HealthGuardian - clientID: " + Client.clientId + " ,user_id: " + Client.user_id);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }

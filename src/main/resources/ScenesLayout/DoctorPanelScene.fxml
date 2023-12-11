@@ -17,14 +17,14 @@
     <children>
         <ImageView blendMode="DIFFERENCE" fitHeight="1100.0" fitWidth="1930.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
-                <Image url="@../../photos/background_1.png" />
+                <Image url="@../Images/background_1.png" />
             </image>
         </ImageView>
         <Button fx:id="MessageButton" contentDisplay="GRAPHIC_ONLY" layoutX="1732.0" layoutY="308.0" mnemonicParsing="false" onAction="#messageButtonClicked" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00476e; -fx-border-width: 3; -fx-border-radius: 2; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" AnchorPane.leftAnchor="1700.0" AnchorPane.topAnchor="70.0">
             <graphic>
                 <ImageView fitHeight="60.0" fitWidth="60.0">
                     <image>
-                        <Image url="@../../photos/letter_icon.png" />
+                        <Image url="@../Images/letter_icon.png" />
                     </image>
                 </ImageView>
             </graphic>

@@ -18,10 +18,10 @@
     <children>
         <ImageView fitHeight="1110.0" fitWidth="1930.0" layoutX="8.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
-                <Image url="@../../photos/bg2.jpg" />
+                <Image url="@../Images/bg2.jpg" />
             </image>
         </ImageView>
-        <Button fx:id="userPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#userPanelButtonClicked" prefHeight="60.0" prefWidth="180.0" styleClass="darkblue-button" stylesheets="@../../Styles/buttonsStyle.css" text="USER PANEL" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="950.0">
+        <Button fx:id="userPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#userPanelButtonClicked" prefHeight="60.0" prefWidth="180.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="USER PANEL" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="950.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
@@ -85,7 +85,7 @@
                <children>
                   <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="9.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../photos/copy_icon_32x32.png" />
+                        <Image url="@../Images/copy_icon_32x32.png" />
                      </image></ImageView>
                </children>
             </Pane>
@@ -130,7 +130,7 @@
             </Label>
          </children>
       </VBox>
-      <Button fx:id="testScheduleButton" layoutX="1610.0" layoutY="492.0" mnemonicParsing="false" onAction="#testScheduleButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../../Styles/buttonsStyle.css" text="TEST SCHEDULE">
+      <Button fx:id="testScheduleButton" layoutX="1610.0" layoutY="492.0" mnemonicParsing="false" onAction="#testScheduleButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="TEST SCHEDULE">
          <font>
             <Font name="Consolas Bold" size="24.0" />
          </font>

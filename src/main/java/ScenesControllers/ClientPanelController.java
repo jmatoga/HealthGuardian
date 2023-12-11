@@ -19,6 +19,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import utils.Color;
 import utils.Message;
 
 import java.io.BufferedReader;
@@ -126,52 +127,52 @@ public class ClientPanelController implements Initializable {
 
     @FXML
     private void ePrescriptionButtonClicked(ActionEvent event) throws IOException {
-        new SceneSwitch("EPrescriptionScene.fxml");
+        new SceneSwitch("/ScenesLayout/EPrescriptionScene.fxml");
     }
 
     @FXML
     private void eReferralButtonClicked(ActionEvent event) throws IOException {
-        new SceneSwitch("EReferralScene.fxml");
+        new SceneSwitch("/ScenesLayout/EReferralScene.fxml");
     }
 
     @FXML
     private void testScheduleButtonClicked(ActionEvent event) throws IOException {
-        new SceneSwitch("ExaminationScheduleScene.fxml");
+        new SceneSwitch("/ScenesLayout/ExaminationScheduleScene.fxml");
     }
 
     @FXML
     private void findingsButtonClicked(ActionEvent event) throws IOException {
-        new SceneSwitch("FindingsScene.fxml");
+        new SceneSwitch("/ScenesLayout/FindingsScene.fxml");
     }
 
     @FXML
     private void eContactWithADoctorButtonClicked(ActionEvent event) throws  IOException{
-        new SceneSwitch("EContactScene.fxml");
+        new SceneSwitch("/ScenesLayout/EContactScene.fxml");
     }
 
     @FXML
     private void listOfClinicsButtonClicked(ActionEvent event) throws  IOException{
-        new SceneSwitch("listOfClinicsScene.fxml");
+        new SceneSwitch("/ScenesLayout/listOfClinicsScene.fxml");
     }
 
     @FXML
     private void messageButtonClicked(ActionEvent event) throws  IOException{
-        new SceneSwitch("MessagesScene.fxml");
+        new SceneSwitch("/ScenesLayout/MessagesScene.fxml");
     }
 
     @FXML
     private void pressurePanelButtonClicked(ActionEvent event) throws  IOException{
-        new SceneSwitch("PressurePanelScene.fxml");
+        new SceneSwitch("/ScenesLayout/PressurePanelScene.fxml");
     }
 
     @FXML
     private void medicalHistoryButtonClicked(ActionEvent event) throws  IOException{
-        new SceneSwitch("MedicalHistoryScene.fxml");
+        new SceneSwitch("/ScenesLayout/MedicalHistoryScene.fxml");
     }
 
     @FXML
     private void settingsButtonClicked(ActionEvent event) throws  IOException{
-        new SceneSwitch("SettingsScene.fxml");
+        new SceneSwitch("/ScenesLayout/SettingsScene.fxml");
     }
 
     @FXML
@@ -192,7 +193,7 @@ public class ClientPanelController implements Initializable {
 
                 try {
                     String serverAnswer = ReadFromServer.readLine();
-                    System.out.println("Server: " + serverAnswer);
+                    System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
                     if (serverAnswer.equals("Updated user basic data correctly.")) {
                         getUserDataFromDB();
                         dataUpdatedStatusLabel.setText("Data updated correctly!");
@@ -240,18 +241,18 @@ public class ClientPanelController implements Initializable {
 
     @FXML
     private void SMIButtonClicked(ActionEvent event) throws  IOException{
-        new SceneSwitch("ShortMedicalInterviewScene.fxml");
+        new SceneSwitch("/ScenesLayout/ShortMedicalInterviewScene.fxml");
     }
 
     @FXML
     private void LogOutButtonClicked(ActionEvent event) throws  IOException{
-        new SceneSwitch("LogInScene.fxml", 820, 500, 800, 500, false, false, "HealthGuardian");
+        new SceneSwitch("/ScenesLayout/LogInScene.fxml", 820, 500, 800, 500, false, false, "HealthGuardian");
     }
 
     void getUserDataFromDB() throws IOException {
         message.sendGetNameMessage(SendToServer,Client.clientId  + "," + Client.user_id);
         String serverAnswer = ReadFromServer.readLine();
-        System.out.println("Server: " + serverAnswer);
+        System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
 
         String[] userData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
 
@@ -285,7 +286,7 @@ public class ClientPanelController implements Initializable {
                     if(userData[2].equals("No data")) {
                         try {
                             String serverAnswer1 = ReadFromServer.readLine();
-                            System.out.println("Server: " + serverAnswer1);
+                            System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer1);
 
                             getUserDataFromDB();
 
@@ -329,7 +330,7 @@ public class ClientPanelController implements Initializable {
     private void getSettingsFromDB() throws IOException {
         message.sendGetSettingsMessage(SendToServer,Client.clientId  + "," + Client.user_id);
         String serverAnswer = ReadFromServer.readLine();
-        System.out.println("Server: " + serverAnswer);
+        System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
         String[] settingsData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
 
         if(settingsData[0].equals("false")) {
