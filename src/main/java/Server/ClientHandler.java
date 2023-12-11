@@ -32,8 +32,14 @@ class ClientHandler implements Callable<String> {
             while (true) {
                 String serverMessage = ReadFromClient.readLine();
 
-                if (serverMessage != null)
-                    System.out.println("\nClient " + Color.ColorString("" + clientId, Color.ANSI_BLACK_BACKGROUND) + ": " + serverMessage.substring(0, serverMessage.indexOf(":")));
+                if (serverMessage != null) {
+                    if(serverMessage.toLowerCase().contains("error"))
+                        System.out.println("\nClient " + Color.ColorString("" + clientId, Color.ANSI_BLACK_BACKGROUND) + ": " + Color.ColorString(serverMessage.substring(0, serverMessage.indexOf(":")) + ": Error inside!", Color.ANSI_RED));
+                    else if(serverMessage.toLowerCase().contains("no data") || serverMessage.toLowerCase().contains("nodata"))
+                        System.out.println("\nClient " + Color.ColorString("" + clientId, Color.ANSI_BLACK_BACKGROUND) + ": " + Color.ColorString(serverMessage.substring(0, serverMessage.indexOf(":")) + ": No data inside!", Color.ANSI_YELLOW));
+                    else
+                        System.out.println("\nClient " + Color.ColorString("" + clientId, Color.ANSI_BLACK_BACKGROUND) + ": " + serverMessage.substring(0, serverMessage.indexOf(":")));
+                }
                 else
                     System.out.println(Color.ColorString("ERROR! Something went wrong! Server send null message.", Color.ANSI_RED));
 
