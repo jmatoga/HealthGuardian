@@ -115,7 +115,7 @@ public class ListOfClinicsController implements Initializable {
         }
 
         WebEngine webEngine = mapWebView.getEngine();
-        webEngine.load("https://www.google.com/maps/d/embed?mid=1HLLCItcY4KPaE8gYwBNYODyiSOAXCX8&hl=pl&ehbc=2E312F");
+        webEngine.load("https://www.google.com/maps/d/u/2/edit?mid=1ylOsb6r5D450-AW_eOlIq_Rfl3p9fA4&usp=sharing");
     }
 
     private void getClilincsFromDB() throws IOException {
