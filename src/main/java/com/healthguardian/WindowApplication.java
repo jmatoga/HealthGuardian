@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import utils.Color;
 
 import java.io.IOException;
 
@@ -28,6 +29,7 @@ public class WindowApplication extends Application {
 
     public void startWindow() {
         launch();
+        System.out.println(Color.ColorString("Disconnected from server.",Color.ANSI_PURPLE));
         exit(0);
     }
 }
