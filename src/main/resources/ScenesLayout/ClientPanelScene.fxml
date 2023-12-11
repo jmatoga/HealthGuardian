@@ -450,14 +450,14 @@
          </opaqueInsets>
       </Button>
 
-      <Label fx:id="bmiLabel" layoutX="565.0" layoutY="412.0" prefHeight="35.0" prefWidth="53.0" text="BMI: " textFill="WHITE" visible="false">
+      <Label fx:id="bmiLabel" layoutX="565.0" layoutY="412.0" prefHeight="35.0" prefWidth="60.0" text="BMI: " textFill="WHITE" visible="false">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="Consolas Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="bmiStatusLabel" layoutX="632.0" layoutY="412.0" prefHeight="35.0" prefWidth="53.0" textFill="WHITE" visible="false">
+      <Label fx:id="bmiStatusLabel" layoutX="616.0" layoutY="412.0" prefHeight="35.0" prefWidth="60.0" textFill="WHITE" visible="false">
          <font>
-            <Font name="Consolas Bold" size="18.0" />
+            <Font name="Consolas Bold" size="20.0" />
          </font>
       </Label>
 
