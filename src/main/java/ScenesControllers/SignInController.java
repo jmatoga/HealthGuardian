@@ -101,10 +101,8 @@ public class SignInController implements Initializable {
         if(checkWrittenText()) {
             message.checkIfUserExists(SendToServer, Client.clientId + "," + username.getText());
 
-            String serverAnswer = Client.rreader(ReadFromServer);
-            Platform.runLater(() -> {
-                System.out.println(serverAnswer);
-            });
+            String serverAnswer = ReadFromServer.readLine();
+            System.out.println("Server: " + serverAnswer);
 
             if (serverAnswer.startsWith("EXISTING RESULT:") && serverAnswer.substring(16).equals("false")) {
                 TextField inputField = new TextField();
@@ -121,8 +119,8 @@ public class SignInController implements Initializable {
                         String serverAnswer1;
 
                         try {
-                            serverAnswer1 = Client.rreader(ReadFromServer);
-                            System.out.println(serverAnswer1);
+                            serverAnswer1 = ReadFromServer.readLine();
+                            System.out.println("Server: " + serverAnswer1);
 
                             if (serverAnswer1.startsWith("CODE RESULT:") && serverAnswer1.substring(12).equals("true")) {
                                 signInStatus.setTextFill(Paint.valueOf("0x2aff00")); // green color

@@ -88,7 +88,8 @@ public class LogInController implements Initializable {
             loggingStatus.setText("Username can't be empty!");
         else {
             message.sendLoginMessage(SendToServer, Client.clientId + "," + username.getText() + "," + password.getText());
-            String serverAnswer = Client.rreader(ReadFromServer);
+            String serverAnswer = ReadFromServer.readLine();
+            System.out.println("Server: " + serverAnswer);
 
             if (serverAnswer.startsWith("Logged successfully. Your user_id: ") && Integer.parseInt(serverAnswer.substring(35)) > 0) {
                 Client.user_id = Integer.parseInt(serverAnswer.substring(35));
@@ -97,7 +98,6 @@ public class LogInController implements Initializable {
                 username.setText("");
                 password.setText("");
                 logInButton.requestFocus();
-                System.out.println(serverAnswer);
 
                 Timeline timeline = new Timeline(
                         new KeyFrame(Duration.millis(500), event -> {

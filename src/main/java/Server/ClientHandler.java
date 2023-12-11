@@ -32,9 +32,10 @@ class ClientHandler implements Callable<String> {
             while (true) {
                 String serverMessage = ReadFromClient.readLine();
 
-                if (serverMessage != null) {
-                    System.out.println("\nServer: Received message from client: " + serverMessage);
-                }
+                if (serverMessage != null)
+                    System.out.println("\nClient " + Color.ColorString("" + clientId, Color.ANSI_BLACK_BACKGROUND) + ": " + serverMessage.substring(0, serverMessage.indexOf(":")));
+                else
+                    System.out.println(Color.ColorString("ERROR! Something went wrong! Server send null message.", Color.ANSI_RED));
 
                 if (serverMessage.startsWith("PRINT:")) {
                     // Print the message, excluding the "PRINT:" prefix
@@ -57,11 +58,9 @@ class ClientHandler implements Callable<String> {
                     String[] loginResult = sqlEngine.loginToAccount(Integer.parseInt(clientId),username, password);
 
                     if(Boolean.parseBoolean(loginResult[0])) {
-                        SendToClient.println(""); // This is message to the client reader
-                        SendToClient.println("Logged successfully. Your user_id: " + loginResult[1]); // This is message to the LogInController
+                        SendToClient.println("Logged successfully. Your user_id: " + loginResult[1]);
                     } else {
-                        SendToClient.println(""); // This is message to the client reader
-                        SendToClient.println("Wrong password."); // This is message to the LogInController
+                        SendToClient.println("Wrong password.");
                     }
                 } else if (serverMessage.startsWith("GET_USER_DATA:")) {
                     String[] resources = serverMessage.substring(14).split(",");
@@ -69,15 +68,13 @@ class ClientHandler implements Callable<String> {
                     String userId = resources[1];
 
                     String[] dataResult = sqlEngine.getData(Integer.parseInt(clientId), userId);
-                    SendToClient.println(""); // This is message to the client reader
-                    SendToClient.println(Arrays.toString(dataResult)); // This is message to the LogInController
+                    SendToClient.println(Arrays.toString(dataResult));
 
                 } else if (serverMessage.startsWith("GET_CLINICS:")) {
                     String clientId = serverMessage.substring(12);
 
                     String[][] dataResult = sqlEngine.getClinics(Integer.parseInt(clientId));
-                    SendToClient.println(""); // This is message to the client reader
-                    SendToClient.println(Arrays.deepToString(dataResult)); // This is message to the LogInController
+                    SendToClient.println(Arrays.deepToString(dataResult));
 
                 } else if (serverMessage.startsWith("GET_SETTINGS:")) {
                     String[] resources = serverMessage.substring(13).split(",");
@@ -85,8 +82,7 @@ class ClientHandler implements Callable<String> {
                     String userId = resources[1];
 
                     String[] settingsResult = sqlEngine.getSettings(Integer.parseInt(clientId), userId);
-                    SendToClient.println(""); // This is message to the client reader
-                    SendToClient.println(Arrays.toString(settingsResult)); // This is message to the LogInController
+                    SendToClient.println(Arrays.toString(settingsResult));
 
                 } else if (serverMessage.startsWith("SET_SETTINGS:")) {
                     String[] resources = serverMessage.substring(13).split(",");
@@ -99,8 +95,7 @@ class ClientHandler implements Callable<String> {
                     String setting5 = resources[6];
 
                     String settingsChangedResult = sqlEngine.setSettings(Integer.parseInt(clientId), userId, bmiSetting, ageSetting, dateSetting, setting4, setting5);
-                    SendToClient.println(""); // This is message to the client reader
-                    SendToClient.println(settingsChangedResult); // This is message to the LogInController
+                    SendToClient.println(settingsChangedResult);
 
                 } else if (serverMessage.startsWith("CHECK_IF_USER_EXISTS:")) {
                     String[] resources = serverMessage.substring(21).split(",");
@@ -108,8 +103,7 @@ class ClientHandler implements Callable<String> {
                     String username = resources[1];
 
                     boolean existingResult = sqlEngine.checkIfUserExists(Integer.parseInt(clientId), username);
-                    SendToClient.println(""); // This is message to the client reader
-                    SendToClient.println("EXISTING RESULT:" + existingResult); // This is message to the LogInController
+                    SendToClient.println("EXISTING RESULT:" + existingResult);
 
                 } else if (serverMessage.startsWith("CHECK_ONE_TIME_CODE:")) {
                     String[] resources = serverMessage.substring(20).split(",");
@@ -124,8 +118,8 @@ class ClientHandler implements Callable<String> {
                     String password = resources[8];
 
                     String codeResult = sqlEngine.checkOneTimeCode(Integer.parseInt(clientId), oneTimeCode, firstname, lastname, email, phoneNumber, pesel, username, password);
-                    SendToClient.println(""); // This is message to the client reader
-                    SendToClient.println("CODE RESULT:" + codeResult); // This is message to the LogInController
+                    SendToClient.println("CODE RESULT:" + codeResult);
+
                 } else if (serverMessage.startsWith("UPDATE_USER_BASIC_DATA:")) {
                     String[] resources = serverMessage.substring(23).split(",");
                     String clientId = resources[0];
@@ -139,8 +133,7 @@ class ClientHandler implements Callable<String> {
                     String userId = resources[8];
 
                     String updateResult = sqlEngine.updateUserBasicData(Integer.parseInt(clientId), birthdayDate, weight, height, temperature, systolic_pressure, diastolic_pressure, entryDate, userId);
-                    SendToClient.println(""); // This is message to the client reader
-                    SendToClient.println(updateResult); // This is message to the LogInController
+                    SendToClient.println(updateResult);
                 }
             }
         } catch (IOException e) {

@@ -103,7 +103,7 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <Label fx:id="presureLabel" prefHeight="27.0" prefWidth="287.0" text="pressure:" textFill="WHITE">
+            <Label fx:id="pressureLabel" prefHeight="27.0" prefWidth="287.0" text="pressure:" textFill="WHITE">
                <font>
                   <Font name="Consolas Bold" size="20.0" />
                </font>
@@ -238,7 +238,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="presurePanelButton" layoutX="1620.0" layoutY="645.0" mnemonicParsing="false" onAction="#presurePanelButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightblue-button" stylesheets="@../../Styles/buttonsStyle.css" text="PRESSURE PANEL" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="700.0">
+      <Button fx:id="pressurePanelButton" layoutX="1620.0" layoutY="645.0" mnemonicParsing="false" onAction="#pressurePanelButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightblue-button" stylesheets="@../../Styles/buttonsStyle.css" text="PRESSURE PANEL" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="700.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -445,6 +445,10 @@
                </stops>
             </RadialGradient>
          </textFill>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
 
       <Label fx:id="bmiLabel" layoutX="565.0" layoutY="412.0" prefHeight="35.0" prefWidth="53.0" text="BMI: " textFill="WHITE" visible="false">
          <font>
@@ -452,13 +456,10 @@
          </font>
       </Label>
       <Label fx:id="bmiStatusLabel" layoutX="632.0" layoutY="412.0" prefHeight="35.0" prefWidth="53.0" textFill="WHITE" visible="false">
-
          <font>
             <Font name="Consolas Bold" size="18.0" />
          </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Button>
+      </Label>
+
    </children>
 </AnchorPane>

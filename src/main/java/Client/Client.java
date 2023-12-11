@@ -15,34 +15,7 @@ public class Client {
     public static int clientId=-1;
     public static BufferedReader ReadFromServer;
     public static PrintWriter SendToServer;
-    private static final Lock lock = new ReentrantLock();
 
-    public static void reader(BufferedReader ReadFromServer) {
-        try {
-            while (true) {
-                //String serverMessage = ReadFromServer.readLine();
-                String serverMessage = rreader(ReadFromServer);
-                if (serverMessage != null)
-                    System.out.println("Client: Received message from server: " + serverMessage);
-                else
-                    throw new RuntimeException("Something went wrong! Server sent a null message.");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (RuntimeException e) {
-            System.err.println(e.getMessage());
-            System.exit(10);
-        }
-    }
-
-    public static synchronized String rreader(BufferedReader ReadFromServer) throws IOException {
-        try {
-            lock.lock();
-            return ReadFromServer.readLine();
-        } finally {
-            lock.unlock();
-        }
-    }
     public static void main(String[] args) {
         String serverAddress = "localhost";
         int serverPort = 12345;
@@ -57,7 +30,15 @@ public class Client {
             clientId = Integer.parseInt(ReadFromServer.readLine());
             System.out.println(Color.ColorString("ClientID: ", Color.ANSI_CYAN) + Color.ColorString("" + clientId, Color.ANSI_BLACK_BACKGROUND) + "\n");
 
-            reader(ReadFromServer);
+            try {
+                while (true) {
+                    if (ReadFromServer.ready())
+                        throw new RuntimeException("Something went wrong! Server is not ready to read.");
+                }
+            } catch (RuntimeException e) {
+                System.err.println(e.getMessage());
+                System.exit(10);
+            }
 
         }  catch (java.net.ConnectException e) {
             System.out.println(Color.ColorString("ERROR! Server is not started!", Color.ANSI_RED));
