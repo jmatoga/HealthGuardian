@@ -32,7 +32,6 @@ class ClientHandler implements Callable<String> {
             while (true) {
                 String serverMessage = ReadFromClient.readLine();
 
-
                 if (serverMessage != null) {
                     if(serverMessage.toLowerCase().contains("error"))
                         System.out.println("\nClient " + Color.ColorString("" + clientId, Color.ANSI_BLACK_BACKGROUND) + ": " + Color.ColorString(serverMessage.substring(0, serverMessage.indexOf(":")) + ": Error inside!", Color.ANSI_RED));
