@@ -24,18 +24,18 @@ The workspace contains two folders by default, where:
 
 *  `Resources`: the folder to maintain layout and view of application
 
-   - `com.healthguardian`: the folder to maintain layout of scenes in fxml type
+   - `ScenesLayout`: the folder to maintain layout of scenes in fxml type
 
-   - `photos`: the folder to maintain photos/backgrounds
+   - `Images`: the folder to maintain photos/backgrounds
 
 Meanwhile, the compiled output files will be generated in the `bin` folder by default.
 
 ## Starting Server
-Firstly you have to run a server app.
+Firstly you have to run a `Server` class.
  
 ## Starting Client
 Client will only work if server is started.
-To start client you have to run `start` class
+To start client you have to run `Client` class
 
 ## Dependency Management
 
