@@ -17,7 +17,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="listOfClinicsScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.PressurePanelController">
+<AnchorPane fx:id="presurePanelScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.PressurePanelController">
     <children>
         <ImageView fitHeight="1110.0" fitWidth="1930.0" layoutX="8.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
@@ -69,13 +69,22 @@
                 </RadialGradient>
             </textFill>
         </Label>
-      <VBox layoutX="650.0" layoutY="189.0" prefHeight="400.0" prefWidth="600.0">
+      <VBox layoutX="650.0" layoutY="189.0" prefHeight="500.0" prefWidth="600.0">
          <children>
             <Pane fx:id="pressureLabel1" prefHeight="80.0" prefWidth="600.0">
                <children>
                   <Label alignment="CENTER" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
                      <font>
                         <Font name="Consolas Bold" size="60.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane prefHeight="20.0" prefWidth="600.0">
+               <children>
+                  <Label layoutX="242.0" prefHeight="23.0" prefWidth="358.0" text="date" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Italic" size="20.0" />
                      </font>
                   </Label>
                </children>
@@ -89,11 +98,29 @@
                   </Label>
                </children>
             </Pane>
+            <Pane prefHeight="20.0" prefWidth="600.0">
+               <children>
+                  <Label layoutX="242.0" prefHeight="23.0" prefWidth="358.0" text="date" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Italic" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
             <Pane fx:id="pressureLabel3" prefHeight="80.0" prefWidth="600.0">
                <children>
                   <Label alignment="CENTER" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
                      <font>
                         <Font name="Consolas Bold" size="60.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane prefHeight="20.0" prefWidth="600.0">
+               <children>
+                  <Label layoutX="242.0" prefHeight="23.0" prefWidth="358.0" text="date" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Italic" size="20.0" />
                      </font>
                   </Label>
                </children>
@@ -107,6 +134,15 @@
                   </Label>
                </children>
             </Pane>
+            <Pane prefHeight="20.0" prefWidth="600.0">
+               <children>
+                  <Label layoutX="242.0" prefHeight="23.0" prefWidth="358.0" text="date" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Italic" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
             <Pane fx:id="pressureLabel5" prefHeight="80.0" prefWidth="600.0">
                <children>
                   <Label alignment="CENTER" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
@@ -116,9 +152,18 @@
                   </Label>
                </children>
             </Pane>
+            <Pane prefHeight="20.0" prefWidth="600.0">
+               <children>
+                  <Label layoutX="242.0" prefHeight="23.0" prefWidth="358.0" text="date" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Italic" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </VBox>
-      <LineChart layoutX="441.0" layoutY="628.0" prefHeight="400.0" prefWidth="1019.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+      <LineChart layoutX="461.0" layoutY="700.0" prefHeight="350.0" prefWidth="1000.0" style="-fx-background-color: white; -fx-background-radius: 10;">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
