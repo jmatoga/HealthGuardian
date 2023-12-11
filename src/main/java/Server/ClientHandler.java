@@ -143,7 +143,7 @@ class ClientHandler implements Callable<String> {
                 }
             }
         } catch (IOException e) {
-            System.out.println("\nClient with id: " + Color.ColorString("" + clientId, Color.ANSI_BLACK_BACKGROUND) + " disconnected.");
+            System.out.println(Color.ColorString("\nClient with id: ", Color.ANSI_PURPLE) + Color.ColorString("" + clientId, Color.ANSI_BLACK_BACKGROUND) + Color.ColorString(" disconnected.", Color.ANSI_PURPLE));
         }
         return "Error with ClientHandler!";
     }

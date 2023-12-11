@@ -48,7 +48,7 @@ public class Server {
         try {
             // Create DB engine
             sqlEngine = new SQLEngine(DBhost, DBPort, DBName, DBusername, DBpassword);
-            System.out.println(Color.ColorString("DB engine created", Color.ANSI_GREEN));
+            System.out.println(Color.ColorString("DB engine created correctly.", Color.ANSI_GREEN));
         } catch (Exception e) {
             System.out.println(Color.ColorString(e.getMessage(), Color.ANSI_RED));
             e.printStackTrace();
@@ -58,7 +58,7 @@ public class Server {
         // Listen for client connections
         while (true) {
             Socket clientSocket = serverSocket.accept(); // Accept new connection from Client
-            System.out.println("\nNew client connected with id: " + Color.ColorString("" + ++clientId, Color.ANSI_BLACK_BACKGROUND));
+            System.out.println(Color.ColorString("\nNew client connected with id: ", Color.ANSI_YELLOW) + Color.ColorString("" + ++clientId, Color.ANSI_BLACK_BACKGROUND));
             //System.out.println("\nNew client connected with id: " + clientSocket.getInetAddress().getHostAddress());
 
             // Submit new task to thread pool
