@@ -402,15 +402,17 @@ public class ClientPanelController implements Initializable {
         grid.add(new Label("cm"), 2, 2);
 
         grid.add(new Label("Temperature:"), 0, 3);
+
         if(temperatureLabel.getText().substring(12).isEmpty())
             inputFieldTemperature.setPromptText("36.6");
         else
             inputFieldTemperature.setPromptText(temperatureLabel.getText().substring(13));
+
         grid.add(inputFieldTemperature, 1, 3);
         grid.add(new Label("°C"), 2, 3);
 
         grid.add(new Label("Pressure:"), 0, 4);
-        if(pressureLabel.getText().substring(14).isEmpty()) {
+        if(pressureLabel.getText().substring(9).isEmpty()) {
             inputFieldPressure1.setPromptText("120");
             inputFieldPressure2.setPromptText("80");
         } else {
