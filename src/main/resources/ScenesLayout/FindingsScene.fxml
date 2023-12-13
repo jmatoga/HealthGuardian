@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="findingsScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.FindingsController">
+<AnchorPane fx:id="findingsScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.FindingsController">
 
 
 
@@ -100,154 +100,118 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Pane prefHeight="200.0" prefWidth="265.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                     <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
+                                        <VBox prefHeight="200.0" prefWidth="265.0">
+                                            <children>
+                                                <Label fx:id="findingName1" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_1" textAlignment="CENTER" wrapText="true">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="20.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="40.0" prefWidth="265.0" />
+                                                <Label fx:id="findingDate1" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
+                                                    <font>
+                                                        <Font name="Consolas" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
                                     </children>
                                 </Pane>
                                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                     <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
+                                        <VBox prefHeight="200.0" prefWidth="265.0">
+                                            <children>
+                                                <Label fx:id="findingName2" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_2" textAlignment="CENTER" wrapText="true">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="20.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="40.0" prefWidth="265.0" />
+                                                <Label fx:id="findingDate2" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
+                                                    <font>
+                                                        <Font name="Consolas" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
                                     </children>
                                 </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                <Pane prefHeight="200.0" prefWidth="265.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
                                     <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
+                                        <VBox prefHeight="200.0" prefWidth="265.0">
+                                            <children>
+                                                <Label fx:id="findingName3" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_3" textAlignment="CENTER" wrapText="true">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="20.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="40.0" prefWidth="265.0" />
+                                                <Label fx:id="findingDate3" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
+                                                    <font>
+                                                        <Font name="Consolas" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
                                     </children>
                                 </Pane>
                                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
                                     <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
+                                        <VBox prefHeight="200.0" prefWidth="265.0">
+                                            <children>
+                                                <Label fx:id="findingName4" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_4" textAlignment="CENTER" wrapText="true">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="20.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="40.0" prefWidth="265.0" />
+                                                <Label fx:id="findingDate4" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
+                                                    <font>
+                                                        <Font name="Consolas" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
                                     </children>
                                 </Pane>
                                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
+                                        <VBox prefHeight="200.0" prefWidth="265.0">
+                                            <children>
+                                                <Label fx:id="findingName5" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_5" textAlignment="CENTER" wrapText="true">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="20.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="40.0" prefWidth="265.0" />
+                                                <Label fx:id="findingDate5" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
+                                                    <font>
+                                                        <Font name="Consolas" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
                                     </children>
                                 </Pane>
                                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                     <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="5">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="6">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="7">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="8">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="9">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="9">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
+                                        <VBox prefHeight="200.0" prefWidth="265.0">
+                                            <children>
+                                                <Label fx:id="findingName6" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_6" textAlignment="CENTER" wrapText="true">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="20.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="40.0" prefWidth="265.0" />
+                                                <Label fx:id="findingDate6" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
+                                                    <font>
+                                                        <Font name="Consolas" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
                                     </children>
                                 </Pane>
                             </children>

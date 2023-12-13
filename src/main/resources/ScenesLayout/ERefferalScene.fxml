@@ -17,6 +17,7 @@
 <?import javafx.scene.text.Font?>
 
 
+<?import javafx.scene.layout.VBox?>
 <AnchorPane fx:id="eRefferalScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.ERefferalController">
 
 
@@ -100,154 +101,220 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Pane prefHeight="200.0" prefWidth="265.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                     <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
+                                        <VBox prefHeight="200.0" prefWidth="265.0">
+                                            <children>
+                                                <Label fx:id="refferalName1" alignment="CENTER" prefHeight="50.0" prefWidth="265.0" text="refferal_name_1" textAlignment="CENTER" wrapText="true">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="20.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="refferalCode1" prefHeight="14.0" prefWidth="265.0" text="refferal code">
+                                                    <font>
+                                                        <Font name="Consolas" size="12.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="10.0" prefWidth="265.0" />
+                                                <Label fx:id="barcode1" prefHeight="12.0" prefWidth="265.0" text="barcode">
+                                                    <font>
+                                                        <Font name="Consolas" size="10.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="20.0" prefWidth="265.0" />
+                                                <Label fx:id="dateOfIssue1" prefHeight="20.0" prefWidth="264.0" text="DATE OF ISSUE:">
+                                                    <font>
+                                                        <Font name="Consolas" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="20.0" prefWidth="265.0" />
+                                                <Label fx:id="doctorName1" prefHeight="26.0" prefWidth="265.0" text="Doctor name">
+                                                    <font>
+                                                        <Font name="Consolas Italic" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
                                     </children>
                                 </Pane>
                                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                     <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
+                                        <VBox prefHeight="200.0" prefWidth="265.0">
+                                            <children>
+                                                <Label fx:id="refferalName2" alignment="CENTER" prefHeight="50.0" prefWidth="265.0" text="refferal_name_2" textAlignment="CENTER" wrapText="true">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="20.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="refferalCode2" prefHeight="14.0" prefWidth="265.0" text="refferal code">
+                                                    <font>
+                                                        <Font name="Consolas" size="12.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="10.0" prefWidth="265.0" />
+                                                <Label fx:id="barcode2" prefHeight="12.0" prefWidth="265.0" text="barcode">
+                                                    <font>
+                                                        <Font name="Consolas" size="10.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="20.0" prefWidth="265.0" />
+                                                <Label fx:id="dateOfIssue2" prefHeight="20.0" prefWidth="264.0" text="DATE OF ISSUE:">
+                                                    <font>
+                                                        <Font name="Consolas" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="20.0" prefWidth="265.0" />
+                                                <Label fx:id="doctorName2" prefHeight="26.0" prefWidth="265.0" text="Doctor name">
+                                                    <font>
+                                                        <Font name="Consolas Italic" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
                                     </children>
                                 </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                <Pane prefHeight="200.0" prefWidth="265.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
                                     <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
+                                        <VBox prefHeight="200.0" prefWidth="265.0">
+                                            <children>
+                                                <Label fx:id="refferalName3" alignment="CENTER" prefHeight="50.0" prefWidth="265.0" text="refferal_name_3" textAlignment="CENTER" wrapText="true">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="20.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="refferalCode3" prefHeight="14.0" prefWidth="265.0" text="refferal code">
+                                                    <font>
+                                                        <Font name="Consolas" size="12.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="10.0" prefWidth="265.0" />
+                                                <Label fx:id="barcode3" prefHeight="12.0" prefWidth="265.0" text="barcode">
+                                                    <font>
+                                                        <Font name="Consolas" size="10.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="20.0" prefWidth="265.0" />
+                                                <Label fx:id="dateOfIssue3" prefHeight="20.0" prefWidth="264.0" text="DATE OF ISSUE:">
+                                                    <font>
+                                                        <Font name="Consolas" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="20.0" prefWidth="265.0" />
+                                                <Label fx:id="doctorName3" prefHeight="26.0" prefWidth="265.0" text="Doctor name">
+                                                    <font>
+                                                        <Font name="Consolas Italic" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
                                     </children>
                                 </Pane>
                                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
                                     <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
+                                        <VBox prefHeight="200.0" prefWidth="265.0">
+                                            <children>
+                                                <Label fx:id="refferalName4" alignment="CENTER" prefHeight="50.0" prefWidth="265.0" text="refferal_name_4" textAlignment="CENTER" wrapText="true">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="20.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="refferalCode4" prefHeight="14.0" prefWidth="265.0" text="refferal code">
+                                                    <font>
+                                                        <Font name="Consolas" size="12.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="10.0" prefWidth="265.0" />
+                                                <Label fx:id="barcode4" prefHeight="12.0" prefWidth="265.0" text="barcode">
+                                                    <font>
+                                                        <Font name="Consolas" size="10.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="20.0" prefWidth="265.0" />
+                                                <Label fx:id="dateOfIssue4" prefHeight="20.0" prefWidth="264.0" text="DATE OF ISSUE:">
+                                                    <font>
+                                                        <Font name="Consolas" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="20.0" prefWidth="265.0" />
+                                                <Label fx:id="doctorName4" prefHeight="26.0" prefWidth="265.0" text="Doctor name">
+                                                    <font>
+                                                        <Font name="Consolas Italic" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
                                     </children>
                                 </Pane>
                                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
+                                        <VBox prefHeight="200.0" prefWidth="265.0">
+                                            <children>
+                                                <Label fx:id="refferalName5" alignment="CENTER" prefHeight="50.0" prefWidth="265.0" text="refferal_name_5" textAlignment="CENTER" wrapText="true">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="20.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="refferalCode5" prefHeight="14.0" prefWidth="265.0" text="refferal code">
+                                                    <font>
+                                                        <Font name="Consolas" size="12.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="10.0" prefWidth="265.0" />
+                                                <Label fx:id="barcode5" prefHeight="12.0" prefWidth="265.0" text="barcode">
+                                                    <font>
+                                                        <Font name="Consolas" size="10.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="20.0" prefWidth="265.0" />
+                                                <Label fx:id="dateOfIssue5" prefHeight="20.0" prefWidth="264.0" text="DATE OF ISSUE:">
+                                                    <font>
+                                                        <Font name="Consolas" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="20.0" prefWidth="265.0" />
+                                                <Label fx:id="doctorName5" prefHeight="26.0" prefWidth="265.0" text="Doctor name">
+                                                    <font>
+                                                        <Font name="Consolas Italic" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
                                     </children>
                                 </Pane>
                                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                     <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="5">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="6">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="7">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="8">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="9">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="9">
-                                    <children>
-                                        <ImageView fitHeight="200.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" />
+                                        <VBox prefHeight="200.0" prefWidth="265.0">
+                                            <children>
+                                                <Label fx:id="refferalName6" alignment="CENTER" prefHeight="50.0" prefWidth="265.0" text="refferal_name_6" textAlignment="CENTER" wrapText="true">
+                                                    <font>
+                                                        <Font name="Consolas Bold" size="20.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="refferalCode6" prefHeight="14.0" prefWidth="265.0" text="refferal code">
+                                                    <font>
+                                                        <Font name="Consolas" size="12.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="10.0" prefWidth="265.0" />
+                                                <Label fx:id="barcode6" prefHeight="12.0" prefWidth="265.0" text="barcode">
+                                                    <font>
+                                                        <Font name="Consolas" size="10.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="20.0" prefWidth="265.0" />
+                                                <Label fx:id="dateOfIssue6" prefHeight="20.0" prefWidth="264.0" text="DATE OF ISSUE:">
+                                                    <font>
+                                                        <Font name="Consolas" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane prefHeight="20.0" prefWidth="265.0" />
+                                                <Label fx:id="doctorName6" prefHeight="26.0" prefWidth="265.0" text="Doctor name">
+                                                    <font>
+                                                        <Font name="Consolas Italic" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
                                     </children>
                                 </Pane>
                             </children>
