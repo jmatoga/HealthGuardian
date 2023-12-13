@@ -22,7 +22,9 @@ The workspace contains two folders by default, where:
 
    -  `ScenesControllers`: the folder to maintain scenes dependencies
 
-*  `Resources`: the folder to maintain layout and view of application
+   - `utils` the folder to maintain utils classes
+
+*  `resources`: the folder to maintain layout and view of application
 
    - `ScenesLayout`: the folder to maintain layout of scenes in fxml type
 
