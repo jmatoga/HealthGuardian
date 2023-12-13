@@ -28,6 +28,8 @@ The workspace contains two folders by default, where:
 
    - `Images`: the folder to maintain photos/backgrounds
 
+   - `Styles`: the folder to maintain CSS files
+
 Meanwhile, the compiled output files will be generated in the `bin` folder by default.
 
 ## Starting Server
