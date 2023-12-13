@@ -54,7 +54,7 @@
          </opaqueInsets></Label>
       <ImageView fitHeight="53.0" fitWidth="58.0" layoutX="14.0" layoutY="439.0" onMouseClicked="#unHighlightButtonsOnImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0">
          <image>
-            <Image url="@../Images/iconImage.png" />
+            <Image url="@../Images/iconImage64x64.png" />
          </image>
       </ImageView>
       <Button fx:id="signInButton" layoutX="705.0" layoutY="455.0" mnemonicParsing="false" onAction="#SignInButtonClicked" prefHeight="31.0" prefWidth="80.0" styleClass="turquoise-button" stylesheets="@../Styles/buttonsStyle.css" text="SIGN IN" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="15.0">
