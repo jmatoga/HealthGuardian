@@ -13,7 +13,7 @@
 
 ## Folder Structure
 
-The workspace contains two folders by default, where:
+The `main` workspace contains two folders by default, where:
 * `java`: the folder to maintain core backend of application
   
    - `Client`: the folder to maintain sources of client
@@ -31,6 +31,8 @@ The workspace contains two folders by default, where:
    - `Images`: the folder to maintain photos/backgrounds
 
    - `Styles`: the folder to maintain CSS files
+
+The `test` workspace contains unit, integration and end-to-end tests.
 
 Meanwhile, the compiled output files will be generated in the `bin` folder by default.
 
