@@ -507,6 +507,10 @@ public class ClientPanelController implements Initializable {
         this.bmiLabel = bmiLabel;
     }
 
+    void setIfCalcualteBMI(boolean ifCalcualteBMI) {
+        this.ifCalcualteBMI = ifCalcualteBMI;
+    }
+
     public void recommendationsPanelBuittonClicked(ActionEvent actionEvent) {
     }
 }

@@ -69,101 +69,86 @@
                 </RadialGradient>
             </textFill>
         </Label>
-      <VBox layoutX="650.0" layoutY="189.0" prefHeight="500.0" prefWidth="600.0">
+      <VBox layoutX="650.0" layoutY="148.0" prefHeight="500.0" prefWidth="600.0">
          <children>
             <Pane fx:id="pressureLabel1" prefHeight="80.0" prefWidth="600.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="-35.0" layoutY="6.0" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
                      <font>
-                        <Font name="Consolas Bold" size="60.0" />
+                        <Font name="Consolas Bold" size="50.0" />
                      </font>
                   </Label>
-               </children>
-            </Pane>
-            <Pane prefHeight="20.0" prefWidth="600.0">
-               <children>
-                  <Label layoutX="242.0" prefHeight="23.0" prefWidth="358.0" text="date" textFill="WHITE">
+                  <Label layoutX="417.0" layoutY="35.0" prefHeight="23.0" prefWidth="358.0" text="date" textFill="WHITE">
                      <font>
                         <Font name="Consolas Italic" size="20.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
+            <Pane prefHeight="20.0" prefWidth="600.0" />
             <Pane fx:id="pressureLabel2" prefHeight="80.0" prefWidth="600.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="-36.0" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
                      <font>
-                        <Font name="Consolas Bold" size="60.0" />
+                        <Font name="Consolas Bold" size="50.0" />
                      </font>
                   </Label>
-               </children>
-            </Pane>
-            <Pane prefHeight="20.0" prefWidth="600.0">
-               <children>
-                  <Label layoutX="242.0" prefHeight="23.0" prefWidth="358.0" text="date" textFill="WHITE">
+                  <Label layoutX="417.0" layoutY="29.0" prefHeight="23.0" prefWidth="358.0" text="date" textFill="WHITE">
                      <font>
                         <Font name="Consolas Italic" size="20.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
+            <Pane prefHeight="20.0" prefWidth="600.0" />
             <Pane fx:id="pressureLabel3" prefHeight="80.0" prefWidth="600.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="-36.0" layoutY="-16.0" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
                      <font>
-                        <Font name="Consolas Bold" size="60.0" />
+                        <Font name="Consolas Bold" size="50.0" />
                      </font>
                   </Label>
-               </children>
-            </Pane>
-            <Pane prefHeight="20.0" prefWidth="600.0">
-               <children>
-                  <Label layoutX="242.0" prefHeight="23.0" prefWidth="358.0" text="date" textFill="WHITE">
+                  <Label layoutX="415.0" layoutY="13.0" prefHeight="23.0" prefWidth="358.0" text="date" textFill="WHITE">
                      <font>
                         <Font name="Consolas Italic" size="20.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
+            <Pane prefHeight="20.0" prefWidth="600.0" />
             <Pane fx:id="pressureLabel4" prefHeight="80.0" prefWidth="600.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="-38.0" layoutY="-26.0" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
                      <font>
-                        <Font name="Consolas Bold" size="60.0" />
+                        <Font name="Consolas Bold" size="50.0" />
                      </font>
                   </Label>
-               </children>
-            </Pane>
-            <Pane prefHeight="20.0" prefWidth="600.0">
-               <children>
-                  <Label layoutX="242.0" prefHeight="23.0" prefWidth="358.0" text="date" textFill="WHITE">
+                  <Label layoutX="413.0" layoutY="3.0" prefHeight="23.0" prefWidth="358.0" text="date" textFill="WHITE">
                      <font>
                         <Font name="Consolas Italic" size="20.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
+            <Pane prefHeight="20.0" prefWidth="600.0" />
             <Pane fx:id="pressureLabel5" prefHeight="80.0" prefWidth="600.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="-39.0" layoutY="-40.0" prefHeight="80.0" prefWidth="600.0" text="XX / XXX " textFill="WHITE">
                      <font>
-                        <Font name="Consolas Bold" size="60.0" />
+                        <Font name="Consolas Bold" size="50.0" />
                      </font>
                   </Label>
-               </children>
-            </Pane>
-            <Pane prefHeight="20.0" prefWidth="600.0">
-               <children>
-                  <Label layoutX="242.0" prefHeight="23.0" prefWidth="358.0" text="date" textFill="WHITE">
+                  <Label layoutX="412.0" layoutY="-11.0" prefHeight="23.0" prefWidth="358.0" text="date" textFill="WHITE">
                      <font>
                         <Font name="Consolas Italic" size="20.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
+            <Pane prefHeight="20.0" prefWidth="600.0" />
          </children>
       </VBox>
-      <LineChart layoutX="461.0" layoutY="700.0" prefHeight="350.0" prefWidth="1000.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+      <LineChart layoutX="450.0" layoutY="616.0" prefHeight="350.0" prefWidth="1000.0" style="-fx-background-color: white; -fx-background-radius: 10;">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
