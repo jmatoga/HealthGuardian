@@ -23,7 +23,7 @@ public class SQLEngine {
             System.out.println(Color.ColorString("Database connection successful. (For ClientID: ", Color.ANSI_GREEN_BACKGROUND) + Color.ColorBgString(Color.ANSI_GREEN_BACKGROUND,"" + clientId, Color.ANSI_BLACK) + Color.ColorString(")", Color.ANSI_GREEN_BACKGROUND));
         } catch (SQLException e) {
             if(e.getSQLState().equals("08S01")) {
-                System.out.println(Color.ColorString("ERROR! No internet connection!", Color.ANSI_RED));
+                System.out.println(Color.ColorString("ERROR! No internet connection or wrong password to database!", Color.ANSI_RED));
                 System.exit(-1);
             }
             throw new RuntimeException(e);
@@ -480,5 +480,31 @@ public class SQLEngine {
             disconnectFromDataBase(resultSet, preparedStatement, connection);
         }
         return null;
+    }
+
+    public void checkDataBase() {
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(url, DBusername, DBpassword);
+            if(connection != null)
+                System.out.println(Color.ColorString("DB engine created correctly.", Color.ANSI_GREEN));
+        } catch (SQLException e) {
+            if(e.getSQLState().equals("08S01")) {
+                System.out.println(Color.ColorString("DB engine cannot be created. Something went wrong!", Color.ANSI_RED));
+                System.exit(-1);
+            }
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            System.out.println(Color.ColorString(e.getMessage(), Color.ANSI_RED));
+            e.printStackTrace();
+            System.exit(-2);
+        } finally {
+            try {
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.err.println("Error while closing resources: " + e.getMessage());
+            }
+        }
     }
 }
