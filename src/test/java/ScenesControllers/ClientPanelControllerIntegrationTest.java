@@ -29,6 +29,7 @@ class ClientPanelControllerIntegrationTest {
         verifyThat(controller.getBmiStatusLabel(), isVisible());
         verifyThat(controller.getBmiLabel(), isVisible());
 
+        controller.setIfCalcualteBMI(true);
         controller.calculateBMI(50.0, 170.0);
         assertEquals(Paint.valueOf("#f54040"), controller.getBmiStatusLabel().getTextFill()); // Expected color red for underweight
         assertEquals("17.30", controller.getBmiStatusLabel().getText());
@@ -42,6 +43,7 @@ class ClientPanelControllerIntegrationTest {
         verifyThat(controller.getBmiStatusLabel(), isVisible());
         verifyThat(controller.getBmiLabel(), isVisible());
 
+        controller.setIfCalcualteBMI(true);
         controller.calculateBMI(65.0, 175.0);
         assertEquals(Paint.valueOf("#40f546"), controller.getBmiStatusLabel().getTextFill()); // Expected green color for correct weight
         assertEquals("21.22", controller.getBmiStatusLabel().getText());
@@ -55,6 +57,7 @@ class ClientPanelControllerIntegrationTest {
         verifyThat(controller.getBmiStatusLabel(), isVisible());
         verifyThat(controller.getBmiLabel(), isVisible());
 
+        controller.setIfCalcualteBMI(true);
         controller.calculateBMI(90.0, 180.0);
         assertEquals(Paint.valueOf("#f5bb40"), controller.getBmiStatusLabel().getTextFill()); // Expected yellow for overweight
         assertEquals("27.78", controller.getBmiStatusLabel().getText());
@@ -68,6 +71,7 @@ class ClientPanelControllerIntegrationTest {
         verifyThat(controller.getBmiStatusLabel(), isVisible());
         verifyThat(controller.getBmiLabel(), isVisible());
 
+        controller.setIfCalcualteBMI(true);
         controller.calculateBMI(100.0, 165.0);
         assertEquals(Paint.valueOf("#f54040"), controller.getBmiStatusLabel().getTextFill()); // Expected color red for obesity
         assertEquals("36.73", controller.getBmiStatusLabel().getText());

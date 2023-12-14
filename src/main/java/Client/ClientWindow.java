@@ -19,7 +19,7 @@ public class ClientWindow extends Application {
         ClientWindow.primaryStage = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ScenesLayout/LogInScene.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 500); // Width and height
-        Image icon = new Image(String.valueOf(ClientWindow.class.getResource("/Images/iconImage.png")));
+        Image icon = new Image(String.valueOf(ClientWindow.class.getResource("/Images/iconImage64x64.png")));
         stage.getIcons().add(icon);
         stage.setTitle("HealthGuardian");
         stage.setScene(scene);

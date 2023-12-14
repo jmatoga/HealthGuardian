@@ -13,7 +13,7 @@
 
 ## Folder Structure
 
-The workspace contains two folders by default, where:
+The `main` workspace contains two folders by default, where:
 * `java`: the folder to maintain core backend of application
   
    - `Client`: the folder to maintain sources of client
@@ -22,20 +22,26 @@ The workspace contains two folders by default, where:
 
    -  `ScenesControllers`: the folder to maintain scenes dependencies
 
-*  `Resources`: the folder to maintain layout and view of application
+   - `utils` the folder to maintain utils classes
 
-   - `com.healthguardian`: the folder to maintain layout of scenes in fxml type
+*  `resources`: the folder to maintain layout and view of application
 
-   - `photos`: the folder to maintain photos/backgrounds
+   - `ScenesLayout`: the folder to maintain layout of scenes in fxml type
+
+   - `Images`: the folder to maintain photos/backgrounds
+
+   - `Styles`: the folder to maintain CSS files
+
+The `test` workspace contains unit, integration and end-to-end tests.
 
 Meanwhile, the compiled output files will be generated in the `bin` folder by default.
 
 ## Starting Server
-Firstly you have to run a server app.
+Firstly you have to run a `Server` class.
  
 ## Starting Client
 Client will only work if server is started.
-To start client you have to run `start` class
+To start client you have to run `Client` class
 
 ## Dependency Management
 
