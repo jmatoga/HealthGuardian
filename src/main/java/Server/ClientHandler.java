@@ -87,6 +87,13 @@ class ClientHandler implements Callable<String> {
 
                     String[][] messagesResult = sqlEngine.getMessages(Integer.parseInt(clientId), Integer.parseInt(userId));
                     SendToClient.println(Arrays.deepToString(messagesResult));
+                } else if (serverMessage.startsWith("GET_EXAMINATIONS:")) {
+                    String[] resources = serverMessage.substring(17).split(",");
+                    String clientId = resources[0];
+                    String userId = resources[1];
+
+                    String[][] messagesResult = sqlEngine.getExaminations(Integer.parseInt(clientId), Integer.parseInt(userId));
+                    SendToClient.println(Arrays.deepToString(messagesResult));
 
                 } else if (serverMessage.startsWith("GET_SETTINGS:")) {
                     String[] resources = serverMessage.substring(13).split(",");

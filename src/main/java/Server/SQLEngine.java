@@ -20,9 +20,9 @@ public class SQLEngine {
     public Connection connectToDataBase(Connection connection, int clientId) {
         try {
             connection = DriverManager.getConnection(url, DBusername, DBpassword);
-            System.out.println(Color.ColorString("Database connection successful. (For ClientID: ", Color.ANSI_GREEN_BACKGROUND) + Color.ColorBgString(Color.ANSI_GREEN_BACKGROUND,"" + clientId, Color.ANSI_BLACK) + Color.ColorString(")", Color.ANSI_GREEN_BACKGROUND));
+            System.out.println(Color.ColorString("Database connection successful. (For ClientID: ", Color.ANSI_GREEN_BACKGROUND) + Color.ColorBgString(Color.ANSI_GREEN_BACKGROUND, "" + clientId, Color.ANSI_BLACK) + Color.ColorString(")", Color.ANSI_GREEN_BACKGROUND));
         } catch (SQLException e) {
-            if(e.getSQLState().equals("08S01")) {
+            if (e.getSQLState().equals("08S01")) {
                 System.out.println(Color.ColorString("ERROR! No internet connection or wrong password to database!", Color.ANSI_RED));
                 System.exit(-1);
             }
@@ -35,8 +35,8 @@ public class SQLEngine {
         return connection;
     }
 
-    String[] getData(int clientID, String user_id){
-        String[] returnStatement = {"Error", "Error", "No data", "No data", "No data", "No data", "No data", "No data" , "No data"};
+    String[] getData(int clientID, String user_id) {
+        String[] returnStatement = {"Error", "Error", "No data", "No data", "No data", "No data", "No data", "No data", "No data"};
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -90,7 +90,7 @@ public class SQLEngine {
         return returnStatement;
     }
 
-    String checkIfUserExists(int clientID, String username, String email){
+    String checkIfUserExists(int clientID, String username, String email) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet userResultSet = null;
@@ -128,7 +128,7 @@ public class SQLEngine {
         return "Error";
     }
 
-    String checkOneTimeCode(int clientID, String oneTimeCode, String firstname, String lastname, String email, String phoneNumber, String pesel, String username, String password){
+    String checkOneTimeCode(int clientID, String oneTimeCode, String firstname, String lastname, String email, String phoneNumber, String pesel, String username, String password) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -236,7 +236,7 @@ public class SQLEngine {
         } catch (SQLException e) {
             System.err.println("Error while executing SELECT: " + e.getMessage());
         } finally {
-           disconnectFromDataBase(resultSet, preparedStatement, connection);
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
         }
         return returnStatement;
     }
@@ -256,11 +256,11 @@ public class SQLEngine {
             resultSet = preparedStatement.executeQuery();
 
             int rowCount = 0;
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 rowCount = resultSet.getInt(1);
             }
 
-            if(rowCount >= 0 && rowCount <= 4) {
+            if (rowCount >= 0 && rowCount <= 4) {
                 String insertUserBasicDataSql = "INSERT INTO user_basic_data_table (weight, height, systolic_pressure, diastolic_pressure, temperature, entry_date, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 String updateUserTableSql = "UPDATE user_table SET birth_date = ? WHERE user_id = ?";
 
@@ -276,7 +276,7 @@ public class SQLEngine {
                 int rowsAffected = preparedStatement.executeUpdate();
 
                 int rowsAffected1 = 0;
-                if(!birthdayDate.equals("withoutBirthdayDate")) {
+                if (!birthdayDate.equals("withoutBirthdayDate")) {
                     preparedStatement = connection.prepareStatement(updateUserTableSql);
                     preparedStatement.setDate(1, Date.valueOf(birthdayDate));
                     preparedStatement.setInt(2, Integer.parseInt(userId));
@@ -284,7 +284,7 @@ public class SQLEngine {
                 } else
                     rowsAffected1 = 1;
 
-                if(rowsAffected == 1 && rowsAffected1 == 1) {
+                if (rowsAffected == 1 && rowsAffected1 == 1) {
                     System.out.println("Updated user basic data correctly.");
                     return "Updated user basic data correctly.";
                 }
@@ -301,7 +301,7 @@ public class SQLEngine {
                 preparedStatement.setInt(8, Integer.parseInt(userId));
                 int rowsAffected = preparedStatement.executeUpdate();
 
-                if(rowsAffected == 1) {
+                if (rowsAffected == 1) {
                     System.out.println("Updated user basic data correctly.");
                     return "Updated user basic data correctly.";
                 }
@@ -343,7 +343,7 @@ public class SQLEngine {
         }
     }
 
-    String[] getSettings(int clientID, String user_id){
+    String[] getSettings(int clientID, String user_id) {
         String[] returnStatement = {"Error", "Error", "Error", "Error", "Error"};
 
         Connection connection = null;
@@ -358,7 +358,7 @@ public class SQLEngine {
 
             resultSet = preparedStatement.executeQuery();
 
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 System.out.println("Settings getted correctly.");
                 returnStatement[0] = String.valueOf(resultSet.getString("bmi_setting"));
                 returnStatement[1] = String.valueOf(resultSet.getString("age_setting"));
@@ -378,7 +378,7 @@ public class SQLEngine {
         return returnStatement;
     }
 
-    String setSettings(int clientID, String user_id, String bmi_setting, String age_setting, String currentDate_setting, String settings_no_4, String settings_no_5){
+    String setSettings(int clientID, String user_id, String bmi_setting, String age_setting, String currentDate_setting, String settings_no_4, String settings_no_5) {
         String returnStatement = "Error";
 
         Connection connection = null;
@@ -398,7 +398,7 @@ public class SQLEngine {
 
             int rowsAffected = preparedStatement.executeUpdate();
 
-            if(rowsAffected == 1) {
+            if (rowsAffected == 1) {
                 System.out.println("Settings changed correctly.");
                 returnStatement = "Settings changed correctly.";
 
@@ -437,7 +437,7 @@ public class SQLEngine {
             int columnCount = resultSet.getMetaData().getColumnCount();
             String[][] returnStatement = new String[rowCount][columnCount];
 
-            if(rowCount <= 0) {
+            if (rowCount <= 0) {
                 System.out.println("Error in database while getting list of clinics.");
                 returnStatement[0][0] = "Error";
                 return returnStatement;
@@ -461,6 +461,52 @@ public class SQLEngine {
         }
         return null;
     }
+
+    String[][] getExaminations(int clientID, int user_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT * FROM examination_table WHERE user_id = ?";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            preparedStatement.setInt(1, user_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            if (rowCount == 0) {
+                System.out.println("No examinations in database.");
+                return new String[][]{{"No examinations in database"}};
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
+
     String[][] getMessages(int clientID, int user_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -479,9 +525,9 @@ public class SQLEngine {
                 rowCount++;
             }
 
-            if(rowCount == 0) {
+            if (rowCount == 0) {
                 System.out.println("No messages in database.");
-                return new String[][] {{"No messages in database"}};
+                return new String[][]{{"No messages in database"}};
             }
 
             int columnCount = resultSet.getMetaData().getColumnCount();
@@ -510,10 +556,10 @@ public class SQLEngine {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(url, DBusername, DBpassword);
-            if(connection != null)
+            if (connection != null)
                 System.out.println(Color.ColorString("DB engine created correctly.", Color.ANSI_GREEN));
         } catch (SQLException e) {
-            if(e.getSQLState().equals("08S01")) {
+            if (e.getSQLState().equals("08S01")) {
                 System.out.println(Color.ColorString("DB engine cannot be created. Something went wrong!", Color.ANSI_RED));
                 System.exit(-1);
             }

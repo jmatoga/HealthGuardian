@@ -130,43 +130,43 @@ public class ListOfClinicsController implements Initializable {
             switch (i) {
                 case 0:
                     clinicNameLabel1.setText(clinicData[2]);
-                    descriptionClinicLabel1.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinicID: " + clinicData[0]);
+                    descriptionClinicLabel1.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     break;
                 case 1:
                     clinicNameLabel2.setText(clinicData[2]);
-                    descriptionClinicLabel2.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinicID: " + clinicData[0]);
+                    descriptionClinicLabel2.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     break;
                 case 2:
                     clinicNameLabel3.setText(clinicData[2]);
-                    descriptionClinicLabel3.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinicID: " + clinicData[0]);
+                    descriptionClinicLabel3.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     break;
                 case 3:
                     clinicNameLabel4.setText(clinicData[2]);
-                    descriptionClinicLabel4.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinicID: " + clinicData[0]);
+                    descriptionClinicLabel4.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     break;
                 case 4:
                     clinicNameLabel5.setText(clinicData[2]);
-                    descriptionClinicLabel5.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinicID: " + clinicData[0]);
+                    descriptionClinicLabel5.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     break;
                 case 5:
                     clinicNameLabel6.setText(clinicData[2]);
-                    descriptionClinicLabel6.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinicID: " + clinicData[0]);
+                    descriptionClinicLabel6.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     break;
                 case 6:
                     clinicNameLabel7.setText(clinicData[2]);
-                    descriptionClinicLabel7.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinicID: " + clinicData[0]);
+                    descriptionClinicLabel7.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     break;
                 case 7:
                     clinicNameLabel8.setText(clinicData[2]);
-                    descriptionClinicLabel8.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinicID: " + clinicData[0]);
+                    descriptionClinicLabel8.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     break;
                 case 8:
                     clinicNameLabel9.setText(clinicData[2]);
-                    descriptionClinicLabel9.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinicID: " + clinicData[0]);
+                    descriptionClinicLabel9.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     break;
                 case 9:
                     clinicNameLabel10.setText(clinicData[2]);
-                    descriptionClinicLabel10.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinicID: " + clinicData[0]);
+                    descriptionClinicLabel10.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     break;
                 default:
                     System.out.println(Color.ColorString("Error while showing clinics.", Color.ANSI_RED));

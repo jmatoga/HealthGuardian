@@ -48,4 +48,8 @@ public class Message {
     public void sendGetMessagesMessage(PrintWriter writer, String message) {
         writer.println("GET_MESSAGES:" + message);
     }
+
+    public void sendGetExaminationsMessage(PrintWriter writer, String message) {
+        writer.println("GET_EXAMINATIONS:" + message);
+    }
 }
