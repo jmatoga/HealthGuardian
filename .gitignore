@@ -38,4 +38,4 @@ build/
 .DS_Store
 
 ### Ignored files ###
-/src/main/resources/Secret/
+# /src/main/resources/Secret/
