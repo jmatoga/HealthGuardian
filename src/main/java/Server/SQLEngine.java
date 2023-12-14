@@ -437,4 +437,48 @@ public class SQLEngine {
         }
         return null;
     }
+    String[][] getMessages(int clientID, int user_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT * FROM messages_table WHERE user_id = ?";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            preparedStatement.setInt(1, user_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            if(rowCount == 0) {
+                System.out.println("No messages in database.");
+                return new String[][] {{"No messages in database"}};
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
 }

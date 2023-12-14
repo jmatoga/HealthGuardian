@@ -44,4 +44,8 @@ public class Message {
     public void sendGetClinicsMessage(PrintWriter writer, String message) {
         writer.println("GET_CLINICS:" + message);
     }
+
+    public void sendGetMessagesMessage(PrintWriter writer, String message) {
+        writer.println("GET_MESSAGES:" + message);
+    }
 }
