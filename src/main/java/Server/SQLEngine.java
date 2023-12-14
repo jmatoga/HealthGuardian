@@ -455,14 +455,13 @@ public class SQLEngine {
                 rowCount++;
             }
 
+            if(rowCount == 0) {
+                System.out.println("No messages in database.");
+                return new String[][] {{"No messages in database"}};
+            }
+
             int columnCount = resultSet.getMetaData().getColumnCount();
             String[][] returnStatement = new String[rowCount][columnCount];
-
-            if(rowCount <= 0) {
-                System.out.println("Error in database while getting messages.");
-                returnStatement[0][0] = "Error";
-                return returnStatement;
-            }
 
             resultSet.beforeFirst(); // Go back to begin of ResultSet
             int row = 0;
