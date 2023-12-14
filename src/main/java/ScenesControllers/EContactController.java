@@ -1,13 +1,26 @@
 package ScenesControllers;
 
+import Client.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import utils.Message;
 
-public class EContactController {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class EContactController implements Initializable {
+    private static final Message message = new Message();
+    private static BufferedReader ReadFromServer;
+    private static PrintWriter SendToServer;
+
     @FXML
     private Button userPanelButton;
 
@@ -17,9 +30,20 @@ public class EContactController {
     @FXML
     private Label DoctorFirstNameLabel;
 
-    public void userPanelButtonClicked(ActionEvent actionEvent) {
+    @FXML
+    private void userPanelButtonClicked(ActionEvent event) throws IOException {
+        new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml");
     }
 
-    public void testScheduleButtonClicked(ActionEvent actionEvent) {
+    @FXML
+    public void testScheduleButtonClicked(ActionEvent actionEvent) throws IOException {
+        new SceneSwitch("/ScenesLayout/ExaminationScheduleScene.fxml");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        EContactController.ReadFromServer = Client.ReadFromServer;
+        EContactController.SendToServer = Client.SendToServer;
+
     }
 }
