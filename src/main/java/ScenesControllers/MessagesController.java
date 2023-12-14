@@ -71,10 +71,11 @@ public class MessagesController implements Initializable {
 
             for (int i = 0; i < messagesData.length; i++) {
                 String[] messageData = messagesData[i].split(", ");
-                System.out.println(messagesData.length);
+
                 Pane newMessage = new Pane();
                 Label newMessageTitle = new Label(messageData[1]);
                 Label newMessageContent = new Label(messageData[2]);
+                Label newMessageDate = new Label(messageData[4]);
                 newMessageTitle.setPrefHeight(40);
                 // Set fitting to scroll bar
                 if(messagesData.length > 6) {
@@ -91,7 +92,12 @@ public class MessagesController implements Initializable {
                 newMessageContent.setPadding(new Insets(40, 0, 0, 0));
                 newMessageContent.setWrapText(true); // Text wrapping
                 newMessageContent.setFont(new Font("Consolas", 28.0));
-                newMessage.getChildren().addAll(newMessageTitle, newMessageContent);
+                newMessageDate.setPrefHeight(30);
+                newMessageDate.setPrefWidth(1334);
+                newMessageDate.setLayoutX(1220);
+                newMessageDate.setLayoutY(0);
+                newMessageDate.setFont(new Font("Consolas Bold", 20.0));
+                newMessage.getChildren().addAll(newMessageTitle, newMessageContent, newMessageDate);
 
                 // Add new messages to the GridPane on the appropriate row
                 gridPane.add(newMessage, 0, i);
