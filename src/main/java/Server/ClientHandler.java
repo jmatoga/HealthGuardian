@@ -113,8 +113,9 @@ class ClientHandler implements Callable<String> {
                     String[] resources = serverMessage.substring(21).split(",");
                     String clientId = resources[0];
                     String username = resources[1];
+                    String email = resources[2];
 
-                    boolean existingResult = sqlEngine.checkIfUserExists(Integer.parseInt(clientId), username);
+                    String existingResult = sqlEngine.checkIfUserExists(Integer.parseInt(clientId), username, email);
                     SendToClient.println("EXISTING RESULT:" + existingResult);
 
                 } else if (serverMessage.startsWith("CHECK_ONE_TIME_CODE:")) {

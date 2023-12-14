@@ -90,10 +90,11 @@ public class SQLEngine {
         return returnStatement;
     }
 
-    boolean checkIfUserExists(int clientID, String username){
+    String checkIfUserExists(int clientID, String username, String email){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
+        ResultSet userResultSet = null;
+        ResultSet emailResultSet = null;
 
         try {
             connection = connectToDataBase(connection, clientID);
@@ -101,21 +102,30 @@ public class SQLEngine {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, username);  // username
 
-            resultSet = preparedStatement.executeQuery();
+            userResultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) { // if username exist in database
+            String emailSql = "SELECT email FROM user_table WHERE email = ?";
+            preparedStatement = connection.prepareStatement(emailSql);
+            preparedStatement.setString(1, email);  // email
+
+            emailResultSet = preparedStatement.executeQuery();
+            if (userResultSet.next()) { // if username exist in database
                 System.out.println("User exists!");
-                return true;
+                return "User exists";
+            } else if (emailResultSet.next()) { // if email exist in database
+                System.out.println("Email exists!");
+                return "Email exists";
             } else {
-                System.out.println("Correct, username free to use.");
-                return false;
+                System.out.println("Correct, username and email free to use.");
+                return "Free to use";
             }
+
         } catch (SQLException e) {
             System.err.println("Error while executing SELECT: " + e.getMessage());
         } finally {
-            disconnectFromDataBase(resultSet, preparedStatement, connection);
+            disconnectFromDataBase(userResultSet, emailResultSet, preparedStatement, connection);
         }
-        return true;
+        return "Error";
     }
 
     String checkOneTimeCode(int clientID, String oneTimeCode, String firstname, String lastname, String email, String phoneNumber, String pesel, String username, String password){
@@ -310,6 +320,20 @@ public class SQLEngine {
         // Closing resources (ResultSet, PreparedStatement, Connection)
         try {
             if (resultSet != null) resultSet.close();
+            if (preparedStatement != null) preparedStatement.close();
+            if (connection != null) connection.close();
+            System.out.println(Color.ColorString("Database connection closed successfully.", Color.ANSI_GREEN));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("Error while closing resources: " + e.getMessage());
+        }
+    }
+
+    private static void disconnectFromDataBase(ResultSet resultSet, ResultSet resultSet1, PreparedStatement preparedStatement, Connection connection) {
+        // Closing resources (ResultSet, PreparedStatement, Connection)
+        try {
+            if (resultSet != null) resultSet.close();
+            if (resultSet1 != null) resultSet1.close();
             if (preparedStatement != null) preparedStatement.close();
             if (connection != null) connection.close();
             System.out.println(Color.ColorString("Database connection closed successfully.", Color.ANSI_GREEN));

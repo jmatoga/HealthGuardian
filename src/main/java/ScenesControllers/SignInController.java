@@ -100,12 +100,12 @@ public class SignInController implements Initializable {
 
     void signInUser() throws IOException {
         if(checkWrittenText()) {
-            message.checkIfUserExists(SendToServer, Client.clientId + "," + username.getText());
+            message.checkIfUserExists(SendToServer, Client.clientId + "," + username.getText() + "," + email.getText());
 
             String serverAnswer = ReadFromServer.readLine();
             System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
 
-            if (serverAnswer.startsWith("EXISTING RESULT:") && serverAnswer.substring(16).equals("false")) {
+            if (serverAnswer.startsWith("EXISTING RESULT:") && serverAnswer.substring(16).equals("Free to use")) {
                 TextField inputField = new TextField();
                 Label label = new Label("");
                 Alert alert = createCodeAlert(inputField, label);
@@ -160,8 +160,13 @@ public class SignInController implements Initializable {
                 });
 
                 alert.showAndWait();
-            } else {
+            } else if (serverAnswer.startsWith("EXISTING RESULT:") && serverAnswer.substring(16).equals("User exists")) {
                 signInStatus.setText("Username is used, change it!");
+            } else if (serverAnswer.startsWith("EXISTING RESULT:") && serverAnswer.substring(16).equals("Email exists")) {
+                signInStatus.setText("Email is used, change it!");
+            } else {
+                signInStatus.setText("Error in database! Try again later.");
+                System.out.println(Color.ColorString("Error in database while signing in! Try again later.", Color.ANSI_RED));
             }
         }
     }
