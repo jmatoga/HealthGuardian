@@ -27,9 +27,6 @@ public class MessagesController implements Initializable {
     private static PrintWriter SendToServer;
 
     @FXML
-    private ScrollPane scrollPane;
-
-    @FXML
     private GridPane gridPane;
 
     @FXML
@@ -93,7 +90,7 @@ public class MessagesController implements Initializable {
                 newMessageContent.setWrapText(true); // Text wrapping
                 newMessageContent.setFont(new Font("Consolas", 28.0));
                 newMessageDate.setPrefHeight(30);
-                newMessageDate.setPrefWidth(1334);
+                //newMessageDate.setPrefWidth(1334);
                 newMessageDate.setLayoutX(1220);
                 newMessageDate.setLayoutY(0);
                 newMessageDate.setFont(new Font("Consolas Bold", 20.0));
