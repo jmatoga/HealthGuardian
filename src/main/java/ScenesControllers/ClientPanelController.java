@@ -170,6 +170,10 @@ public class ClientPanelController implements Initializable {
         new SceneSwitch("/ScenesLayout/MedicalHistoryScene.fxml");
     }
 
+    public void recommendationsPanelBuittonClicked(ActionEvent actionEvent) throws IOException {
+        new SceneSwitch("/ScenesLayout/RecommendationScene.fxml");
+    }
+
     @FXML
     private void settingsButtonClicked(ActionEvent event) throws  IOException{
         new SceneSwitch("/ScenesLayout/SettingsScene.fxml");
@@ -511,7 +515,6 @@ public class ClientPanelController implements Initializable {
         this.ifCalcualteBMI = ifCalcualteBMI;
     }
 
-    public void recommendationsPanelBuittonClicked(ActionEvent actionEvent) {
-    }
+
 }
 

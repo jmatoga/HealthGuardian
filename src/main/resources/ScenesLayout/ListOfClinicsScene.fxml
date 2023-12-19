@@ -48,7 +48,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Label layoutX="720.0" layoutY="44.0" text="LIST OF CLINICS" AnchorPane.leftAnchor="720.0" AnchorPane.topAnchor="70.0">
+        <Label layoutX="720.0" layoutY="44.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="LIST OF CLINICS" AnchorPane.leftAnchor="720.0" AnchorPane.topAnchor="70.0">
             <font>
                 <Font name="Consolas Bold" size="70.0" />
             </font>

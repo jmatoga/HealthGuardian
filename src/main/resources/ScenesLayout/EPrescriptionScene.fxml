@@ -48,26 +48,10 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Label layoutX="720.0" layoutY="44.0" text="E-PRESCRIPTION" AnchorPane.leftAnchor="720.0" AnchorPane.topAnchor="70.0">
+      <Label layoutX="720.0" layoutY="44.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="E-PRESCRIPTION" AnchorPane.leftAnchor="720.0" AnchorPane.topAnchor="70.0">
          <font>
             <Font name="Consolas Bold" size="70.0" />
          </font>
-         <textFill>
-            <RadialGradient centerX="0.5165745856353591" centerY="0.5" radius="0.6264367816091954">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color green="0.9868420958518982" blue="0.47697368264198303" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </RadialGradient>
-         </textFill>
       </Label>
       <Pane layoutX="253.0" layoutY="273.0" prefHeight="616.0" prefWidth="407.0" style="-fx-border-color: orange; -fx-border-width: 3;" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="280.0">
          <children>

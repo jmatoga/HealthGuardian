@@ -7,10 +7,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
@@ -47,7 +45,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Label layoutX="609.0" layoutY="73.0" text="EXAMINATION SCHEDULE" AnchorPane.leftAnchor="609.0" AnchorPane.topAnchor="73.0">
+        <Label layoutX="609.0" layoutY="73.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="EXAMINATION SCHEDULE" AnchorPane.leftAnchor="609.0" AnchorPane.topAnchor="73.0">
             <font>
                 <Font name="Consolas Bold" size="70.0" />
             </font>
@@ -69,7 +67,7 @@
             </textFill>
         </Label>
         <Pane layoutX="817.0" layoutY="168.0" prefHeight="720.0" prefWidth="950.0" style="-fx-border-color: orange; -fx-border-width: 3;" AnchorPane.leftAnchor="817.0" AnchorPane.topAnchor="168.0" />
-        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="68.0" layoutY="169.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" maxHeight="800.0" prefWidth="720.0" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="68.0" AnchorPane.topAnchor="169.0">
+        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="68.0" layoutY="169.0" maxHeight="800.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="720.0" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="68.0" AnchorPane.topAnchor="169.0">
             <content>
                 <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="0.0" layoutY="0.0">
 <!--                    prefHeight="1600.0"-->

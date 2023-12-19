@@ -118,7 +118,7 @@
             </Label>
          </children>
       </VBox>
-      <Button fx:id="editDataButton" layoutX="292.0" layoutY="658.0" mnemonicParsing="false" onAction="#editDataButtonClicked" prefHeight="50.0" prefWidth="148.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="EDIT DATA" AnchorPane.rightAnchor="1485.0" AnchorPane.topAnchor="658.0">
+      <Button fx:id="editDataButton" layoutX="292.0" layoutY="658.0" mnemonicParsing="false" onAction="#editDataButtonClicked" prefHeight="50.0" prefWidth="148.0" styleClass="darkblue-20-button" stylesheets="@../Styles/buttonsStyle.css" text="EDIT DATA" AnchorPane.rightAnchor="1485.0" AnchorPane.topAnchor="658.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -190,7 +190,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="logOutButton" layoutX="1000.0" layoutY="975.0" mnemonicParsing="false" onAction="#LogOutButtonClicked" prefHeight="40.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="LOG OUT" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="30.0">
+      <Button fx:id="logOutButton" layoutX="1000.0" layoutY="975.0" mnemonicParsing="false" onAction="#LogOutButtonClicked" prefHeight="40.0" prefWidth="120.0" styleClass="darkblue-20-button" stylesheets="@../Styles/buttonsStyle.css" text="LOG OUT" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="30.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -359,28 +359,9 @@
          </textFill>
       </Button>
       <Button fx:id="eContactWithADoctorButton" layoutX="1292.0" layoutY="80.0" mnemonicParsing="false" onAction="#eContactWithADoctorButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="E-CONTACT WITH&#10;A DOCTOR" textAlignment="CENTER" AnchorPane.topAnchor="60.0">
-         <font>
-            <Font name="Consolas Bold" size="24.0" />
-         </font>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
-         <textFill>
-            <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.27450981736183167" green="0.8313725590705872" blue="0.7019608020782471" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color green="0.43921568989753723" blue="0.32156863808631897" />
-                     </color>
-                  </Stop>
-               </stops>
-            </RadialGradient>
-         </textFill>
       </Button>
       <Button fx:id="listOfClinicsButton" layoutX="1610.0" layoutY="80.0" mnemonicParsing="false" onAction="#listOfClinicsButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="LIST OF CLINICS" AnchorPane.topAnchor="60.0">
          <font>
@@ -428,7 +409,7 @@
          </textFill>
       </Label>
 
-      <Button fx:id="recommendationsPanelBuitton" layoutX="1625.0" layoutY="499.0" mnemonicParsing="false" onAction="#recommendationsPanelBuittonClicked" prefHeight="80.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #f0d8b9); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #c37200; -fx-border-width: 4; -fx-border-radius: 3; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="RECOMMENDATIONS PANEL" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="500.0">
+      <Button fx:id="recommendationsPanelBuitton" layoutX="1625.0" layoutY="499.0" mnemonicParsing="false" onAction="#recommendationsPanelBuittonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightorange-button" stylesheets="@../Styles/buttonsStyle.css" text="RECOMMENDATIONS PANEL" textAlignment="CENTER" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="500.0">
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
                <stops>
@@ -448,6 +429,9 @@
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
+         <font>
+            <Font name="Consolas Bold" size="20.0" />
+         </font>
       </Button>
 
       <Label fx:id="bmiLabel" layoutX="565.0" layoutY="412.0" prefHeight="35.0" prefWidth="60.0" text="BMI: " textFill="WHITE" visible="false">

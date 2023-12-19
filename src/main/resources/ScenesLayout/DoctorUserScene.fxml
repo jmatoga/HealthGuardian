@@ -39,7 +39,7 @@
                 </Label>
             </children>
         </VBox>
-      <Button fx:id="doctorPanelButton" layoutX="1720.0" layoutY="985.0" mnemonicParsing="false" onAction="#doctorPanelButtonClicked" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00476e; -fx-border-width: 3; -fx-border-radius: 2; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="DOCTOR PANEL">
+      <Button fx:id="doctorPanelButton" layoutX="1720.0" layoutY="985.0" mnemonicParsing="false" onAction="#doctorPanelButtonClicked" prefHeight="60.0" prefWidth="180.0" styleClass="darkblue-20-button" stylesheets="@../Styles/buttonsStyle.css" text="DOCTOR PANEL">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -76,7 +76,7 @@
             </Label>
          </children>
       </VBox>
-      <Button fx:id="changeMedicalHistoryButton" layoutX="170.0" layoutY="291.0" mnemonicParsing="false" onAction="#changeMedicalHistoryButtonClicked" prefHeight="80.0" prefWidth="333.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9ecf0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00b9c2; -fx-border-width: 4; -fx-border-radius: 3; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="CHANGE MEDICAL HISTORY ">
+      <Button fx:id="changeMedicalHistoryButton" layoutX="170.0" layoutY="291.0" mnemonicParsing="false" onAction="#changeMedicalHistoryButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHANGE MEDICAL HISTORY ">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -100,7 +100,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="prescribeEPrescriptionButton" layoutX="170.0" layoutY="384.0" mnemonicParsing="false" onAction="#prescribeEPrescriptionButtonClicked" prefHeight="80.0" prefWidth="333.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9ecf0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00b9c2; -fx-border-width: 4; -fx-border-radius: 3; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="PRESCRIBE E-PRESCRIPTION">
+      <Button fx:id="prescribeEPrescriptionButton" layoutX="170.0" layoutY="384.0" mnemonicParsing="false" onAction="#prescribeEPrescriptionButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRESCRIBE E-PRESCRIPTION">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -124,7 +124,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="prescribeEReferralButton" layoutX="170.0" layoutY="477.0" mnemonicParsing="false" onAction="#prescribeEReferralButtonClicked" prefHeight="80.0" prefWidth="333.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9ecf0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00b9c2; -fx-border-width: 4; -fx-border-radius: 3; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="PRESCRIBE E-REFERRAL">
+      <Button fx:id="prescribeEReferralButton" layoutX="170.0" layoutY="477.0" mnemonicParsing="false" onAction="#prescribeEReferralButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRESCRIBE E-REFERRAL">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -148,7 +148,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="checkFindingsButton" layoutX="170.0" layoutY="571.0" mnemonicParsing="false" onAction="#checkFindingsButtonClicked" prefHeight="80.0" prefWidth="333.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9ecf0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00b9c2; -fx-border-width: 4; -fx-border-radius: 3; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="CHECK FINDINGS">
+      <Button fx:id="checkFindingsButton" layoutX="170.0" layoutY="571.0" mnemonicParsing="false" onAction="#checkFindingsButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHECK FINDINGS">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -172,7 +172,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="addRecommendationsButton" layoutX="170.0" layoutY="755.0" mnemonicParsing="false" onAction="#addRecommendationsButtonClicked" prefHeight="80.0" prefWidth="333.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9ecf0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00b9c2; -fx-border-width: 4; -fx-border-radius: 3; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="ADD RECOMMENDATIONS">
+      <Button fx:id="addRecommendationsButton" layoutX="170.0" layoutY="755.0" mnemonicParsing="false" onAction="#addRecommendationsButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="ADD RECOMMENDATIONS">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -196,7 +196,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="checkDocumentationButton" layoutX="170.0" layoutY="663.0" mnemonicParsing="false" onAction="#checkDocumentationButtonClicked" prefHeight="80.0" prefWidth="333.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9ecf0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00b9c2; -fx-border-width: 4; -fx-border-radius: 3; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="CHECK DOCUMENTATION">
+      <Button fx:id="checkDocumentationButton" layoutX="170.0" layoutY="663.0" mnemonicParsing="false" onAction="#checkDocumentationButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHECK DOCUMENTATION">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
