@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
@@ -17,7 +18,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="findingsScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.FindingsController">
+<AnchorPane fx:id="recommendationScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.RecommendationController">
 
 
 
@@ -51,7 +52,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Label layoutX="720.0" layoutY="44.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="FINDINGS" AnchorPane.leftAnchor="720.0" AnchorPane.topAnchor="70.0">
+        <Label layoutX="662.0" layoutY="69.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="RECOMMENDATIONS" AnchorPane.leftAnchor="662.0" AnchorPane.topAnchor="69.0">
             <font>
                 <Font name="Consolas Bold" size="70.0" />
             </font>
@@ -72,12 +73,7 @@
                 </RadialGradient>
             </textFill>
         </Label>
-        <Pane layoutX="78.0" layoutY="273.0" opacity="0.2" prefHeight="650.0" prefWidth="700.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="70.0">
-            <children>
-                <ImageView fx:id="previewImageView" fitHeight="650.0" fitWidth="700.0" layoutX="4.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-            </children>
-        </Pane>
-        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="813.0" layoutY="273.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefHeight="650.0" prefWidth="820.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="820.0">
+        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="936.0" layoutY="279.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefHeight="650.0" prefWidth="820.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="151.0" AnchorPane.leftAnchor="936.0">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2006.0" prefWidth="808.0">
                     <children>
@@ -104,13 +100,13 @@
                                     <children>
                                         <VBox prefHeight="200.0" prefWidth="265.0">
                                             <children>
-                                                <Label fx:id="findingName1" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_1" textAlignment="CENTER" wrapText="true">
+                                                <Label fx:id="recommendationDate1" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="recommendation_date_1" textAlignment="CENTER" wrapText="true">
                                                     <font>
                                                         <Font name="Consolas Bold" size="20.0" />
                                                     </font>
                                                 </Label>
                                                 <Pane prefHeight="40.0" prefWidth="265.0" />
-                                                <Label fx:id="findingDate1" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
+                                                <Label fx:id="doctorName1" prefHeight="20.0" prefWidth="264.0" text="DOCTOR NAME">
                                                     <font>
                                                         <Font name="Consolas" size="18.0" />
                                                     </font>
@@ -123,13 +119,13 @@
                                     <children>
                                         <VBox prefHeight="200.0" prefWidth="265.0">
                                             <children>
-                                                <Label fx:id="findingName2" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_2" textAlignment="CENTER" wrapText="true">
+                                                <Label fx:id="recommendationDate2" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="recommendation_date_2" textAlignment="CENTER" wrapText="true">
                                                     <font>
                                                         <Font name="Consolas Bold" size="20.0" />
                                                     </font>
                                                 </Label>
                                                 <Pane prefHeight="40.0" prefWidth="265.0" />
-                                                <Label fx:id="findingDate2" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
+                                                <Label fx:id="doctorName2" prefHeight="20.0" prefWidth="264.0" text="DOCTOR NAME">
                                                     <font>
                                                         <Font name="Consolas" size="18.0" />
                                                     </font>
@@ -142,13 +138,13 @@
                                     <children>
                                         <VBox prefHeight="200.0" prefWidth="265.0">
                                             <children>
-                                                <Label fx:id="findingName3" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_3" textAlignment="CENTER" wrapText="true">
+                                                <Label fx:id="recommendationDate3" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="recommendation_date_3" textAlignment="CENTER" wrapText="true">
                                                     <font>
                                                         <Font name="Consolas Bold" size="20.0" />
                                                     </font>
                                                 </Label>
                                                 <Pane prefHeight="40.0" prefWidth="265.0" />
-                                                <Label fx:id="findingDate3" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
+                                                <Label fx:id="doctorName3" prefHeight="20.0" prefWidth="264.0" text="DOCTOR NAME">
                                                     <font>
                                                         <Font name="Consolas" size="18.0" />
                                                     </font>
@@ -161,13 +157,13 @@
                                     <children>
                                         <VBox prefHeight="200.0" prefWidth="265.0">
                                             <children>
-                                                <Label fx:id="findingName4" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_4" textAlignment="CENTER" wrapText="true">
+                                                <Label fx:id="recommendationDate4" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="recommendation_date_4" textAlignment="CENTER" wrapText="true">
                                                     <font>
                                                         <Font name="Consolas Bold" size="20.0" />
                                                     </font>
                                                 </Label>
                                                 <Pane prefHeight="40.0" prefWidth="265.0" />
-                                                <Label fx:id="findingDate4" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
+                                                <Label fx:id="doctorName4" prefHeight="20.0" prefWidth="264.0" text="DOCTOR NAME">
                                                     <font>
                                                         <Font name="Consolas" size="18.0" />
                                                     </font>
@@ -180,13 +176,13 @@
                                     <children>
                                         <VBox prefHeight="200.0" prefWidth="265.0">
                                             <children>
-                                                <Label fx:id="findingName5" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_5" textAlignment="CENTER" wrapText="true">
+                                                <Label fx:id="recommendationDate5" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="recommendation_date_5" textAlignment="CENTER" wrapText="true">
                                                     <font>
                                                         <Font name="Consolas Bold" size="20.0" />
                                                     </font>
                                                 </Label>
                                                 <Pane prefHeight="40.0" prefWidth="265.0" />
-                                                <Label fx:id="findingDate5" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
+                                                <Label fx:id="doctorName5" prefHeight="20.0" prefWidth="264.0" text="DOCTOR NAME">
                                                     <font>
                                                         <Font name="Consolas" size="18.0" />
                                                     </font>
@@ -199,13 +195,13 @@
                                     <children>
                                         <VBox prefHeight="200.0" prefWidth="265.0">
                                             <children>
-                                                <Label fx:id="findingName6" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_6" textAlignment="CENTER" wrapText="true">
+                                                <Label fx:id="recommendationDate6" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="recommendation_date_6" textAlignment="CENTER" wrapText="true">
                                                     <font>
                                                         <Font name="Consolas Bold" size="20.0" />
                                                     </font>
                                                 </Label>
                                                 <Pane prefHeight="40.0" prefWidth="265.0" />
-                                                <Label fx:id="findingDate6" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
+                                                <Label fx:id="doctorName6" prefHeight="20.0" prefWidth="264.0" text="DOCTOR NAME">
                                                     <font>
                                                         <Font name="Consolas" size="18.0" />
                                                     </font>
@@ -220,77 +216,92 @@
                 </AnchorPane>
             </content>
         </ScrollPane>
-        <Button fx:id="printButton" layoutX="520.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRINT" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="520.0">
-            <font>
-                <Font name="Consolas Bold" size="20.0" />
-            </font>
-            <opaqueInsets>
-                <Insets />
-            </opaqueInsets>
-            <textFill>
-                <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
-                    <stops>
-                        <Stop>
-                            <color>
-                                <Color red="0.28700000047683716" green="0.7103614211082458" blue="0.8199999928474426" />
-                            </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                            <color>
-                                <Color green="0.27843138575553894" blue="0.4313725531101227" />
-                            </color>
-                        </Stop>
-                    </stops>
-                </RadialGradient>
-            </textFill>
-        </Button>
-        <Button fx:id="sendButton" layoutX="383.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SEND" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="360.0">
-            <font>
-                <Font name="Consolas Bold" size="20.0" />
-            </font>
-            <opaqueInsets>
-                <Insets />
-            </opaqueInsets>
-            <textFill>
-                <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
-                    <stops>
-                        <Stop>
-                            <color>
-                                <Color red="0.28700000047683716" green="0.7103614211082458" blue="0.8199999928474426" />
-                            </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                            <color>
-                                <Color green="0.27843138575553894" blue="0.4313725531101227" />
-                            </color>
-                        </Stop>
-                    </stops>
-                </RadialGradient>
-            </textFill>
-        </Button>
-        <Button fx:id="saveButton" layoutX="249.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SAVE" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0">
-            <font>
-                <Font name="Consolas Bold" size="20.0" />
-            </font>
-            <opaqueInsets>
-                <Insets />
-            </opaqueInsets>
-            <textFill>
-                <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
-                    <stops>
-                        <Stop>
-                            <color>
-                                <Color red="0.28700000047683716" green="0.7103614211082458" blue="0.8199999928474426" />
-                            </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                            <color>
-                                <Color green="0.27843138575553894" blue="0.4313725531101227" />
-                            </color>
-                        </Stop>
-                    </stops>
-                </RadialGradient>
-            </textFill>
-        </Button>
+      <VBox layoutX="134.0" layoutY="268.0" prefHeight="720.0" prefWidth="680.0" AnchorPane.topAnchor="270.0">
+         <children>
+            <HBox prefHeight="50.0" prefWidth="682.0">
+               <children>
+                  <Label fx:id="doctorNameRecommendationLabel" prefHeight="50.0" prefWidth="400.0" text="DOCTOR NAME" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="dateRecommendationLabel" alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="280.0" text="00-00-0000" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas" size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Label fx:id="dietLabel" alignment="TOP_LEFT" prefHeight="100.0" prefWidth="680.0" style="-fx-background-color: white; -fx-border-color: #808080; -fx-border-width: 3;" text="diet" wrapText="true">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <Label text="DIET" textFill="#ffe200">
+               <font>
+                  <Font name="Consolas Bold" size="12.0" />
+               </font>
+            </Label>
+            <Pane prefHeight="15.0" prefWidth="680.0" />
+            <Label fx:id="medicinesLabel" alignment="TOP_LEFT" prefHeight="100.0" prefWidth="680.0" style="-fx-background-color: white; -fx-border-color: #808080; -fx-border-width: 3;" text="medicines&#10;" wrapText="true">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <Label text="MEDICINES" textFill="#ffe200">
+               <font>
+                  <Font name="Consolas Bold" size="12.0" />
+               </font>
+            </Label>
+            <Pane prefHeight="15.0" prefWidth="680.0" />
+            <Label fx:id="additionalInformationLabel" alignment="TOP_LEFT" prefHeight="272.0" prefWidth="680.0" style="-fx-background-color: white; -fx-border-color: #808080; -fx-border-width: 3;" text="additional information" wrapText="true">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <Label text="ADDITIONAL INFROMATION" textFill="#ffe200">
+               <font>
+                  <Font name="Consolas Bold" size="12.0" />
+               </font>
+            </Label>
+            <Pane prefHeight="15.0" prefWidth="680.0" />
+            <HBox prefHeight="55.0" prefWidth="680.0">
+               <children>
+                  <Label fx:id="nextMedicalExaminationLabel" alignment="TOP_LEFT" prefHeight="55.0" prefWidth="460.0" style="-fx-background-color: white; -fx-border-color: #808080; -fx-border-width: 3;" text="next medical examination name" wrapText="true">
+                     <font>
+                        <Font name="Consolas" size="12.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="55.0" prefWidth="100.0" />
+                  <Label fx:id="nextMedicalExaminationDateLabel" alignment="TOP_LEFT" prefHeight="55.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: #808080; -fx-border-width: 3;" text="date" wrapText="true">
+                     <font>
+                        <Font name="Consolas" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="14.0" prefWidth="680.0">
+               <children>
+                  <Label text="NEXT MEDICAL EXAMINATION NAME" textFill="#ffe200">
+                     <font>
+                        <Font name="Consolas Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="14.0" prefWidth="368.0" />
+                  <Label text="EXAMINATION DATE" textFill="#ffe200">
+                     <font>
+                        <Font name="Consolas Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Pane prefHeight="20.0" prefWidth="680.0" />
+            <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="680.0" text="recomendation_id: XXX">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
     </children>
 </AnchorPane>

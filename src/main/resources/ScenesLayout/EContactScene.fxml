@@ -45,7 +45,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Label layoutX="792.0" layoutY="69.0" text="E-CONTACT" AnchorPane.leftAnchor="792.0" AnchorPane.topAnchor="69.0">
+        <Label layoutX="792.0" layoutY="69.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="E-CONTACT" AnchorPane.leftAnchor="792.0" AnchorPane.topAnchor="69.0">
             <font>
                 <Font name="Consolas Bold" size="70.0" />
             </font>
@@ -94,7 +94,7 @@
       <Pane layoutX="600.0" layoutY="192.0" prefHeight="380.0" prefWidth="700.0">
          <children>
             <Pane opacity="0.4" prefHeight="380.0" prefWidth="700.0" style="-fx-background-color: white; -fx-background-radius: 30;" />
-            <Label alignment="TOP_CENTER" prefHeight="380.0" prefWidth="700.0" text="Instruction and descripiton of e-contact" textFill="#d09622">
+            <Label alignment="TOP_CENTER" prefHeight="380.0" prefWidth="700.0" text="Instruction and descripiton of e-contact" textFill="#d09622" wrapText="true">
                <font>
                   <Font name="Consolas Bold" size="25.0" />
                </font>

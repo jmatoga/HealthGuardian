@@ -20,7 +20,7 @@
                 <Image url="@../Images/background_1.png" />
             </image>
         </ImageView>
-        <Button fx:id="MessageButton" contentDisplay="GRAPHIC_ONLY" layoutX="1732.0" layoutY="308.0" mnemonicParsing="false" onAction="#messageButtonClicked" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00476e; -fx-border-width: 3; -fx-border-radius: 2; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" AnchorPane.leftAnchor="1700.0" AnchorPane.topAnchor="70.0">
+        <Button fx:id="MessageButton" contentDisplay="GRAPHIC_ONLY" layoutX="1732.0" layoutY="308.0" mnemonicParsing="false" onAction="#messageButtonClicked" prefHeight="60.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" AnchorPane.leftAnchor="1700.0" AnchorPane.topAnchor="70.0">
             <graphic>
                 <ImageView fitHeight="60.0" fitWidth="60.0">
                     <image>
@@ -75,7 +75,7 @@
                 </Label>
             </children>
         </VBox>
-        <Button fx:id="settingsButton" layoutX="1679.0" layoutY="1015.0" mnemonicParsing="false" onAction="#settingsButtonClicked" prefHeight="55.0" prefWidth="160.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00476e; -fx-border-width: 3; -fx-border-radius: 2; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="SETTINGS" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="100.0">
+        <Button fx:id="settingsButton" layoutX="1679.0" layoutY="1015.0" mnemonicParsing="false" onAction="#settingsButtonClicked" prefHeight="55.0" prefWidth="160.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SETTINGS" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="100.0">
             <font>
                 <Font name="Consolas Bold" size="24.0" />
             </font>
@@ -99,7 +99,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Button fx:id="logOutButton" layoutX="1000.0" layoutY="975.0" mnemonicParsing="false" onAction="#LogOutButtonClicked" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #00476e; -fx-border-width: 3; -fx-border-radius: 2; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="LOG OUT" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="100.0">
+        <Button fx:id="logOutButton" layoutX="1000.0" layoutY="975.0" mnemonicParsing="false" onAction="#LogOutButtonClicked" prefHeight="40.0" prefWidth="120.0" styleClass="darkblue-20-button" stylesheets="@../Styles/buttonsStyle.css" text="LOG OUT" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="100.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
@@ -123,7 +123,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Button fx:id="patientButton" layoutX="109.0" layoutY="70.0" mnemonicParsing="false" onAction="#patientButtonClicked" prefHeight="80.0" prefWidth="460.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #edf0b9); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #626e00; -fx-border-width: 4; -fx-border-radius: 3; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="PATIENT" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="70.0">
+        <Button fx:id="patientButton" layoutX="109.0" layoutY="70.0" mnemonicParsing="false" onAction="#patientButtonClicked" prefHeight="80.0" prefWidth="460.0" styleClass="yellow-button" stylesheets="@../Styles/buttonsStyle.css" text="PATIENT" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="70.0">
             <font>
                 <Font name="Consolas Bold" size="24.0" />
             </font>
@@ -152,7 +152,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Button fx:id="testScheduleButton" layoutX="926.0" layoutY="70.0" mnemonicParsing="false" onAction="#testScheduleButtonClicked" prefHeight="80.0" prefWidth="300.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9f0cc); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #007052; -fx-border-width: 4; -fx-border-radius: 3; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="TEST SCHEDULE" AnchorPane.leftAnchor="620.0" AnchorPane.topAnchor="70.0">
+        <Button fx:id="testScheduleButton" layoutX="926.0" layoutY="70.0" mnemonicParsing="false" onAction="#testScheduleButtonClicked" prefHeight="80.0" prefWidth="300.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="TEST SCHEDULE" AnchorPane.leftAnchor="620.0" AnchorPane.topAnchor="70.0">
             <font>
                 <Font name="Consolas Bold" size="24.0" />
             </font>
@@ -176,7 +176,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Button fx:id="eContactButton" layoutX="1256.0" layoutY="70.0" mnemonicParsing="false" onAction="#eContactButtonClicked" prefHeight="80.0" prefWidth="300.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9f0cc); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #007052; -fx-border-width: 4; -fx-border-radius: 3; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="E-CONTACT" textAlignment="CENTER" AnchorPane.leftAnchor="980.0" AnchorPane.topAnchor="70.0">
+        <Button fx:id="eContactButton" layoutX="1256.0" layoutY="70.0" mnemonicParsing="false" onAction="#eContactButtonClicked" prefHeight="80.0" prefWidth="300.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="E-CONTACT" textAlignment="CENTER" AnchorPane.leftAnchor="980.0" AnchorPane.topAnchor="70.0">
             <font>
                 <Font name="Consolas Bold" size="24.0" />
             </font>
@@ -200,7 +200,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Button fx:id="listOfClinicsButton" layoutX="1597.0" layoutY="70.0" mnemonicParsing="false" onAction="#listOfClinicsButtonClicked" prefHeight="80.0" prefWidth="300.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9f0cc); -fx-background-insets: 0, 1; -fx-background-radius: 5; -fx-border-color: #007052; -fx-border-width: 4; -fx-border-radius: 3; -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);" text="LIST OF CLINICS" AnchorPane.leftAnchor="1340.0" AnchorPane.topAnchor="70.0">
+        <Button fx:id="listOfClinicsButton" layoutX="1597.0" layoutY="70.0" mnemonicParsing="false" onAction="#listOfClinicsButtonClicked" prefHeight="80.0" prefWidth="300.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="LIST OF CLINICS" AnchorPane.leftAnchor="1340.0" AnchorPane.topAnchor="70.0">
             <font>
                 <Font name="Consolas Bold" size="24.0" />
             </font>

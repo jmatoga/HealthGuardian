@@ -64,22 +64,6 @@
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
-         <textFill>
-            <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.28700000047683716" green="0.7103614211082458" blue="0.8199999928474426" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color green="0.21052631735801697" blue="0.20701754093170166" />
-                     </color>
-                  </Stop>
-               </stops>
-            </RadialGradient>
-         </textFill>
       </Button>
    </children>
 </AnchorPane>

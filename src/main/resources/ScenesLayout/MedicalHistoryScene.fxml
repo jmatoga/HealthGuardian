@@ -43,7 +43,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Label layoutX="679.0" layoutY="67.0" text="MEDICAL HISTORY" AnchorPane.leftAnchor="679.0" AnchorPane.topAnchor="67.0">
+        <Label layoutX="679.0" layoutY="67.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="MEDICAL HISTORY" AnchorPane.leftAnchor="679.0" AnchorPane.topAnchor="67.0">
             <font>
                 <Font name="Consolas Bold" size="70.0" />
             </font>
@@ -73,7 +73,7 @@
             </Label>
          </children>
         </Pane>
-      <Button fx:id="DownloadButton" layoutX="800.0" layoutY="935.0" mnemonicParsing="false" onAction="#userPanelButtonClicked" prefHeight="90.0" prefWidth="300.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="DOWNLOAD">
+      <Button fx:id="DownloadButton" layoutX="813.0" layoutY="950.0" mnemonicParsing="false" onAction="#userPanelButtonClicked" prefHeight="60.0" prefWidth="300.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="DOWNLOAD">
          <font>
             <Font name="Consolas Bold" size="28.0" />
          </font>
