@@ -21,6 +21,11 @@ import java.util.concurrent.FutureTask;
 
 import static java.lang.System.exit;
 
+/**
+ * The Server class is responsible for setting up the server, accepting client connections, and handling client requests.
+ * It uses a thread pool to handle multiple client connections concurrently.
+ * It also uses a SQL engine for database operations.
+ */
 public class Server {
     // Server properties
     private static final int SERVER_PORT = 12345;
@@ -36,34 +41,10 @@ public class Server {
     private static SQLEngine sqlEngine;
     private static final String secretKey = "HealthGuardianKey";
 
-    public static byte[] generateKey(String secretKey) {
-        try {
-            MessageDigest sha = MessageDigest.getInstance("SHA-256");
-            byte[] key = secretKey.getBytes(StandardCharsets.UTF_8);
-            key = sha.digest(key);
-            return key;
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+    // Singleton instance
+    private static Server instance;
 
-    public static String decrypt(String strToDecrypt, byte[] key) {
-        try {
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-            SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
-            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
-            byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(strToDecrypt));
-            return new String(decryptedBytes);
-        } catch (Exception e) {
-            System.out.println(Color.ColorString("Error while decrytping: " + e.toString(), Color.ANSI_RED));
-            return null;
-        }
-    }
-
-    public static void main(String[] args) throws IOException {
-        int clientId = 0;
-
+    private Server() throws IOException {
         byte[] key = generateKey(secretKey);
 
         String content = new String(Files.readAllBytes(Paths.get("src/main/resources/Secret/passwords.json")));
@@ -80,7 +61,7 @@ public class Server {
             serverSocket = new ServerSocket(SERVER_PORT);
             System.out.println("Server is listening on port: " + Color.ColorString("" + SERVER_PORT, Color.ANSI_CYAN));
         } catch (IOException e) {
-            System.out.println("Server could not listen on port " + SERVER_PORT);
+            System.out.println(Color.ColorString("Server is already started on port " + SERVER_PORT + "!", Color.ANSI_RED));
             exit(-1);
         }
 
@@ -93,16 +74,80 @@ public class Server {
             e.printStackTrace();
             exit(-2);
         }
+    }
 
-        // Listen for client connections
-        while (true) {
-            Socket clientSocket = serverSocket.accept(); // Accept new connection from Client
-            System.out.println(Color.ColorString("\nNew client connected with id: ", Color.ANSI_YELLOW) + Color.ColorString("" + ++clientId, Color.ANSI_BLACK_BACKGROUND));
-            //System.out.println("\nNew client connected with id: " + clientSocket.getInetAddress().getHostAddress());
+    // Method to get the singleton instance
+    public static Server getInstance() throws IOException {
+        if (instance == null) {
+            instance = new Server();
+        }
+        return instance;
+    }
 
-            // Submit new task to thread pool
-            FutureTask<String> task = new FutureTask<>(new ClientHandler(clientSocket, sqlEngine, clientId));
-            executorService.submit(task);
+    /**
+     * Generates a key for encryption and decryption.
+     *
+     * @param secretKey the secret key string
+     * @return the generated key
+     */
+    public static byte[] generateKey(String secretKey) {
+        try {
+            MessageDigest sha = MessageDigest.getInstance("SHA-256");
+            byte[] key = secretKey.getBytes(StandardCharsets.UTF_8);
+            key = sha.digest(key);
+            return key;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Decrypts a string using a key.
+     *
+     * @param strToDecrypt the string to decrypt
+     * @param key          the decryption key
+     * @return the decrypted string
+     */
+    public static String decrypt(String strToDecrypt, byte[] key) {
+        try {
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
+            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
+            byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(strToDecrypt));
+            return new String(decryptedBytes);
+        } catch (Exception e) {
+            System.out.println(Color.ColorString("Error while decrytping: " + e.toString(), Color.ANSI_RED));
+            return null;
+        }
+    }
+
+    /**
+     * The main method of the Server class.
+     * It sets up the server, accepts client connections, and handles client requests.
+     *
+     * @param args command-line arguments
+     * @throws IOException if an I/O error occurs
+     */
+    public static void main(String[] args) throws IOException {
+        int clientId = 0;
+        instance = Server.getInstance();
+
+        try {
+            // Listen for client connections
+            while (true) {
+                Socket clientSocket = serverSocket.accept(); // Accept new connection from Client
+                System.out.println(Color.ColorString("\nNew client connected with id: ", Color.ANSI_YELLOW) + Color.ColorString("" + ++clientId, Color.ANSI_BLACK_BACKGROUND));
+                //System.out.println("\nNew client connected with id: " + clientSocket.getInetAddress().getHostAddress());
+
+                // Submit new task to thread pool
+                FutureTask<String> task = new FutureTask<>(new ClientHandler(clientSocket, sqlEngine, clientId));
+                executorService.submit(task);
+            }
+        } finally {
+            serverSocket.close();
+            executorService.shutdown();
+            System.out.println("Server stopped successfully.");
         }
     }
 }
