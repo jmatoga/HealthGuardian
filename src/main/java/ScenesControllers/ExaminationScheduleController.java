@@ -72,7 +72,7 @@ public class ExaminationScheduleController implements Initializable {
 
                 Pane newExamination = new Pane();
                 Label newExaminationName = new Label(examinationData[1]);
-                Label newExaminationDescription = new Label("Examination number: " + examinationData[0] + ", from doctor with id: " + examinationData[3]);
+                Label newExaminationDescription = new Label("Examination number: " + examinationData[0] + ", with " + examinationData[3] + " " + examinationData[4] + ". Phone: " + examinationData[5]);
                 Label newExaminationDate = new Label(examinationData[2]);
                 newExaminationName.setPrefHeight(40);
                 // Set fitting to scroll bar

@@ -5,18 +5,35 @@ import utils.Color;
 import java.sql.*;
 import java.util.Arrays;
 
+/**
+ * The SQLEngine class is responsible for handling all database operations.
+ * It provides methods for connecting to the database, executing SQL queries, and closing the database connection.
+ */
 public class SQLEngine {
     private final String url;
     private final String DBusername;
     private final String DBpassword;
 
+    /**
+     * Constructor for the SQLEngine class.
+     * @param host the host of the database
+     * @param port the port of the database
+     * @param database the name of the database
+     * @param DBusername the username for the database
+     * @param DBpassword the password for the database
+     */
     public SQLEngine(String host, int port, String database, String DBusername, String DBpassword) {
-        // old (local) database //connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthguardian", "root", "root");
         this.url = "jdbc:mysql://" + host + ":" + port + "/" + database;
         this.DBusername = DBusername;
         this.DBpassword = DBpassword;
     }
 
+    /**
+     * The connectToDataBase method is responsible for establishing a connection with the database.
+     * @param connection the Connection object
+     * @param clientId the ID of the client
+     * @return the Connection object
+     */
     public Connection connectToDataBase(Connection connection, int clientId) {
         try {
             connection = DriverManager.getConnection(url, DBusername, DBpassword);
@@ -35,6 +52,12 @@ public class SQLEngine {
         return connection;
     }
 
+    /**
+     * The getData method is responsible for retrieving data from the database.
+     * @param clientID the ID of the client
+     * @param user_id the ID of the user
+     * @return an array of strings containing the data
+     */
     String[] getData(int clientID, String user_id) {
         String[] returnStatement = {"Error", "Error", "No data", "No data", "No data", "No data", "No data", "No data", "No data"};
 
@@ -90,6 +113,13 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * The checkIfUserExists method is responsible for checking if a user exists in the database.
+     * @param clientID the ID of the client
+     * @param username the username of the user
+     * @param email the email of the user
+     * @return a string indicating if the user exists
+     */
     String checkIfUserExists(int clientID, String username, String email) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -128,6 +158,19 @@ public class SQLEngine {
         return "Error";
     }
 
+    /**
+     * The checkOneTimeCode method is responsible for checking the one-time code of a user.
+     * @param clientID the ID of the client
+     * @param oneTimeCode the one-time code of the user
+     * @param firstname the first name of the user
+     * @param lastname the last name of the user
+     * @param email the email of the user
+     * @param phoneNumber the phone number of the user
+     * @param pesel the PESEL number of the user
+     * @param username the username of the user
+     * @param password the password of the user
+     * @return a string indicating if the one-time code is correct
+     */
     String checkOneTimeCode(int clientID, String oneTimeCode, String firstname, String lastname, String email, String phoneNumber, String pesel, String username, String password) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -201,6 +244,13 @@ public class SQLEngine {
         return "error";
     }
 
+    /**
+     * The loginToAccount method is responsible for logging in a user.
+     * @param clientID the ID of the client
+     * @param inputUsername the input username of the user
+     * @param inputPassword the input password of the user
+     * @return an array of strings containing the login status and the user ID
+     */
     String[] loginToAccount(int clientID, String inputUsername, String inputPassword) {
         String[] returnStatement = {"false", "-1"};
 
@@ -241,6 +291,19 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * The updateUserBasicData method is responsible for updating the basic data of a user.
+     * @param clientID the ID of the client
+     * @param birthdayDate the birthday date of the user
+     * @param weight the weight of the user
+     * @param height the height of the user
+     * @param temperature the temperature of the user
+     * @param systolic_pressure the systolic pressure of the user
+     * @param diastolic_pressure the diastolic pressure of the user
+     * @param entryDate the entry date of the user
+     * @param userId the ID of the user
+     * @return a string indicating the status of the update operation
+     */
     String updateUserBasicData(int clientID, String birthdayDate, String weight, String height, String temperature, String systolic_pressure, String diastolic_pressure, String entryDate, String userId) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -316,6 +379,14 @@ public class SQLEngine {
         return "Error while updating user basic data.";
     }
 
+    /**
+     * This method is responsible for closing the database connection and associated resources.
+     * It closes the ResultSet, PreparedStatement, and Connection objects.
+     * If any of these objects are null, they are ignored.
+     * @param resultSet the ResultSet object to be closed
+     * @param preparedStatement the PreparedStatement object to be closed
+     * @param connection the Connection object to be closed
+     */
     private static void disconnectFromDataBase(ResultSet resultSet, PreparedStatement preparedStatement, Connection connection) {
         // Closing resources (ResultSet, PreparedStatement, Connection)
         try {
@@ -329,6 +400,15 @@ public class SQLEngine {
         }
     }
 
+    /**
+     * This method is responsible for closing the database connection and associated resources.
+     * It closes two ResultSet objects, a PreparedStatement, and a Connection object.
+     * If any of these objects are null, they are ignored.
+     * @param resultSet the first ResultSet object to be closed
+     * @param resultSet1 the second ResultSet object to be closed
+     * @param preparedStatement the PreparedStatement object to be closed
+     * @param connection the Connection object to be closed
+     */
     private static void disconnectFromDataBase(ResultSet resultSet, ResultSet resultSet1, PreparedStatement preparedStatement, Connection connection) {
         // Closing resources (ResultSet, PreparedStatement, Connection)
         try {
@@ -343,6 +423,12 @@ public class SQLEngine {
         }
     }
 
+    /**
+     * The getSettings method is responsible for retrieving the settings of a user.
+     * @param clientID the ID of the client
+     * @param user_id the ID of the user
+     * @return an array of strings containing the settings
+     */
     String[] getSettings(int clientID, String user_id) {
         String[] returnStatement = {"Error", "Error", "Error", "Error", "Error"};
 
@@ -378,6 +464,17 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * The setSettings method is responsible for setting the settings of a user.
+     * @param clientID the ID of the client
+     * @param user_id the ID of the user
+     * @param bmi_setting the BMI setting of the user
+     * @param age_setting the age setting of the user
+     * @param currentDate_setting the current date setting of the user
+     * @param settings_no_4 the fourth setting of the user
+     * @param settings_no_5 the fifth setting of the user
+     * @return a string indicating the status of the set operation
+     */
     String setSettings(int clientID, String user_id, String bmi_setting, String age_setting, String currentDate_setting, String settings_no_4, String settings_no_5) {
         String returnStatement = "Error";
 
@@ -417,6 +514,11 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * The getClinics method is responsible for retrieving the clinics from the database.
+     * @param clientID the ID of the client
+     * @return a 2D array of strings containing the clinics
+     */
     String[][] getClinics(int clientID) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -462,6 +564,12 @@ public class SQLEngine {
         return null;
     }
 
+    /**
+     * The getExaminations method is responsible for retrieving the examinations of a user.
+     * @param clientID the ID of the client
+     * @param user_id the ID of the user
+     * @return a 2D array of strings containing the examinations
+     */
     String[][] getExaminations(int clientID, int user_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -469,7 +577,7 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String sql = "SELECT * FROM examination_table WHERE user_id = ?";
+            String sql = "SELECT examination_nr, name, examination_date, doctor_table.first_name, doctor_table.last_name, doctor_table.phone FROM examination_table INNER JOIN doctor_table ON examination_table.doctor_id = doctor_table.doctor_id WHERE user_id = ?";
             preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setInt(1, user_id);
 
@@ -507,7 +615,13 @@ public class SQLEngine {
         return null;
     }
 
-    String[][] getMessages(int clientID, int user_id) {
+    /**
+     * The getMessages method is responsible for retrieving the messages of a user.
+     * @param clientID the ID of the client
+     * @param user_id the ID of the user
+     * @return a 2D array of strings containing the messages
+     */
+    String[][] getNotifications(int clientID, int user_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -526,8 +640,8 @@ public class SQLEngine {
             }
 
             if (rowCount == 0) {
-                System.out.println("No messages in database.");
-                return new String[][]{{"No messages in database"}};
+                System.out.println("No notifications in database.");
+                return new String[][]{{"No notifications in database"}};
             }
 
             int columnCount = resultSet.getMetaData().getColumnCount();
@@ -552,6 +666,99 @@ public class SQLEngine {
         return null;
     }
 
+    String[][] getMedicalHistory(int clientID, int user_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT * FROM user_medical_history_table WHERE user_id = ?";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            preparedStatement.setInt(1, user_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            if (rowCount == 0) {
+                System.out.println("No medical history in database.");
+                return new String[][]{{"No medical history in database"}};
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
+
+    String[][] getPressure(int clientID, int user_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT * FROM user_basic_data_table WHERE user_id = ? ORDER BY entry_date";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            preparedStatement.setInt(1, user_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            if (rowCount == 0) {
+                System.out.println("No pressures in database.");
+                return new String[][]{{"No pressures in database"}};
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
+
+    /**
+     * The checkDataBase method is responsible for checking the database.
+     */
     public void checkDataBase() {
         Connection connection = null;
         try {

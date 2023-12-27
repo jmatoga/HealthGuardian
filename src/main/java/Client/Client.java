@@ -8,13 +8,32 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+/**
+ * The Client class is responsible for creating a connection with the server.
+ * It also creates a thread for the client and contains the main method.
+ */
 public class Client {
     public static int user_id=-1;
     public static int clientId=-1;
+    /**
+     * BufferedReader to read data from the server
+     */
     public static BufferedReader ReadFromServer;
+    /**
+     * PrintWriter to send data to the server
+     */
     public static PrintWriter SendToServer;
+    /**
+     * ClientWindow instance for the client's window application
+     */
     public static ClientWindow windowApplication = new ClientWindow();
 
+    /**
+     * The main method of the Client class.
+     * It creates a new thread for the client, establishes a connection with the server,
+     * and handles the communication with the server.
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
         Thread clientThread = new Thread(() -> {
 

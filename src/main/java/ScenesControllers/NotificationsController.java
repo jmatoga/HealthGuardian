@@ -8,7 +8,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import utils.Color;
@@ -21,7 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class MessagesController implements Initializable {
+public class NotificationsController implements Initializable {
     private static final Message message = new Message();
     private static BufferedReader ReadFromServer;
     private static PrintWriter SendToServer;
@@ -39,43 +38,43 @@ public class MessagesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        MessagesController.ReadFromServer = Client.ReadFromServer;
-        MessagesController.SendToServer = Client.SendToServer;
+        NotificationsController.ReadFromServer = Client.ReadFromServer;
+        NotificationsController.SendToServer = Client.SendToServer;
         try {
-            getMessagesFromDB();
+            getNotificationsFromDB();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private void getMessagesFromDB() throws IOException {
-        message.sendGetMessagesMessage(SendToServer, Client.clientId  + "," + Client.user_id);
+    private void getNotificationsFromDB() throws IOException {
+        message.sendGetNotificationsMessage(SendToServer, Client.clientId  + "," + Client.user_id);
         String serverAnswer = ReadFromServer.readLine();
         System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
 
-        if(serverAnswer.equals("[[No messages in database]]")) {
-            Pane newMessage = new Pane();
-            Label newMessageTitle = new Label("There is no messages from system.");
-            newMessageTitle.setPrefHeight(120);
-            newMessageTitle.setPrefWidth(1334);
-            newMessageTitle.setLayoutX(14);
-            newMessageTitle.setAlignment(Pos.CENTER);
-            newMessageTitle.setFont(new Font("Consolas Bold", 50.0));
-            newMessage.getChildren().add(newMessageTitle);
-            gridPane.add(newMessage, 0, 0);
+        if(serverAnswer.equals("[[No notifications in database]]")) {
+            Pane newNotification = new Pane();
+            Label newNotificationTitle = new Label("There is no notifications from system.");
+            newNotificationTitle.setPrefHeight(120);
+            newNotificationTitle.setPrefWidth(1334);
+            newNotificationTitle.setLayoutX(14);
+            newNotificationTitle.setAlignment(Pos.CENTER);
+            newNotificationTitle.setFont(new Font("Consolas Bold", 50.0));
+            newNotification.getChildren().add(newNotificationTitle);
+            gridPane.add(newNotification, 0, 0);
         } else {
-            String[] messagesData = serverAnswer.substring(2, serverAnswer.length() - 2).split("], \\[");
+            String[] notificationsData = serverAnswer.substring(2, serverAnswer.length() - 2).split("], \\[");
 
-            for (int i = 0; i < messagesData.length; i++) {
-                String[] messageData = messagesData[i].split(", ");
+            for (int i = 0; i < notificationsData.length; i++) {
+                String[] notificationData = notificationsData[i].split(", ");
 
                 Pane newMessage = new Pane();
-                Label newMessageTitle = new Label(messageData[1]);
-                Label newMessageContent = new Label(messageData[2]);
-                Label newMessageDate = new Label(messageData[4]);
+                Label newMessageTitle = new Label(notificationData[1]);
+                Label newMessageContent = new Label(notificationData[2]);
+                Label newMessageDate = new Label(notificationData[4]);
                 newMessageTitle.setPrefHeight(40);
                 // Set fitting to scroll bar
-                if(messagesData.length > 6) {
+                if(notificationsData.length > 6) {
                     newMessageTitle.setPrefWidth(1321);
                     newMessageContent.setPrefWidth(1321);
                 } else {
@@ -96,7 +95,7 @@ public class MessagesController implements Initializable {
                 newMessageDate.setFont(new Font("Consolas Bold", 20.0));
                 newMessage.getChildren().addAll(newMessageTitle, newMessageContent, newMessageDate);
 
-                // Add new messages to the GridPane on the appropriate row
+                // Add new notification to the GridPane on the appropriate row
                 gridPane.add(newMessage, 0, i);
             }
         }

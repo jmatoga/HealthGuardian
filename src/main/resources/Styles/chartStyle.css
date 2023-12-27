@@ -12,7 +12,7 @@
     -fx-background-color: #05263b;
     -fx-font-size: 20;
     -fx-text-fill: white;
-    -fx-legend-visible: false;
+    -fx-legend-visible: true;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.5, 0, 0);
     -fx-background-radius: 20;
     -fx-border-radius: 20;
@@ -23,6 +23,18 @@
     -fx-text-fill: #ffffff;
 }
 
+.chart-legend {
+    -fx-background-color: transparent;
+     -fx-text-fill: red;
+}
+
+.label {
+    -fx-background-color:transparent;
+    -fx-font-size: 15;
+    -fx-text-fill: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.5, 0, 0);
+}
+
 .chart-plot-background {
     -fx-background-color:transparent;
 }
@@ -30,6 +42,7 @@
 .default-color0.chart-series-line { -fx-stroke: #238591; }
 .default-color1.chart-series-line { -fx-stroke: #e5d849; }
 .default-color2.chart-series-line { -fx-stroke: #ed4d51; }
+.default-color3.chart-series-line { -fx-stroke: #6a4caf; }
 
 .chart-line-symbol {
     -fx-background-color: transparent;

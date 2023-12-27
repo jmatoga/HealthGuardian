@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="messagesScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.MessagesController">
+<AnchorPane fx:id="notificationsScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.NotificationsController">
     <children>
         <ImageView fitHeight="1110.0" fitWidth="1930.0" layoutX="8.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
@@ -44,7 +44,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Label layoutX="810.0" layoutY="57.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="MESSAGES" textAlignment="CENTER" AnchorPane.leftAnchor="806.0" AnchorPane.rightAnchor="806.0" AnchorPane.topAnchor="57.0">
+        <Label layoutX="709.0" layoutY="57.0" prefHeight="81.0" prefWidth="502.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="NOTIFICATIONS" textAlignment="CENTER" AnchorPane.leftAnchor="709.0" AnchorPane.rightAnchor="709.0" AnchorPane.topAnchor="57.0">
             <font>
                 <Font name="Consolas Bold" size="70.0" />
             </font>

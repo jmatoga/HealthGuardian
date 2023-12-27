@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import org.apache.pdfbox.Loader;
+//import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.PDFRenderer;
 import utils.Message;
@@ -46,21 +46,21 @@ public class EPrescriptionController implements Initializable {
 
 
     private void loadPDF() {
-        try {
-            File file = new File("src/main/resources/photos/e-prescription.pdf");
-            PDDocument doc1 = Loader.loadPDF(file);
-
-            PDFRenderer pr = new PDFRenderer (doc1);
-            BufferedImage bi = pr.renderImageWithDPI(0, 300);
-
-            Image fxImage = SwingFXUtils.toFXImage(bi, null);
-
-            previewImageView.setImage(fxImage);
-
-            doc1.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            File file = new File("src/main/resources/photos/e-prescription.pdf");
+//            //PDDocument doc1 = Loader.loadPDF(file);
+//
+//            PDFRenderer pr = new PDFRenderer (doc1);
+//            BufferedImage bi = pr.renderImageWithDPI(0, 300);
+//
+//            Image fxImage = SwingFXUtils.toFXImage(bi, null);
+//
+//            previewImageView.setImage(fxImage);
+//
+//            doc1.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
