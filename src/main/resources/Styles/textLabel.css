@@ -6,6 +6,21 @@
 
 }
 
+.blackRed-label {
+    -fx-text-fill: radial-gradient(focus-angle 0.0deg, focus-distance 0.0%, center 51.6575% 50.0%, radius 62.6437%, #000000 0.0%, #ff0000 100.0%);
+    -fx-font-family: "Consolas bold";
+    -fx-font-size: 70px;
+    -fx-text-alignment: center;
+}
+
+.whiteRed-label {
+    -fx-text-fill: radial-gradient(focus-angle 0.0deg, focus-distance 0.0%, center 51.6575% 50.0%, radius 62.6437%, #ffffff 0.0%, #ff0000 100.0%);
+    -fx-font-family: "Consolas bold";
+    -fx-font-size: 70px;
+    -fx-text-alignment: center;
+}
+
+
 .darkBlue-label {
     -fx-text-fill: radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 50.0% 50.0%, radius 50.0%, #53b1ff 0.0%, #000fff 100.0%);
 
