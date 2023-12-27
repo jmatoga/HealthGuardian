@@ -1,6 +1,5 @@
 package Server;
 
-import Client.Client;
 import utils.Color;
 
 import java.io.BufferedReader;
@@ -11,17 +10,32 @@ import java.net.Socket;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
 
+/**
+ * The ClientHandler class implements the Callable interface and is responsible for handling client requests.
+ * It reads messages from the client, processes them, and sends responses back to the client.
+ */
 class ClientHandler implements Callable<String> {
     private final Socket clientSocket;
     private final SQLEngine sqlEngine;
     private final int clientId;
 
+    /**
+     * Constructor for the ClientHandler class.
+     * @param clientSocket the socket for the client connection
+     * @param sqlEngine the SQL engine for database operations
+     * @param clientId the ID of the client
+     */
     public ClientHandler(Socket clientSocket, SQLEngine sqlEngine, int clientId) {
         this.clientSocket = clientSocket;
         this.sqlEngine = sqlEngine;
         this.clientId = clientId;
     }
 
+    /**
+     * The call method is the main method of the ClientHandler class.
+     * It reads messages from the client, processes them, and sends responses back to the client.
+     * @return a string indicating an error with the ClientHandler
+     */
     public String call() {
         try (
                 // Create input and output streams
@@ -80,13 +94,27 @@ class ClientHandler implements Callable<String> {
 
                     String[][] dataResult = sqlEngine.getClinics(Integer.parseInt(clientId));
                     SendToClient.println(Arrays.deepToString(dataResult));
-                } else if (serverMessage.startsWith("GET_MESSAGES:")) {
+                } else if (serverMessage.startsWith("GET_NOTIFICATIONS:")) {
+                    String[] resources = serverMessage.substring(18).split(",");
+                    String clientId = resources[0];
+                    String userId = resources[1];
+
+                    String[][] messagesResult = sqlEngine.getNotifications(Integer.parseInt(clientId), Integer.parseInt(userId));
+                    SendToClient.println(Arrays.deepToString(messagesResult));
+                } else if (serverMessage.startsWith("GET_MEDICAL_HISTORY")) {
+                    String[] resources = serverMessage.substring(20).split(",");
+                    String clientId = resources[0];
+                    String userId = resources[1];
+
+                    String[][] medicalHistoryResult = sqlEngine.getMedicalHistory(Integer.parseInt(clientId), Integer.parseInt(userId));
+                    SendToClient.println(Arrays.deepToString(medicalHistoryResult));
+                } else if (serverMessage.startsWith("GET_PRESSURE:")) {
                     String[] resources = serverMessage.substring(13).split(",");
                     String clientId = resources[0];
                     String userId = resources[1];
 
-                    String[][] messagesResult = sqlEngine.getMessages(Integer.parseInt(clientId), Integer.parseInt(userId));
-                    SendToClient.println(Arrays.deepToString(messagesResult));
+                    String[][] pressureResult = sqlEngine.getPressure(Integer.parseInt(clientId), Integer.parseInt(userId));
+                    SendToClient.println(Arrays.deepToString(pressureResult));
                 } else if (serverMessage.startsWith("GET_EXAMINATIONS:")) {
                     String[] resources = serverMessage.substring(17).split(",");
                     String clientId = resources[0];

@@ -157,7 +157,7 @@ public class ClientPanelController implements Initializable {
 
     @FXML
     private void messageButtonClicked(ActionEvent event) throws  IOException{
-        new SceneSwitch("/ScenesLayout/MessagesScene.fxml");
+        new SceneSwitch("/ScenesLayout/NotificationsScene.fxml");
     }
 
     @FXML

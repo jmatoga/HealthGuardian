@@ -11,9 +11,19 @@ import java.io.IOException;
 
 import static java.lang.System.exit;
 
+/**
+ * The ClientWindow class extends the Application class from JavaFX.
+ * It is responsible for creating and managing the client's window application.
+ */
 public class ClientWindow extends Application {
     public static Stage primaryStage;
 
+    /**
+     * The start method is the main entry point for all JavaFX applications.
+     * It is called after the init method has returned, and after the system is ready for the application to begin running.
+     * @param stage the primary stage for this application, onto which the application scene can be set.
+     * @throws IOException if an I/O error occurs.
+     */
     @Override
     public void start(Stage stage) throws IOException {
         ClientWindow.primaryStage = stage;
@@ -27,6 +37,9 @@ public class ClientWindow extends Application {
         stage.show();
     }
 
+    /**
+     * The startWindow method is responsible for launching the window application and handling the disconnection from the server.
+     */
     public void startWindow() {
         launch();
         System.out.println(Color.ColorString("Disconnected from server.",Color.ANSI_PURPLE));
