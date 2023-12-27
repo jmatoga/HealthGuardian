@@ -193,3 +193,33 @@
     -fx-background-color: linear-gradient(to bottom, #ffe082, #ffffc3);
     -fx-border-color: #bfae5f;
 }
+
+.lightgrey-button {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5;
+    -fx-border-color: #888888;
+    -fx-border-width: 4;
+    -fx-border-radius: 3;
+    -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);
+    -fx-text-fill: radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 50.0% 54.2654%, radius 74.1379%, #9a9a9a 0.0%, #686868 100.0%);
+    -fx-font-family: "Consolas bold";
+    -fx-font-size: 20px;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.lightgrey-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
+    -fx-border-color: #888888;
+}
+
+.lightgrey-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #e0e0e0, #f0f0f0);
+    -fx-border-color: #888888;
+}
+
+.lightgrey-button:disabled {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    -fx-border-color: #d0d0d0;
+    -fx-text-fill: #d0d0d0;

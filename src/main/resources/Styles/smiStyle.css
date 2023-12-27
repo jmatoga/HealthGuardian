@@ -1,0 +1,52 @@
+.lightgrey-pane
+{
+    -fx-background-color: #d4d4d4;
+    -fx-background-radius: 15;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-border-width: 5;
+    -fx-text-fill: radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 50.0% 54.2654%, radius 74.1379%, #46d4b3 0.0%, #007052 100.0%);
+    -fx-wrap-text: true;
+}
+
+.instructions-pane
+{
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-border-width: 5;
+    -fx-font-family: "Consolas bold";
+    -fx-font-size: 16px;
+    -fx-wrap-text: true;
+    -fx-text-fill: black;
+    -fx-text-alignment: center;
+}
+
+.alert-pane
+{
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-border-width: 5;
+    -fx-font-family: "Consolas bold";
+    -fx-font-size: 25px;
+    -fx-text-fill: red;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.black-20-label {
+    -fx-text-fill: black;
+    -fx-font-family: "Consolas bold";
+    -fx-font-size: 20px;
+    -fx-text-alignment: center;
+}
+
+.answer-radioButton {
+    -fx-font-family: "Consolas bold";
+    -fx-font-size: 16px;
+    -fx-wrap-text: true;
+}
+
