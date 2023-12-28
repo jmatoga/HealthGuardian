@@ -219,7 +219,9 @@
     -fx-border-color: #888888;
 }
 
-.lightgrey-button:disabled {
+.lightgrey-button:disabled
+{
     -fx-background-color: linear-gradient(to bottom, #ffffff, #f0f0f0);
     -fx-border-color: #d0d0d0;
     -fx-text-fill: #d0d0d0;
+}
