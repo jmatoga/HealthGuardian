@@ -74,7 +74,7 @@
                 <ImageView fx:id="previewImageView" fitHeight="650.0" fitWidth="700.0" layoutX="4.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
             </children>
         </Pane>
-        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="813.0" layoutY="273.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefHeight="650.0" prefWidth="820.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="820.0">
+        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="813.0" layoutY="273.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefHeight="650.0" prefWidth="820.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="820.0">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2006.0" prefWidth="808.0">
                     <children>

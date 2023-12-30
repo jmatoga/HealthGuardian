@@ -67,7 +67,7 @@
             </textFill>
         </Label>
         <Pane layoutX="817.0" layoutY="168.0" prefHeight="720.0" prefWidth="950.0" style="-fx-border-color: orange; -fx-border-width: 3;" AnchorPane.leftAnchor="817.0" AnchorPane.topAnchor="168.0" />
-        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="68.0" layoutY="169.0" maxHeight="800.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="720.0" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="68.0" AnchorPane.topAnchor="169.0">
+        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="68.0" layoutY="169.0" maxHeight="800.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="720.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="68.0" AnchorPane.topAnchor="169.0">
             <content>
                 <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="0.0" layoutY="0.0">
 <!--                    prefHeight="1600.0"-->

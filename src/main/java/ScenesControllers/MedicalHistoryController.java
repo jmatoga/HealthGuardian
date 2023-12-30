@@ -59,7 +59,7 @@ public class MedicalHistoryController implements Initializable {
             document.addPage(page);
 
             PDPageContentStream contentStream = new PDPageContentStream(document, page);
-            //contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
 
             float margin = 50;
             float yStart = page.getMediaBox().getHeight() - margin;
@@ -85,8 +85,8 @@ public class MedicalHistoryController implements Initializable {
             contentStream.close();
             document.save("src/main/resources/PDFs/" + "medicalHistory.pdf");
             document.close();
-            downloadStatusLabel.setText("Settings changed correctly!");
-
+            downloadStatusLabel.setTextFill(Color.greenGradient());
+            downloadStatusLabel.setText("Medical history downloaded correctly");
             Timeline timeline = new Timeline(
                     new KeyFrame(Duration.millis(1300), TimeEvent -> {
                         try {
@@ -99,11 +99,11 @@ public class MedicalHistoryController implements Initializable {
             timeline.setCycleCount(1);
             timeline.play();
 
-            System.out.println(Color.ColorString("Table exported to PDF correctly.", Color.ANSI_GREEN));
+            System.out.println("Medical history downloaded correctly.");
         } catch (IOException e) {
-            downloadStatusLabel.setTextFill(Paint.valueOf("RED"));
-            downloadStatusLabel.setText("Error while generating PDF!");
-            System.out.println(Color.ColorString("Error exporting table to PDF: " + e.getMessage(), Color.ANSI_RED));
+            downloadStatusLabel.setTextFill(Color.redGradient());
+            downloadStatusLabel.setText("Error while downloading medical history!");
+            System.out.println(Color.ColorString("Error downloading medical history: " + e.getMessage(), Color.ANSI_RED));
         }
     }
 

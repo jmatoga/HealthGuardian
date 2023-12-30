@@ -44,7 +44,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Label layoutX="709.0" layoutY="57.0" prefHeight="81.0" prefWidth="502.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="NOTIFICATIONS" textAlignment="CENTER" AnchorPane.leftAnchor="709.0" AnchorPane.rightAnchor="709.0" AnchorPane.topAnchor="57.0">
+        <Label focusTraversable="false" layoutX="709.0" layoutY="57.0" prefHeight="81.0" prefWidth="502.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="NOTIFICATIONS" textAlignment="CENTER" AnchorPane.leftAnchor="709.0" AnchorPane.rightAnchor="709.0" AnchorPane.topAnchor="57.0">
             <font>
                 <Font name="Consolas Bold" size="70.0" />
             </font>
@@ -65,7 +65,7 @@
                 </RadialGradient>
             </textFill>
         </Label>
-        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="343.0" layoutY="177.0" maxHeight="750.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="1350.0" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="343.0" AnchorPane.topAnchor="177.0">
+        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" focusTraversable="false" hbarPolicy="NEVER" layoutX="343.0" layoutY="177.0" maxHeight="750.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="1350.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="343.0" AnchorPane.topAnchor="177.0">
             <content>
                 <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="0.0" layoutY="0.0" prefWidth="1350.0">
                 </GridPane>

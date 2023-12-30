@@ -74,171 +74,167 @@
             <WebView fx:id="mapWebView" prefHeight="720.0" prefWidth="950.0" />
          </children>
         </Pane>
-        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="68.0" layoutY="169.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefHeight="800.0" prefWidth="720.0" vbarPolicy="ALWAYS" AnchorPane.leftAnchor="68.0" AnchorPane.topAnchor="169.0">
+        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" focusTraversable="false" hbarPolicy="NEVER" layoutX="68.0" layoutY="169.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefHeight="800.0" prefWidth="720.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="ALWAYS" AnchorPane.leftAnchor="68.0" AnchorPane.topAnchor="169.0">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1600.0" prefWidth="715.0">
-                    <children>
-                        <GridPane gridLinesVisible="true" layoutX="0.0" layoutY="0.0" prefHeight="1600.0" prefWidth="700.0">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="715.0" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
-                            </rowConstraints>
-                     <children>
-                        <Pane fx:id="ClinicPane1" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="0">
-                           <children>
-                              <Label fx:id="clinicNameLabel1" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
+                    <GridPane gridLinesVisible="true" layoutX="0.0" layoutY="0.0" prefHeight="1600.0" prefWidth="700.0">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="715.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                 <children>
+                    <Pane fx:id="ClinicPane1" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="0">
+                       <children>
+                          <Label fx:id="clinicNameLabel1" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
+                             <font>
+                                <Font name="Consolas Bold" size="40.0" />
+                             </font>
+                          </Label>
+                          <Label fx:id="descriptionClinicLabel1" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
+                             <font>
+                                <Font name="Consolas" size="20.0" />
+                             </font>
+                          </Label>
+                       </children>
+                    </Pane>
+                     <Pane fx:id="ClinicPane2" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="1">
+                         <children>
+                             <Label fx:id="clinicNameLabel2" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
                                  <font>
-                                    <Font name="Consolas Bold" size="40.0" />
+                                     <Font name="Consolas Bold" size="40.0" />
                                  </font>
-                              </Label>
-                              <Label fx:id="descriptionClinicLabel1" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
+                             </Label>
+                             <Label fx:id="descriptionClinicLabel2" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
                                  <font>
-                                    <Font name="Consolas" size="20.0" />
+                                     <Font name="Consolas" size="20.0" />
                                  </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                         <Pane fx:id="ClinicPane2" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="1">
-                             <children>
-                                 <Label fx:id="clinicNameLabel2" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
-                                     <font>
-                                         <Font name="Consolas Bold" size="40.0" />
-                                     </font>
-                                 </Label>
-                                 <Label fx:id="descriptionClinicLabel2" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
-                                     <font>
-                                         <Font name="Consolas" size="20.0" />
-                                     </font>
-                                 </Label>
-                             </children>
-                         </Pane>
-                         <Pane fx:id="ClinicPane3" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="2">
-                             <children>
-                                 <Label fx:id="clinicNameLabel3" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
-                                     <font>
-                                         <Font name="Consolas Bold" size="40.0" />
-                                     </font>
-                                 </Label>
-                                 <Label fx:id="descriptionClinicLabel3" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
-                                     <font>
-                                         <Font name="Consolas" size="20.0" />
-                                     </font>
-                                 </Label>
-                             </children>
-                         </Pane>
-                         <Pane fx:id="ClinicPane4" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="3">
-                             <children>
-                                 <Label fx:id="clinicNameLabel4" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
-                                     <font>
-                                         <Font name="Consolas Bold" size="40.0" />
-                                     </font>
-                                 </Label>
-                                 <Label fx:id="descriptionClinicLabel4" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
-                                     <font>
-                                         <Font name="Consolas" size="20.0" />
-                                     </font>
-                                 </Label>
-                             </children>
-                         </Pane>
-                         <Pane fx:id="ClinicPane5" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="4">
-                             <children>
-                                 <Label fx:id="clinicNameLabel5" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
-                                     <font>
-                                         <Font name="Consolas Bold" size="40.0" />
-                                     </font>
-                                 </Label>
-                                 <Label fx:id="descriptionClinicLabel5" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
-                                     <font>
-                                         <Font name="Consolas" size="20.0" />
-                                     </font>
-                                 </Label>
-                             </children>
-                         </Pane>
-                         <Pane fx:id="ClinicPane6" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="5">
-                             <children>
-                                 <Label fx:id="clinicNameLabel6" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
-                                     <font>
-                                         <Font name="Consolas Bold" size="40.0" />
-                                     </font>
-                                 </Label>
-                                 <Label fx:id="descriptionClinicLabel6" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
-                                     <font>
-                                         <Font name="Consolas" size="20.0" />
-                                     </font>
-                                 </Label>
-                             </children>
-                         </Pane>
-                         <Pane fx:id="ClinicPane7" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="6">
-                             <children>
-                                 <Label fx:id="clinicNameLabel7" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
-                                     <font>
-                                         <Font name="Consolas Bold" size="40.0" />
-                                     </font>
-                                 </Label>
-                                 <Label fx:id="descriptionClinicLabel7" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
-                                     <font>
-                                         <Font name="Consolas" size="20.0" />
-                                     </font>
-                                 </Label>
-                             </children>
-                         </Pane>
-                         <Pane fx:id="ClinicPane8" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="7">
-                             <children>
-                                 <Label fx:id="clinicNameLabel8" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
-                                     <font>
-                                         <Font name="Consolas Bold" size="40.0" />
-                                     </font>
-                                 </Label>
-                                 <Label fx:id="descriptionClinicLabel8" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
-                                     <font>
-                                         <Font name="Consolas" size="20.0" />
-                                     </font>
-                                 </Label>
-                             </children>
-                         </Pane>
-                         <Pane fx:id="ClinicPane9" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="8">
-                             <children>
-                                 <Label fx:id="clinicNameLabel9" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
-                                     <font>
-                                         <Font name="Consolas Bold" size="40.0" />
-                                     </font>
-                                 </Label>
-                                 <Label fx:id="descriptionClinicLabel9" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
-                                     <font>
-                                         <Font name="Consolas" size="20.0" />
-                                     </font>
-                                 </Label>
-                             </children>
-                         </Pane>
-                         <Pane fx:id="ClinicPane10" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="9">
-                             <children>
-                                 <Label fx:id="clinicNameLabel10" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
-                                     <font>
-                                         <Font name="Consolas Bold" size="40.0" />
-                                     </font>
-                                 </Label>
-                                 <Label fx:id="descriptionClinicLabel10" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
-                                     <font>
-                                         <Font name="Consolas" size="20.0" />
-                                     </font>
-                                 </Label>
-                             </children>
-                         </Pane>
-                     </children>
-                        </GridPane>
-                    </children>
-                </AnchorPane>
+                             </Label>
+                         </children>
+                     </Pane>
+                     <Pane fx:id="ClinicPane3" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="2">
+                         <children>
+                             <Label fx:id="clinicNameLabel3" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
+                                 <font>
+                                     <Font name="Consolas Bold" size="40.0" />
+                                 </font>
+                             </Label>
+                             <Label fx:id="descriptionClinicLabel3" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
+                                 <font>
+                                     <Font name="Consolas" size="20.0" />
+                                 </font>
+                             </Label>
+                         </children>
+                     </Pane>
+                     <Pane fx:id="ClinicPane4" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="3">
+                         <children>
+                             <Label fx:id="clinicNameLabel4" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
+                                 <font>
+                                     <Font name="Consolas Bold" size="40.0" />
+                                 </font>
+                             </Label>
+                             <Label fx:id="descriptionClinicLabel4" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
+                                 <font>
+                                     <Font name="Consolas" size="20.0" />
+                                 </font>
+                             </Label>
+                         </children>
+                     </Pane>
+                     <Pane fx:id="ClinicPane5" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="4">
+                         <children>
+                             <Label fx:id="clinicNameLabel5" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
+                                 <font>
+                                     <Font name="Consolas Bold" size="40.0" />
+                                 </font>
+                             </Label>
+                             <Label fx:id="descriptionClinicLabel5" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
+                                 <font>
+                                     <Font name="Consolas" size="20.0" />
+                                 </font>
+                             </Label>
+                         </children>
+                     </Pane>
+                     <Pane fx:id="ClinicPane6" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="5">
+                         <children>
+                             <Label fx:id="clinicNameLabel6" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
+                                 <font>
+                                     <Font name="Consolas Bold" size="40.0" />
+                                 </font>
+                             </Label>
+                             <Label fx:id="descriptionClinicLabel6" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
+                                 <font>
+                                     <Font name="Consolas" size="20.0" />
+                                 </font>
+                             </Label>
+                         </children>
+                     </Pane>
+                     <Pane fx:id="ClinicPane7" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="6">
+                         <children>
+                             <Label fx:id="clinicNameLabel7" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
+                                 <font>
+                                     <Font name="Consolas Bold" size="40.0" />
+                                 </font>
+                             </Label>
+                             <Label fx:id="descriptionClinicLabel7" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
+                                 <font>
+                                     <Font name="Consolas" size="20.0" />
+                                 </font>
+                             </Label>
+                         </children>
+                     </Pane>
+                     <Pane fx:id="ClinicPane8" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="7">
+                         <children>
+                             <Label fx:id="clinicNameLabel8" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
+                                 <font>
+                                     <Font name="Consolas Bold" size="40.0" />
+                                 </font>
+                             </Label>
+                             <Label fx:id="descriptionClinicLabel8" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
+                                 <font>
+                                     <Font name="Consolas" size="20.0" />
+                                 </font>
+                             </Label>
+                         </children>
+                     </Pane>
+                     <Pane fx:id="ClinicPane9" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="8">
+                         <children>
+                             <Label fx:id="clinicNameLabel9" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
+                                 <font>
+                                     <Font name="Consolas Bold" size="40.0" />
+                                 </font>
+                             </Label>
+                             <Label fx:id="descriptionClinicLabel9" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
+                                 <font>
+                                     <Font name="Consolas" size="20.0" />
+                                 </font>
+                             </Label>
+                         </children>
+                     </Pane>
+                     <Pane fx:id="ClinicPane10" prefHeight="180.0" prefWidth="100.0" GridPane.rowIndex="9">
+                         <children>
+                             <Label fx:id="clinicNameLabel10" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="670.0" text="CLINIC NAME">
+                                 <font>
+                                     <Font name="Consolas Bold" size="40.0" />
+                                 </font>
+                             </Label>
+                             <Label fx:id="descriptionClinicLabel10" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="81.0" prefWidth="670.0" text="Description of Clinic ">
+                                 <font>
+                                     <Font name="Consolas" size="20.0" />
+                                 </font>
+                             </Label>
+                         </children>
+                     </Pane>
+                 </children>
+                    </GridPane>
             </content>
         </ScrollPane>
     </children>
