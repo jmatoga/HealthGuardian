@@ -215,8 +215,8 @@ public class EPrescriptionController implements Initializable {
                         document.save("src/main/resources/PDFs/" + "ePrescription" + ePrescriptionCode + ".pdf");
 
                         buttonStatusLabel.setTextFill(greenGradient());
-                        System.out.println("ePrescription" + ePrescriptionCode + " saved corretly.");
-                        buttonStatusLabel.setText("ePrescription " + ePrescriptionCode + " saved corretly");
+                        System.out.println("ePrescription" + ePrescriptionCode + " saved correctly.");
+                        buttonStatusLabel.setText("ePrescription " + ePrescriptionCode + " saved correctly");
                         resetButtonStatus();
                     } else {
                         buttonStatusLabel.setTextFill(redGradient());
@@ -246,8 +246,8 @@ public class EPrescriptionController implements Initializable {
                             job.endJob();
 
                             buttonStatusLabel.setTextFill(greenGradient());
-                            System.out.println("ePrescription" + ePrescriptionCode + " printed corretly.");
-                            buttonStatusLabel.setText("ePrescription " + ePrescriptionCode + " printed corretly");
+                            System.out.println("ePrescription" + ePrescriptionCode + " printed correctly.");
+                            buttonStatusLabel.setText("ePrescription " + ePrescriptionCode + " printed correctly");
                             resetButtonStatus();
                         } else {
                             buttonStatusLabel.setTextFill(redGradient());

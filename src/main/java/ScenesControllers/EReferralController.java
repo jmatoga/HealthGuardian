@@ -200,8 +200,8 @@ public class EReferralController implements Initializable {
                         document.save("src/main/resources/PDFs/" + "eReferral" + eReferralCode + ".pdf");
 
                         buttonStatusLabel.setTextFill(greenGradient());
-                        System.out.println("eReferral" + eReferralCode + " saved corretly.");
-                        buttonStatusLabel.setText("eReferral " + eReferralCode + " saved corretly");
+                        System.out.println("eReferral" + eReferralCode + " saved correctly.");
+                        buttonStatusLabel.setText("eReferral " + eReferralCode + " saved correctly");
                         resetButtonStatus();
                     } else {
                         buttonStatusLabel.setTextFill(redGradient());
@@ -231,8 +231,8 @@ public class EReferralController implements Initializable {
                             job.endJob();
 
                             buttonStatusLabel.setTextFill(greenGradient());
-                            System.out.println("eReferral" + eReferralCode + " printed corretly.");
-                            buttonStatusLabel.setText("eReferral " + eReferralCode + " printed corretly");
+                            System.out.println("eReferral" + eReferralCode + " printed correctly.");
+                            buttonStatusLabel.setText("eReferral " + eReferralCode + " printed correctly");
                             resetButtonStatus();
                         } else {
                             buttonStatusLabel.setTextFill(redGradient());
