@@ -136,4 +136,10 @@ public class Message {
     public void sendGetMedicalHistoryMessage(PrintWriter writer, String message) {
         writer.println("GET_MEDICAL_HISTORY:" + message);
     }
+    public void sendGetEReferralMessage(PrintWriter writer, String message) {
+        writer.println("GET_EREFERRAL:" + message);
+    }
+    public void sendGetEPrescriptionMessage(PrintWriter writer, String message) {
+        writer.println("GET_EPRESCRIPTION:" + message);
+    }
 }

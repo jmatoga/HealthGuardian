@@ -59,7 +59,7 @@ public class MedicalHistoryController implements Initializable {
             document.addPage(page);
 
             PDPageContentStream contentStream = new PDPageContentStream(document, page);
-            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+            //contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
 
             float margin = 50;
             float yStart = page.getMediaBox().getHeight() - margin;

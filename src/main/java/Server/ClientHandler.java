@@ -115,6 +115,20 @@ class ClientHandler implements Callable<String> {
 
                     String[][] pressureResult = sqlEngine.getPressure(Integer.parseInt(clientId), Integer.parseInt(userId));
                     SendToClient.println(Arrays.deepToString(pressureResult));
+                } else if (serverMessage.startsWith("GET_EREFERRAL:")) {
+                    String[] resources = serverMessage.substring(14).split(",");
+                    String clientId = resources[0];
+                    String userId = resources[1];
+
+                    String[][] eReferralResult = sqlEngine.getEReferral(Integer.parseInt(clientId), Integer.parseInt(userId));
+                    SendToClient.println(Arrays.deepToString(eReferralResult));
+                } else if (serverMessage.startsWith("GET_EPRESCRIPTION:")) {
+                    String[] resources = serverMessage.substring(18).split(",");
+                    String clientId = resources[0];
+                    String userId = resources[1];
+
+                    String[][] ePrescriptionResult = sqlEngine.getEPrescrition(Integer.parseInt(clientId), Integer.parseInt(userId));
+                    SendToClient.println(Arrays.deepToString(ePrescriptionResult));
                 } else if (serverMessage.startsWith("GET_EXAMINATIONS:")) {
                     String[] resources = serverMessage.substring(17).split(",");
                     String clientId = resources[0];

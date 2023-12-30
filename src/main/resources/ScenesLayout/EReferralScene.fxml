@@ -7,20 +7,15 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="eRefferalScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.ERefferalController">
-
-
-
+<AnchorPane fx:id="eReferralScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.EReferralController">
     <children>
         <ImageView fitHeight="1110.0" fitWidth="1930.0" layoutX="8.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
@@ -72,257 +67,18 @@
                 </RadialGradient>
             </textFill>
         </Label>
-        <Pane layoutX="78.0" layoutY="273.0" opacity="0.2" prefHeight="650.0" prefWidth="700.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="70.0">
+        <Pane fx:id="imagePane" layoutX="78.0" layoutY="273.0" maxHeight="650.0" maxWidth="600.0" opacity="0.2" prefHeight="650.0" prefWidth="600.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="120.0">
             <children>
-                <ImageView fx:id="previewImageView" fitHeight="650.0" fitWidth="700.0" layoutX="4.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="previewImageView" fitHeight="908.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
             </children>
         </Pane>
-        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="813.0" layoutY="273.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefHeight="650.0" prefWidth="820.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="820.0">
+        <ScrollPane fx:id="scrollPane" blendMode="HARD_LIGHT" centerShape="false" focusTraversable="false" hbarPolicy="NEVER" layoutX="820.0" layoutY="280.0" maxHeight="650.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="819.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="820.0" AnchorPane.topAnchor="217.0">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2006.0" prefWidth="808.0">
-                    <children>
-                        <GridPane gridLinesVisible="true" layoutX="7.0" layoutY="7.0" prefHeight="2000.0" prefWidth="794.0">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            </rowConstraints>
-                            <children>
-                                <Pane prefHeight="200.0" prefWidth="265.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                                    <children>
-                                        <VBox prefHeight="200.0" prefWidth="265.0">
-                                            <children>
-                                                <Label fx:id="refferalName1" alignment="CENTER" prefHeight="50.0" prefWidth="265.0" text="refferal_name_1" textAlignment="CENTER" wrapText="true">
-                                                    <font>
-                                                        <Font name="Consolas Bold" size="20.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="refferalCode1" prefHeight="14.0" prefWidth="265.0" text="refferal code">
-                                                    <font>
-                                                        <Font name="Consolas" size="12.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="10.0" prefWidth="265.0" />
-                                                <Label fx:id="barcode1" prefHeight="12.0" prefWidth="265.0" text="barcode">
-                                                    <font>
-                                                        <Font name="Consolas" size="10.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="20.0" prefWidth="265.0" />
-                                                <Label fx:id="dateOfIssue1" prefHeight="20.0" prefWidth="264.0" text="DATE OF ISSUE:">
-                                                    <font>
-                                                        <Font name="Consolas" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="20.0" prefWidth="265.0" />
-                                                <Label fx:id="doctorName1" prefHeight="26.0" prefWidth="265.0" text="Doctor name">
-                                                    <font>
-                                                        <Font name="Consolas Italic" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                                    <children>
-                                        <VBox prefHeight="200.0" prefWidth="265.0">
-                                            <children>
-                                                <Label fx:id="refferalName2" alignment="CENTER" prefHeight="50.0" prefWidth="265.0" text="refferal_name_2" textAlignment="CENTER" wrapText="true">
-                                                    <font>
-                                                        <Font name="Consolas Bold" size="20.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="refferalCode2" prefHeight="14.0" prefWidth="265.0" text="refferal code">
-                                                    <font>
-                                                        <Font name="Consolas" size="12.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="10.0" prefWidth="265.0" />
-                                                <Label fx:id="barcode2" prefHeight="12.0" prefWidth="265.0" text="barcode">
-                                                    <font>
-                                                        <Font name="Consolas" size="10.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="20.0" prefWidth="265.0" />
-                                                <Label fx:id="dateOfIssue2" prefHeight="20.0" prefWidth="264.0" text="DATE OF ISSUE:">
-                                                    <font>
-                                                        <Font name="Consolas" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="20.0" prefWidth="265.0" />
-                                                <Label fx:id="doctorName2" prefHeight="26.0" prefWidth="265.0" text="Doctor name">
-                                                    <font>
-                                                        <Font name="Consolas Italic" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="265.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
-                                    <children>
-                                        <VBox prefHeight="200.0" prefWidth="265.0">
-                                            <children>
-                                                <Label fx:id="refferalName3" alignment="CENTER" prefHeight="50.0" prefWidth="265.0" text="refferal_name_3" textAlignment="CENTER" wrapText="true">
-                                                    <font>
-                                                        <Font name="Consolas Bold" size="20.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="refferalCode3" prefHeight="14.0" prefWidth="265.0" text="refferal code">
-                                                    <font>
-                                                        <Font name="Consolas" size="12.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="10.0" prefWidth="265.0" />
-                                                <Label fx:id="barcode3" prefHeight="12.0" prefWidth="265.0" text="barcode">
-                                                    <font>
-                                                        <Font name="Consolas" size="10.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="20.0" prefWidth="265.0" />
-                                                <Label fx:id="dateOfIssue3" prefHeight="20.0" prefWidth="264.0" text="DATE OF ISSUE:">
-                                                    <font>
-                                                        <Font name="Consolas" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="20.0" prefWidth="265.0" />
-                                                <Label fx:id="doctorName3" prefHeight="26.0" prefWidth="265.0" text="Doctor name">
-                                                    <font>
-                                                        <Font name="Consolas Italic" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                                    <children>
-                                        <VBox prefHeight="200.0" prefWidth="265.0">
-                                            <children>
-                                                <Label fx:id="refferalName4" alignment="CENTER" prefHeight="50.0" prefWidth="265.0" text="refferal_name_4" textAlignment="CENTER" wrapText="true">
-                                                    <font>
-                                                        <Font name="Consolas Bold" size="20.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="refferalCode4" prefHeight="14.0" prefWidth="265.0" text="refferal code">
-                                                    <font>
-                                                        <Font name="Consolas" size="12.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="10.0" prefWidth="265.0" />
-                                                <Label fx:id="barcode4" prefHeight="12.0" prefWidth="265.0" text="barcode">
-                                                    <font>
-                                                        <Font name="Consolas" size="10.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="20.0" prefWidth="265.0" />
-                                                <Label fx:id="dateOfIssue4" prefHeight="20.0" prefWidth="264.0" text="DATE OF ISSUE:">
-                                                    <font>
-                                                        <Font name="Consolas" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="20.0" prefWidth="265.0" />
-                                                <Label fx:id="doctorName4" prefHeight="26.0" prefWidth="265.0" text="Doctor name">
-                                                    <font>
-                                                        <Font name="Consolas Italic" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                    <children>
-                                        <VBox prefHeight="200.0" prefWidth="265.0">
-                                            <children>
-                                                <Label fx:id="refferalName5" alignment="CENTER" prefHeight="50.0" prefWidth="265.0" text="refferal_name_5" textAlignment="CENTER" wrapText="true">
-                                                    <font>
-                                                        <Font name="Consolas Bold" size="20.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="refferalCode5" prefHeight="14.0" prefWidth="265.0" text="refferal code">
-                                                    <font>
-                                                        <Font name="Consolas" size="12.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="10.0" prefWidth="265.0" />
-                                                <Label fx:id="barcode5" prefHeight="12.0" prefWidth="265.0" text="barcode">
-                                                    <font>
-                                                        <Font name="Consolas" size="10.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="20.0" prefWidth="265.0" />
-                                                <Label fx:id="dateOfIssue5" prefHeight="20.0" prefWidth="264.0" text="DATE OF ISSUE:">
-                                                    <font>
-                                                        <Font name="Consolas" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="20.0" prefWidth="265.0" />
-                                                <Label fx:id="doctorName5" prefHeight="26.0" prefWidth="265.0" text="Doctor name">
-                                                    <font>
-                                                        <Font name="Consolas Italic" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                    <children>
-                                        <VBox prefHeight="200.0" prefWidth="265.0">
-                                            <children>
-                                                <Label fx:id="refferalName6" alignment="CENTER" prefHeight="50.0" prefWidth="265.0" text="refferal_name_6" textAlignment="CENTER" wrapText="true">
-                                                    <font>
-                                                        <Font name="Consolas Bold" size="20.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="refferalCode6" prefHeight="14.0" prefWidth="265.0" text="refferal code">
-                                                    <font>
-                                                        <Font name="Consolas" size="12.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="10.0" prefWidth="265.0" />
-                                                <Label fx:id="barcode6" prefHeight="12.0" prefWidth="265.0" text="barcode">
-                                                    <font>
-                                                        <Font name="Consolas" size="10.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="20.0" prefWidth="265.0" />
-                                                <Label fx:id="dateOfIssue6" prefHeight="20.0" prefWidth="264.0" text="DATE OF ISSUE:">
-                                                    <font>
-                                                        <Font name="Consolas" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="20.0" prefWidth="265.0" />
-                                                <Label fx:id="doctorName6" prefHeight="26.0" prefWidth="265.0" text="Doctor name">
-                                                    <font>
-                                                        <Font name="Consolas Italic" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </Pane>
-                            </children>
-                        </GridPane>
-                    </children>
-                </AnchorPane>
+                <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="7.0" layoutY="7.0" prefWidth="794.0" stylesheets="@../Styles/scrollPaneStyle.css">
+                </GridPane>
             </content>
         </ScrollPane>
-        <Button fx:id="printButton" layoutX="520.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRINT" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="520.0">
+        <Button fx:id="printButton" layoutX="520.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRINT" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="440.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
@@ -346,7 +102,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Button fx:id="sendButton" layoutX="383.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SEND" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="360.0">
+        <Button fx:id="saveButton" layoutX="249.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SAVE" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="280.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
@@ -370,29 +126,26 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Button fx:id="saveButton" layoutX="249.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SAVE" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0">
+        <Label fx:id="buttonStatusLabel" alignment="CENTER" focusTraversable="false" layoutX="892.0" layoutY="979.0" prefHeight="53.0" prefWidth="819.0" styleClass="outlined-text" stylesheets="@../Styles/textLabel.css" textAlignment="CENTER" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="820.0">
             <font>
-                <Font name="Consolas Bold" size="20.0" />
+                <Font size="30.0" />
             </font>
-            <opaqueInsets>
-                <Insets />
-            </opaqueInsets>
             <textFill>
-                <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
+                <LinearGradient endX="1.0" endY="1.0">
                     <stops>
                         <Stop>
                             <color>
-                                <Color red="0.28700000047683716" green="0.7103614211082458" blue="0.8199999928474426" />
+                                <Color red="0.0833333358168602" green="1.0" />
                             </color>
                         </Stop>
                         <Stop offset="1.0">
                             <color>
-                                <Color green="0.27843138575553894" blue="0.4313725531101227" />
+                                <Color red="0.7921568751335144" green="1.0" blue="0.8117647171020508" />
                             </color>
                         </Stop>
                     </stops>
-                </RadialGradient>
+                </LinearGradient>
             </textFill>
-        </Button>
+        </Label>
     </children>
 </AnchorPane>

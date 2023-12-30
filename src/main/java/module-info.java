@@ -8,6 +8,7 @@ module com.healthguardian.healthguardian {
     requires javafx.swing;
     requires javafx.web;
     requires org.json;
+    requires com.google.zxing;
     opens Client to javafx.fxml;
     exports Client;
     opens ScenesControllers to javafx.fxml;
