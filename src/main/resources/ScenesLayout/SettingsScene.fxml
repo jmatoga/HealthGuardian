@@ -19,7 +19,7 @@
     <children>
         <ImageView fitHeight="1110.0" fitWidth="1930.0" layoutX="8.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
-                <Image url="@../Images/background_1.png" />
+                <Image url="@../Images/background_clear.png" />
             </image>
         </ImageView>
         <HBox layoutX="498.0" layoutY="315.0" prefHeight="550.0" prefWidth="1045.0" AnchorPane.bottomAnchor="215.0" AnchorPane.leftAnchor="498.0">

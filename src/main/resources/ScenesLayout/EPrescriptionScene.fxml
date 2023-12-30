@@ -19,7 +19,7 @@
     <children>
         <ImageView fitHeight="1110.0" fitWidth="1930.0" layoutX="8.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
-                <Image url="@../Images/background_1.png" />
+                <Image url="@../Images/background_clear.png" />
             </image>
         </ImageView>
         <Button fx:id="userPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#userPanelButtonClicked" prefHeight="60.0" prefWidth="180.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="USER PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">

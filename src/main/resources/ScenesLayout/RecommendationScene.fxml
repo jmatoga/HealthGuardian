@@ -19,13 +19,10 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="recommendationScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.RecommendationController">
-
-
-
     <children>
         <ImageView fitHeight="1110.0" fitWidth="1930.0" layoutX="8.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
-                <Image url="@../Images/background_1.png" />
+                <Image url="@../Images/background_clear.png" />
             </image>
         </ImageView>
         <Button fx:id="userPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#userPanelButtonClicked" prefHeight="60.0" prefWidth="180.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="USER PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
