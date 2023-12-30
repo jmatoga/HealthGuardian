@@ -1,5 +1,9 @@
 package utils;
 
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.RadialGradient;
+import javafx.scene.paint.Stop;
+
 public class Color {
     /**
      * ANSI escape code for resetting the color
@@ -52,5 +56,21 @@ public class Color {
      */
     public static String ColorString(String string, String color) {
         return color + string + ANSI_RESET;
+    }
+
+    public static RadialGradient greenGradient() {
+        return new RadialGradient(
+                0.5165745856353591, 0.5, 0.6264367816091954, 0, 0, true, CycleMethod.NO_CYCLE,
+                new Stop(0, javafx.scene.paint.Color.color(0, 0.9868420958518982, 0.47697368264198303)),
+                new Stop(1, javafx.scene.paint.Color.WHITE)
+        );
+    }
+
+    public static RadialGradient redGradient() {
+        return new RadialGradient(
+                0.5165745856353591, 0.5, 0.6264367816091954, 0, 0, true, CycleMethod.NO_CYCLE,
+                new Stop(0, javafx.scene.paint.Color.RED),
+                new Stop(1, javafx.scene.paint.Color.WHITE)
+        );
     }
 }

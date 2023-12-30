@@ -1,0 +1,6 @@
+.scroll-pane:focused {
+    -fx-focused-mark-color: transparent;
+    -fx-focus-color: #D3D3D3;
+    -fx-faint-focus-color: transparent;
+    -fx-faint-focus-color-darker: transparent;
+}
