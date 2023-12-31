@@ -32,94 +32,13 @@ public class ListOfClinicsController implements Initializable {
     private AnchorPane listOfClinicsScene;
 
     @FXML
-    private Pane ClinicPane1;
+    private Pane ClinicPane1, ClinicPane2, ClinicPane3, ClinicPane4, ClinicPane5, ClinicPane6, ClinicPane7, ClinicPane8, ClinicPane9, ClinicPane10;
 
     @FXML
-    private Pane ClinicPane2;
+    private Label clinicNameLabel1, clinicNameLabel2, clinicNameLabel3, clinicNameLabel4, clinicNameLabel5, clinicNameLabel6, clinicNameLabel7, clinicNameLabel8, clinicNameLabel9, clinicNameLabel10;
 
     @FXML
-    private Pane ClinicPane3;
-
-    @FXML
-    private Pane ClinicPane4;
-
-    @FXML
-    private Pane ClinicPane5;
-
-    @FXML
-    private Pane ClinicPane6;
-
-    @FXML
-    private Pane ClinicPane7;
-
-    @FXML
-    private Pane ClinicPane8;
-
-    @FXML
-    private Pane ClinicPane9;
-
-    @FXML
-    private Pane ClinicPane10;
-
-    @FXML
-    private Label clinicNameLabel1;
-
-    @FXML
-    private Label descriptionClinicLabel1;
-
-    @FXML
-    private Label clinicNameLabel2;
-
-    @FXML
-    private Label descriptionClinicLabel2;
-
-    @FXML
-    private Label clinicNameLabel3;
-
-    @FXML
-    private Label descriptionClinicLabel3;
-
-    @FXML
-    private Label clinicNameLabel4;
-
-    @FXML
-    private Label descriptionClinicLabel4;
-
-    @FXML
-    private Label clinicNameLabel5;
-
-    @FXML
-    private Label descriptionClinicLabel5;
-
-    @FXML
-    private Label clinicNameLabel6;
-
-    @FXML
-    private Label descriptionClinicLabel6;
-
-    @FXML
-    private Label clinicNameLabel7;
-
-    @FXML
-    private Label descriptionClinicLabel7;
-
-    @FXML
-    private Label clinicNameLabel8;
-
-    @FXML
-    private Label descriptionClinicLabel8;
-
-    @FXML
-    private Label clinicNameLabel9;
-
-    @FXML
-    private Label descriptionClinicLabel9;
-
-    @FXML
-    private Label clinicNameLabel10;
-
-    @FXML
-    private Label descriptionClinicLabel10;
+    private Label descriptionClinicLabel1, descriptionClinicLabel2, descriptionClinicLabel3, descriptionClinicLabel4, descriptionClinicLabel5, descriptionClinicLabel6, descriptionClinicLabel7, descriptionClinicLabel8, descriptionClinicLabel9, descriptionClinicLabel10;
 
     @FXML
     private WebView mapWebView;
