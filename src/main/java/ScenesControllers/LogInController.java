@@ -76,6 +76,11 @@ public class LogInController implements Initializable {
     }
 
     @FXML
+    private void shieldClicked(MouseEvent event) throws IOException {
+        new SceneSwitch("/ScenesLayout/DoctorLogInScene.fxml", 800, 500, false, false);
+    }
+
+    @FXML
     private void SignInButtonClicked(ActionEvent event) throws IOException {
         new SceneSwitch("/ScenesLayout/SignInScene.fxml", 800, 500, false, false);
     }
