@@ -83,7 +83,7 @@
                                 <Font name="Consolas" size="30.0" />
                             </font>
                         </Label>
-                        <Label fx:id="dateRecommendationLabel" alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="280.0" text="0000-00-00" textFill="WHITE">
+                        <Label fx:id="dateRecommendationLabel" alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="280.0" textFill="WHITE">
                             <font>
                                 <Font name="Consolas" size="30.0" />
                             </font>

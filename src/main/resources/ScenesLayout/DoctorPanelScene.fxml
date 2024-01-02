@@ -13,9 +13,9 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="doctorPanelScene" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.DoctorPanelController">
+<AnchorPane fx:id="doctorPanelScene" blendMode="DIFFERENCE" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.DoctorPanelController">
     <children>
-        <ImageView blendMode="DIFFERENCE" fitHeight="1100.0" fitWidth="1930.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ImageView blendMode="DIFFERENCE" fitHeight="1200.0" fitWidth="2102.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
                 <Image url="@../Images/background_1.png" />
             </image>
@@ -56,7 +56,7 @@
                 <Font name="Consolas" size="20.0" />
             </font>
         </Label>
-        <VBox layoutX="289.0" layoutY="407.0" prefHeight="112.0" prefWidth="280.0">
+        <VBox layoutX="289.0" layoutY="407.0" prefHeight="112.0" prefWidth="280.0" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="400.0">
             <children>
                 <Label fx:id="firstNameLabel" prefHeight="35.0" prefWidth="287.0" text="First_Name" textAlignment="CENTER">
                     <font>
@@ -75,7 +75,7 @@
                 </Label>
             </children>
         </VBox>
-        <Button fx:id="settingsButton" layoutX="1679.0" layoutY="1015.0" mnemonicParsing="false" onAction="#settingsButtonClicked" prefHeight="55.0" prefWidth="160.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SETTINGS" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="100.0">
+        <Button fx:id="settingsButton" layoutX="1679.0" layoutY="1015.0" mnemonicParsing="false" onAction="#settingsButtonClicked" prefHeight="55.0" prefWidth="160.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SETTINGS" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="100.0">
             <font>
                 <Font name="Consolas Bold" size="24.0" />
             </font>

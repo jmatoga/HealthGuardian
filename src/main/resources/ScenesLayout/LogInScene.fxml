@@ -57,7 +57,7 @@
             <Image url="@../Images/iconImage64x64.png" />
          </image>
       </ImageView>
-      <Button fx:id="signInButton" layoutX="705.0" layoutY="455.0" mnemonicParsing="false" onAction="#SignInButtonClicked" prefHeight="31.0" prefWidth="80.0" styleClass="turquoise-button" stylesheets="@../Styles/buttonsStyle.css" text="SIGN IN" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="15.0">
+      <Button fx:id="signInButton" layoutX="705.0" layoutY="455.0" mnemonicParsing="false" onAction="#SignInButtonClicked" prefHeight="31.0" prefWidth="80.0" styleClass="turquoise-button" stylesheets="@../Styles/buttonsStyle.css" text="SIGN IN" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
          <font>
             <Font name="Consolas Bold" size="13.0" />
          </font>

@@ -19,7 +19,7 @@
 
 <AnchorPane fx:id="findingsScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.FindingsController">
     <children>
-        <ImageView fitHeight="1110.0" fitWidth="1930.0" layoutX="8.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ImageView fitHeight="1200.0" fitWidth="2102.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
                 <Image url="@../Images/background_clear.png" />
             </image>
@@ -48,7 +48,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Label layoutX="720.0" layoutY="44.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="FINDINGS" AnchorPane.leftAnchor="720.0" AnchorPane.topAnchor="70.0">
+        <Label layoutX="720.0" layoutY="44.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="FINDINGS" AnchorPane.leftAnchor="830.0" AnchorPane.topAnchor="70.0">
             <font>
                 <Font name="Consolas Bold" size="70.0" />
             </font>
@@ -69,12 +69,12 @@
                 </RadialGradient>
             </textFill>
         </Label>
-        <Pane layoutX="78.0" layoutY="273.0" opacity="0.2" prefHeight="650.0" prefWidth="700.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="70.0">
+        <Pane layoutX="78.0" layoutY="273.0" opacity="0.2" prefHeight="650.0" prefWidth="700.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="120.0">
             <children>
-                <ImageView fx:id="previewImageView" fitHeight="650.0" fitWidth="700.0" layoutX="4.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="previewImageView" fitHeight="650.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true" />
             </children>
         </Pane>
-        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="813.0" layoutY="273.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefHeight="650.0" prefWidth="820.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="820.0">
+        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="813.0" layoutY="273.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefHeight="650.0" prefWidth="820.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="150.0" AnchorPane.rightAnchor="180.0">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2006.0" prefWidth="808.0">
                     <children>
@@ -217,7 +217,7 @@
                 </AnchorPane>
             </content>
         </ScrollPane>
-        <Button fx:id="printButton" layoutX="520.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRINT" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="520.0">
+        <Button fx:id="printButton" layoutX="520.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRINT" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="560.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
@@ -241,7 +241,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Button fx:id="sendButton" layoutX="383.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SEND" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="360.0">
+        <Button fx:id="sendButton" layoutX="383.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SEND" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="400.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
@@ -265,7 +265,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Button fx:id="saveButton" layoutX="249.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SAVE" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0">
+        <Button fx:id="saveButton" layoutX="249.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SAVE" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="240.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
