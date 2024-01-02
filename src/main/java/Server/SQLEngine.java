@@ -756,6 +756,51 @@ public class SQLEngine {
         return null;
     }
 
+    String[][] getRecommendation(int clientID, int user_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT recommendations_table.*, doctor_table.first_name, doctor_table.last_name, doctor_table.phone FROM recommendations_table INNER JOIN doctor_table ON recommendations_table.doctor_id = doctor_table.doctor_id WHERE user_id = ?";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            preparedStatement.setInt(1, user_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            if (rowCount == 0) {
+                System.out.println("No recommendations in database.");
+                return new String[][]{{"No recommendations in database"}};
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
+
     String[][] getMedicalHistory(int clientID, int user_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -853,6 +898,8 @@ public class SQLEngine {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(url, DBusername, DBpassword);
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthguardian", "root", "root");
+
             if (connection != null)
                 System.out.println(Color.ColorString("DB engine created correctly.", Color.ANSI_GREEN));
         } catch (SQLException e) {

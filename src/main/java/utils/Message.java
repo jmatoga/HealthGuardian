@@ -142,4 +142,7 @@ public class Message {
     public void sendGetEPrescriptionMessage(PrintWriter writer, String message) {
         writer.println("GET_EPRESCRIPTION:" + message);
     }
+    public void sendGetRecommendationMessage(PrintWriter writer, String message) {
+        writer.println("GET_RECOMMENDATION:" + message);
+    }
 }
