@@ -58,16 +58,16 @@ public class RecommendationController implements Initializable {
         String serverAnswer = ReadFromServer.readLine();
         System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
 
-        if (serverAnswer.equals("[[No EReferrals in database]]")) {
-            Pane newEReferral = new Pane();
-            Label newEReferralTitle = new Label("There is no EReferrals.");
-            newEReferralTitle.setPrefHeight(200);
-            newEReferralTitle.setPrefWidth(817);
-            newEReferral.setMinWidth(817);
-            newEReferralTitle.setAlignment(Pos.CENTER);
-            newEReferralTitle.setFont(new Font("Consolas Bold", 35.0));
-            newEReferral.getChildren().add(newEReferralTitle);
-            gridPane.add(newEReferral, 0, 0);
+        if (serverAnswer.equals("[[No recommendations in database]]")) {
+            Pane newRecommendation = new Pane();
+            Label newRecommendationTitle = new Label("There is no recommendations.");
+            newRecommendationTitle.setPrefHeight(200);
+            newRecommendationTitle.setPrefWidth(817);
+            newRecommendation.setMinWidth(817);
+            newRecommendationTitle.setAlignment(Pos.CENTER);
+            newRecommendationTitle.setFont(new Font("Consolas Bold", 35.0));
+            newRecommendation.getChildren().add(newRecommendationTitle);
+            gridPane.add(newRecommendation, 0, 0);
         } else {
             String[] recommendationsData = serverAnswer.substring(2, serverAnswer.length() - 2).split("], \\[");
 
