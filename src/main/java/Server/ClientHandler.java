@@ -129,6 +129,13 @@ class ClientHandler implements Callable<String> {
 
                     String[][] ePrescriptionResult = sqlEngine.getEPrescrition(Integer.parseInt(clientId), Integer.parseInt(userId));
                     SendToClient.println(Arrays.deepToString(ePrescriptionResult));
+                } else if (serverMessage.startsWith("GET_RECOMMENDATION:")) {
+                    String[] resources = serverMessage.substring(19).split(",");
+                    String clientId = resources[0];
+                    String userId = resources[1];
+
+                    String[][] recommendationResult = sqlEngine.getRecommendation(Integer.parseInt(clientId), Integer.parseInt(userId));
+                    SendToClient.println(Arrays.deepToString(recommendationResult));
                 } else if (serverMessage.startsWith("GET_EXAMINATIONS:")) {
                     String[] resources = serverMessage.substring(17).split(",");
                     String clientId = resources[0];

@@ -68,7 +68,7 @@
                 </RadialGradient>
             </textFill>
         </Label>
-        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="936.0" layoutY="279.0" maxHeight="650.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="820.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="ALWAYS" AnchorPane.leftAnchor="936.0" AnchorPane.topAnchor="279.0">
+        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="936.0" layoutY="279.0" maxHeight="650.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="820.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="936.0" AnchorPane.topAnchor="279.0">
             <content>
                 <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="7.0" layoutY="7.0" prefWidth="794.0">
                 </GridPane>
@@ -78,21 +78,21 @@
             <children>
                 <HBox prefHeight="50.0" prefWidth="682.0">
                     <children>
-                        <Label fx:id="doctorNameRecommendationLabel" prefHeight="50.0" prefWidth="400.0" text="DOCTOR NAME" textFill="WHITE">
+                        <Label fx:id="doctorNameRecommendationLabel" prefHeight="50.0" prefWidth="621.0" textFill="WHITE">
                             <font>
                                 <Font name="Consolas" size="30.0" />
                             </font>
                         </Label>
-                        <Label fx:id="dateRecommendationLabel" alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="280.0" text="00-00-0000" textFill="WHITE">
+                        <Label fx:id="dateRecommendationLabel" alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="280.0" text="0000-00-00" textFill="WHITE">
                             <font>
                                 <Font name="Consolas" size="30.0" />
                             </font>
                         </Label>
                     </children>
                 </HBox>
-                <Label fx:id="dietLabel" alignment="TOP_LEFT" prefHeight="100.0" prefWidth="680.0" style="-fx-background-color: white; -fx-border-color: #808080; -fx-border-width: 3;" text="diet" wrapText="true">
+                <Label fx:id="dietLabel" alignment="TOP_LEFT" prefHeight="100.0" prefWidth="680.0" style="-fx-background-color: white; -fx-border-color: #808080; -fx-border-width: 3;" wrapText="true">
                     <font>
-                        <Font name="Consolas" size="12.0" />
+                        <Font name="Consolas" size="20.0" />
                     </font>
                 </Label>
                 <Label text="DIET" textFill="#ffe200">
@@ -101,9 +101,9 @@
                     </font>
                 </Label>
                 <Pane prefHeight="15.0" prefWidth="680.0" />
-                <Label fx:id="medicinesLabel" alignment="TOP_LEFT" prefHeight="100.0" prefWidth="680.0" style="-fx-background-color: white; -fx-border-color: #808080; -fx-border-width: 3;" text="medicines&#10;" wrapText="true">
+                <Label fx:id="medicinesLabel" alignment="TOP_LEFT" prefHeight="100.0" prefWidth="680.0" style="-fx-background-color: white; -fx-border-color: #808080; -fx-border-width: 3;" wrapText="true">
                     <font>
-                        <Font name="Consolas" size="12.0" />
+                        <Font name="Consolas" size="20.0" />
                     </font>
                 </Label>
                 <Label text="MEDICINES" textFill="#ffe200">
@@ -112,9 +112,9 @@
                     </font>
                 </Label>
                 <Pane prefHeight="15.0" prefWidth="680.0" />
-                <Label fx:id="additionalInformationLabel" alignment="TOP_LEFT" prefHeight="272.0" prefWidth="680.0" style="-fx-background-color: white; -fx-border-color: #808080; -fx-border-width: 3;" text="additional information" wrapText="true">
+                <Label fx:id="additionalInformationLabel" alignment="TOP_LEFT" prefHeight="272.0" prefWidth="680.0" style="-fx-background-color: white; -fx-border-color: #808080; -fx-border-width: 3;" wrapText="true">
                     <font>
-                        <Font name="Consolas" size="12.0" />
+                        <Font name="Consolas" size="20.0" />
                     </font>
                 </Label>
                 <Label text="ADDITIONAL INFROMATION" textFill="#ffe200">
@@ -125,15 +125,15 @@
                 <Pane prefHeight="15.0" prefWidth="680.0" />
                 <HBox prefHeight="55.0" prefWidth="680.0">
                     <children>
-                        <Label fx:id="nextMedicalExaminationLabel" alignment="TOP_LEFT" prefHeight="55.0" prefWidth="460.0" style="-fx-background-color: white; -fx-border-color: #808080; -fx-border-width: 3;" text="next medical examination name" wrapText="true">
+                        <Label fx:id="nextMedicalExaminationLabel" alignment="TOP_LEFT" prefHeight="55.0" prefWidth="460.0" style="-fx-background-color: white; -fx-border-color: #808080; -fx-border-width: 3;" wrapText="true">
                             <font>
-                                <Font name="Consolas" size="12.0" />
+                                <Font name="Consolas Bold" size="20.0" />
                             </font>
                         </Label>
                         <Pane prefHeight="55.0" prefWidth="100.0" />
-                        <Label fx:id="nextMedicalExaminationDateLabel" alignment="TOP_LEFT" prefHeight="55.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: #808080; -fx-border-width: 3;" text="date" wrapText="true">
+                        <Label fx:id="nextMedicalExaminationDateLabel" alignment="TOP_LEFT" prefHeight="55.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: #808080; -fx-border-width: 3;" textAlignment="CENTER" wrapText="true">
                             <font>
-                                <Font name="Consolas" size="12.0" />
+                                <Font name="Consolas Bold" size="19.0" />
                             </font>
                         </Label>
                     </children>
@@ -146,7 +146,7 @@
                             </font>
                         </Label>
                         <Pane prefHeight="14.0" prefWidth="368.0" />
-                        <Label text="EXAMINATION DATE" textFill="#ffe200">
+                        <Label fx:id="nextMedicalExaminationDateTextLabel" text="EXAMINATION DATE" textFill="#ffe200">
                             <font>
                                 <Font name="Consolas Bold" size="12.0" />
                             </font>
@@ -154,7 +154,7 @@
                     </children>
                 </HBox>
                 <Pane prefHeight="20.0" prefWidth="680.0" />
-                <Label fx:id="recommendationIdLabel" alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="680.0" text="recommendation_id: XXX">
+                <Label fx:id="recommendationIdLabel" alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="680.0">
                     <font>
                         <Font name="Consolas" size="12.0" />
                     </font>
