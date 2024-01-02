@@ -481,7 +481,7 @@
                 </LinearGradient>
             </textFill>
         </Label>
-      <Button fx:id="saveSettingsButton" layoutX="855.0" layoutY="956.0" mnemonicParsing="false" onAction="#saveSettingsButtonClicked" prefHeight="55.0" prefWidth="220.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="SAVE SETTINGS" AnchorPane.leftAnchor="880.0">
+      <Button fx:id="saveSettingsButton" layoutX="855.0" layoutY="956.0" mnemonicParsing="false" onAction="#saveSettingsButtonClicked" prefHeight="55.0" prefWidth="220.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="SAVE SETTINGS" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="880.0">
          <font>
             <Font name="Arial Bold Italic" size="18.0" />
          </font>

@@ -19,7 +19,7 @@
             <image>
                 <Image url="@../Images/logInSceneImageView.png" />
             </image></ImageView>
-        <Button fx:id="logInButton" layoutX="368.0" layoutY="435.0" mnemonicParsing="false" onAction="#logInButtonClicked" onKeyPressed="#enterPressedInField" prefHeight="31.0" prefWidth="71.0" styleClass="turquoise-button" stylesheets="@../Styles/buttonsStyle.css" text="LOG IN" AnchorPane.bottomAnchor="35.0">
+        <Button fx:id="logInButton" layoutX="368.0" layoutY="435.0" mnemonicParsing="false" onAction="#logInButtonClicked" onKeyPressed="#enterPressedInField" prefHeight="31.0" prefWidth="71.0" styleClass="turquoise-button" stylesheets="@../Styles/buttonsStyle.css" text="LOG IN" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="368.0">
             <font>
                 <Font name="Consolas Bold" size="13.0" />
             </font>
@@ -43,8 +43,8 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <TextField fx:id="username" layoutX="316.0" layoutY="361.0" onKeyPressed="#enterPressedInField" prefHeight="25.0" prefWidth="187.0" promptText="Username" styleClass="turquoise-textfield" stylesheets="@../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="106.0" />
-        <PasswordField fx:id="password" layoutX="316.0" layoutY="397.0" onKeyPressed="#enterPressedInField" prefHeight="25.0" prefWidth="187.0" promptText="Password" styleClass="turquoise-textfield" stylesheets="@../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="70.0" />
+        <TextField fx:id="username" layoutX="316.0" layoutY="361.0" onKeyPressed="#enterPressedInField" prefHeight="25.0" prefWidth="187.0" promptText="Username" styleClass="turquoise-textfield" stylesheets="@../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="106.0" AnchorPane.leftAnchor="316.0" />
+        <PasswordField fx:id="password" layoutX="316.0" layoutY="397.0" onKeyPressed="#enterPressedInField" prefHeight="25.0" prefWidth="187.0" promptText="Password" styleClass="turquoise-textfield" stylesheets="@../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="316.0" />
         <Label fx:id="loggingStatus" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="330.0" prefHeight="25.0" prefWidth="373.0" textFill="RED" AnchorPane.bottomAnchor="145.0">
             <font>
                 <Font name="Arial Bold" size="14.0" />
@@ -57,7 +57,7 @@
                 <Image url="@../Images/iconImage64x64.png" />
             </image>
         </ImageView>
-        <Button fx:id="userLogInButton" layoutX="705.0" layoutY="455.0" mnemonicParsing="false" onAction="#userLogInButtonClicked" prefHeight="30.0" prefWidth="110.0" styleClass="turquoise-button" stylesheets="@../Styles/buttonsStyle.css" text="USER LOG IN" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="15.0">
+        <Button fx:id="userLogInButton" layoutX="705.0" layoutY="455.0" mnemonicParsing="false" onAction="#userLogInButtonClicked" prefHeight="30.0" prefWidth="110.0" styleClass="turquoise-button" stylesheets="@../Styles/buttonsStyle.css" text="USER LOG IN" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
             <font>
                 <Font name="Consolas Bold" size="13.0" />
             </font>

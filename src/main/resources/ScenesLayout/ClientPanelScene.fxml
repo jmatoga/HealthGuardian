@@ -51,7 +51,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Label fx:id="dateLabel" layoutX="80.0" layoutY="1003.0" prefHeight="28.0" prefWidth="220.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+      <Label fx:id="dateLabel" layoutX="80.0" layoutY="1003.0" prefHeight="28.0" prefWidth="220.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0">
          <font>
             <Font name="Consolas" size="20.0" />
          </font>
@@ -142,7 +142,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="SMIButton" layoutX="814.0" layoutY="950.0" mnemonicParsing="false" onAction="#SMIButtonClicked" prefHeight="80.0" prefWidth="500.0" styleClass="darkred-button" stylesheets="@../Styles/buttonsStyle.css" text="SHORT MEDICAL INTERVIEW" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="800.0">
+      <Button fx:id="SMIButton" layoutX="814.0" layoutY="950.0" mnemonicParsing="false" onAction="#SMIButtonClicked" prefHeight="80.0" prefWidth="500.0" styleClass="darkred-button" stylesheets="@../Styles/buttonsStyle.css" text="SHORT MEDICAL INTERVIEW" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="800.0">
          <font>
             <Font name="Consolas Bold" size="28.0" />
          </font>
@@ -166,7 +166,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="settingsButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#settingsButtonClicked" prefHeight="55.0" prefWidth="160.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SETTINGS" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="55.0">
+      <Button fx:id="settingsButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#settingsButtonClicked" prefHeight="55.0" prefWidth="160.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SETTINGS" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="55.0">
          <font>
             <Font name="Consolas Bold" size="24.0" />
          </font>
@@ -190,7 +190,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="logOutButton" layoutX="1000.0" layoutY="975.0" mnemonicParsing="false" onAction="#LogOutButtonClicked" prefHeight="40.0" prefWidth="120.0" styleClass="darkblue-20-button" stylesheets="@../Styles/buttonsStyle.css" text="LOG OUT" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="55.0">
+      <Button fx:id="logOutButton" layoutX="1000.0" layoutY="975.0" mnemonicParsing="false" onAction="#LogOutButtonClicked" prefHeight="40.0" prefWidth="120.0" styleClass="darkblue-20-button" stylesheets="@../Styles/buttonsStyle.css" text="LOG OUT" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="55.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
