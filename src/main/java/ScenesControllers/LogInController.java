@@ -108,7 +108,7 @@ public class LogInController implements Initializable {
                 Timeline timeline = new Timeline(
                         new KeyFrame(Duration.millis(500), event -> {
                             try {
-                                new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml", 1920, 1080, screenWidth, screenHeight, true, true,"HealthGuardian - clientID: " + Client.clientId + " ,user_id: " + Client.user_id);
+                                new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml", 1920, 1080, screenWidth, screenHeight, true, true,"HealthGuardian - clientID: " + Client.clientId + ", user_id: " + Client.user_id);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }

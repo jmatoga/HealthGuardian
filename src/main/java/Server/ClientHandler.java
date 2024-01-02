@@ -81,6 +81,18 @@ class ClientHandler implements Callable<String> {
                     } else {
                         SendToClient.println("Wrong password.");
                     }
+                } else if (serverMessage.startsWith("DOCTOR_LOGIN:")) {
+                    String[] resources = serverMessage.substring(13).split(",");
+                    String clientId = resources[0];
+                    String username = resources[1];
+                    String password = resources[2];
+                    String[] loginResult = sqlEngine.loginToDoctor(Integer.parseInt(clientId), username, password);
+
+                    if (Boolean.parseBoolean(loginResult[0])) {
+                        SendToClient.println("Doctor logged successfully. Your user_id: " + loginResult[1]);
+                    } else {
+                        SendToClient.println("Wrong doctor password.");
+                    }
                 } else if (serverMessage.startsWith("GET_USER_DATA:")) {
                     String[] resources = serverMessage.substring(14).split(",");
                     String clientId = resources[0];

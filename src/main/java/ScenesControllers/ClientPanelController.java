@@ -39,82 +39,10 @@ public class ClientPanelController implements Initializable {
     private static PrintWriter SendToServer;
 
     @FXML
-    private Label dataUpdatedStatusLabel;
+    private Label dataUpdatedStatusLabel, dateLabel, firstNameLabel, lastNameLabel, birthDateLabel, weightLabel, heightLabel, temperatureLabel, ageLabel, pressureLabel, dateOfLastUpdateLabel, bmiLabel, bmiStatusLabel;
 
     @FXML
-    private Label dateLabel;
-
-    @FXML
-    private Label firstNameLabel;
-
-    @FXML
-    private Label lastNameLabel;
-
-    @FXML
-    private Label birthDateLabel;
-
-    @FXML
-    private Label weightLabel;
-
-    @FXML
-    private Label heightLabel;
-
-    @FXML
-    private Label temperatureLabel;
-
-    @FXML
-    private Label ageLabel;
-
-    @FXML
-    private Label pressureLabel;
-
-    @FXML
-    private Label dateOfLastUpdateLabel;
-
-    @FXML
-    private Label bmiLabel;
-
-    @FXML
-    private Label bmiStatusLabel;
-
-    @FXML
-    private Button ePrescriptionButton;
-
-    @FXML
-    private Button eReferralButton;
-
-    @FXML
-    private Button testScheduleButton;
-
-    @FXML
-    private Button findingsButton;
-
-    @FXML
-    private Button eContactWithADoctorButton;
-
-    @FXML
-    private Button listOfClinicsButton;
-
-    @FXML
-    private Button MessageButton;
-
-    @FXML
-    private Button pressurePanelButton;
-
-    @FXML
-    private Button medicalHistoryButton;
-
-    @FXML
-    private Button settingsButton;
-
-    @FXML
-    private Button editDataButton;
-
-    @FXML
-    private Button SMIButton;
-
-    @FXML
-    private Button logOutButton;
+    private Button ePrescriptionButton, eReferralButton, testScheduleButton, findingsButton, eContactWithADoctorButton, listOfClinicsButton, MessageButton, pressurePanelButton, medicalHistoryButton, settingsButton, editDataButton, SMIButton, logOutButton;
 
     @FXML
     AnchorPane clientPanelScene;
@@ -515,6 +443,4 @@ public class ClientPanelController implements Initializable {
         this.ifCalcualteBMI = ifCalcualteBMI;
     }
 
-
 }
-

@@ -15,6 +15,7 @@ import java.net.Socket;
 public class Client {
     public static int user_id=-1;
     public static int clientId=-1;
+    public static int doctor_id =-1;
     /**
      * BufferedReader to read data from the server
      */

@@ -291,6 +291,42 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    String[] loginToDoctor(int clientID, String inputUsername, String inputPassword) {
+        String[] returnStatement = {"false", "-1"};
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT username, doctor_id FROM doctor_pass_table WHERE username = ? AND password_hash = SHA2(CONCAT(?, (SELECT salt FROM doctor_pass_table WHERE username=?)), 256)";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, inputUsername);  // username
+            preparedStatement.setString(2, inputPassword);  // password
+            preparedStatement.setString(3, inputUsername);  // username
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) { // if username and password exist in database in same user
+                returnStatement[0] = "true";
+                returnStatement[1] = String.valueOf(resultSet.getInt("doctor_id"));
+
+                return returnStatement;
+            } else {
+                returnStatement[0] = "false";
+                returnStatement[1] = "-1";
+
+                return returnStatement;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
     /**
      * The updateUserBasicData method is responsible for updating the basic data of a user.
      * @param clientID the ID of the client

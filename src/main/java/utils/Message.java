@@ -46,12 +46,12 @@ public class Message {
     }
 
     /**
-     * Sends a register message to the server.
+     * Sends a doctor login message to the server.
      * @param writer the PrintWriter to send the message
      * @param message the content of the message
      */
-    public void sendRegisterMessage(PrintWriter writer, String message) {
-        writer.println("REGISTER:" + message);
+    public void sendDoctorLoginMessage(PrintWriter writer, String message) {
+        writer.println("DOCTOR_LOGIN:" + message);
     }
 
     /**

@@ -57,7 +57,9 @@ public class DoctorLogInController implements Initializable {
     @FXML
     private AnchorPane doctorHelloScene;
 
-    public void userLogInButtonClicked(ActionEvent actionEvent) {
+    @FXML
+    public void userLogInButtonClicked(MouseEvent mouseEvent) throws IOException {
+        new SceneSwitch("/ScenesLayout/LogInScene.fxml", 800, 500, false, false);
     }
 
     @FXML
@@ -77,11 +79,6 @@ public class DoctorLogInController implements Initializable {
             imageView.requestFocus();
     }
 
-    @FXML
-    private void shieldClicked(MouseEvent event) throws IOException {
-        new SceneSwitch("/ScenesLayout/LogInScene.fxml", 800, 500, false, false);
-    }
-
     private void checkWrittenText() throws IOException {
         if (username.getText().isEmpty() && password.getText().isEmpty())
             loggingStatus.setText("Username and Password can't be empty!");
@@ -90,13 +87,12 @@ public class DoctorLogInController implements Initializable {
         else if (username.getText().isEmpty() && !password.getText().isEmpty())
             loggingStatus.setText("Username can't be empty!");
         else {
-            // TODO
-            //message.sendLoginMessage(SendToServer, Client.clientId + "," + username.getText() + "," + password.getText());
+            message.sendDoctorLoginMessage(SendToServer, Client.clientId + "," + username.getText() + "," + password.getText());
             String serverAnswer = ReadFromServer.readLine();
             System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
 
-            if (serverAnswer.startsWith("Logged successfully. Your user_id: ") && Integer.parseInt(serverAnswer.substring(35)) > 0) {
-                Client.user_id = Integer.parseInt(serverAnswer.substring(35));
+            if (serverAnswer.startsWith("Doctor logged successfully. Your user_id: ") && Integer.parseInt(serverAnswer.substring(42)) > 0) {
+                Client.doctor_id = Integer.parseInt(serverAnswer.substring(42));
                 loggingStatus.setTextFill(Paint.valueOf("0x2aff00")); // green color
                 loggingStatus.setText("Logged succesfully!");
                 username.setText("");
@@ -106,7 +102,7 @@ public class DoctorLogInController implements Initializable {
                 Timeline timeline = new Timeline(
                         new KeyFrame(Duration.millis(500), event -> {
                             try {
-                                new SceneSwitch("/ScenesLayout/DoctorPanelScene.fxml", 1920, 1080, screenWidth, screenHeight, true, true,"HealthGuardian - doctorID: " + Client.clientId + " ,doctor_id: " + "");
+                                new SceneSwitch("/ScenesLayout/DoctorPanelScene.fxml", 1920, 1080, screenWidth, screenHeight, true, true,"HealthGuardian - doctorID: " + Client.clientId + ", doctor_id: " + Client.doctor_id);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
@@ -116,7 +112,7 @@ public class DoctorLogInController implements Initializable {
                 timeline.play();
 
             } else {
-                loggingStatus.setText("Wrong username or password!");
+                loggingStatus.setText("Wrong doctor username or password!");
                 System.out.println(serverAnswer);
             }
         }
