@@ -65,7 +65,7 @@
                 <Insets />
             </opaqueInsets>
         </Button>
-      <Label layoutX="344.0" layoutY="470.0" prefHeight="17.0" prefWidth="119.0" styleClass="darkBlue-label" stylesheets="@../Styles/textLabel.css" text="LOG IN TO DOCTOR" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="344.0">
+      <Label layoutX="344.0" layoutY="470.0" prefHeight="17.0" prefWidth="119.0" styleClass="outlined-text" stylesheets="@../Styles/textLabel.css" text="LOG IN TO DOCTOR" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="344.0">
          <font>
             <Font name="Consolas Bold" size="13.0" />
          </font>
@@ -74,12 +74,12 @@
                <stops>
                   <Stop>
                      <color>
-                        <Color green="0.9868420958518982" blue="0.47697368264198303" />
+                        <Color red="0.32549020648002625" green="0.6941176652908325" blue="1.0" />
                      </color>
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
+                        <Color green="0.05882352963089943" blue="1.0" />
                      </color>
                   </Stop>
                </stops>

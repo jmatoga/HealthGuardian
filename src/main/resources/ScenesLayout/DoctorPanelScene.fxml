@@ -68,7 +68,7 @@
                         <Font name="Consolas" size="24.0" />
                     </font>
                 </Label>
-                <Label fx:id="birthDateLabel" prefHeight="35.0" prefWidth="287.0" text="Birth_Date" textAlignment="CENTER">
+                <Label fx:id="professionLabel" prefHeight="35.0" prefWidth="287.0" text="Profession" textAlignment="CENTER">
                     <font>
                         <Font name="Consolas" size="24.0" />
                     </font>

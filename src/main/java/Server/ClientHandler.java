@@ -101,6 +101,14 @@ class ClientHandler implements Callable<String> {
                     String[] dataResult = sqlEngine.getData(Integer.parseInt(clientId), userId);
                     SendToClient.println(Arrays.toString(dataResult));
 
+                } else if (serverMessage.startsWith("GET_DOCTOR_DATA:")) {
+                    String[] resources = serverMessage.substring(16).split(",");
+                    String clientId = resources[0];
+                    String doctorId = resources[1];
+
+                    String[] dataResult = sqlEngine.getDoctorData(Integer.parseInt(clientId), doctorId);
+                    SendToClient.println(Arrays.toString(dataResult));
+
                 } else if (serverMessage.startsWith("GET_CLINICS:")) {
                     String clientId = serverMessage.substring(12);
 

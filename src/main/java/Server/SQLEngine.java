@@ -82,11 +82,11 @@ public class SQLEngine {
                 System.out.println("User Data getted correctly.");
 
                 returnStatement[2] = String.valueOf(resultSet.getDate("birth_date"));
-                returnStatement[3] = String.valueOf(resultSet.getString("user_basic_data_table.weight"));
-                returnStatement[4] = String.valueOf(resultSet.getString("user_basic_data_table.height"));
-                returnStatement[5] = String.valueOf(resultSet.getString("user_basic_data_table.temperature"));
-                returnStatement[6] = String.valueOf(resultSet.getString("user_basic_data_table.systolic_pressure"));
-                returnStatement[7] = String.valueOf(resultSet.getString("user_basic_data_table.diastolic_pressure"));
+                returnStatement[3] = resultSet.getString("user_basic_data_table.weight");
+                returnStatement[4] = resultSet.getString("user_basic_data_table.height");
+                returnStatement[5] = resultSet.getString("user_basic_data_table.temperature");
+                returnStatement[6] = resultSet.getString("user_basic_data_table.systolic_pressure");
+                returnStatement[7] = resultSet.getString("user_basic_data_table.diastolic_pressure");
                 returnStatement[8] = String.valueOf(resultSet.getDate("user_basic_data_table.entry_date"));
 
             } else if (ifResultSetHasNext && resultSet.getDate("birth_date") == null) {
@@ -101,6 +101,37 @@ public class SQLEngine {
                 returnStatement[6] = "Error";
                 returnStatement[7] = "Error";
                 returnStatement[8] = "Error";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    String[] getDoctorData(int clientID, String doctor_id) {
+        String[] returnStatement = {"Error", "Error", "Error"};
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT first_name, last_name, profession FROM doctor_table WHERE doctor_id = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, doctor_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()) {
+                returnStatement[0] = resultSet.getString("first_name");
+                returnStatement[1] = resultSet.getString("last_name");
+                returnStatement[2] = resultSet.getString("profession");
             }
 
             return returnStatement;

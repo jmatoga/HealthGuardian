@@ -94,6 +94,9 @@ public class Message {
     public void sendGetSettingsMessage(PrintWriter writer, String message) {
         writer.println("GET_SETTINGS:" + message);
     }
+    public void sendGetDoctorDataMessage(PrintWriter writer, String message) {
+        writer.println("GET_DOCTOR_DATA:" + message);
+    }
 
     /**
      * Sends a set settings message to the server.
