@@ -898,7 +898,6 @@ public class SQLEngine {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(url, DBusername, DBpassword);
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthguardian", "root", "root");
 
             if (connection != null)
                 System.out.println(Color.ColorString("DB engine created correctly.", Color.ANSI_GREEN));

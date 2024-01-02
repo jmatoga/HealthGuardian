@@ -31,6 +31,7 @@ import javafx.util.Duration;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
@@ -40,6 +41,7 @@ import utils.Message;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
@@ -136,6 +138,8 @@ public class EReferralController implements Initializable {
             // Creating new page content stream
             PDPageContentStream contentStream = new PDPageContentStream(document, page);
 
+            PDType0Font font1 = PDType0Font.load(document, new File("src/main/resources/Fonts/calibri.ttf"));
+
             int fontSize = 30;
             contentStream.setFont(PDType1Font.HELVETICA_BOLD, fontSize);
             contentStream.beginText();
@@ -165,10 +169,10 @@ public class EReferralController implements Initializable {
             contentStream.endText();
 
             fontSize = 18;
-            contentStream.setFont(PDType1Font.HELVETICA, fontSize);
+            contentStream.setFont(font1, fontSize);
             contentStream.beginText();
             tempText = "by dr. " + eReferralDRFirstName + " " + eReferralDRLastName;
-            textWidth = PDType1Font.HELVETICA.getStringWidth(tempText) / 1000 * fontSize;
+            textWidth = font1.getStringWidth(tempText) / 1000 * fontSize;
             contentStream.newLineAtOffset((595 - textWidth) / 2, 210);
             contentStream.showText(tempText);
             contentStream.endText();

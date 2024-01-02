@@ -138,8 +138,7 @@ public class EPrescriptionController implements Initializable {
             // Creating new page content stream
             PDPageContentStream contentStream = new PDPageContentStream(document, page);
 
-            // TODO
-            //PDType0Font font = PDType0Font.load(document, new File("src/main/resources/Fonts/AbhayaLibre-Bold.ttf"));
+            PDType0Font font1 = PDType0Font.load(document, new File("src/main/resources/Fonts/calibri.ttf"));
 
             int fontSize = 30;
             contentStream.setFont(PDType1Font.HELVETICA_BOLD, fontSize);
@@ -171,10 +170,10 @@ public class EPrescriptionController implements Initializable {
             }
 
             fontSize = 18;
-            contentStream.setFont(PDType1Font.HELVETICA, fontSize);
+            contentStream.setFont(font1, fontSize);
             contentStream.beginText();
             tempText = "by dr. " + ePrescriptionDRFirstName + " " + ePrescriptionDRLastName;
-            textWidth = PDType1Font.HELVETICA.getStringWidth(tempText) / 1000 * fontSize;
+            textWidth = font1.getStringWidth(tempText) / 1000 * fontSize;
             contentStream.newLineAtOffset((595 - textWidth) / 2, 210);
             contentStream.showText(tempText);
             contentStream.endText();
@@ -328,7 +327,7 @@ public class EPrescriptionController implements Initializable {
                     newEPrescription.setMaxWidth(272);
                 }
 
-                Label newEPrescriptionTitle = new Label("E-Prescription " + i);
+                Label newEPrescriptionTitle = new Label("E-Prescription " + (i+1));
                 Label newEPrescriptionCode = new Label("Code: " + EPrescriptionData[3]);
                 Label newEPrescriptionMedicines = new Label("Medicines:\n" + EPrescriptionData[4]);
                 Label newEPrescriptionDate = new Label("Date of issue: " + EPrescriptionData[2]);
