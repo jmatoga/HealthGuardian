@@ -52,7 +52,7 @@
             <opaqueInsets>
                 <Insets />
             </opaqueInsets></Label>
-        <ImageView fitHeight="53.0" fitWidth="58.0" layoutX="14.0" layoutY="439.0" onMouseClicked="#unHighlightButtonsOnImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0">
+        <ImageView fitHeight="53.0" fitWidth="58.0" layoutX="14.0" layoutY="439.0" onMouseClicked="#userLogInButtonClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0">
             <image>
                 <Image url="@../Images/iconImage64x64.png" />
             </image>
@@ -65,7 +65,7 @@
                 <Insets />
             </opaqueInsets>
         </Button>
-      <Label layoutX="347.0" layoutY="14.0" prefHeight="17.0" prefWidth="126.0" styleClass="darkBlue-label" stylesheets="@../Styles/textLabel.css" text="LOG IN TO DOCTOR" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="15.0">
+      <Label layoutX="344.0" layoutY="470.0" prefHeight="17.0" prefWidth="119.0" styleClass="darkBlue-label" stylesheets="@../Styles/textLabel.css" text="LOG IN TO DOCTOR" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="344.0">
          <font>
             <Font name="Consolas Bold" size="13.0" />
          </font>
