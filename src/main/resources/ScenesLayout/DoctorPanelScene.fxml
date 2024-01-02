@@ -99,7 +99,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Button fx:id="logOutButton" layoutX="1000.0" layoutY="975.0" mnemonicParsing="false" onAction="#LogOutButtonClicked" prefHeight="40.0" prefWidth="120.0" styleClass="darkblue-20-button" stylesheets="@../Styles/buttonsStyle.css" text="LOG OUT" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="100.0">
+        <Button fx:id="logOutButton" layoutX="1000.0" layoutY="975.0" mnemonicParsing="false" onAction="#logOutButtonClicked" prefHeight="40.0" prefWidth="120.0" styleClass="darkblue-20-button" stylesheets="@../Styles/buttonsStyle.css" text="LOG OUT" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="100.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
