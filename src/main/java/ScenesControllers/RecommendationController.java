@@ -75,9 +75,6 @@ public class RecommendationController implements Initializable {
                 String[] recommendationData = recommendationsData[i].split(", ");
 
                 VBox newRecommendation = new VBox();
-//                newEReferral.setFocusTraversable(false);
-//                gridPane.setFocusTraversable(false);
-//                scrollPane.setFocusTraversable(false);
                 newRecommendation.setPrefHeight(200);
                 newRecommendation.setId("recommendation" + (i+1));
                 newRecommendation.setOnMouseClicked(mouseEvent -> {
