@@ -56,7 +56,7 @@
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Label>
-      <Button fx:id="logInButton" layoutX="716.0" layoutY="456.0" mnemonicParsing="false" onAction="#LogInButtonClicked" prefHeight="31.0" prefWidth="67.0" styleClass="turquoise-button" stylesheets="@../Styles/buttonsStyle.css" text="LOG IN" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="17.0">
+      <Button fx:id="logInButton" layoutX="716.0" layoutY="456.0" mnemonicParsing="false" onAction="#LogInButtonClicked" prefHeight="31.0" prefWidth="67.0" styleClass="turquoise-button" stylesheets="@../Styles/buttonsStyle.css" text="LOG IN" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <font>
             <Font name="Consolas Bold" size="13.0" />
          </font>

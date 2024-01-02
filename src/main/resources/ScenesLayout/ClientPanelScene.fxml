@@ -13,14 +13,14 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="clientPanelScene" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.ClientPanelController">
+<AnchorPane fx:id="clientPanelScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.ClientPanelController">
    <children>
-      <ImageView fitHeight="1100.0" fitWidth="1930.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="1200.0" fitWidth="2102.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../Images/background_1.png" />
          </image>
       </ImageView>
-      <Button fx:id="MessageButton" contentDisplay="GRAPHIC_ONLY" layoutX="1610.0" layoutY="335.0" mnemonicParsing="false" onAction="#messageButtonClicked" prefHeight="70.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="300.0">
+      <Button fx:id="MessageButton" contentDisplay="GRAPHIC_ONLY" layoutX="1610.0" layoutY="335.0" mnemonicParsing="false" onAction="#messageButtonClicked" prefHeight="70.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="300.0">
          <graphic>
             <ImageView fitHeight="70.0" fitWidth="70.0">
                <image>
@@ -56,7 +56,7 @@
             <Font name="Consolas" size="20.0" />
          </font>
       </Label>
-      <VBox layoutX="292.0" layoutY="290.0" prefHeight="112.0" prefWidth="280.0">
+      <VBox layoutX="292.0" layoutY="290.0" prefHeight="112.0" prefWidth="280.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="290.0">
          <children>
             <Label fx:id="firstNameLabel" prefHeight="35.0" prefWidth="287.0" text="First_Name" textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -75,7 +75,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox layoutX="292.0" layoutY="403.0" prefHeight="255.0" prefWidth="280.0" AnchorPane.rightAnchor="1353.0">
+      <VBox layoutX="292.0" layoutY="403.0" prefHeight="255.0" prefWidth="280.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="400.0">
          <children>
             <Label fx:id="weightLabel" prefHeight="27.0" prefWidth="285.0" text="weight:" textFill="WHITE">
                <font>
@@ -118,7 +118,7 @@
             </Label>
          </children>
       </VBox>
-      <Button fx:id="editDataButton" layoutX="292.0" layoutY="658.0" mnemonicParsing="false" onAction="#editDataButtonClicked" prefHeight="50.0" prefWidth="148.0" styleClass="darkblue-20-button" stylesheets="@../Styles/buttonsStyle.css" text="EDIT DATA" AnchorPane.rightAnchor="1485.0" AnchorPane.topAnchor="658.0">
+      <Button fx:id="editDataButton" layoutX="292.0" layoutY="658.0" mnemonicParsing="false" onAction="#editDataButtonClicked" prefHeight="50.0" prefWidth="148.0" styleClass="darkblue-20-button" stylesheets="@../Styles/buttonsStyle.css" text="EDIT DATA" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="660.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -142,7 +142,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="SMIButton" layoutX="814.0" layoutY="950.0" mnemonicParsing="false" onAction="#SMIButtonClicked" prefHeight="80.0" prefWidth="500.0" styleClass="darkred-button" stylesheets="@../Styles/buttonsStyle.css" text="SHORT MEDICAL INTERVIEW" AnchorPane.bottomAnchor="20.0">
+      <Button fx:id="SMIButton" layoutX="814.0" layoutY="950.0" mnemonicParsing="false" onAction="#SMIButtonClicked" prefHeight="80.0" prefWidth="500.0" styleClass="darkred-button" stylesheets="@../Styles/buttonsStyle.css" text="SHORT MEDICAL INTERVIEW" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="800.0">
          <font>
             <Font name="Consolas Bold" size="28.0" />
          </font>
@@ -166,7 +166,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="settingsButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#settingsButtonClicked" prefHeight="55.0" prefWidth="160.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SETTINGS" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="40.0">
+      <Button fx:id="settingsButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#settingsButtonClicked" prefHeight="55.0" prefWidth="160.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SETTINGS" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="55.0">
          <font>
             <Font name="Consolas Bold" size="24.0" />
          </font>
@@ -190,7 +190,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="logOutButton" layoutX="1000.0" layoutY="975.0" mnemonicParsing="false" onAction="#LogOutButtonClicked" prefHeight="40.0" prefWidth="120.0" styleClass="darkblue-20-button" stylesheets="@../Styles/buttonsStyle.css" text="LOG OUT" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="30.0">
+      <Button fx:id="logOutButton" layoutX="1000.0" layoutY="975.0" mnemonicParsing="false" onAction="#LogOutButtonClicked" prefHeight="40.0" prefWidth="120.0" styleClass="darkblue-20-button" stylesheets="@../Styles/buttonsStyle.css" text="LOG OUT" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="55.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -214,7 +214,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="medicalHistoryButton" layoutX="1620.0" layoutY="764.0" mnemonicParsing="false" onAction="#medicalHistoryButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightorange-button" stylesheets="@../Styles/buttonsStyle.css" text="MEDICAL HISTORY" textFill="#ff9200" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="600.0">
+      <Button fx:id="medicalHistoryButton" layoutX="1620.0" layoutY="764.0" mnemonicParsing="false" onAction="#medicalHistoryButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightorange-button" stylesheets="@../Styles/buttonsStyle.css" text="MEDICAL HISTORY" textFill="#ff9200" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="600.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -238,7 +238,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="pressurePanelButton" layoutX="1620.0" layoutY="645.0" mnemonicParsing="false" onAction="#pressurePanelButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRESSURE PANEL" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="700.0">
+      <Button fx:id="pressurePanelButton" layoutX="1620.0" layoutY="645.0" mnemonicParsing="false" onAction="#pressurePanelButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRESSURE PANEL" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="700.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -262,7 +262,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="ePrescriptionButton" layoutX="32.0" layoutY="80.0" mnemonicParsing="false" onAction="#ePrescriptionButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="E-PRESCRIPTION" AnchorPane.topAnchor="60.0">
+      <Button fx:id="ePrescriptionButton" layoutX="32.0" layoutY="80.0" mnemonicParsing="false" onAction="#ePrescriptionButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="E-PRESCRIPTION" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="60.0">
          <font>
             <Font name="Consolas Bold" size="24.0" />
          </font>
@@ -286,7 +286,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="eReferralButton" layoutX="344.0" layoutY="80.0" mnemonicParsing="false" onAction="#eReferralButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="E-REFERRAL" AnchorPane.topAnchor="60.0">
+      <Button fx:id="eReferralButton" layoutX="344.0" layoutY="80.0" mnemonicParsing="false" onAction="#eReferralButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="E-REFERRAL" AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="60.0">
          <font>
             <Font name="Consolas Bold" size="24.0" />
          </font>
@@ -310,7 +310,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="findingsButton" layoutX="658.0" layoutY="80.0" mnemonicParsing="false" onAction="#findingsButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="FINDINGS" AnchorPane.topAnchor="60.0">
+      <Button fx:id="findingsButton" layoutX="658.0" layoutY="80.0" mnemonicParsing="false" onAction="#findingsButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="FINDINGS" AnchorPane.leftAnchor="675.0" AnchorPane.topAnchor="60.0">
          <font>
             <Font name="Consolas Bold" size="24.0" />
          </font>
@@ -334,7 +334,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="testScheduleButton" layoutX="972.0" layoutY="80.0" mnemonicParsing="false" onAction="#testScheduleButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="EXAMINATION&#10;SCHEDULE" AnchorPane.topAnchor="60.0">
+      <Button fx:id="testScheduleButton" layoutX="972.0" layoutY="80.0" mnemonicParsing="false" onAction="#testScheduleButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="EXAMINATION&#10;SCHEDULE" AnchorPane.leftAnchor="985.0" AnchorPane.topAnchor="60.0">
          <font>
             <Font name="Consolas Bold" size="24.0" />
          </font>
@@ -358,12 +358,12 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="eContactWithADoctorButton" layoutX="1292.0" layoutY="80.0" mnemonicParsing="false" onAction="#eContactWithADoctorButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="E-CONTACT WITH&#10;A DOCTOR" textAlignment="CENTER" AnchorPane.topAnchor="60.0">
+      <Button fx:id="eContactWithADoctorButton" layoutX="1292.0" layoutY="80.0" mnemonicParsing="false" onAction="#eContactWithADoctorButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="E-CONTACT WITH A DOCTOR" textAlignment="CENTER" textFill="#a11111" AnchorPane.leftAnchor="1295.0" AnchorPane.topAnchor="60.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button fx:id="listOfClinicsButton" layoutX="1610.0" layoutY="80.0" mnemonicParsing="false" onAction="#listOfClinicsButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="LIST OF CLINICS" AnchorPane.topAnchor="60.0">
+      <Button fx:id="listOfClinicsButton" layoutX="1610.0" layoutY="80.0" mnemonicParsing="false" onAction="#listOfClinicsButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="LIST OF CLINICS" AnchorPane.leftAnchor="1605.0" AnchorPane.topAnchor="60.0">
          <font>
             <Font name="Consolas Bold" size="24.0" />
          </font>
@@ -387,7 +387,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Label fx:id="dataUpdatedStatusLabel" layoutX="250.0" layoutY="247.0" prefHeight="53.0" prefWidth="315.0">
+      <Label fx:id="dataUpdatedStatusLabel" layoutX="250.0" layoutY="247.0" prefHeight="53.0" prefWidth="315.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="250.0">
          <font>
             <Font size="30.0" />
          </font>
@@ -409,7 +409,7 @@
          </textFill>
       </Label>
 
-      <Button fx:id="recommendationsPanelBuitton" layoutX="1625.0" layoutY="499.0" mnemonicParsing="false" onAction="#recommendationsPanelBuittonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightorange-button" stylesheets="@../Styles/buttonsStyle.css" text="RECOMMENDATIONS PANEL" textAlignment="CENTER" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="500.0">
+      <Button fx:id="recommendationsPanelBuitton" layoutX="1625.0" layoutY="499.0" mnemonicParsing="false" onAction="#recommendationsPanelBuittonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightorange-button" stylesheets="@../Styles/buttonsStyle.css" text="RECOMMENDATIONS PANEL" textAlignment="CENTER" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="500.0">
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
                <stops>

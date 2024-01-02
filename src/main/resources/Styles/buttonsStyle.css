@@ -9,8 +9,8 @@
     -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);
     -fx-text-fill: radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 50.0% 54.2654%, radius 74.1379%, #46d4b3 0.0%, #007052 100.0%);
     -fx-font-family: "Consolas bold";
-    -fx-font-size: 24px;
-    -fx-wrap-text: false;
+    -fx-font-size: 22px;
+    -fx-wrap-text: true;
     -fx-text-alignment: center;
 }
 .lightgreen-button:hover
@@ -37,7 +37,7 @@
     -fx-text-fill: radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 50.0% 54.2654%, radius 74.1379%, #49b5d1 0.0%, #00476e 100.0%);
     -fx-font-family: "Consolas bold";
     -fx-font-size: 20px;
-    -fx-wrap-text: false;
+    -fx-wrap-text: true;
     -fx-text-alignment: center;
 }
 .darkblue-20-button:hover {
@@ -61,7 +61,7 @@
     -fx-text-fill: radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 50.0% 54.2654%, radius 74.1379%, #49b5d1 0.0%, #00476e 100.0%);
     -fx-font-family: "Consolas bold";
     -fx-font-size: 24px;
-    -fx-wrap-text: false;
+    -fx-wrap-text: true;
     -fx-text-alignment: center;
 }
 .darkblue-button:hover {
@@ -85,7 +85,7 @@
     -fx-text-fill: radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 50.0% 54.2654%, radius 74.1379%, #3eede3 0.0%, #00b9c2 100.0%);
     -fx-font-family: "Consolas bold";
     -fx-font-size: 20px;
-    -fx-wrap-text: false;
+    -fx-wrap-text: true;
     -fx-text-alignment: center;
 }
 .lightblue-button:hover {
@@ -109,7 +109,7 @@
     -fx-text-fill: radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 50.0% 54.2654%, radius 74.1379%, #f50000 0.0%, #000000 100.0%);
     -fx-font-family: "Consolas bold";
     -fx-font-size: 28px;
-    -fx-wrap-text: false;
+    -fx-wrap-text: true;
     -fx-text-alignment: center;
 
 }
@@ -157,7 +157,7 @@
     -fx-text-fill: radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 50.0% 54.2654%, radius 74.1379%, #49b5d1 0.0%, #003635 100.0%);
     -fx-font-family: "Consolas bold";
     -fx-font-size: 13px;
-    -fx-wrap-text: false;
+    -fx-wrap-text: true;
     -fx-text-alignment: center;
 }
 .turquoise-button:hover {
@@ -180,7 +180,7 @@
     -fx-text-fill: radial-gradient(focus-angle 0.0deg, focus-distance 0.0%, center 50.0% 54.2654%, radius 74.1379%, #fff09a 0.0%, #bfae5f 100.0%);
     -fx-font-family: "Consolas bold";
     -fx-font-size: 24px;
-    -fx-wrap-text: false;
+    -fx-wrap-text: true;
     -fx-text-alignment: center;
 }
 

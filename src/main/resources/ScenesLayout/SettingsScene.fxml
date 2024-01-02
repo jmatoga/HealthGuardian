@@ -17,12 +17,12 @@
 
 <AnchorPane fx:id="settingsScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.SettingsController">
     <children>
-        <ImageView fitHeight="1110.0" fitWidth="1930.0" layoutX="8.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ImageView fitHeight="1200.0" fitWidth="2102.0" layoutX="8.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
                 <Image url="@../Images/background_clear.png" />
             </image>
         </ImageView>
-        <HBox layoutX="498.0" layoutY="315.0" prefHeight="550.0" prefWidth="1045.0" AnchorPane.bottomAnchor="215.0" AnchorPane.leftAnchor="498.0">
+        <HBox layoutX="498.0" layoutY="315.0" prefHeight="550.0" prefWidth="1045.0" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="500.0">
             <children>
                 <VBox prefHeight="550.0" prefWidth="401.0">
                     <children>
@@ -455,7 +455,7 @@
                 </VBox>
             </children>
         </HBox>
-        <Label layoutX="809.0" layoutY="65.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="SETTINGS" textFill="WHITE" AnchorPane.bottomAnchor="912.0" AnchorPane.leftAnchor="809.0">
+        <Label layoutX="809.0" layoutY="65.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="SETTINGS" textFill="WHITE" AnchorPane.leftAnchor="810.0" AnchorPane.topAnchor="70.0">
             <font>
                 <Font name="System Bold" size="70.0" />
             </font>
@@ -481,7 +481,7 @@
                 </LinearGradient>
             </textFill>
         </Label>
-      <Button fx:id="saveSettingsButton" layoutX="855.0" layoutY="956.0" mnemonicParsing="false" onAction="#saveSettingsButtonClicked" prefHeight="55.0" prefWidth="220.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="SAVE SETTINGS" AnchorPane.bottomAnchor="69.0">
+      <Button fx:id="saveSettingsButton" layoutX="855.0" layoutY="956.0" mnemonicParsing="false" onAction="#saveSettingsButtonClicked" prefHeight="55.0" prefWidth="220.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="SAVE SETTINGS" AnchorPane.leftAnchor="880.0">
          <font>
             <Font name="Arial Bold Italic" size="18.0" />
          </font>
@@ -505,7 +505,7 @@
             </LinearGradient>
          </textFill>
       </Button>
-      <Button fx:id="userPanelButton" layoutX="1704.0" layoutY="975.0" mnemonicParsing="false" onAction="#userPanelButtonClicked" prefHeight="55.0" prefWidth="170.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="USER PANEL" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="40.0">
+      <Button fx:id="userPanelButton" layoutX="1704.0" layoutY="975.0" mnemonicParsing="false" onAction="#userPanelButtonClicked" prefHeight="55.0" prefWidth="170.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="USER PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
          <font>
             <Font name="Consolas Bold" size="24.0" />
          </font>

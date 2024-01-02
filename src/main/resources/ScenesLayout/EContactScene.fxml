@@ -16,12 +16,12 @@
 
 <AnchorPane fx:id="eContactScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.EContactController">
     <children>
-        <ImageView fitHeight="1110.0" fitWidth="1930.0" layoutX="8.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ImageView fitHeight="1200.0" fitWidth="2102.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
                 <Image url="@../Images/bg2.jpg" />
             </image>
         </ImageView>
-        <Button fx:id="userPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#userPanelButtonClicked" prefHeight="60.0" prefWidth="180.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="USER PANEL" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="950.0">
+        <Button fx:id="userPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#userPanelButtonClicked" prefHeight="60.0" prefWidth="180.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="USER PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
@@ -45,7 +45,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Label layoutX="792.0" layoutY="69.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="E-CONTACT" AnchorPane.leftAnchor="792.0" AnchorPane.topAnchor="69.0">
+        <Label layoutX="792.0" layoutY="69.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="E-CONTACT" AnchorPane.leftAnchor="790.0" AnchorPane.topAnchor="70.0">
             <font>
                 <Font name="Consolas Bold" size="70.0" />
             </font>
@@ -66,7 +66,7 @@
                 </RadialGradient>
             </textFill>
         </Label>
-      <HBox layoutX="259.0" layoutY="815.0" prefHeight="50.0" prefWidth="1450.0" style="-fx-border-radius: 5;">
+      <HBox layoutX="259.0" layoutY="815.0" prefHeight="50.0" prefWidth="1450.0" style="-fx-border-radius: 5;" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="815.0">
          <children>
             <Pane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #0b5cff; -fx-border-color: white; -fx-border-width: 3;">
                <children>
@@ -91,7 +91,7 @@
             </Pane>
          </children>
       </HBox>
-      <Pane layoutX="600.0" layoutY="192.0" prefHeight="380.0" prefWidth="700.0">
+      <Pane layoutX="600.0" layoutY="192.0" prefHeight="380.0" prefWidth="700.0" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="190.0">
          <children>
             <Pane opacity="0.4" prefHeight="380.0" prefWidth="700.0" style="-fx-background-color: white; -fx-background-radius: 30;" />
             <Label alignment="TOP_CENTER" prefHeight="380.0" prefWidth="700.0" text="Instruction and descripiton of e-contact" textFill="#d09622" wrapText="true">
@@ -101,7 +101,7 @@
             </Label>
          </children>
       </Pane>
-      <VBox layoutX="782.0" layoutY="600.0" prefHeight="150.0" prefWidth="300.0">
+      <VBox layoutX="782.0" layoutY="600.0" prefHeight="150.0" prefWidth="300.0" AnchorPane.leftAnchor="800.0" AnchorPane.topAnchor="600.0">
          <children>
             <Label fx:id="DoctorFirstNameLabel" prefHeight="32.0" prefWidth="300.0" text="Doctor First Name" textFill="WHITE">
                <font>
@@ -130,7 +130,7 @@
             </Label>
          </children>
       </VBox>
-      <Button fx:id="testScheduleButton" layoutX="1610.0" layoutY="492.0" mnemonicParsing="false" onAction="#testScheduleButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="EXAMINATION&#10;SCHEDULE">
+      <Button fx:id="testScheduleButton" layoutX="1610.0" layoutY="492.0" mnemonicParsing="false" onAction="#testScheduleButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="EXAMINATION&#10;SCHEDULE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="500.0">
          <font>
             <Font name="Consolas Bold" size="24.0" />
          </font>

@@ -13,14 +13,14 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="doctorUserPanelScene" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.DoctorUserController">
+<AnchorPane fx:id="doctorUserPanelScene" blendMode="DIFFERENCE" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.DoctorUserController">
     <children>
-        <ImageView blendMode="DIFFERENCE" fitHeight="1100.0" fitWidth="1930.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ImageView blendMode="DIFFERENCE" fitHeight="1200.0" fitWidth="2102.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
                 <Image url="@../Images/background_1.png" />
             </image>
         </ImageView>
-        <VBox layoutX="171.0" layoutY="168.0" prefHeight="112.0" prefWidth="280.0">
+        <VBox layoutX="171.0" layoutY="168.0" prefHeight="112.0" prefWidth="280.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="170.0">
             <children>
                 <Label fx:id="firstNameLabel" prefHeight="35.0" prefWidth="287.0" text="Client_First_Name" textAlignment="CENTER">
                     <font>
@@ -39,7 +39,7 @@
                 </Label>
             </children>
         </VBox>
-      <Button fx:id="doctorPanelButton" layoutX="1720.0" layoutY="985.0" mnemonicParsing="false" onAction="#doctorPanelButtonClicked" prefHeight="60.0" prefWidth="180.0" styleClass="darkblue-20-button" stylesheets="@../Styles/buttonsStyle.css" text="DOCTOR PANEL">
+      <Button fx:id="doctorPanelButton" layoutX="1720.0" layoutY="985.0" mnemonicParsing="false" onAction="#doctorPanelButtonClicked" prefHeight="60.0" prefWidth="180.0" styleClass="darkblue-20-button" stylesheets="@../Styles/buttonsStyle.css" text="DOCTOR PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -63,7 +63,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <VBox layoutX="170.0" layoutY="88.0" prefHeight="80.0" prefWidth="444.0">
+      <VBox layoutX="170.0" layoutY="88.0" prefHeight="80.0" prefWidth="444.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="90.0">
          <children>
             <TextField fx:id="peselTextFiled" prefHeight="40.0" prefWidth="361.0" promptText="Client PESEL">
                <font>
@@ -76,7 +76,7 @@
             </Label>
          </children>
       </VBox>
-      <Button fx:id="changeMedicalHistoryButton" layoutX="170.0" layoutY="291.0" mnemonicParsing="false" onAction="#changeMedicalHistoryButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHANGE MEDICAL HISTORY ">
+      <Button fx:id="changeMedicalHistoryButton" layoutX="170.0" layoutY="291.0" mnemonicParsing="false" onAction="#changeMedicalHistoryButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHANGE MEDICAL HISTORY " AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="290.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -100,7 +100,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="prescribeEPrescriptionButton" layoutX="170.0" layoutY="384.0" mnemonicParsing="false" onAction="#prescribeEPrescriptionButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRESCRIBE E-PRESCRIPTION">
+      <Button fx:id="prescribeEPrescriptionButton" layoutX="170.0" layoutY="384.0" mnemonicParsing="false" onAction="#prescribeEPrescriptionButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRESCRIBE E-PRESCRIPTION" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="385.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -124,7 +124,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="prescribeEReferralButton" layoutX="170.0" layoutY="477.0" mnemonicParsing="false" onAction="#prescribeEReferralButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRESCRIBE E-REFERRAL">
+      <Button fx:id="prescribeEReferralButton" layoutX="170.0" layoutY="477.0" mnemonicParsing="false" onAction="#prescribeEReferralButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRESCRIBE E-REFERRAL" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="480.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -148,7 +148,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="checkFindingsButton" layoutX="170.0" layoutY="571.0" mnemonicParsing="false" onAction="#checkFindingsButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHECK FINDINGS">
+      <Button fx:id="checkFindingsButton" layoutX="170.0" layoutY="571.0" mnemonicParsing="false" onAction="#checkFindingsButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHECK FINDINGS" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="575.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -172,7 +172,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="addRecommendationsButton" layoutX="170.0" layoutY="755.0" mnemonicParsing="false" onAction="#addRecommendationsButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="ADD RECOMMENDATIONS">
+      <Button fx:id="addRecommendationsButton" layoutX="170.0" layoutY="755.0" mnemonicParsing="false" onAction="#addRecommendationsButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="ADD RECOMMENDATIONS" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="765.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -196,7 +196,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="checkDocumentationButton" layoutX="170.0" layoutY="663.0" mnemonicParsing="false" onAction="#checkDocumentationButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHECK DOCUMENTATION">
+      <Button fx:id="checkDocumentationButton" layoutX="170.0" layoutY="663.0" mnemonicParsing="false" onAction="#checkDocumentationButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHECK DOCUMENTATION" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="670.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
