@@ -22,17 +22,17 @@
         </ImageView>
         <VBox layoutX="171.0" layoutY="168.0" prefHeight="112.0" prefWidth="280.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="170.0">
             <children>
-                <Label fx:id="firstNameLabel" prefHeight="35.0" prefWidth="287.0" text="Client_First_Name" textAlignment="CENTER">
+                <Label fx:id="firstNameLabel" prefHeight="35.0" prefWidth="287.0" textAlignment="CENTER">
                     <font>
                         <Font name="Consolas" size="24.0" />
                     </font>
                 </Label>
-                <Label fx:id="lastNameLabel" prefHeight="35.0" prefWidth="284.0" text="Client_Last_Name" textAlignment="CENTER">
+                <Label fx:id="lastNameLabel" prefHeight="35.0" prefWidth="284.0" textAlignment="CENTER">
                     <font>
                         <Font name="Consolas" size="24.0" />
                     </font>
                 </Label>
-                <Label fx:id="birthDateLabel" prefHeight="35.0" prefWidth="287.0" text="Client_Birth_Date" textAlignment="CENTER">
+                <Label fx:id="birthDateLabel" prefHeight="35.0" prefWidth="287.0" textAlignment="CENTER">
                     <font>
                         <Font name="Consolas" size="24.0" />
                     </font>
@@ -70,11 +70,11 @@
         </Label>
       <VBox layoutX="170.0" layoutY="88.0" prefHeight="80.0" prefWidth="444.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="90.0">
          <children>
-            <TextField fx:id="peselTextFiled" prefHeight="40.0" prefWidth="361.0" promptText="Patient PESEL">
+            <TextField fx:id="peselTextField" onKeyPressed="#enterPressedInPeselField" prefHeight="40.0" prefWidth="361.0" promptText="Patient PESEL">
                <font>
                   <Font name="Consolas" size="20.0" />
                </font></TextField>
-            <Label fx:id="alertLabel" prefHeight="32.0" prefWidth="444.0" textFill="RED">
+            <Label fx:id="peselStatusLabel" prefHeight="32.0" prefWidth="444.0" textFill="RED">
                <font>
                   <Font name="Consolas" size="20.0" />
                </font>
