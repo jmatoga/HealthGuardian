@@ -460,7 +460,7 @@
                 <Font name="System Bold" size="70.0" />
             </font>
         </Label>
-        <Label fx:id="settingsSavedStatusLabel" alignment="CENTER" layoutX="780.0" layoutY="893.0" prefHeight="53.0" prefWidth="369.0" textAlignment="CENTER" AnchorPane.bottomAnchor="134.0">
+        <Label fx:id="settingsSavedStatusLabel" alignment="CENTER" layoutX="780.0" layoutY="893.0" prefHeight="53.0" prefWidth="369.0" textAlignment="CENTER" AnchorPane.bottomAnchor="134.0" AnchorPane.leftAnchor="776.0" AnchorPane.rightAnchor="775.0">
             <font>
                 <Font size="30.0" />
             </font>
@@ -481,7 +481,7 @@
                 </LinearGradient>
             </textFill>
         </Label>
-        <Button fx:id="saveSettingsButton" layoutX="855.0" layoutY="956.0" mnemonicParsing="false" onAction="#saveSettingsButtonClicked" prefHeight="55.0" prefWidth="220.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="SAVE SETTINGS" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="880.0">
+        <Button fx:id="saveSettingsButton" layoutX="855.0" layoutY="956.0" mnemonicParsing="false" onAction="#saveSettingsButtonClicked" prefHeight="55.0" prefWidth="220.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="SAVE SETTINGS" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="850.0" AnchorPane.rightAnchor="850.0">
             <font>
                 <Font name="Arial Bold Italic" size="18.0" />
             </font>

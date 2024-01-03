@@ -10,12 +10,12 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="pressurePanelScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.PressurePanelController">
@@ -108,29 +108,29 @@
             </Label>
          </children>
       </FlowPane>
-      <HBox fx:id="legendBox" alignment="CENTER" layoutX="505.0" layoutY="970.0" prefHeight="50.0" prefWidth="900.0" AnchorPane.bottomAnchor="60.0">
-         <children>
-            <Label alignment="CENTER" prefHeight="50.0" prefWidth="225.0" text="Systolic Pressure" textAlignment="CENTER" textFill="#238591">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="50.0" prefWidth="225.0" text="Diastolic Pressure" textFill="#e5d849">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="weightLabel" alignment="CENTER" prefHeight="50.0" prefWidth="225.0" text="Weight" textFill="#ed4d51">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="temperatureLabel" alignment="CENTER" prefHeight="50.0" prefWidth="225.0" text="Temperature" textFill="#6a4caf">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
+      <Circle fill="#238591" layoutX="715.0" layoutY="934.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Label layoutX="531.0" layoutY="911.0" prefHeight="50.0" prefWidth="188.0" text="Systolic Pressure" textFill="#238591" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="531.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Circle fill="#e5d849" layoutX="958.0" layoutY="934.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Label layoutX="783.0" layoutY="911.0" prefHeight="50.0" prefWidth="188.0" text="Diastolic Pressure" textFill="#e5d849" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="783.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Circle fill="#ed4d51" layoutX="1104.0" layoutY="935.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Label layoutX="1046.0" layoutY="911.0" prefHeight="50.0" prefWidth="188.0" text="Weight" textFill="#ed4d51" AnchorPane.bottomAnchor="60.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Circle fill="#6a4caf" layoutX="1315.0" layoutY="935.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Label layoutX="1209.0" layoutY="911.0" prefHeight="50.0" prefWidth="188.0" text="Temperature" textFill="#6a4caf" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="531.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

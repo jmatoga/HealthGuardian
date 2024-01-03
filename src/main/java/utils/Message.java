@@ -94,6 +94,9 @@ public class Message {
     public void sendGetSettingsMessage(PrintWriter writer, String message) {
         writer.println("GET_SETTINGS:" + message);
     }
+    public void sendGetDoctorSettingsMessage(PrintWriter writer, String message) {
+        writer.println("GET_DOCTOR_SETTINGS:" + message);
+    }
     public void sendGetDoctorDataMessage(PrintWriter writer, String message) {
         writer.println("GET_DOCTOR_DATA:" + message);
     }
@@ -105,6 +108,10 @@ public class Message {
      */
     public void sendSetSettingsMessage(PrintWriter writer, String message) {
         writer.println("SET_SETTINGS:" + message);
+    }
+
+    public void sendDoctorSetSettingsMessage(PrintWriter writer, String message) {
+        writer.println("SET_DOCTOR_SETTINGS:" + message);
     }
 
     /**

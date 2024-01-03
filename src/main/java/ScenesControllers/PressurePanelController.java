@@ -36,7 +36,16 @@ public class PressurePanelController implements Initializable {
     private VBox vbox;
 
     @FXML
+    private HBox legendBox;
+
+    @FXML
     private FlowPane alertPane;
+
+    @FXML
+    private Label weightLabel, temperatureLabel;
+
+    private boolean ifShowWeight = true;
+    private boolean ifShowTemperature = true;
 
     @FXML
     private void userPanelButtonClicked(ActionEvent event) throws IOException {
@@ -48,6 +57,16 @@ public class PressurePanelController implements Initializable {
             alertPane.setVisible(true);
         if(diastolicPressure < 60 || diastolicPressure >= 90)
             alertPane.setVisible(true);
+    }
+
+    private void getSettingsFromDB() throws IOException {
+        message.sendGetSettingsMessage(SendToServer,Client.clientId  + "," + Client.user_id);
+        String serverAnswer = ReadFromServer.readLine();
+        System.out.println(utils.Color.ColorString("Server: ", utils.Color.ANSI_YELLOW) + serverAnswer);
+        String[] settingsData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
+
+        ifShowWeight = settingsData[3].equals("false");
+        ifShowTemperature = settingsData[4].equals("false");
     }
 
     private void getPressureFromDB() throws IOException {
@@ -89,8 +108,18 @@ public class PressurePanelController implements Initializable {
 
             vbox.getChildren().add(hbox);
         }
+
         pressureChart.getData().addAll(systolicPressure, diastolicPressure, weight, temperature);
 
+        if(!ifShowWeight) {
+            pressureChart.getData().remove(weight);
+            legendBox.getChildren().remove(weightLabel);
+        }
+
+        if(!ifShowTemperature) {
+            pressureChart.getData().remove(temperature);
+            legendBox.getChildren().remove(temperatureLabel);
+        }
     }
 
     @Override
@@ -100,6 +129,7 @@ public class PressurePanelController implements Initializable {
         alertPane.setVisible(false);
 
         try {
+            getSettingsFromDB();
             getPressureFromDB();
         } catch (IOException e) {
             throw new RuntimeException(e);

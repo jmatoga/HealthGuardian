@@ -171,6 +171,13 @@ class ClientHandler implements Callable<String> {
 
                     String[] settingsResult = sqlEngine.getSettings(Integer.parseInt(clientId), userId);
                     SendToClient.println(Arrays.toString(settingsResult));
+                } else if (serverMessage.startsWith("GET_DOCTOR_SETTINGS:")) {
+                    String[] resources = serverMessage.substring(20).split(",");
+                    String clientId = resources[0];
+                    String doctorId = resources[1];
+
+                    String[] settingsResult = sqlEngine.getDoctorSettings(Integer.parseInt(clientId), doctorId);
+                    SendToClient.println(Arrays.toString(settingsResult));
 
                 } else if (serverMessage.startsWith("SET_SETTINGS:")) {
                     String[] resources = serverMessage.substring(13).split(",");
@@ -179,10 +186,22 @@ class ClientHandler implements Callable<String> {
                     String bmiSetting = resources[2];
                     String ageSetting = resources[3];
                     String dateSetting = resources[4];
-                    String setting4 = resources[5];
-                    String setting5 = resources[6];
+                    String weightInChart_setting = resources[5];
+                    String temperatureInChart_setting = resources[6];
 
-                    String settingsChangedResult = sqlEngine.setSettings(Integer.parseInt(clientId), userId, bmiSetting, ageSetting, dateSetting, setting4, setting5);
+                    String settingsChangedResult = sqlEngine.setSettings(Integer.parseInt(clientId), userId, bmiSetting, ageSetting, dateSetting, weightInChart_setting, temperatureInChart_setting);
+                    SendToClient.println(settingsChangedResult);
+                } else if (serverMessage.startsWith("SET_DOCTOR_SETTINGS:")) {
+                    String[] resources = serverMessage.substring(20).split(",");
+                    String clientId = resources[0];
+                    String doctorId = resources[1];
+                    String bmiSetting = resources[2];
+                    String ageSetting = resources[3];
+                    String dateSetting = resources[4];
+                    String weightInChart_setting = resources[5];
+                    String temperatureInChart_setting = resources[6];
+
+                    String settingsChangedResult = sqlEngine.setDoctorSettings(Integer.parseInt(clientId), doctorId, bmiSetting, ageSetting, dateSetting, weightInChart_setting, temperatureInChart_setting);
                     SendToClient.println(settingsChangedResult);
 
                 } else if (serverMessage.startsWith("CHECK_IF_USER_EXISTS:")) {

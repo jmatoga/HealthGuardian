@@ -26,14 +26,13 @@ public class DoctorExaminationScheduleController implements Initializable {
     private GridPane gridPane;
 
     @FXML
-    private void userPanelButtonClicked(ActionEvent event) throws IOException {
-        new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml");
+    private void docotrPanelButtonClicked(ActionEvent event) throws IOException {
+        new SceneSwitch("/ScenesLayout/DoctorPanelScene.fxml");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DoctorExaminationScheduleController.ReadFromServer = Client.ReadFromServer;
         DoctorExaminationScheduleController.SendToServer = Client.SendToServer;
-
     }
 }

@@ -130,7 +130,7 @@
                 </Label>
             </children>
         </VBox>
-        <Button fx:id="testScheduleButton" layoutX="1610.0" layoutY="492.0" mnemonicParsing="false" onAction="#testScheduleButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="EXAMINATION&#10;SCHEDULE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="500.0">
+        <Button fx:id="testScheduleButton" layoutX="1610.0" layoutY="492.0" mnemonicParsing="false" onAction="#examinationScheduleButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="EXAMINATION&#10;SCHEDULE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="500.0">
             <font>
                 <Font name="Consolas Bold" size="24.0" />
             </font>

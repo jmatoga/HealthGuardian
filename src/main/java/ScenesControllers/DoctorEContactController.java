@@ -31,18 +31,17 @@ public class DoctorEContactController implements Initializable {
 
     @FXML
     private void doctorPanelButtonClicked(ActionEvent event) throws IOException {
-        new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml");
+        new SceneSwitch("/ScenesLayout/DoctorPanelScene.fxml");
     }
 
     @FXML
-    public void testScheduleButtonClicked(ActionEvent actionEvent) throws IOException {
-        new SceneSwitch("/ScenesLayout/ExaminationScheduleScene.fxml");
+    public void examinationScheduleButtonClicked(ActionEvent actionEvent) throws IOException {
+        new SceneSwitch("/ScenesLayout/DoctorExaminationScheduleScene.fxml");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DoctorEContactController.ReadFromServer = Client.ReadFromServer;
         DoctorEContactController.SendToServer = Client.SendToServer;
-
     }
 }

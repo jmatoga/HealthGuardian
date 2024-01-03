@@ -516,8 +516,43 @@ public class SQLEngine {
                 returnStatement[0] = String.valueOf(resultSet.getString("bmi_setting"));
                 returnStatement[1] = String.valueOf(resultSet.getString("age_setting"));
                 returnStatement[2] = String.valueOf(resultSet.getString("currentDate_setting"));
-                returnStatement[3] = String.valueOf(resultSet.getString("settings_no_4"));
-                returnStatement[4] = String.valueOf(resultSet.getString("settings_no_5"));
+                returnStatement[3] = String.valueOf(resultSet.getString("weightInChart_setting"));
+                returnStatement[4] = String.valueOf(resultSet.getString("temperatureInChart_setting"));
+            } else
+                System.out.println("Error in database while getting settings.");
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    String[] getDoctorSettings(int clientID, String doctor_id) {
+        String[] returnStatement = {"Error", "Error", "Error", "Error", "Error"};
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT * FROM doctor_settings_table WHERE doctor_id = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, doctor_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                System.out.println("Settings getted correctly.");
+                returnStatement[0] = String.valueOf(resultSet.getString("bmi_setting"));
+                returnStatement[1] = String.valueOf(resultSet.getString("age_setting"));
+                returnStatement[2] = String.valueOf(resultSet.getString("currentDate_setting"));
+                returnStatement[3] = String.valueOf(resultSet.getString("weightInChart_setting"));
+                returnStatement[4] = String.valueOf(resultSet.getString("temperatureInChart_setting"));
             } else
                 System.out.println("Error in database while getting settings.");
 
@@ -538,11 +573,11 @@ public class SQLEngine {
      * @param bmi_setting the BMI setting of the user
      * @param age_setting the age setting of the user
      * @param currentDate_setting the current date setting of the user
-     * @param settings_no_4 the fourth setting of the user
-     * @param settings_no_5 the fifth setting of the user
+     * @param weightInChart_setting the fourth setting of the user
+     * @param temperatureInChart_setting the fifth setting of the user
      * @return a string indicating the status of the set operation
      */
-    String setSettings(int clientID, String user_id, String bmi_setting, String age_setting, String currentDate_setting, String settings_no_4, String settings_no_5) {
+    String setSettings(int clientID, String user_id, String bmi_setting, String age_setting, String currentDate_setting, String weightInChart_setting, String temperatureInChart_setting) {
         String returnStatement = "Error";
 
         Connection connection = null;
@@ -551,14 +586,53 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String sql = "UPDATE settings_table SET bmi_setting = ?, age_setting = ?, currentDate_setting = ?, settings_no_4 = ?, settings_no_5 = ? WHERE user_id = ?";
+            String sql = "UPDATE settings_table SET bmi_setting = ?, age_setting = ?, currentDate_setting = ?, weightInChart_setting = ?, temperatureInChart_setting = ? WHERE user_id = ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, bmi_setting);
             preparedStatement.setString(2, age_setting);
             preparedStatement.setString(3, currentDate_setting);
-            preparedStatement.setString(4, settings_no_4);
-            preparedStatement.setString(5, settings_no_5);
+            preparedStatement.setString(4, weightInChart_setting);
+            preparedStatement.setString(5, temperatureInChart_setting);
             preparedStatement.setInt(6, Integer.parseInt(user_id));
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 1) {
+                System.out.println("Settings changed correctly.");
+                returnStatement = "Settings changed correctly.";
+
+            } else {
+                System.out.println("Error in database while setting settings.");
+                returnStatement = "Error in database while setting settings.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    String setDoctorSettings(int clientID, String doctor_id, String bmi_setting, String age_setting, String currentDate_setting, String weightInChart_setting, String temperatureInChart_setting) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "UPDATE doctor_settings_table SET bmi_setting = ?, age_setting = ?, currentDate_setting = ?, weightInChart_setting = ?, temperatureInChart_setting = ? WHERE doctor_id = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, bmi_setting);
+            preparedStatement.setString(2, age_setting);
+            preparedStatement.setString(3, currentDate_setting);
+            preparedStatement.setString(4, weightInChart_setting);
+            preparedStatement.setString(5, temperatureInChart_setting);
+            preparedStatement.setInt(6, Integer.parseInt(doctor_id));
 
             int rowsAffected = preparedStatement.executeUpdate();
 

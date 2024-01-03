@@ -119,35 +119,35 @@ public class ListOfClinicsController implements Initializable {
                     clinicNameLabel6.setText(clinicData[2]);
                     descriptionClinicLabel6.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     ClinicPane6.setOnMouseClicked(mouseEvent -> {
-                        //webEngine.load("");
+                        webEngine.load("https://www.google.com/maps/d/u/2/viewer?mid=1ylOsb6r5D450-AW_eOlIq_Rfl3p9fA4&ll=50.08237493332045%2C19.88215377420888&z=22");
                     });
                     break;
                 case 6:
                     clinicNameLabel7.setText(clinicData[2]);
                     descriptionClinicLabel7.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     ClinicPane7.setOnMouseClicked(mouseEvent -> {
-                        //webEngine.load("");
+                        webEngine.load("https://www.google.com/maps/d/u/2/viewer?mid=1ylOsb6r5D450-AW_eOlIq_Rfl3p9fA4&ll=50.0310946%2C19.91370709999999&z=22");
                     });
                     break;
                 case 7:
                     clinicNameLabel8.setText(clinicData[2]);
                     descriptionClinicLabel8.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     ClinicPane8.setOnMouseClicked(mouseEvent -> {
-                        //webEngine.load("");
+                        webEngine.load("https://www.google.com/maps/d/u/2/viewer?mid=1ylOsb6r5D450-AW_eOlIq_Rfl3p9fA4&ll=50.078506900000036%2C20.032472999999985&z=22");
                     });
                     break;
                 case 8:
                     clinicNameLabel9.setText(clinicData[2]);
                     descriptionClinicLabel9.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     ClinicPane9.setOnMouseClicked(mouseEvent -> {
-                        //webEngine.load("");
+                        webEngine.load("https://www.google.com/maps/d/u/2/viewer?mid=1ylOsb6r5D450-AW_eOlIq_Rfl3p9fA4&ll=50.07996740000002%2C20.045994999999976&z=22");
                     });
                     break;
                 case 9:
                     clinicNameLabel10.setText(clinicData[2]);
                     descriptionClinicLabel10.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     ClinicPane10.setOnMouseClicked(mouseEvent -> {
-                       // webEngine.load("");
+                       webEngine.load("https://www.google.com/maps/d/u/2/viewer?mid=1ylOsb6r5D450-AW_eOlIq_Rfl3p9fA4&ll=50.117971800000014%2C19.93091430000002&z=22");
                     });
                     break;
                 default:

@@ -28,67 +28,10 @@ public class SettingsController implements Initializable {
     private static PrintWriter SendToServer;
 
     @FXML
-    private Label settingsSavedStatusLabel;
+    private Label settingsSavedStatusLabel, settingsDescription1Label, settingsDescription2Label, settingsDescription3Label, settingsDescription4Label, settingsDescription5Label, settingsDescription6Label, settingsDescription7Label, settingsDescription8Label, settingsDescription9Label, settingsDescription10Label;
 
     @FXML
-    private Label settingsDescription1Label;
-
-    @FXML
-    private Label settingsDescription2Label;
-
-    @FXML
-    private Label settingsDescription3Label;
-
-    @FXML
-    private Label settingsDescription4Label;
-
-    @FXML
-    private Label settingsDescription5Label;
-
-    @FXML
-    private Label settingsDescription6Label;
-
-    @FXML
-    private Label settingsDescription7Label;
-
-    @FXML
-    private Label settingsDescription8Label;
-
-    @FXML
-    private Label settingsDescription9Label;
-
-    @FXML
-    private Label settingsDescription10Label;
-
-    @FXML
-    private CheckBox bmiSettingsCheckBox;
-
-    @FXML
-    private CheckBox ageSettingsCheckBox;
-
-    @FXML
-    private CheckBox dateSettingsCheckBox;
-
-    @FXML
-    private CheckBox settingsCheckBox4;
-
-    @FXML
-    private CheckBox settingsCheckBox5;
-
-    @FXML
-    private CheckBox settingsCheckBox6;
-
-    @FXML
-    private CheckBox settingsCheckBox7;
-
-    @FXML
-    private CheckBox settingsCheckBox8;
-
-    @FXML
-    private CheckBox settingsCheckBox9;
-
-    @FXML
-    private CheckBox settingsCheckBox10;
+    private CheckBox bmiSettingsCheckBox, ageSettingsCheckBox, dateSettingsCheckBox, weightInChartSettingsCheckBox, temperatureInChartSettingsCheckBox, settingsCheckBox6, settingsCheckBox7, settingsCheckBox8, settingsCheckBox9, settingsCheckBox10;
 
     @FXML
     private Button userPanelButton;
@@ -106,7 +49,7 @@ public class SettingsController implements Initializable {
 
     @FXML
     private void saveSettingsButtonClicked(ActionEvent event) throws IOException {
-        message.sendSetSettingsMessage(SendToServer, Client.clientId + "," + Client.user_id + "," + bmiSettingsCheckBox.isSelected() + "," + ageSettingsCheckBox.isSelected() + "," + dateSettingsCheckBox.isSelected() + "," + settingsCheckBox4.isSelected() + "," + settingsCheckBox5.isSelected());
+        message.sendSetSettingsMessage(SendToServer, Client.clientId + "," + Client.user_id + "," + bmiSettingsCheckBox.isSelected() + "," + ageSettingsCheckBox.isSelected() + "," + dateSettingsCheckBox.isSelected() + "," + weightInChartSettingsCheckBox.isSelected() + "," + temperatureInChartSettingsCheckBox.isSelected());
         String serverAnswer = ReadFromServer.readLine();
 
         if (serverAnswer.equals("Settings changed correctly.")) {
@@ -138,14 +81,15 @@ public class SettingsController implements Initializable {
         bmiSettingsCheckBox.setSelected(settingsData[0].equals("true"));
         ageSettingsCheckBox.setSelected(settingsData[1].equals("true"));
         dateSettingsCheckBox.setSelected(settingsData[2].equals("true"));
-        settingsCheckBox4.setSelected(settingsData[3].equals("true"));
-        settingsCheckBox5.setSelected(settingsData[4].equals("true"));
+        weightInChartSettingsCheckBox.setSelected(settingsData[3].equals("true"));
+        temperatureInChartSettingsCheckBox.setSelected(settingsData[4].equals("true"));
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SettingsController.ReadFromServer = Client.ReadFromServer;
         SettingsController.SendToServer = Client.SendToServer;
+
         try {
             getSettingsFromDB();
         } catch (IOException e) {
