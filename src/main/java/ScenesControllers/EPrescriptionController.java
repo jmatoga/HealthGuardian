@@ -327,11 +327,22 @@ public class EPrescriptionController implements Initializable {
                     newEPrescription.setMaxWidth(272);
                 }
 
+                newEPrescription.setOnMouseEntered(mouseEvent -> {
+                    newEPrescription.setStyle("-fx-background-color: #e6e6e6; -fx-background-radius: 10;");
+                });
+
+                newEPrescription.setOnMouseExited(mouseEvent -> {
+                    newEPrescription.setStyle("-fx-background-color: #f2f2f2; -fx-background-radius: 10;");
+                });
+
+                newEPrescription.setOnMousePressed(mouseEvent -> {
+                    newEPrescription.setStyle("-fx-background-color: #cccccc; -fx-background-radius: 10;");
+                });
+
                 Label newEPrescriptionTitle = new Label("E-Prescription " + (i+1));
                 Label newEPrescriptionCode = new Label("Code: " + EPrescriptionData[3]);
                 Label newEPrescriptionMedicines = new Label("Medicines:\n" + EPrescriptionData[4]);
                 Label newEPrescriptionDate = new Label("Date of issue: " + EPrescriptionData[2]);
-                // TODO EPrescriptionData[4]
                 Label newEPrescriptionDoctor = new Label("dr. " + EPrescriptionData[7] + " " + EPrescriptionData[8]);
 
                 newEPrescriptionTitle.setAlignment(Pos.CENTER);
