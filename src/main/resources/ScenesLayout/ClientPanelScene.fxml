@@ -15,7 +15,7 @@
 
 <AnchorPane fx:id="clientPanelScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.ClientPanelController">
    <children>
-      <ImageView fitHeight="1200.0" fitWidth="2102.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="1200.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../Images/background_1.png" />
          </image>
