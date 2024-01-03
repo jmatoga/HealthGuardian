@@ -17,7 +17,7 @@
 
 <AnchorPane fx:id="eReferralScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.EReferralController">
     <children>
-        <ImageView fitHeight="1200.0" fitWidth="2102.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ImageView fitHeight="1200.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
                 <Image url="@../Images/background_clear.png" />
             </image>
@@ -67,18 +67,18 @@
                 </RadialGradient>
             </textFill>
         </Label>
-        <Pane fx:id="imagePane" layoutX="78.0" layoutY="273.0" maxHeight="650.0" maxWidth="600.0" opacity="0.2" prefHeight="650.0" prefWidth="600.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="120.0">
+        <Pane fx:id="imagePane" layoutX="78.0" layoutY="273.0" maxHeight="650.0" maxWidth="600.0" opacity="0.2" prefHeight="650.0" prefWidth="600.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="220.0">
             <children>
                 <ImageView fx:id="previewImageView" fitHeight="908.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
             </children>
         </Pane>
-        <ScrollPane fx:id="scrollPane" blendMode="HARD_LIGHT" centerShape="false" focusTraversable="false" hbarPolicy="NEVER" layoutX="820.0" layoutY="280.0" maxHeight="650.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="819.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="820.0" AnchorPane.topAnchor="217.0">
+        <ScrollPane fx:id="scrollPane" blendMode="HARD_LIGHT" centerShape="false" focusTraversable="false" hbarPolicy="NEVER" layoutX="820.0" layoutY="280.0" maxHeight="650.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="819.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="820.0" AnchorPane.topAnchor="220.0">
             <content>
                 <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="7.0" layoutY="7.0" prefWidth="794.0" stylesheets="@../Styles/scrollPaneStyle.css">
                 </GridPane>
             </content>
         </ScrollPane>
-        <Button fx:id="printButton" layoutX="520.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRINT" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="440.0">
+        <Button fx:id="printButton" layoutX="520.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRINT" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="440.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
@@ -102,7 +102,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Button fx:id="saveButton" layoutX="249.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SAVE" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="280.0">
+        <Button fx:id="saveButton" layoutX="249.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SAVE" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="280.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
