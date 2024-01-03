@@ -101,6 +101,14 @@ public class Message {
         writer.println("GET_DOCTOR_DATA:" + message);
     }
 
+    public void sendGetPatientMessage(PrintWriter writer, String message) {
+        writer.println("GET_PATIENT:" + message);
+    }
+
+    public void prescribeEPrescription(PrintWriter writer, String message) {
+        writer.println("PRESCRIBE_EPRESCRIPTION:" + message);
+    }
+
     /**
      * Sends a set settings message to the server.
      * @param writer the PrintWriter to send the message

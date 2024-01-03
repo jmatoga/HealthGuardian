@@ -2,8 +2,10 @@ package Server;
 
 import utils.Color;
 
+import java.math.BigInteger;
 import java.sql.*;
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * The SQLEngine class is responsible for handling all database operations.
@@ -138,6 +140,44 @@ public class SQLEngine {
 
         } catch (SQLException e) {
             System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    String[] getPatient(int clientID, String pesel) {
+        String[] returnStatement = {"Error", "Error", "Error"};
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT first_name, last_name, birth_date FROM user_table WHERE pesel = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, pesel);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()) {
+                returnStatement[0] = resultSet.getString("first_name");
+                returnStatement[1] = resultSet.getString("last_name");
+                returnStatement[2] = resultSet.getString("birth_date");
+            } else {
+                returnStatement[0] = "Patient not found";
+                returnStatement[1] = "Patient not found";
+                returnStatement[2] = "Patient not found";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+            returnStatement[0] = "Error";
+            returnStatement[1] = "Error";
+            returnStatement[2] = "Error";
         } finally {
             disconnectFromDataBase(resultSet, preparedStatement, connection);
         }
@@ -604,6 +644,92 @@ public class SQLEngine {
             } else {
                 System.out.println("Error in database while setting settings.");
                 returnStatement = "Error in database while setting settings.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    String prescribeEPrescription(int clientID, String medicines, String date, String doctor_id, String pesel) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String getMaxPrescriptionIdSql = "SELECT MAX(prescription_id) AS max_prescription_id, MAX(barcode) AS max_barcode FROM e_prescription_table";
+            String checkEPrescriptionCodeSql = "SELECT e_prescription_code FROM e_prescription_table WHERE e_prescription_code = ?";
+            String getUserIdSql = "SELECT user_id FROM user_table WHERE pesel = ?";
+            String insertPrescriptionSql = "INSERT INTO e_prescription_table (prescription_id, barcode, date_of_issue, e_prescription_code, medicines, doctor_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?);";
+
+            // get Max prescription_id from Database
+            preparedStatement = connection.prepareStatement(getMaxPrescriptionIdSql);
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            String maxPrescriptionId = resultSet.getString("max_prescription_id");
+            BigInteger maxBarcode = new BigInteger(resultSet.getString("max_barcode"));
+            maxBarcode = maxBarcode.add(BigInteger.ONE);
+
+            // Conversion of string to BigInteger, adding 1 and back convert to a string
+            String[] parts = maxPrescriptionId.split("\\.");
+            BigInteger number = new BigInteger(String.join("", parts));
+            number = number.add(BigInteger.ONE);
+            String numberIncreased = number.toString();
+
+            // Adding back the dots inside the string
+            StringBuilder maxPrescriptionIdIncreased = new StringBuilder();
+            int lastIndex = 0;
+            for (String part : parts) {
+                maxPrescriptionIdIncreased.append(numberIncreased, lastIndex, lastIndex + part.length());
+                lastIndex += part.length();
+                if (lastIndex < numberIncreased.length()) {
+                    maxPrescriptionIdIncreased.append(".");
+                }
+            }
+
+            // generate e_prescription_code
+            int new_e_prescription_code;
+            do {
+                Random random = new Random();
+                new_e_prescription_code = 1000 + random.nextInt(9000); // Random value from 1000 to 9999
+                preparedStatement = connection.prepareStatement(checkEPrescriptionCodeSql);
+                preparedStatement.setString(1, String.valueOf(new_e_prescription_code));
+                resultSet = preparedStatement.executeQuery();
+            } while (resultSet.next());
+
+            // get user_id from database
+            preparedStatement = connection.prepareStatement(getUserIdSql);
+            preparedStatement.setString(1, pesel);
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            int user_id = resultSet.getInt("user_id");
+
+            // insert into user table
+            preparedStatement = connection.prepareStatement(insertPrescriptionSql);
+            preparedStatement.setString(1, maxPrescriptionIdIncreased.toString());
+            preparedStatement.setString(2, maxBarcode.toString());
+            preparedStatement.setDate(3, Date.valueOf(date));
+            preparedStatement.setString(4, String.valueOf(new_e_prescription_code));
+            preparedStatement.setString(5, medicines);
+            preparedStatement.setInt(6, Integer.parseInt(doctor_id));
+            preparedStatement.setInt(7, user_id);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 1) {
+                System.out.println("E-prescription prescribed correctly.");
+                returnStatement = "E-prescription prescribed correctly.";
+            } else {
+                System.out.println("Error in database prescribing E-prescription.");
+                returnStatement = "Error in database prescribing E-prescription.";
             }
 
             return returnStatement;

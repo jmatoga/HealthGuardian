@@ -178,6 +178,13 @@ class ClientHandler implements Callable<String> {
 
                     String[] settingsResult = sqlEngine.getDoctorSettings(Integer.parseInt(clientId), doctorId);
                     SendToClient.println(Arrays.toString(settingsResult));
+                } else if (serverMessage.startsWith("GET_PATIENT:")) {
+                    String[] resources = serverMessage.substring(12).split(",");
+                    String clientId = resources[0];
+                    String pesel = resources[1];
+
+                    String[] patientResult = sqlEngine.getPatient(Integer.parseInt(clientId), pesel);
+                    SendToClient.println(Arrays.toString(patientResult));
 
                 } else if (serverMessage.startsWith("SET_SETTINGS:")) {
                     String[] resources = serverMessage.substring(13).split(",");
@@ -191,6 +198,16 @@ class ClientHandler implements Callable<String> {
 
                     String settingsChangedResult = sqlEngine.setSettings(Integer.parseInt(clientId), userId, bmiSetting, ageSetting, dateSetting, weightInChart_setting, temperatureInChart_setting);
                     SendToClient.println(settingsChangedResult);
+                } else if (serverMessage.startsWith("PRESCRIBE_EPRESCRIPTION:")) {
+                    String[] resources = serverMessage.substring(24).split(",");
+                    String clientId = resources[0];
+                    String medicines = resources[1];
+                    String date = resources[2];
+                    String doctorId = resources[3];
+                    String pesel = resources[4];
+
+                    String prescribingResult = sqlEngine.prescribeEPrescription(Integer.parseInt(clientId), medicines, date, doctorId, pesel);
+                    SendToClient.println(prescribingResult);
                 } else if (serverMessage.startsWith("SET_DOCTOR_SETTINGS:")) {
                     String[] resources = serverMessage.substring(20).split(",");
                     String clientId = resources[0];
