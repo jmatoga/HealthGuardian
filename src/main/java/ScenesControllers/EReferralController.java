@@ -81,6 +81,8 @@ public class EReferralController implements Initializable {
 
     private PDDocument document = null;
 
+    private Pane selectedEReferral = null;
+
     @FXML
     private void userPanelButtonClicked(ActionEvent event) throws IOException {
         new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml");
@@ -317,6 +319,8 @@ public class EReferralController implements Initializable {
                     newEReferral.setMaxWidth(272);
                 }
 
+                setColors(newEReferral);
+
                 Label newEReferralTitle = new Label(EReferralData[4]);
                 Label newEReferralCode = new Label("Code: " + EReferralData[3]);
                 Label newEReferralBarcode = new Label("Barcode:\n" + EReferralData[1]);
@@ -355,6 +359,38 @@ public class EReferralController implements Initializable {
                 // Add new EReferral to the GridPane on the appropriate row and column
                 gridPane.add(newEReferral, i % 3, i / 3);
             }
+
+
         }
     }
+
+    void setColors(Pane newEReferral) {
+        newEReferral.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+
+        newEReferral.setOnMouseEntered(mouseEvent -> {
+            if (newEReferral != selectedEReferral) {
+                newEReferral.setStyle("-fx-background-color: #e6e6e6; -fx-border-radius: 10; -fx-border-color: #edae55; -fx-border-width: 4");
+            }
+        });
+
+        newEReferral.setOnMouseExited(mouseEvent -> {
+            if (newEReferral != selectedEReferral) {
+                newEReferral.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+            }
+        });
+
+        newEReferral.setOnMousePressed(mouseEvent -> {
+            if (selectedEReferral != null) {
+                // Przywróć domyślny styl dla poprzednio zaznaczonego panelu
+                selectedEReferral.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+            }
+
+            // Zaznacz nowy panel
+            selectedEReferral = newEReferral;
+
+            // Zmień styl dla zaznaczonego panelu
+            newEReferral.setStyle("-fx-background-color: #f2f2f2; -fx-border-radius: 10; -fx-border-color: #00FF00; -fx-border-width: 4");
+        });
+    }
+
 }

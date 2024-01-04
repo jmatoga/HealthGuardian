@@ -79,16 +79,16 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <VBox layoutX="1384.0" layoutY="217.0" prefHeight="300.0" prefWidth="400.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="220.0">
+      <VBox layoutX="1384.0" layoutY="217.0" prefHeight="331.0" prefWidth="400.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="220.0">
          <children>
             <Label alignment="TOP_CENTER" prefHeight="40.0" prefWidth="400.0" text="How to make an examiantion?" textAlignment="CENTER" textFill="#1dff00">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <Label fx:id="howToMakeExaminationLabel" alignment="TOP_LEFT" prefHeight="260.0" prefWidth="400.0" text="how to make examination - description" textFill="#f9fffe">
+            <Label fx:id="howToMakeExaminationLabel" alignment="TOP_LEFT" prefHeight="260.0" prefWidth="400.0" text="To properly perform a blood pressure test, the test must be performed after rest (it cannot be performed after exercise, e.g. after running). We take the measurement on the left hand. If disturbing symptoms occur: headache or chest discomfort, further measurements should be continued at short intervals (preferably every hour). If any of your blood pressure measurements exceed 160/100, make an appointment with a cardiologist immediately." textAlignment="JUSTIFY" textFill="#f9fffe" wrapText="true">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="17.0" />
                </font>
             </Label>
          </children>

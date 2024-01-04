@@ -84,6 +84,8 @@ public class EPrescriptionController implements Initializable {
 
     private PDDocument document = null;
 
+    private Pane selectedEPrescription = null;
+
     @FXML
     private void userPanelButtonClicked(ActionEvent event) throws IOException {
         new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml");
@@ -327,17 +329,7 @@ public class EPrescriptionController implements Initializable {
                     newEPrescription.setMaxWidth(272);
                 }
 
-                newEPrescription.setOnMouseEntered(mouseEvent -> {
-                    newEPrescription.setStyle("-fx-background-color: #e6e6e6; -fx-background-radius: 10;");
-                });
-
-                newEPrescription.setOnMouseExited(mouseEvent -> {
-                    newEPrescription.setStyle("-fx-background-color: #f2f2f2; -fx-background-radius: 10;");
-                });
-
-                newEPrescription.setOnMousePressed(mouseEvent -> {
-                    newEPrescription.setStyle("-fx-background-color: #cccccc; -fx-background-radius: 10;");
-                });
+                setColors(newEPrescription);
 
                 Label newEPrescriptionTitle = new Label("E-Prescription " + (i+1));
                 Label newEPrescriptionCode = new Label("Code: " + EPrescriptionData[3]);
@@ -379,5 +371,34 @@ public class EPrescriptionController implements Initializable {
                 gridPane.add(newEPrescription, i % 3, i / 3);
             }
         }
+    }
+
+    void setColors(Pane newEPrescription) {
+        newEPrescription.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+
+        newEPrescription.setOnMouseEntered(mouseEvent -> {
+            if (newEPrescription != selectedEPrescription) {
+                newEPrescription.setStyle("-fx-background-color: #e6e6e6; -fx-border-radius: 10; -fx-border-color: #edae55; -fx-border-width: 4");
+            }
+        });
+
+        newEPrescription.setOnMouseExited(mouseEvent -> {
+            if (newEPrescription != selectedEPrescription) {
+                newEPrescription.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+            }
+        });
+
+        newEPrescription.setOnMousePressed(mouseEvent -> {
+            if (selectedEPrescription != null) {
+                // Przywróć domyślny styl dla poprzednio zaznaczonego panelu
+                selectedEPrescription.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+            }
+
+            // Zaznacz nowy panel
+            selectedEPrescription = newEPrescription;
+
+            // Zmień styl dla zaznaczonego panelu
+            newEPrescription.setStyle("-fx-background-color: #f2f2f2; -fx-border-radius: 10; -fx-border-color: #00FF00; -fx-border-width: 4");
+        });
     }
 }

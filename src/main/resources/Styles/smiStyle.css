@@ -17,7 +17,7 @@
     -fx-border-radius: 10;
     -fx-border-width: 5;
     -fx-font-family: "Consolas bold";
-    -fx-font-size: 16px;
+    -fx-font-size: 18px;
     -fx-wrap-text: true;
     -fx-text-fill: black;
     -fx-text-alignment: center;
@@ -31,7 +31,7 @@
     -fx-border-radius: 10;
     -fx-border-width: 5;
     -fx-font-family: "Consolas bold";
-    -fx-font-size: 25px;
+    -fx-font-size: 22px;
     -fx-text-fill: red;
     -fx-wrap-text: true;
     -fx-text-alignment: center;
