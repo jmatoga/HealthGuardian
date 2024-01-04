@@ -55,8 +55,7 @@ public class RecommendationController implements Initializable {
 
     private void getRecommendationsFromDB() throws IOException {
         message.sendGetRecommendationMessage(SendToServer, Client.clientId + "," + Client.user_id);
-        String serverAnswer = ReadFromServer.readLine();
-        System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
+        String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if (serverAnswer.equals("[[No recommendations in database]]")) {
             Pane newRecommendation = new Pane();

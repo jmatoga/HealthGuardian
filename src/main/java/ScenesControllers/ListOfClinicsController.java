@@ -72,8 +72,8 @@ public class ListOfClinicsController implements Initializable {
 
     private void getClilincsFromDB() throws IOException {
         message.sendGetClinicsMessage( SendToServer,"" + Client.clientId);
-        String serverAnswer = ReadFromServer.readLine();
-        System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
+        String serverAnswer = Client.getServerResponse(ReadFromServer);
+
         String[] clinicsData = serverAnswer.substring(2, serverAnswer.length() - 2).split("], \\[");
 
         for (int i = 0; i < clinicsData.length; i++) {

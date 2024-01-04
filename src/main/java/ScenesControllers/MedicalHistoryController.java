@@ -109,8 +109,7 @@ public class MedicalHistoryController implements Initializable {
 
     private void getMedicalHistoryFromDB() throws IOException {
         message.sendGetMedicalHistoryMessage(SendToServer, Client.clientId + "," + Client.user_id);
-        String serverAnswer = ReadFromServer.readLine();
-        System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
+        String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if (serverAnswer.equals("[[No medical history in database]]")) {
             Pane newMedicalHistory = new Pane();

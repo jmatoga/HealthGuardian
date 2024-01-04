@@ -712,7 +712,7 @@ public class SQLEngine {
             resultSet.next();
             int user_id = resultSet.getInt("user_id");
 
-            // insert into user table
+            // insert into e_prescription_table
             preparedStatement = connection.prepareStatement(insertPrescriptionSql);
             preparedStatement.setString(1, maxPrescriptionIdIncreased.toString());
             preparedStatement.setString(2, maxBarcode.toString());
@@ -728,8 +728,218 @@ public class SQLEngine {
                 System.out.println("E-prescription prescribed correctly.");
                 returnStatement = "E-prescription prescribed correctly.";
             } else {
-                System.out.println("Error in database prescribing E-prescription.");
-                returnStatement = "Error in database prescribing E-prescription.";
+                System.out.println("Error in database while prescribing E-prescription.");
+                returnStatement = "Error in database while prescribing E-prescription.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    String addRecommendation(int clientID, String diet, String medicines, String nextCheckUpDate, String nextCheckUpName, String additionalInformation, String date, String doctor_id, String pesel) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String getMaxRecommendationsIdSql = "SELECT MAX(recommendation_id) AS max_recommendations_id FROM recommendations_table";
+            String getUserIdSql = "SELECT user_id FROM user_table WHERE pesel = ?";
+            String addRecommendationSql = "INSERT INTO recommendations_table (recommendation_id, diet, medicines, next_medical_check_up_date, next_medical_check_up_name, additional_information, recommendation_date, doctor_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+            // get Max prescription_id from Database
+            preparedStatement = connection.prepareStatement(getMaxRecommendationsIdSql);
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            int maxRecommendationId = resultSet.getInt("max_recommendations_id");
+
+            // get user_id from database
+            preparedStatement = connection.prepareStatement(getUserIdSql);
+            preparedStatement.setString(1, pesel);
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            int user_id = resultSet.getInt("user_id");
+
+            // insert into e_prescription_table
+            preparedStatement = connection.prepareStatement(addRecommendationSql);
+            preparedStatement.setInt(1, maxRecommendationId+1);
+
+            if (!diet.isEmpty())
+                preparedStatement.setString(2, diet);
+            else
+                preparedStatement.setNull(2, java.sql.Types.VARCHAR);
+
+            if (!medicines.isEmpty())
+                preparedStatement.setString(3, medicines);
+            else
+                preparedStatement.setNull(3, java.sql.Types.VARCHAR);
+
+            if (!nextCheckUpDate.equals("null"))
+                preparedStatement.setDate(4, Date.valueOf(nextCheckUpDate));
+            else
+                preparedStatement.setNull(4, java.sql.Types.DATE);
+
+            if(!nextCheckUpName.isEmpty())
+                preparedStatement.setString(5, nextCheckUpName);
+            else
+                preparedStatement.setNull(5, java.sql.Types.VARCHAR);
+
+            if(!additionalInformation.isEmpty())
+                preparedStatement.setString(6, additionalInformation);
+            else
+                preparedStatement.setNull(6, java.sql.Types.VARCHAR);
+
+            if(!date.equals("null"))
+                preparedStatement.setDate(7, Date.valueOf(date));
+            else
+                preparedStatement.setNull(7, java.sql.Types.DATE);
+
+            preparedStatement.setInt(8, Integer.parseInt(doctor_id));
+            preparedStatement.setInt(9, user_id);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 1) {
+                System.out.println("Recommendation added correctly.");
+                returnStatement = "Recommendation added correctly.";
+            } else {
+                System.out.println("Error in database while adding recommendation.");
+                returnStatement = "Error in database while adding recommendation.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    String addMedicalHistory(int clientID, String medicalCase, String ICD10FirstLetter, String ICD10Code, String pesel) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String addMedicalHistorySql = "INSERT INTO user_medical_history_table (ICD10_first_letter, ICD10_code, medical_case, user_id) VALUES (?, ?, ?, ?);";
+
+            // get user_id from pesel
+            int user_id = getUserIdFromPesel(pesel);
+
+            // insert into user_medical_history_table
+            preparedStatement = connection.prepareStatement(addMedicalHistorySql);
+            preparedStatement.setString(1, ICD10FirstLetter);
+            preparedStatement.setString(2, ICD10Code);
+            preparedStatement.setString(3, medicalCase);
+            preparedStatement.setInt(4, user_id);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 1) {
+                System.out.println("Medical history added correctly.");
+                returnStatement = "Medical history added correctly.";
+            } else {
+                System.out.println("Error in database while adding medical history.");
+                returnStatement = "Error in database while adding medical history.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    String prescribeEReferral(int clientID, String eReferralName, String date, String doctor_id, String pesel) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String getMaxReferralIdSql = "SELECT MAX(referral_id) AS max_referral_id, MAX(barcode) AS max_barcode FROM e_referral_table";
+            String checkEReferralCodeSql = "SELECT e_referral_code FROM e_referral_table WHERE e_referral_code = ?";
+            String getUserIdSql = "SELECT user_id FROM user_table WHERE pesel = ?";
+            String insertReferralSql = "INSERT INTO e_referral_table (referral_id, barcode, date_of_issue, e_referral_code, referral_name, doctor_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?);";
+
+            // get Max prescription_id from Database
+            preparedStatement = connection.prepareStatement(getMaxReferralIdSql);
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            String maxReferralId = resultSet.getString("max_referral_id");
+            BigInteger maxBarcode = new BigInteger(resultSet.getString("max_barcode"));
+            maxBarcode = maxBarcode.add(BigInteger.ONE);
+
+            // Conversion of string to BigInteger, adding 1 and back convert to a string
+            String[] parts = maxReferralId.split("\\.");
+            BigInteger number = new BigInteger(String.join("", parts));
+            number = number.add(BigInteger.ONE);
+            String numberIncreased = number.toString();
+
+            // Adding back the dots inside the string
+            StringBuilder maxReferralIdIncreased = new StringBuilder();
+            int lastIndex = 0;
+            for (String part : parts) {
+                maxReferralIdIncreased.append(numberIncreased, lastIndex, lastIndex + part.length());
+                lastIndex += part.length();
+                if (lastIndex < numberIncreased.length()) {
+                    maxReferralIdIncreased.append(".");
+                }
+            }
+
+            // generate e_referral_code
+            int new_e_referral_code;
+            do {
+                Random random = new Random();
+                new_e_referral_code = 1000 + random.nextInt(9000); // Random value from 1000 to 9999
+                preparedStatement = connection.prepareStatement(checkEReferralCodeSql);
+                preparedStatement.setString(1, String.valueOf(new_e_referral_code));
+                resultSet = preparedStatement.executeQuery();
+            } while (resultSet.next());
+
+            // get user_id from database
+            preparedStatement = connection.prepareStatement(getUserIdSql);
+            preparedStatement.setString(1, pesel);
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            int user_id = resultSet.getInt("user_id");
+
+            // insert into e_referral_table
+            preparedStatement = connection.prepareStatement(insertReferralSql);
+            preparedStatement.setString(1, maxReferralIdIncreased.toString());
+            preparedStatement.setString(2, maxBarcode.toString());
+            preparedStatement.setDate(3, Date.valueOf(date));
+            preparedStatement.setString(4, String.valueOf(new_e_referral_code));
+            preparedStatement.setString(5, eReferralName);
+            preparedStatement.setInt(6, Integer.parseInt(doctor_id));
+            preparedStatement.setInt(7, user_id);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 1) {
+                System.out.println("E-referral prescribed correctly.");
+                returnStatement = "E-referral prescribed correctly.";
+            } else {
+                System.out.println("Error in database prescribing E-referral.");
+                returnStatement = "Error in database prescribing E-referral.";
             }
 
             return returnStatement;
@@ -1066,6 +1276,30 @@ public class SQLEngine {
             disconnectFromDataBase(resultSet, preparedStatement, connection);
         }
         return null;
+    }
+
+    int getUserIdFromPesel(String pesel) {
+        String sql = "SELECT user_id FROM user_table WHERE pesel = ?";
+
+        try (Connection connection = DriverManager.getConnection(url, DBusername, DBpassword);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ) {
+
+            preparedStatement.setString(1, pesel);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt("user_id");
+                } else {
+                    System.out.println("Error in database while getting user_id from pesel.");
+                    return -1;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        }
+
+        return -1;
     }
 
     String[][] getMedicalHistory(int clientID, int user_id) {

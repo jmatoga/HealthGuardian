@@ -108,6 +108,15 @@ public class Message {
     public void prescribeEPrescription(PrintWriter writer, String message) {
         writer.println("PRESCRIBE_EPRESCRIPTION:" + message);
     }
+    public void prescribeEReferral(PrintWriter writer, String message) {
+        writer.println("PRESCRIBE_EREFERRAL:" + message);
+    }
+    public void addRecommendation(PrintWriter writer, String message) {
+        writer.println("ADD_RECOMMENDATION:" + message);
+    }
+    public void addMedicalHistory(PrintWriter writer, String message) {
+        writer.println("ADD_MEDICAL_HISTORY:" + message);
+    }
 
     /**
      * Sends a set settings message to the server.
@@ -153,6 +162,9 @@ public class Message {
     }
     public void sendGetMedicalHistoryMessage(PrintWriter writer, String message) {
         writer.println("GET_MEDICAL_HISTORY:" + message);
+    }
+    public void sendGetDoctorMedicalHistoryMessage(PrintWriter writer, String message) {
+        writer.println("GET_DOCTOR_MEDICAL_HISTORY:" + message);
     }
     public void sendGetEReferralMessage(PrintWriter writer, String message) {
         writer.println("GET_EREFERRAL:" + message);

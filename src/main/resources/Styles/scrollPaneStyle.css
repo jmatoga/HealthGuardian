@@ -4,3 +4,11 @@
     -fx-faint-focus-color: transparent;
     -fx-faint-focus-color-darker: transparent;
 }
+
+#pane {
+    -fx-border-color: black; /* Kolor obramowania */
+    -fx-border-width: 1px;   /* Grubość obramowania */
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+
+}
