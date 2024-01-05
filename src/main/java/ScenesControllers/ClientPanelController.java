@@ -124,8 +124,8 @@ public class ClientPanelController implements Initializable {
                 message.updateUserBasicData(SendToServer, Client.clientId + "," + "withoutBirthdayDate" + "," + inputFieldWeight.getText() + "," + inputFieldHeight.getText() + "," + inputFieldTemperature.getText() + "," + inputFieldPressure1.getText() + "," + inputFieldPressure2.getText() + "," + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "," + Client.user_id);
 
                 try {
-                    String serverAnswer = ReadFromServer.readLine();
-                    System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
+                    String serverAnswer = Client.getServerResponse(ReadFromServer);
+
                     if (serverAnswer.equals("Updated user basic data correctly.")) {
                         getUserDataFromDB();
                         dataUpdatedStatusLabel.setText("Data updated correctly!");
@@ -183,8 +183,7 @@ public class ClientPanelController implements Initializable {
 
     void getUserDataFromDB() throws IOException {
         message.sendGetNameMessage(SendToServer,Client.clientId  + "," + Client.user_id);
-        String serverAnswer = ReadFromServer.readLine();
-        System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
+        String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         String[] userData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
 
@@ -217,8 +216,7 @@ public class ClientPanelController implements Initializable {
 
                     if(userData[2].equals("No data")) {
                         try {
-                            String serverAnswer1 = ReadFromServer.readLine();
-                            System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer1);
+                            String serverAnswer1 = Client.getServerResponse(ReadFromServer);
 
                             getUserDataFromDB();
 
@@ -261,8 +259,8 @@ public class ClientPanelController implements Initializable {
 
     private void getSettingsFromDB() throws IOException {
         message.sendGetSettingsMessage(SendToServer,Client.clientId  + "," + Client.user_id);
-        String serverAnswer = ReadFromServer.readLine();
-        System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
+        String serverAnswer = Client.getServerResponse(ReadFromServer);
+
         String[] settingsData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
 
         if(settingsData[0].equals("false")) {

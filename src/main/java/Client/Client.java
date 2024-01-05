@@ -71,4 +71,10 @@ public class Client {
         });
         clientThread.start();
     }
+
+    public static String getServerResponse(BufferedReader ReadFromServer) throws IOException {
+        String serverAnswer = ReadFromServer.readLine();
+        System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
+        return serverAnswer;
+    }
 }

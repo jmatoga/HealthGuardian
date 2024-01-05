@@ -102,8 +102,7 @@ public class SignInController implements Initializable {
         if(checkWrittenText()) {
             message.checkIfUserExists(SendToServer, Client.clientId + "," + username.getText() + "," + email.getText());
 
-            String serverAnswer = ReadFromServer.readLine();
-            System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
+            String serverAnswer = Client.getServerResponse(ReadFromServer);
 
             if (serverAnswer.startsWith("EXISTING RESULT:") && serverAnswer.substring(16).equals("Free to use")) {
                 TextField inputField = new TextField();

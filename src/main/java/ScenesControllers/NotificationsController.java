@@ -49,8 +49,7 @@ public class NotificationsController implements Initializable {
 
     private void getNotificationsFromDB() throws IOException {
         message.sendGetNotificationsMessage(SendToServer, Client.clientId  + "," + Client.user_id);
-        String serverAnswer = ReadFromServer.readLine();
-        System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
+        String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if(serverAnswer.equals("[[No notifications in database]]")) {
             Pane newNotification = new Pane();

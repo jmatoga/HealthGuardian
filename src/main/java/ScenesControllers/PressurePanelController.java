@@ -1,6 +1,10 @@
 package ScenesControllers;
 
 import Client.Client;
+import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +16,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 import utils.Message;
 
 import java.io.BufferedReader;
@@ -53,16 +58,29 @@ public class PressurePanelController implements Initializable {
     }
 
     private void checkPressure(int systolicPressure, int diastolicPressure) {
-        if(systolicPressure < 100 || systolicPressure >= 140)
+        if(systolicPressure < 100 || systolicPressure >= 140 || diastolicPressure < 60 || diastolicPressure >= 90) {
             alertPane.setVisible(true);
-        if(diastolicPressure < 60 || diastolicPressure >= 90)
-            alertPane.setVisible(true);
+
+            // Animate the appearance of alertPane
+            FadeTransition fadeIn = new FadeTransition(Duration.millis(500), alertPane);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+
+            // Animate the disappearance of alertPane
+            FadeTransition fadeOut = new FadeTransition(Duration.millis(500), alertPane);
+            fadeOut.setFromValue(1.0);
+            fadeOut.setToValue(0.0);
+
+            // Create an animation sequence (500ms fade in, 500ms pause, 500ms fade out)
+            SequentialTransition sequence = new SequentialTransition(fadeIn, new PauseTransition(Duration.millis(500)), fadeOut);
+            sequence.setCycleCount(Timeline.INDEFINITE); // Set cycle count to indefinite
+            sequence.play();
+        }
     }
 
     private void getSettingsFromDB() throws IOException {
         message.sendGetSettingsMessage(SendToServer,Client.clientId  + "," + Client.user_id);
-        String serverAnswer = ReadFromServer.readLine();
-        System.out.println(utils.Color.ColorString("Server: ", utils.Color.ANSI_YELLOW) + serverAnswer);
+        String serverAnswer = Client.getServerResponse(ReadFromServer);
         String[] settingsData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
 
         ifShowWeight = settingsData[3].equals("false");
@@ -71,8 +89,7 @@ public class PressurePanelController implements Initializable {
 
     private void getPressureFromDB() throws IOException {
         message.sendGetPressureMessage(SendToServer, Client.clientId  + "," + Client.user_id);
-        String serverAnswer = ReadFromServer.readLine();
-        System.out.println(utils.Color.ColorString("Server: ", utils.Color.ANSI_YELLOW) + serverAnswer);
+        String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         String[] pressuresData = serverAnswer.substring(2, serverAnswer.length() - 2).split("], \\[");
         XYChart.Series systolicPressure = new XYChart.Series();

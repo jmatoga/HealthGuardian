@@ -286,8 +286,7 @@ public class EPrescriptionController implements Initializable {
 
     private void getEPrescriptionFromDB() throws IOException {
         message.sendGetEPrescriptionMessage(SendToServer, Client.clientId + "," + Client.user_id);
-        String serverAnswer = ReadFromServer.readLine();
-        System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
+        String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if (serverAnswer.equals("[[No EPrescriptions in database]]")) {
             Pane newEPrescription = new Pane();

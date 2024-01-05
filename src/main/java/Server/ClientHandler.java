@@ -121,12 +121,21 @@ class ClientHandler implements Callable<String> {
 
                     String[][] messagesResult = sqlEngine.getNotifications(Integer.parseInt(clientId), Integer.parseInt(userId));
                     SendToClient.println(Arrays.deepToString(messagesResult));
-                } else if (serverMessage.startsWith("GET_MEDICAL_HISTORY")) {
+                } else if (serverMessage.startsWith("GET_MEDICAL_HISTORY:")) {
                     String[] resources = serverMessage.substring(20).split(",");
                     String clientId = resources[0];
                     String userId = resources[1];
 
                     String[][] medicalHistoryResult = sqlEngine.getMedicalHistory(Integer.parseInt(clientId), Integer.parseInt(userId));
+                    SendToClient.println(Arrays.deepToString(medicalHistoryResult));
+                } else if (serverMessage.startsWith("GET_DOCTOR_MEDICAL_HISTORY:")) {
+                    String[] resources = serverMessage.substring(27).split(",");
+                    String clientId = resources[0];
+                    String pesel = resources[1];
+
+                    int user_id = sqlEngine.getUserIdFromPesel(pesel);
+
+                    String[][] medicalHistoryResult = sqlEngine.getMedicalHistory(Integer.parseInt(clientId), user_id);
                     SendToClient.println(Arrays.deepToString(medicalHistoryResult));
                 } else if (serverMessage.startsWith("GET_PRESSURE:")) {
                     String[] resources = serverMessage.substring(13).split(",");
@@ -208,6 +217,40 @@ class ClientHandler implements Callable<String> {
 
                     String prescribingResult = sqlEngine.prescribeEPrescription(Integer.parseInt(clientId), medicines, date, doctorId, pesel);
                     SendToClient.println(prescribingResult);
+                } else if (serverMessage.startsWith("PRESCRIBE_EREFERRAL:")) {
+                    String[] resources = serverMessage.substring(20).split(",");
+                    String clientId = resources[0];
+                    String eReferralName = resources[1];
+                    String date = resources[2];
+                    String doctorId = resources[3];
+                    String pesel = resources[4];
+
+                    String prescribingResult = sqlEngine.prescribeEReferral(Integer.parseInt(clientId), eReferralName, date, doctorId, pesel);
+                    SendToClient.println(prescribingResult);
+                } else if (serverMessage.startsWith("ADD_MEDICAL_HISTORY:")) {
+                    String[] resources = serverMessage.substring(20).split(",");
+                    String clientId = resources[0];
+                    String medicalCase = resources[1];
+                    String ICD10FirstLetter = resources[2];
+                    String ICD10Code = resources[3];
+                    String pesel = resources[4];
+
+                    String addingResult = sqlEngine.addMedicalHistory(Integer.parseInt(clientId), medicalCase, ICD10FirstLetter, ICD10Code, pesel);
+                    SendToClient.println(addingResult);
+                } else if (serverMessage.startsWith("ADD_RECOMMENDATION:")) {
+                    String[] resources = serverMessage.substring(19).split(",");
+                    String clientId = resources[0];
+                    String diet = resources[1];
+                    String medicines = resources[2];
+                    String nextCheckUpDate = resources[3];
+                    String nextCheckUpName = resources[4];
+                    String additionalInformation = resources[5];
+                    String date = resources[6];
+                    String doctor_id = resources[7];
+                    String pesel = resources[8];
+
+                    String addingResult = sqlEngine.addRecommendation(Integer.parseInt(clientId), diet, medicines, nextCheckUpDate, nextCheckUpName, additionalInformation, date, doctor_id, pesel);
+                    SendToClient.println(addingResult);
                 } else if (serverMessage.startsWith("SET_DOCTOR_SETTINGS:")) {
                     String[] resources = serverMessage.substring(20).split(",");
                     String clientId = resources[0];
