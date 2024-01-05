@@ -1187,4 +1187,112 @@ public class SQLEngine {
             }
         }
     }
+
+    String addShortMedicalInterview(int clientID, String what_hurts_you, String pain_symptoms, String other_symptoms, String symptoms_other_symptoms, String medicines, String pain_duration, String when_the_pain_started, String temperature, String additional_description, String result_smi, String smi_date, int user_id) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String getMaxRegistrationNrSql = "SELECT MAX(registration_nr) AS max_registration_nr FROM short_medical_interview_table";
+            String addSMISql = "INSERT INTO short_medical_interview_table (registration_nr, what_hurts_you, pain_symptoms, other_symptoms, symptoms_other_symptoms, medicines, pain_duration, when_the_pain_started, temperature, additional_description, result_smi, smi_date, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+            // get Max registration_nr from Database
+            preparedStatement = connection.prepareStatement(getMaxRegistrationNrSql);
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            int maxRegistrationNr = resultSet.getInt("max_registration_nr");
+
+            // insert into short_medical_interview_table
+            preparedStatement = connection.prepareStatement(addSMISql);
+            preparedStatement.setInt(1, maxRegistrationNr+1);
+            preparedStatement.setString(2, what_hurts_you);
+
+            if (!pain_symptoms.isEmpty())
+                preparedStatement.setString(3, pain_symptoms);
+            else
+                preparedStatement.setNull(3, java.sql.Types.VARCHAR);
+
+            if (!other_symptoms.isEmpty())
+                preparedStatement.setString(4, other_symptoms);
+            else
+                preparedStatement.setNull(4, java.sql.Types.VARCHAR);
+
+            if (!symptoms_other_symptoms.isEmpty())
+                preparedStatement.setString(5, symptoms_other_symptoms);
+            else
+                preparedStatement.setNull(5, java.sql.Types.VARCHAR);
+
+            preparedStatement.setString(6, medicines);
+            preparedStatement.setString(7, pain_duration);
+            preparedStatement.setString(8, when_the_pain_started);
+            preparedStatement.setDouble(9, Double.parseDouble(temperature));
+            preparedStatement.setString(10, additional_description);
+            preparedStatement.setString(11, result_smi);
+            preparedStatement.setDate(12, Date.valueOf(smi_date));
+            preparedStatement.setInt(13, user_id);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 1) {
+                System.out.println("SMI added correctly with nr: "  + (maxRegistrationNr+1));
+                returnStatement = "SMI added correctly with nr: "  + (maxRegistrationNr+1);
+            } else {
+                System.out.println("Error in database while adding SMI.");
+                returnStatement = "Error in database while adding SMI.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    String addSMIEreferral(int clientID, String referral_id, String barcode, String date_of_issue, String e_referral_code, String referral_name, int doctor_id, int user_id) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String addSMISql = "INSERT INTO e_referral_table (referral_id, barcode, date_of_issue, e_referral_code, referral_name, doctor_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?);";
+
+            // insert into e_referral_table
+            preparedStatement = connection.prepareStatement(addSMISql);
+            preparedStatement.setInt(1, Integer.parseInt(referral_id));
+            preparedStatement.setInt(2, Integer.parseInt(barcode));
+            preparedStatement.setDate(3, Date.valueOf(date_of_issue));
+            preparedStatement.setInt(4, Integer.parseInt(e_referral_code));
+            preparedStatement.setString(5, referral_name);
+            preparedStatement.setInt(6, doctor_id);
+            preparedStatement.setInt(7, user_id);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 1) {
+                System.out.println("SMI E-Referral added correctly.");
+                returnStatement = "SMI E-Referral added correctly.";
+            } else {
+                System.out.println("Error in database while adding SMI E-Referral.");
+                returnStatement = "Error in database while adding SMI E-Referral.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
 }

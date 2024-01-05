@@ -26,6 +26,21 @@
 
 }
 
+.darkBlueCenter-label {
+    -fx-text-fill: radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 50.0% 50.0%, radius 50.0%, #53b1ff 0.0%, #000fff 100.0%);
+    -fx-font-family: "Consolas bold";
+    -fx-font-size: 70px;
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+}
+
+.blackCenter40-label {
+    -fx-text-fill: black;
+    -fx-font-family: "Consolas bold";
+    -fx-font-size: 40px;
+    -fx-text-alignment: center;
+}
+
 .outlined-text {
     -fx-effect: dropshadow(three-pass-box, black, 2, 2, 0, 0);
 }
