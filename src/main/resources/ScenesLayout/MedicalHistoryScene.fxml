@@ -113,7 +113,7 @@
       </Button>
         <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="343.0" layoutY="177.0" maxHeight="750.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="1350.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="180.0">
             <content>
-                <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="0.0" layoutY="0.0" prefWidth="1350.0">
+                <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="0.0" layoutY="0.0" prefWidth="950.0">
                 </GridPane>
             </content>
         </ScrollPane>
