@@ -89,7 +89,9 @@ public class ExaminationScheduleController implements Initializable {
                 newExaminationDescription.setPadding(new Insets(40, 0, 0, 0));
                 newExaminationDescription.setWrapText(true); // Text wrapping
                 newExaminationDescription.setFont(new Font("Consolas", 28.0));
-                newExaminationDate.setPrefHeight(30);
+                newExaminationDate.setPrefHeight(50);
+                newExaminationDate.setPrefWidth(200);
+                newExaminationDate.setStyle("-fx-wrap-text: true;");
                 newExaminationDate.setLayoutX(590);
                 newExaminationDate.setLayoutY(0);
                 newExaminationDate.setFont(new Font("Consolas Bold", 20.0));
