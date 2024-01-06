@@ -173,12 +173,16 @@ public class DoctorUserController implements Initializable {
             newAddButton.setPrefHeight(40);
             newAddButton.setPrefWidth(80);
             addMedicalHistoryPane.setStyle("-fx-border-color: grey; -fx-border-width: 2px; -fx-background-color: transparent; -fx-background-radius: 2;");
+            //addMedicalHistoryPane.setPrefHeight(24);
+            addMedicalHistoryPane.setPrefWidth(106);
+            //addMedicalHistoryPane.setMinHeight(50);
+            addMedicalHistoryPane.setMinHeight(62);
             //newDeleteButton.setMaxWidth(80);
             //newDeleteButton.setMinWidth(80);
 //            newAddButton.setLayoutY(10);
 //            newAddButton.setLayoutX(32);
-            newAddButton.setLayoutY(0);
-            newAddButton.setLayoutX(0);
+            newAddButton.setLayoutY(10);
+            newAddButton.setLayoutX(13);
             // newDeleteButton.setPadding(new Insets(40, 10, 40, 10));
             //newDeleteButton.setAlignment(Pos.CENTER);
             newAddButton.setFocusTraversable(false);
