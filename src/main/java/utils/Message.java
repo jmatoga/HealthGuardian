@@ -175,4 +175,11 @@ public class Message {
     public void sendGetRecommendationMessage(PrintWriter writer, String message) {
         writer.println("GET_RECOMMENDATION:" + message);
     }
+    public void addShortMedicalInterview(PrintWriter writer, String message) {
+        writer.println("ADD_SMI:" + message);
+    }
+    public void addReferralSMI(PrintWriter writer, String message) {
+        writer.println("ADD_SMI_EREFERRAL:" + message);
+    }
+
 }

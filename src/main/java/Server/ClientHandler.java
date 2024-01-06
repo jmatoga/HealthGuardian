@@ -10,6 +10,8 @@ import java.net.Socket;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
 
+import static java.lang.System.exit;
+
 /**
  * The ClientHandler class implements the Callable interface and is responsible for handling client requests.
  * It reads messages from the client, processes them, and sends responses back to the client.
@@ -302,6 +304,43 @@ class ClientHandler implements Callable<String> {
 
                     String updateResult = sqlEngine.updateUserBasicData(Integer.parseInt(clientId), birthdayDate, weight, height, temperature, systolic_pressure, diastolic_pressure, entryDate, userId);
                     SendToClient.println(updateResult);
+
+                } else if (serverMessage.startsWith("ADD_SMI:")) {
+                    String[] resources = serverMessage.substring(8).split(",");
+                    String clientId = resources[0];
+                    String what_hurts_you = resources[1];
+                    String pain_symptoms = resources[2];
+                    String other_symptoms = resources[3];
+                    String symptoms_other_symptoms = resources[4];
+                    String medicines = resources[5];
+                    String pain_duration = resources[6];
+                    String when_the_pain_started = resources[7];
+                    String temperature = resources[8];
+                    String additional_description = resources[9];
+                    String result_smi = resources[10];
+                    String smi_date = resources[11];
+                    String user_id = resources[12];
+
+                    String addingResult = sqlEngine.addShortMedicalInterview(Integer.parseInt(clientId), what_hurts_you, pain_symptoms, other_symptoms, symptoms_other_symptoms, medicines, pain_duration, when_the_pain_started, temperature, additional_description, result_smi, smi_date, Integer.parseInt(user_id));
+                    SendToClient.println(addingResult);
+
+                } else if (serverMessage.startsWith("ADD_SMI_EREFERRAL:")) {
+                    String[] resources = serverMessage.substring(18).split(",");
+                    String clientId = resources[0];
+                    String referral_id = resources[1];
+                    String barcode = resources[2];
+                    String date_of_issue = resources[3];
+                    String e_referral_code = resources[4];
+                    String referral_name = resources[5];
+                    String doctor_id = resources[6];
+                    String user_id = resources[7];
+
+                    String addingResult = sqlEngine.addSMIEreferral(Integer.parseInt(clientId), referral_id, barcode, date_of_issue, e_referral_code, referral_name, Integer.parseInt(doctor_id), Integer.parseInt(user_id));
+                    SendToClient.println(addingResult);
+
+                }else {
+                    System.out.println(Color.ColorString("Something went wrong in ClientHandler (probably wrong substring number)", Color.ANSI_RED));
+                    exit(-100);
                 }
             }
         } catch (IOException e) {
