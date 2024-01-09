@@ -3,9 +3,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -76,54 +79,55 @@
                             </font>
                         </Label>
                     </children></Pane>
-                <Label fx:id="linkLabel" prefHeight="50.0" prefWidth="1200.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3;" text="https://openjfx.io/javadoc/11/javafx.controls/javafx/scene/control/Labeled.html#getEllipsisString()">
-                    <font>
-                        <Font size="20.0" />
-                    </font>
-                </Label>
-                <Pane fx:id="copyButton" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #b3b4b7; -fx-border-color: black; -fx-background-radius: 3;">
-                    <children>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="9.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="linkTextField" prefHeight="50.0" prefWidth="1200.0" promptText="PASTE ZOOM LINK THERE">
+               <font>
+                  <Font name="Consolas" size="20.0" />
+               </font>
+            </TextField>
+            <Button fx:id="sendButton" mnemonicParsing="false" onAction="#sendButtonClicked" prefHeight="50.0" prefWidth="50.0" styleClass="turquoise-button" stylesheets="@../Styles/buttonsStyle.css">
+               <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../Images/copy_icon_32x32.png" />
-                            </image></ImageView>
-                    </children>
-                </Pane>
+                                <Image url="@../Images/send_icon_32x32.png" />
+                            </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             </children>
         </HBox>
         <Pane layoutX="600.0" layoutY="192.0" prefHeight="380.0" prefWidth="700.0" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="190.0">
             <children>
                 <Pane opacity="0.4" prefHeight="380.0" prefWidth="700.0" style="-fx-background-color: white; -fx-background-radius: 30;" />
-                <Label alignment="TOP_CENTER" prefHeight="380.0" prefWidth="700.0" text="Before contacting the patient, make sure that the microphone and headphones are working properly. Then, before the visit, open the ZOOM application and create a new meeting, then in the HealtGuardian application select the visit you will be conducting.Then, once selected, paste the meeting link from the ZOOM application.If the patient decides that he or she prefers an electronic visit, you will be informed about the time of the visit before the visit, so remain in the HeltthGuardian service until you connect with the patient." textAlignment="CENTER" textFill="#610606" wrapText="true">
+                <Label alignment="TOP_CENTER" prefHeight="380.0" prefWidth="700.0" text="Before contacting the patient, make sure that the microphone and headphones are working properly. Then, before the visit, open the ZOOM application and create a new meeting, then in the HealtGuardian application select the visit you will be conducting.Then, once selected, paste the meeting link from the ZOOM application.If the patient decides that he or she prefers a telephone visit, you will be informed about the time of the visit before the visit, so remain in the HealthGuardian service until you connect with the patient." textAlignment="CENTER" textFill="#610606" wrapText="true">
                     <font>
                         <Font name="Consolas Bold" size="23.0" />
                     </font>
                 </Label>
             </children>
         </Pane>
-        <VBox layoutX="782.0" layoutY="600.0" prefHeight="150.0" prefWidth="300.0" AnchorPane.leftAnchor="800.0" AnchorPane.topAnchor="600.0">
+        <VBox layoutX="782.0" layoutY="600.0" prefHeight="150.0" prefWidth="500.0" AnchorPane.leftAnchor="800.0" AnchorPane.topAnchor="600.0">
             <children>
-                <Label fx:id="DoctorFirstNameLabel" prefHeight="32.0" prefWidth="300.0" text="Doctor First Name" textFill="WHITE">
+                <Label fx:id="PatientFirstNameLabel" prefHeight="32.0" prefWidth="500.0" text="Patient First Name" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="22.0" />
                     </font>
                 </Label>
-                <Label fx:id="DoctorLastNameLabel" prefHeight="32.0" prefWidth="300.0" text="Doctor Last Name" textFill="WHITE">
+                <Label fx:id="PatientLastNameLabel" prefHeight="32.0" prefWidth="500.0" text="Patient Last Name" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="22.0" />
                     </font>
                 </Label>
-                <Label fx:id="DoctorProfessionLabel" prefHeight="32.0" prefWidth="300.0" text="Doctor Profession" textFill="WHITE">
+                <Label fx:id="ExaminationNameLabel" prefHeight="32.0" prefWidth="500.0" text="Examination Name" textFill="WHITE">
                     <font>
                         <Font name="System Italic" size="22.0" />
                     </font>
                 </Label>
-                <Label fx:id="ContactDateLabel" prefHeight="32.0" prefWidth="300.0" text="Contact Date: 00-00-0000" textFill="WHITE">
+                <Label fx:id="ContactDateLabel" prefHeight="32.0" prefWidth="500.0" text="Contact Date: 00-00-0000" textFill="WHITE">
                     <font>
                         <Font size="22.0" />
                     </font>
                 </Label>
-                <Label fx:id="ContactHourLabel" prefHeight="32.0" prefWidth="300.0" text="Contact Hour: 00:00" textFill="WHITE">
+                <Label fx:id="ContactHourLabel" prefHeight="32.0" prefWidth="500.0" text="Contact Hour: 00:00" textFill="WHITE">
                     <font>
                         <Font size="22.0" />
                     </font>
@@ -154,5 +158,31 @@
                 </RadialGradient>
             </textFill>
         </Button>
+      <VBox layoutX="60.0" layoutY="110.0" prefHeight="550.0" prefWidth="500.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="110.0">
+         <children>
+            <Pane prefHeight="50.0" prefWidth="500.0">
+               <children>
+                  <Pane opacity="0.51" prefHeight="50.0" prefWidth="500.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: black; -fx-border-image-width: 5; -fx-border-radius: 10;" />
+                  <Label prefHeight="50.0" prefWidth="500.0" style="-fx-alignment: center; -fx-opacity: 1.6;" text="TODAYS EXAMINATION" textFill="#020059">
+                     <font>
+                        <Font name="Consolas Bold" size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <ScrollPane centerShape="false" hbarPolicy="NEVER" maxHeight="500.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="500.0" vbarPolicy="AS_NEEDED">
+                <content>
+                    <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="0.0" layoutY="0.0">
+
+                    </GridPane>
+                </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+      <Label fx:id="correctLabel" layoutX="828.0" layoutY="892.0" prefHeight="40.0" prefWidth="260.0" textFill="#48ff00" AnchorPane.leftAnchor="830.0" AnchorPane.topAnchor="895.0">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

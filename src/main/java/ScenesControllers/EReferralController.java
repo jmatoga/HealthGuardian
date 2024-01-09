@@ -380,14 +380,14 @@ public class EReferralController implements Initializable {
 
         newEReferral.setOnMousePressed(mouseEvent -> {
             if (selectedEReferral != null) {
-                // Przywróć domyślny styl dla poprzednio zaznaczonego panelu
+
                 selectedEReferral.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
             }
 
-            // Zaznacz nowy panel
+
             selectedEReferral = newEReferral;
 
-            // Zmień styl dla zaznaczonego panelu
+
             newEReferral.setStyle("-fx-background-color: #f2f2f2; -fx-border-radius: 10; -fx-border-color: #00FF00; -fx-border-width: 4");
         });
     }

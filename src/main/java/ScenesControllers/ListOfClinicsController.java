@@ -44,6 +44,8 @@ public class ListOfClinicsController implements Initializable {
     private WebView mapWebView;
 
     private WebEngine webEngine;
+    private Pane selectedClinicPane = null;
+    private Pane newClinicPane = null;
 
     @FXML
     private void userPanelButtonClicked(ActionEvent event) throws IOException {
@@ -85,6 +87,7 @@ public class ListOfClinicsController implements Initializable {
                     descriptionClinicLabel1.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     ClinicPane1.setOnMouseClicked(mouseEvent -> {
                         webEngine.load("https://www.google.com/maps/d/u/7/edit?mid=1ylOsb6r5D450-AW_eOlIq_Rfl3p9fA4&ll=50.04633907911461%2C19.94378549021035&z=20");
+                        newClinicPane = ClinicPane1;
                     });
                     break;
                 case 1:
@@ -92,6 +95,7 @@ public class ListOfClinicsController implements Initializable {
                     descriptionClinicLabel2.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     ClinicPane2.setOnMouseClicked(mouseEvent -> {
                         webEngine.load("https://www.google.com/maps/d/u/7/edit?mid=1ylOsb6r5D450-AW_eOlIq_Rfl3p9fA4&ll=50.0723909741866%2C19.98003652244043&z=20");
+                        newClinicPane = ClinicPane2;
                     });
                     break;
                 case 2:
@@ -99,6 +103,7 @@ public class ListOfClinicsController implements Initializable {
                     descriptionClinicLabel3.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     ClinicPane3.setOnMouseClicked(mouseEvent -> {
                         webEngine.load("https://www.google.com/maps/d/u/7/edit?mid=1ylOsb6r5D450-AW_eOlIq_Rfl3p9fA4&ll=50.08881526021777%2C19.941395459489815&z=20");
+                        newClinicPane = ClinicPane3;
                     });
                     break;
                 case 3:
@@ -106,6 +111,7 @@ public class ListOfClinicsController implements Initializable {
                     descriptionClinicLabel4.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     ClinicPane4.setOnMouseClicked(mouseEvent -> {
                         webEngine.load("https://www.google.com/maps/d/u/7/edit?mid=1ylOsb6r5D450-AW_eOlIq_Rfl3p9fA4&ll=50.040960984375445%2C19.99704020859832&z=20");
+                        newClinicPane = ClinicPane4;
                     });
                     break;
                 case 4:
@@ -113,6 +119,7 @@ public class ListOfClinicsController implements Initializable {
                     descriptionClinicLabel5.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     ClinicPane5.setOnMouseClicked(mouseEvent -> {
                         webEngine.load("https://www.google.com/maps/d/u/7/edit?mid=1ylOsb6r5D450-AW_eOlIq_Rfl3p9fA4&ll=50.07061504567112%2C19.93404685029718&z=20");
+                        newClinicPane = ClinicPane5;
                     });
                     break;
                 case 5:
@@ -120,6 +127,7 @@ public class ListOfClinicsController implements Initializable {
                     descriptionClinicLabel6.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     ClinicPane6.setOnMouseClicked(mouseEvent -> {
                         webEngine.load("https://www.google.com/maps/d/u/2/viewer?mid=1ylOsb6r5D450-AW_eOlIq_Rfl3p9fA4&ll=50.08237493332045%2C19.88215377420888&z=22");
+                        newClinicPane = ClinicPane6;
                     });
                     break;
                 case 6:
@@ -127,6 +135,7 @@ public class ListOfClinicsController implements Initializable {
                     descriptionClinicLabel7.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     ClinicPane7.setOnMouseClicked(mouseEvent -> {
                         webEngine.load("https://www.google.com/maps/d/u/2/viewer?mid=1ylOsb6r5D450-AW_eOlIq_Rfl3p9fA4&ll=50.0310946%2C19.91370709999999&z=22");
+                        newClinicPane = ClinicPane7;
                     });
                     break;
                 case 7:
@@ -134,6 +143,7 @@ public class ListOfClinicsController implements Initializable {
                     descriptionClinicLabel8.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     ClinicPane8.setOnMouseClicked(mouseEvent -> {
                         webEngine.load("https://www.google.com/maps/d/u/2/viewer?mid=1ylOsb6r5D450-AW_eOlIq_Rfl3p9fA4&ll=50.078506900000036%2C20.032472999999985&z=22");
+                        newClinicPane = ClinicPane8;
                     });
                     break;
                 case 8:
@@ -141,6 +151,7 @@ public class ListOfClinicsController implements Initializable {
                     descriptionClinicLabel9.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     ClinicPane9.setOnMouseClicked(mouseEvent -> {
                         webEngine.load("https://www.google.com/maps/d/u/2/viewer?mid=1ylOsb6r5D450-AW_eOlIq_Rfl3p9fA4&ll=50.07996740000002%2C20.045994999999976&z=22");
+                        newClinicPane = ClinicPane9;
                     });
                     break;
                 case 9:
@@ -148,12 +159,47 @@ public class ListOfClinicsController implements Initializable {
                     descriptionClinicLabel10.setText(clinicData[2] + " is located at " + clinicData[3] + "\nin " + clinicData[4] + " city. Phone number: " + clinicData[5] + "\nClinic Number: " + clinicData[1]);
                     ClinicPane10.setOnMouseClicked(mouseEvent -> {
                        webEngine.load("https://www.google.com/maps/d/u/2/viewer?mid=1ylOsb6r5D450-AW_eOlIq_Rfl3p9fA4&ll=50.117971800000014%2C19.93091430000002&z=22");
+                       newClinicPane = ClinicPane10;
                     });
                     break;
                 default:
                     System.out.println(Color.ColorString("Error while showing clinics.", Color.ANSI_RED));
                     break;
             }
+            setColors(newClinicPane);
+        }
+    }
+
+    void setColors(Pane cliniPane) {
+
+        if(cliniPane != null)
+        {
+            cliniPane.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+
+            cliniPane.setOnMouseEntered(mouseEvent -> {
+                if (cliniPane != selectedClinicPane) {
+                    cliniPane.setStyle("-fx-background-color: #e6e6e6; -fx-border-radius: 10; -fx-border-color: #edae55; -fx-border-width: 4");
+                }
+            });
+
+            cliniPane.setOnMouseExited(mouseEvent -> {
+                if (cliniPane != selectedClinicPane) {
+                    cliniPane.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+                }
+            });
+
+            cliniPane.setOnMousePressed(mouseEvent -> {
+                if (selectedClinicPane != null) {
+
+                    selectedClinicPane.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+                }
+
+
+                selectedClinicPane = cliniPane;
+
+
+                cliniPane.setStyle("-fx-background-color: #f2f2f2; -fx-border-radius: 10; -fx-border-color: #00FF00; -fx-border-width: 4");
+            });
         }
     }
 }

@@ -43,6 +43,7 @@ public class DoctorListOfClinicsController implements Initializable {
     private WebView mapWebView;
 
     private WebEngine webEngine;
+    private Pane selectedClinicPane = null;
 
     @FXML
     private void doctorPanelButtonClicked(ActionEvent event) throws IOException {
@@ -149,5 +150,34 @@ public class DoctorListOfClinicsController implements Initializable {
                     break;
             }
         }
+    }
+
+    void setColors(Pane cliniPane) {
+        cliniPane.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+
+        cliniPane.setOnMouseEntered(mouseEvent -> {
+            if (cliniPane != selectedClinicPane) {
+                cliniPane.setStyle("-fx-background-color: #e6e6e6; -fx-border-radius: 10; -fx-border-color: #edae55; -fx-border-width: 4");
+            }
+        });
+
+        cliniPane.setOnMouseExited(mouseEvent -> {
+            if (cliniPane != selectedClinicPane) {
+                cliniPane.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+            }
+        });
+
+        cliniPane.setOnMousePressed(mouseEvent -> {
+            if (selectedClinicPane != null) {
+
+                selectedClinicPane.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+            }
+
+
+            selectedClinicPane = cliniPane;
+
+
+            cliniPane.setStyle("-fx-background-color: #f2f2f2; -fx-border-radius: 10; -fx-border-color: #00FF00; -fx-border-width: 4");
+        });
     }
 }
