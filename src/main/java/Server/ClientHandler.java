@@ -306,7 +306,7 @@ class ClientHandler implements Callable<String> {
                     SendToClient.println(updateResult);
 
                 } else if (serverMessage.startsWith("ADD_SMI:")) {
-                    String[] resources = serverMessage.substring(8).split(",");
+                    String[] resources = serverMessage.substring(8).split("#/#");
                     String clientId = resources[0];
                     String what_hurts_you = resources[1];
                     String pain_symptoms = resources[2];
@@ -325,7 +325,7 @@ class ClientHandler implements Callable<String> {
                     SendToClient.println(addingResult);
 
                 } else if (serverMessage.startsWith("ADD_SMI_EREFERRAL:")) {
-                    String[] resources = serverMessage.substring(18).split(",");
+                    String[] resources = serverMessage.substring(18).split("#/#");
                     String clientId = resources[0];
                     String referral_id = resources[1];
                     String barcode = resources[2];

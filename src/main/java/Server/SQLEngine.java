@@ -1445,11 +1445,12 @@ public class SQLEngine {
             preparedStatement.setInt(1, maxRegistrationNr+1);
             preparedStatement.setString(2, what_hurts_you);
 
-            if (!pain_symptoms.isEmpty())
+            if (!pain_symptoms.isEmpty()) {
                 preparedStatement.setString(3, pain_symptoms);
-            else
+            }
+            else {
                 preparedStatement.setNull(3, java.sql.Types.VARCHAR);
-
+            }
             if (!other_symptoms.isEmpty())
                 preparedStatement.setString(4, other_symptoms);
             else
