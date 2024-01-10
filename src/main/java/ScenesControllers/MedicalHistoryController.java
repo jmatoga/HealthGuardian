@@ -137,11 +137,13 @@ public class MedicalHistoryController implements Initializable {
                 newMedicalHistoryTitle.setPrefHeight(40);
                 // Set fitting to scroll bar
                 if (medicalHistoriesData.length > 6) {
-                    newMedicalHistoryTitle.setPrefWidth(1321);
-                    newMedicalHistoryContent.setPrefWidth(1321);
+                    newMedicalHistory.setMinWidth(1335);
+                    newMedicalHistoryTitle.setMinWidth(1335);
+                    newMedicalHistoryContent.setMinWidth(1335);
                 } else {
-                    newMedicalHistoryTitle.setPrefWidth(1334);
-                    newMedicalHistoryContent.setPrefWidth(1334);
+                    newMedicalHistory.setMinWidth(1348);
+                    newMedicalHistoryTitle.setMinWidth(1348);
+                    newMedicalHistoryContent.setMinWidth(1348);
                 }
 
                 newMedicalHistoryTitle.setLayoutX(14);
