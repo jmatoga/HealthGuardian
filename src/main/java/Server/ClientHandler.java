@@ -91,7 +91,7 @@ class ClientHandler implements Callable<String> {
                     String[] loginResult = sqlEngine.loginToDoctor(Integer.parseInt(clientId), username, password);
 
                     if (Boolean.parseBoolean(loginResult[0])) {
-                        SendToClient.println("Doctor logged successfully. Your user_id: " + loginResult[1]);
+                        SendToClient.println("Doctor logged successfully. Your doctor_id: " + loginResult[1]);
                     } else {
                         SendToClient.println("Wrong doctor password.");
                     }
@@ -139,6 +139,15 @@ class ClientHandler implements Callable<String> {
 
                     String[][] medicalHistoryResult = sqlEngine.getMedicalHistory(Integer.parseInt(clientId), user_id);
                     SendToClient.println(Arrays.deepToString(medicalHistoryResult));
+                } else if (serverMessage.startsWith("GET_DOCTOR_DOCUMENTATIONS:")) {
+                    String[] resources = serverMessage.substring(26).split(",");
+                    String clientId = resources[0];
+                    String pesel = resources[1];
+
+                    int user_id = sqlEngine.getUserIdFromPesel(pesel);
+
+                    String[][] documentationsResult = sqlEngine.getDocumentations(Integer.parseInt(clientId), user_id);
+                    SendToClient.println(Arrays.deepToString(documentationsResult));
                 } else if (serverMessage.startsWith("GET_PRESSURE:")) {
                     String[] resources = serverMessage.substring(13).split(",");
                     String clientId = resources[0];
@@ -153,6 +162,22 @@ class ClientHandler implements Callable<String> {
 
                     String[][] eReferralResult = sqlEngine.getEReferral(Integer.parseInt(clientId), Integer.parseInt(userId));
                     SendToClient.println(Arrays.deepToString(eReferralResult));
+                } else if (serverMessage.startsWith("GET_FINDINGS:")) {
+                    String[] resources = serverMessage.substring(13).split(",");
+                    String clientId = resources[0];
+                    String userId = resources[1];
+
+                    String[][] findingsResult = sqlEngine.getFindings(Integer.parseInt(clientId), Integer.parseInt(userId));
+                    SendToClient.println(Arrays.deepToString(findingsResult));
+                } else if (serverMessage.startsWith("GET_DOCTOR_FINDINGS:")) {
+                    String[] resources = serverMessage.substring(20).split(",");
+                    String clientId = resources[0];
+                    String pesel = resources[1];
+
+                    int user_id = sqlEngine.getUserIdFromPesel(pesel);
+
+                    String[][] findingsResult = sqlEngine.getFindings(Integer.parseInt(clientId), user_id);
+                    SendToClient.println(Arrays.deepToString(findingsResult));
                 } else if (serverMessage.startsWith("GET_EPRESCRIPTION:")) {
                     String[] resources = serverMessage.substring(18).split(",");
                     String clientId = resources[0];
@@ -238,6 +263,33 @@ class ClientHandler implements Callable<String> {
                     String pesel = resources[4];
 
                     String addingResult = sqlEngine.addMedicalHistory(Integer.parseInt(clientId), medicalCase, ICD10FirstLetter, ICD10Code, pesel);
+                    SendToClient.println(addingResult);
+                } else if (serverMessage.startsWith("ADD_DOCUMENTATION:")) {
+                    String[] resources = serverMessage.substring(18).split(",");
+                    String clientId = resources[0];
+                    String interview = resources[1];
+                    String physicalExamination = resources[2];
+                    String ICD10Code = resources[3];
+                    String recommendationId = resources[4];
+                    String pesel = resources[5];
+                    String date = resources[6];
+                    String doctorId = resources[7];
+
+                    String addingResult = sqlEngine.addDocumentation(Integer.parseInt(clientId), interview, physicalExamination, ICD10Code, recommendationId, pesel, date, doctorId);
+                    SendToClient.println(addingResult);
+                } else if (serverMessage.startsWith("DELETE_DOCUMENTATION:")) {
+                    String[] resources = serverMessage.substring(21).split(",");
+                    String clientId = resources[0];
+                    String documentationId = resources[1];
+
+                    String addingResult = sqlEngine.deleteDocumentation(Integer.parseInt(clientId), documentationId);
+                    SendToClient.println(addingResult);
+                } else if (serverMessage.startsWith("DELETE_MEDICAL_HISTORY:")) {
+                    String[] resources = serverMessage.substring(23).split(",");
+                    String clientId = resources[0];
+                    String medicalHistoryId = resources[1];
+
+                    String addingResult = sqlEngine.deleteMedicalHistory(Integer.parseInt(clientId), medicalHistoryId);
                     SendToClient.println(addingResult);
                 } else if (serverMessage.startsWith("ADD_RECOMMENDATION:")) {
                     String[] resources = serverMessage.substring(19).split(",");

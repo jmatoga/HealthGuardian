@@ -90,8 +90,8 @@ public class DoctorLogInController implements Initializable {
             message.sendDoctorLoginMessage(SendToServer, Client.clientId + "," + username.getText() + "," + password.getText());
             String serverAnswer = Client.getServerResponse(ReadFromServer);
 
-            if (serverAnswer.startsWith("Doctor logged successfully. Your user_id: ") && Integer.parseInt(serverAnswer.substring(42)) > 0) {
-                Client.doctor_id = Integer.parseInt(serverAnswer.substring(42));
+            if (serverAnswer.startsWith("Doctor logged successfully. Your doctor_id: ") && Integer.parseInt(serverAnswer.substring(44)) > 0) {
+                Client.doctor_id = Integer.parseInt(serverAnswer.substring(44));
                 loggingStatus.setTextFill(Paint.valueOf("0x2aff00")); // green color
                 loggingStatus.setText("Logged succesfully!");
                 username.setText("");

@@ -124,7 +124,6 @@ public class EReferralController implements Initializable {
                 throw new RuntimeException(e);
             }
         }
-//        System.out.println("!!" + scrollPane.isFocusVisible() + scrollPane.isFocused() + scrollPane.isFocusTraversable());
 //        System.out.println(scrollPane.getBackground() + " " + scrollPane.getBackground().toString() + " " + scrollPane.getBackground().getFills());
 //        //Color backgroundColor = (Color) scrollPane.getStyle()
 //       // System.out.println("Background color: " + backgroundColor.toString());
@@ -145,9 +144,18 @@ public class EReferralController implements Initializable {
             int fontSize = 30;
             contentStream.setFont(PDType1Font.HELVETICA_BOLD, fontSize);
             contentStream.beginText();
-            String tempText = "E-Referral " + eReferralTitle;
+            String tempText = "E-Referral";
             float textWidth = PDType1Font.HELVETICA_BOLD.getStringWidth(tempText) / 1000 * fontSize;
             contentStream.newLineAtOffset((595 - textWidth) / 2, 700);
+            contentStream.showText(tempText);
+            contentStream.endText();
+
+            fontSize = 30;
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, fontSize);
+            contentStream.beginText();
+            tempText = eReferralTitle;
+            textWidth = PDType1Font.HELVETICA_BOLD.getStringWidth(tempText) / 1000 * fontSize;
+            contentStream.newLineAtOffset((595 - textWidth) / 2, 660);
             contentStream.showText(tempText);
             contentStream.endText();
 
@@ -186,7 +194,7 @@ public class EReferralController implements Initializable {
 
             PDImageXObject pdImageXObject = LosslessFactory.createFromImage(document, bufferedImage);
             // Adding barcode to the page
-            contentStream.drawImage(pdImageXObject, 100, 600, width, height);
+            contentStream.drawImage(pdImageXObject, 100, 580, width, height);
 
             contentStream.close();
 
@@ -329,6 +337,7 @@ public class EReferralController implements Initializable {
                 newEReferralTitle.setAlignment(Pos.CENTER);
                 newEReferralTitle.setTextAlignment(TextAlignment.CENTER); // to set text to center after text wrapping
                 newEReferralTitle.setPrefHeight(50);
+                newEReferralTitle.setMinHeight(50);
                 newEReferralTitle.setPrefWidth(268);
                 newEReferralTitle.setFont(new Font("Consolas Bold", 20.0));
                 newEReferralTitle.setWrapText(true); // Text wrapping

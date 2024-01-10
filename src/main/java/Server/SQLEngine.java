@@ -1,5 +1,6 @@
 package Server;
 
+import Client.Client;
 import utils.Color;
 
 import java.math.BigInteger;
@@ -18,9 +19,10 @@ public class SQLEngine {
 
     /**
      * Constructor for the SQLEngine class.
-     * @param host the host of the database
-     * @param port the port of the database
-     * @param database the name of the database
+     *
+     * @param host       the host of the database
+     * @param port       the port of the database
+     * @param database   the name of the database
      * @param DBusername the username for the database
      * @param DBpassword the password for the database
      */
@@ -32,8 +34,9 @@ public class SQLEngine {
 
     /**
      * The connectToDataBase method is responsible for establishing a connection with the database.
+     *
      * @param connection the Connection object
-     * @param clientId the ID of the client
+     * @param clientId   the ID of the client
      * @return the Connection object
      */
     public Connection connectToDataBase(Connection connection, int clientId) {
@@ -56,8 +59,9 @@ public class SQLEngine {
 
     /**
      * The getData method is responsible for retrieving data from the database.
+     *
      * @param clientID the ID of the client
-     * @param user_id the ID of the user
+     * @param user_id  the ID of the user
      * @return an array of strings containing the data
      */
     String[] getData(int clientID, String user_id) {
@@ -130,7 +134,7 @@ public class SQLEngine {
 
             resultSet = preparedStatement.executeQuery();
 
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 returnStatement[0] = resultSet.getString("first_name");
                 returnStatement[1] = resultSet.getString("last_name");
                 returnStatement[2] = resultSet.getString("profession");
@@ -161,7 +165,7 @@ public class SQLEngine {
 
             resultSet = preparedStatement.executeQuery();
 
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 returnStatement[0] = resultSet.getString("first_name");
                 returnStatement[1] = resultSet.getString("last_name");
                 returnStatement[2] = resultSet.getString("birth_date");
@@ -186,9 +190,10 @@ public class SQLEngine {
 
     /**
      * The checkIfUserExists method is responsible for checking if a user exists in the database.
+     *
      * @param clientID the ID of the client
      * @param username the username of the user
-     * @param email the email of the user
+     * @param email    the email of the user
      * @return a string indicating if the user exists
      */
     String checkIfUserExists(int clientID, String username, String email) {
@@ -231,15 +236,16 @@ public class SQLEngine {
 
     /**
      * The checkOneTimeCode method is responsible for checking the one-time code of a user.
-     * @param clientID the ID of the client
+     *
+     * @param clientID    the ID of the client
      * @param oneTimeCode the one-time code of the user
-     * @param firstname the first name of the user
-     * @param lastname the last name of the user
-     * @param email the email of the user
+     * @param firstname   the first name of the user
+     * @param lastname    the last name of the user
+     * @param email       the email of the user
      * @param phoneNumber the phone number of the user
-     * @param pesel the PESEL number of the user
-     * @param username the username of the user
-     * @param password the password of the user
+     * @param pesel       the PESEL number of the user
+     * @param username    the username of the user
+     * @param password    the password of the user
      * @return a string indicating if the one-time code is correct
      */
     String checkOneTimeCode(int clientID, String oneTimeCode, String firstname, String lastname, String email, String phoneNumber, String pesel, String username, String password) {
@@ -317,7 +323,8 @@ public class SQLEngine {
 
     /**
      * The loginToAccount method is responsible for logging in a user.
-     * @param clientID the ID of the client
+     *
+     * @param clientID      the ID of the client
      * @param inputUsername the input username of the user
      * @param inputPassword the input password of the user
      * @return an array of strings containing the login status and the user ID
@@ -400,15 +407,16 @@ public class SQLEngine {
 
     /**
      * The updateUserBasicData method is responsible for updating the basic data of a user.
-     * @param clientID the ID of the client
-     * @param birthdayDate the birthday date of the user
-     * @param weight the weight of the user
-     * @param height the height of the user
-     * @param temperature the temperature of the user
-     * @param systolic_pressure the systolic pressure of the user
+     *
+     * @param clientID           the ID of the client
+     * @param birthdayDate       the birthday date of the user
+     * @param weight             the weight of the user
+     * @param height             the height of the user
+     * @param temperature        the temperature of the user
+     * @param systolic_pressure  the systolic pressure of the user
      * @param diastolic_pressure the diastolic pressure of the user
-     * @param entryDate the entry date of the user
-     * @param userId the ID of the user
+     * @param entryDate          the entry date of the user
+     * @param userId             the ID of the user
      * @return a string indicating the status of the update operation
      */
     String updateUserBasicData(int clientID, String birthdayDate, String weight, String height, String temperature, String systolic_pressure, String diastolic_pressure, String entryDate, String userId) {
@@ -490,9 +498,10 @@ public class SQLEngine {
      * This method is responsible for closing the database connection and associated resources.
      * It closes the ResultSet, PreparedStatement, and Connection objects.
      * If any of these objects are null, they are ignored.
-     * @param resultSet the ResultSet object to be closed
+     *
+     * @param resultSet         the ResultSet object to be closed
      * @param preparedStatement the PreparedStatement object to be closed
-     * @param connection the Connection object to be closed
+     * @param connection        the Connection object to be closed
      */
     private static void disconnectFromDataBase(ResultSet resultSet, PreparedStatement preparedStatement, Connection connection) {
         // Closing resources (ResultSet, PreparedStatement, Connection)
@@ -511,10 +520,11 @@ public class SQLEngine {
      * This method is responsible for closing the database connection and associated resources.
      * It closes two ResultSet objects, a PreparedStatement, and a Connection object.
      * If any of these objects are null, they are ignored.
-     * @param resultSet the first ResultSet object to be closed
-     * @param resultSet1 the second ResultSet object to be closed
+     *
+     * @param resultSet         the first ResultSet object to be closed
+     * @param resultSet1        the second ResultSet object to be closed
      * @param preparedStatement the PreparedStatement object to be closed
-     * @param connection the Connection object to be closed
+     * @param connection        the Connection object to be closed
      */
     private static void disconnectFromDataBase(ResultSet resultSet, ResultSet resultSet1, PreparedStatement preparedStatement, Connection connection) {
         // Closing resources (ResultSet, PreparedStatement, Connection)
@@ -532,8 +542,9 @@ public class SQLEngine {
 
     /**
      * The getSettings method is responsible for retrieving the settings of a user.
+     *
      * @param clientID the ID of the client
-     * @param user_id the ID of the user
+     * @param user_id  the ID of the user
      * @return an array of strings containing the settings
      */
     String[] getSettings(int clientID, String user_id) {
@@ -608,12 +619,13 @@ public class SQLEngine {
 
     /**
      * The setSettings method is responsible for setting the settings of a user.
-     * @param clientID the ID of the client
-     * @param user_id the ID of the user
-     * @param bmi_setting the BMI setting of the user
-     * @param age_setting the age setting of the user
-     * @param currentDate_setting the current date setting of the user
-     * @param weightInChart_setting the fourth setting of the user
+     *
+     * @param clientID                   the ID of the client
+     * @param user_id                    the ID of the user
+     * @param bmi_setting                the BMI setting of the user
+     * @param age_setting                the age setting of the user
+     * @param currentDate_setting        the current date setting of the user
+     * @param weightInChart_setting      the fourth setting of the user
      * @param temperatureInChart_setting the fifth setting of the user
      * @return a string indicating the status of the set operation
      */
@@ -770,7 +782,7 @@ public class SQLEngine {
 
             // insert into e_prescription_table
             preparedStatement = connection.prepareStatement(addRecommendationSql);
-            preparedStatement.setInt(1, maxRecommendationId+1);
+            preparedStatement.setInt(1, maxRecommendationId + 1);
 
             if (!diet.isEmpty())
                 preparedStatement.setString(2, diet);
@@ -787,17 +799,17 @@ public class SQLEngine {
             else
                 preparedStatement.setNull(4, java.sql.Types.DATE);
 
-            if(!nextCheckUpName.isEmpty())
+            if (!nextCheckUpName.isEmpty())
                 preparedStatement.setString(5, nextCheckUpName);
             else
                 preparedStatement.setNull(5, java.sql.Types.VARCHAR);
 
-            if(!additionalInformation.isEmpty())
+            if (!additionalInformation.isEmpty())
                 preparedStatement.setString(6, additionalInformation);
             else
                 preparedStatement.setNull(6, java.sql.Types.VARCHAR);
 
-            if(!date.equals("null"))
+            if (!date.equals("null"))
                 preparedStatement.setDate(7, Date.valueOf(date));
             else
                 preparedStatement.setNull(7, java.sql.Types.DATE);
@@ -854,6 +866,142 @@ public class SQLEngine {
             } else {
                 System.out.println("Error in database while adding medical history.");
                 returnStatement = "Error in database while adding medical history.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    String addDocumentation(int clientID, String interview, String physicalExamination, String ICD10Code, String recommendationId, String pesel, String date, String doctor_id) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String getMaxDocumentationIdSql = "SELECT MAX(documentation_id) AS max_documentation_id FROM documentation_table";
+            String getUserIdSql = "SELECT user_id FROM user_table WHERE pesel = ?";
+            String addDocumentationSql = "INSERT INTO documentation_table (documentation_id, documentation_date, interview, physical_examination, ICD_10, user_id, doctor_id, recommendations_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+
+            // get Max documentation_id from Database
+            preparedStatement = connection.prepareStatement(getMaxDocumentationIdSql);
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            int maxDocumentationId = resultSet.getInt("max_documentation_id");
+
+            // get user_id from database
+            preparedStatement = connection.prepareStatement(getUserIdSql);
+            preparedStatement.setString(1, pesel);
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            int user_id = resultSet.getInt("user_id");
+
+            // insert into documentation_table
+            preparedStatement = connection.prepareStatement(addDocumentationSql);
+            preparedStatement.setInt(1, maxDocumentationId + 1);
+            preparedStatement.setDate(2, Date.valueOf(date));
+            preparedStatement.setString(3, interview);
+            preparedStatement.setString(4, physicalExamination);
+
+            if (!ICD10Code.equals("null"))
+                preparedStatement.setString(5, ICD10Code);
+            else
+                preparedStatement.setNull(5, java.sql.Types.VARCHAR);
+
+            preparedStatement.setInt(6, user_id);
+            preparedStatement.setInt(7, Integer.parseInt(doctor_id));
+
+            if (!recommendationId.isEmpty())
+                preparedStatement.setInt(8, Integer.parseInt(recommendationId));
+            else
+                preparedStatement.setNull(8, java.sql.Types.INTEGER);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 1) {
+                System.out.println("Documentation added correctly.");
+                returnStatement = "Documentation added correctly.";
+            } else {
+                System.out.println("Error in database while adding documentation.");
+                returnStatement = "Error in database while adding documentation.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    String deleteDocumentation(int clientID, String documentationId) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String deleteDocumentationSql = "DELETE FROM documentation_table WHERE documentation_id = ?";
+
+            // delete documentation
+            preparedStatement = connection.prepareStatement(deleteDocumentationSql);
+            preparedStatement.setInt(1, Integer.parseInt(documentationId));
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 1) {
+                System.out.println("Documentation deleted correctly.");
+                returnStatement = "Documentation deleted correctly.";
+            } else {
+                System.out.println("Error in database while deleting documentation.");
+                returnStatement = "Error in database while deleting documentation.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    String deleteMedicalHistory(int clientID, String medicalHistoryId) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String deleteMedicalHistorySql = "DELETE FROM user_medical_history_table WHERE medical_history_id = ?";
+
+            // delete medical history
+            preparedStatement = connection.prepareStatement(deleteMedicalHistorySql);
+            preparedStatement.setInt(1, Integer.parseInt(medicalHistoryId));
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 1) {
+                System.out.println("Medical history deleted correctly.");
+                returnStatement = "Medical history deleted correctly.";
+            } else {
+                System.out.println("Error in database while deleting medical history.");
+                returnStatement = "Error in database while deleting medical history.";
             }
 
             return returnStatement;
@@ -993,6 +1141,7 @@ public class SQLEngine {
 
     /**
      * The getClinics method is responsible for retrieving the clinics from the database.
+     *
      * @param clientID the ID of the client
      * @return a 2D array of strings containing the clinics
      */
@@ -1043,8 +1192,9 @@ public class SQLEngine {
 
     /**
      * The getExaminations method is responsible for retrieving the examinations of a user.
+     *
      * @param clientID the ID of the client
-     * @param user_id the ID of the user
+     * @param user_id  the ID of the user
      * @return a 2D array of strings containing the examinations
      */
     String[][] getExaminations(int clientID, int user_id) {
@@ -1094,8 +1244,9 @@ public class SQLEngine {
 
     /**
      * The getMessages method is responsible for retrieving the messages of a user.
+     *
      * @param clientID the ID of the client
-     * @param user_id the ID of the user
+     * @param user_id  the ID of the user
      * @return a 2D array of strings containing the messages
      */
     String[][] getNotifications(int clientID, int user_id) {
@@ -1164,6 +1315,51 @@ public class SQLEngine {
             if (rowCount == 0) {
                 System.out.println("No EReferrals in database.");
                 return new String[][]{{"No EReferrals in database"}};
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
+
+    String[][] getFindings(int clientID, int user_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT * FROM findings_table WHERE user_id = ?";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            preparedStatement.setInt(1, user_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            if (rowCount == 0) {
+                System.out.println("No findings in database.");
+                return new String[][]{{"No findings in database"}};
             }
 
             int columnCount = resultSet.getMetaData().getColumnCount();
@@ -1283,7 +1479,7 @@ public class SQLEngine {
 
         try (Connection connection = DriverManager.getConnection(url, DBusername, DBpassword);
              PreparedStatement preparedStatement = connection.prepareStatement(sql);
-             ) {
+        ) {
 
             preparedStatement.setString(1, pesel);
 
@@ -1323,6 +1519,51 @@ public class SQLEngine {
             if (rowCount == 0) {
                 System.out.println("No medical history in database.");
                 return new String[][]{{"No medical history in database"}};
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
+
+    String[][] getDocumentations(int clientID, int user_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT * FROM documentation_table WHERE user_id = ?";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            preparedStatement.setInt(1, user_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            if (rowCount == 0) {
+                System.out.println("No documentations in database.");
+                return new String[][]{{"No documentations in database"}};
             }
 
             int columnCount = resultSet.getMetaData().getColumnCount();
@@ -1442,13 +1683,12 @@ public class SQLEngine {
 
             // insert into short_medical_interview_table
             preparedStatement = connection.prepareStatement(addSMISql);
-            preparedStatement.setInt(1, maxRegistrationNr+1);
+            preparedStatement.setInt(1, maxRegistrationNr + 1);
             preparedStatement.setString(2, what_hurts_you);
 
             if (!pain_symptoms.isEmpty()) {
                 preparedStatement.setString(3, pain_symptoms);
-            }
-            else {
+            } else {
                 preparedStatement.setNull(3, java.sql.Types.VARCHAR);
             }
             if (!other_symptoms.isEmpty())
@@ -1473,8 +1713,8 @@ public class SQLEngine {
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected == 1) {
-                System.out.println("SMI added correctly with nr: "  + (maxRegistrationNr+1));
-                returnStatement = "SMI added correctly with nr: "  + (maxRegistrationNr+1);
+                System.out.println("SMI added correctly with nr: " + (maxRegistrationNr + 1));
+                returnStatement = "SMI added correctly with nr: " + (maxRegistrationNr + 1);
             } else {
                 System.out.println("Error in database while adding SMI.");
                 returnStatement = "Error in database while adding SMI.";
@@ -1659,7 +1899,8 @@ public class SQLEngine {
 
     /**
      * The getExaminations method is responsible for retrieving the examinations of a user.
-     * @param clientID the ID of the client
+     *
+     * @param clientID  the ID of the client
      * @param doctor_id the ID of the doctor
      * @return a 2D array of strings containing the examinations
      */

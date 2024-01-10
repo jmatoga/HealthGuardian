@@ -128,11 +128,11 @@ public class MedicalHistoryController implements Initializable {
                 String[] medicalHistoryData = medicalHistoriesData[i].split(", ");
 
                 // be ready to generate pdf without checking database again
-                content.add(List.of(medicalHistoryData[0] + medicalHistoryData[1], medicalHistoryData[2]));
+                content.add(List.of(medicalHistoryData[1] + medicalHistoryData[2], medicalHistoryData[3]));
 
                 Pane newMedicalHistory = new Pane();
-                Label newMedicalHistoryTitle = new Label(medicalHistoryData[0] + medicalHistoryData[1]);
-                Label newMedicalHistoryContent = new Label(medicalHistoryData[2]);
+                Label newMedicalHistoryTitle = new Label(medicalHistoryData[1] + medicalHistoryData[2]);
+                Label newMedicalHistoryContent = new Label(medicalHistoryData[3]);
 
                 newMedicalHistoryTitle.setPrefHeight(40);
                 // Set fitting to scroll bar

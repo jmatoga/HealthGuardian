@@ -711,7 +711,7 @@ public class ShortMedicalInterviewController implements Initializable {
         askForAReferralButton.setVisible(false);
         progressProgressIndicator.setOpacity(1);
         progressProgressIndicator.setProgress(0.2);
-        message.addReferralSMI(SendToServer, Client.clientId + "#/#" + SMIcode + "#/#" + SMIcode + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "#/#" + SMIcode + "#/#" + ("to " + resultSmiToDB + "(create by SMI)") + "#/#" + 16 + "#/#" + Client.user_id);
+        message.addReferralSMI(SendToServer, Client.clientId + "#/#" + SMIcode + "#/#" + SMIcode + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "#/#" + SMIcode + "#/#" + ("to " + resultSmiToDB + " (created by SMI)") + "#/#" + 16 + "#/#" + Client.user_id);
         progressProgressIndicator.setProgress(0.5);
         String serverAnswer = ReadFromServer.readLine();
         progressProgressIndicator.setProgress(0.7);

@@ -7,12 +7,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
@@ -48,7 +46,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Label layoutX="720.0" layoutY="44.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="FINDINGS" AnchorPane.leftAnchor="830.0" AnchorPane.topAnchor="70.0">
+        <Label layoutX="720.0" layoutY="44.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="FINDINGS" AnchorPane.leftAnchor="720.0" AnchorPane.topAnchor="70.0">
             <font>
                 <Font name="Consolas Bold" size="70.0" />
             </font>
@@ -69,155 +67,18 @@
                 </RadialGradient>
             </textFill>
         </Label>
-        <Pane layoutX="78.0" layoutY="273.0" opacity="0.2" prefHeight="650.0" prefWidth="700.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="120.0">
+        <Pane fx:id="imagePane" layoutX="78.0" layoutY="273.0" maxHeight="650.0" maxWidth="600.0" opacity="0.2" prefHeight="650.0" prefWidth="600.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="220.0">
             <children>
-                <ImageView fx:id="previewImageView" fitHeight="650.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="previewImageView" fitHeight="908.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
             </children>
         </Pane>
-        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="813.0" layoutY="273.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefHeight="650.0" prefWidth="820.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="150.0" AnchorPane.rightAnchor="180.0">
+        <ScrollPane fx:id="scrollPane" blendMode="HARD_LIGHT" centerShape="false" focusTraversable="false" hbarPolicy="NEVER" layoutX="820.0" layoutY="280.0" maxHeight="650.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="819.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="820.0" AnchorPane.topAnchor="220.0">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2006.0" prefWidth="808.0">
-                    <children>
-                        <GridPane gridLinesVisible="true" layoutX="7.0" layoutY="7.0" prefHeight="2000.0" prefWidth="794.0">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            </rowConstraints>
-                            <children>
-                                <Pane prefHeight="200.0" prefWidth="265.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                                    <children>
-                                        <VBox prefHeight="200.0" prefWidth="265.0">
-                                            <children>
-                                                <Label fx:id="findingName1" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_1" textAlignment="CENTER" wrapText="true">
-                                                    <font>
-                                                        <Font name="Consolas Bold" size="20.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="40.0" prefWidth="265.0" />
-                                                <Label fx:id="findingDate1" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
-                                                    <font>
-                                                        <Font name="Consolas" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                                    <children>
-                                        <VBox prefHeight="200.0" prefWidth="265.0">
-                                            <children>
-                                                <Label fx:id="findingName2" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_2" textAlignment="CENTER" wrapText="true">
-                                                    <font>
-                                                        <Font name="Consolas Bold" size="20.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="40.0" prefWidth="265.0" />
-                                                <Label fx:id="findingDate2" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
-                                                    <font>
-                                                        <Font name="Consolas" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="265.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
-                                    <children>
-                                        <VBox prefHeight="200.0" prefWidth="265.0">
-                                            <children>
-                                                <Label fx:id="findingName3" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_3" textAlignment="CENTER" wrapText="true">
-                                                    <font>
-                                                        <Font name="Consolas Bold" size="20.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="40.0" prefWidth="265.0" />
-                                                <Label fx:id="findingDate3" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
-                                                    <font>
-                                                        <Font name="Consolas" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                                    <children>
-                                        <VBox prefHeight="200.0" prefWidth="265.0">
-                                            <children>
-                                                <Label fx:id="findingName4" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_4" textAlignment="CENTER" wrapText="true">
-                                                    <font>
-                                                        <Font name="Consolas Bold" size="20.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="40.0" prefWidth="265.0" />
-                                                <Label fx:id="findingDate4" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
-                                                    <font>
-                                                        <Font name="Consolas" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                    <children>
-                                        <VBox prefHeight="200.0" prefWidth="265.0">
-                                            <children>
-                                                <Label fx:id="findingName5" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_5" textAlignment="CENTER" wrapText="true">
-                                                    <font>
-                                                        <Font name="Consolas Bold" size="20.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="40.0" prefWidth="265.0" />
-                                                <Label fx:id="findingDate5" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
-                                                    <font>
-                                                        <Font name="Consolas" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </Pane>
-                                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                    <children>
-                                        <VBox prefHeight="200.0" prefWidth="265.0">
-                                            <children>
-                                                <Label fx:id="findingName6" alignment="CENTER" prefHeight="80.0" prefWidth="265.0" text="finding_name_6" textAlignment="CENTER" wrapText="true">
-                                                    <font>
-                                                        <Font name="Consolas Bold" size="20.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane prefHeight="40.0" prefWidth="265.0" />
-                                                <Label fx:id="findingDate6" prefHeight="20.0" prefWidth="264.0" text="FINDING DATE:">
-                                                    <font>
-                                                        <Font name="Consolas" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </Pane>
-                            </children>
-                        </GridPane>
-                    </children>
-                </AnchorPane>
+                <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="7.0" layoutY="7.0" prefWidth="794.0" stylesheets="@../Styles/scrollPaneStyle.css">
+                </GridPane>
             </content>
         </ScrollPane>
-        <Button fx:id="printButton" layoutX="520.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRINT" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="560.0">
+        <Button fx:id="printButton" layoutX="520.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRINT" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="440.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
@@ -241,7 +102,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Button fx:id="sendButton" layoutX="383.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SEND" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="400.0">
+        <Button fx:id="saveButton" layoutX="249.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SAVE" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="280.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
@@ -265,29 +126,26 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Button fx:id="saveButton" layoutX="249.0" layoutY="960.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="SAVE" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="240.0">
+        <Label fx:id="buttonStatusLabel" alignment="CENTER" focusTraversable="false" layoutX="892.0" layoutY="979.0" prefHeight="53.0" prefWidth="819.0" styleClass="outlined-text" stylesheets="@../Styles/textLabel.css" textAlignment="CENTER" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="820.0">
             <font>
-                <Font name="Consolas Bold" size="20.0" />
+                <Font size="30.0" />
             </font>
-            <opaqueInsets>
-                <Insets />
-            </opaqueInsets>
             <textFill>
-                <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
+                <LinearGradient endX="1.0" endY="1.0">
                     <stops>
                         <Stop>
                             <color>
-                                <Color red="0.28700000047683716" green="0.7103614211082458" blue="0.8199999928474426" />
+                                <Color red="0.0833333358168602" green="1.0" />
                             </color>
                         </Stop>
                         <Stop offset="1.0">
                             <color>
-                                <Color green="0.27843138575553894" blue="0.4313725531101227" />
+                                <Color red="0.7921568751335144" green="1.0" blue="0.8117647171020508" />
                             </color>
                         </Stop>
                     </stops>
-                </RadialGradient>
+                </LinearGradient>
             </textFill>
-        </Button>
+        </Label>
     </children>
 </AnchorPane>

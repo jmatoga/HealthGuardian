@@ -118,6 +118,17 @@ public class Message {
         writer.println("ADD_MEDICAL_HISTORY:" + message);
     }
 
+    public void addDocumentation(PrintWriter writer, String message) {
+        writer.println("ADD_DOCUMENTATION:" + message);
+    }
+
+    public void sendDeleteDocumentation(PrintWriter writer, String message) {
+        writer.println("DELETE_DOCUMENTATION:" + message);
+    }
+    public void sendDeleteMedicialHistory(PrintWriter writer, String message) {
+        writer.println("DELETE_MEDICAL_HISTORY:" + message);
+    }
+
     /**
      * Sends a set settings message to the server.
      * @param writer the PrintWriter to send the message
@@ -166,11 +177,20 @@ public class Message {
     public void sendGetDoctorMedicalHistoryMessage(PrintWriter writer, String message) {
         writer.println("GET_DOCTOR_MEDICAL_HISTORY:" + message);
     }
+    public void sendGetDoctorDocumentationsMessage(PrintWriter writer, String message) {
+        writer.println("GET_DOCTOR_DOCUMENTATIONS:" + message);
+    }
     public void sendGetEReferralMessage(PrintWriter writer, String message) {
         writer.println("GET_EREFERRAL:" + message);
     }
     public void sendGetEPrescriptionMessage(PrintWriter writer, String message) {
         writer.println("GET_EPRESCRIPTION:" + message);
+    }
+    public void sendGetFindingsMessage(PrintWriter writer, String message) {
+        writer.println("GET_FINDINGS:" + message);
+    }
+    public void sendGetDoctorFindingsMessage(PrintWriter writer, String message) {
+        writer.println("GET_DOCTOR_FINDINGS:" + message);
     }
     public void sendGetRecommendationMessage(PrintWriter writer, String message) {
         writer.println("GET_RECOMMENDATION:" + message);

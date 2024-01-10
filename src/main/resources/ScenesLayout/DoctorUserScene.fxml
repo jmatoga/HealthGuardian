@@ -234,7 +234,19 @@
                 </GridPane>
             </content>
         </ScrollPane>
-      <Pane fx:id="addMedicalHistoryPane" blendMode="MULTIPLY" layoutX="1494.0" layoutY="186.0" minHeight="60.0" minWidth="100.0" prefHeight="60.0" prefWidth="100.0">
+        <ScrollPane fx:id="scrollPane1" blendMode="MULTIPLY" centerShape="false" focusTraversable="false" hbarPolicy="NEVER" layoutX="650.0" layoutY="246.0" maxHeight="750.0" maxWidth="950.0" nodeOrientation="LEFT_TO_RIGHT" opacity="1" prefWidth="950.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="AS_NEEDED" visible="false" AnchorPane.leftAnchor="650.0" AnchorPane.topAnchor="246.0">
+            <content>
+                <GridPane fx:id="gridPane1" gridLinesVisible="true" layoutX="0.0" layoutY="0.0">
+                </GridPane>
+            </content>
+        </ScrollPane>
+        <ScrollPane fx:id="scrollPane2" blendMode="MULTIPLY" centerShape="false" focusTraversable="false" hbarPolicy="NEVER" layoutX="650.0" layoutY="246.0" maxHeight="750.0" maxWidth="950.0" nodeOrientation="LEFT_TO_RIGHT" opacity="1" prefWidth="950.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="AS_NEEDED" visible="false" AnchorPane.leftAnchor="650.0" AnchorPane.topAnchor="246.0">
+            <content>
+                <GridPane fx:id="gridPane2" gridLinesVisible="true" layoutX="0.0" layoutY="0.0">
+                </GridPane>
+            </content>
+        </ScrollPane>
+      <Pane fx:id="addPane" blendMode="MULTIPLY" layoutX="1494.0" layoutY="186.0" minHeight="60.0" minWidth="100.0" prefHeight="60.0" prefWidth="100.0">
          <children>
 <!--            <Button alignment="CENTER" disable="true" layoutX="20.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Button" />-->
          </children>

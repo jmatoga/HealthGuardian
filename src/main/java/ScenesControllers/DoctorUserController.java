@@ -9,12 +9,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -32,7 +32,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class DoctorUserController implements Initializable {
@@ -50,20 +49,20 @@ public class DoctorUserController implements Initializable {
     private TextField peselTextField;
 
     @FXML
-    private ScrollPane scrollPane;
+    private ScrollPane scrollPane, scrollPane1, scrollPane2;
 
     @FXML
-    private GridPane gridPane;
+    private GridPane gridPane, gridPane1, gridPane2;
 
     @FXML
-    private Pane addMedicalHistoryPane;
+    private Pane addPane;
 
     @FXML
     public void doctorPanelButtonClicked(ActionEvent actionEvent) throws IOException {
         new SceneSwitch("/ScenesLayout/DoctorPanelScene.fxml");
     }
 
-    private Alert createMedicalHistoryAlert(GridPane grid, TextField inputFieldMedicalCase, ButtonType okButtonType, String labelName, TextField inputFieldICD10Code,TextField inputFieldICD10FirstLetter) {
+    private Alert createMedicalHistoryAlert(GridPane grid, TextArea inputFieldMedicalCase, ButtonType okButtonType, String labelName, TextField inputFieldICD10Code, TextField inputFieldICD10FirstLetter) {
         grid.add(new Label("ICD10:"), 0, 3);
         inputFieldICD10FirstLetter.setMaxWidth(45);
         inputFieldICD10FirstLetter.setAlignment(Pos.TOP_LEFT);
@@ -80,6 +79,39 @@ public class DoctorUserController implements Initializable {
         return createEditDataAlert(grid, inputFieldMedicalCase, okButtonType, labelName);
     }
 
+    private Alert createDocumentationAlert(GridPane grid, TextArea inputFieldInterview, ButtonType okButtonType, String labelName, TextArea inputFieldPhysicalExamination, TextField inputFieldRecommendationId, TextArea inputFieldICD10) {
+        grid.add(new Label("Physical examination description:"), 0, 3);
+        inputFieldPhysicalExamination.setMinHeight(100);
+        inputFieldPhysicalExamination.setMinWidth(400);
+        inputFieldPhysicalExamination.setMaxHeight(100);
+        inputFieldPhysicalExamination.setMaxWidth(400);
+        //inputFieldPhysicalExamination.setAlignment(Pos.TOP_LEFT);
+        inputFieldPhysicalExamination.setWrapText(true);
+        inputFieldPhysicalExamination.setPromptText("Information about physical examination.");
+        grid.add(inputFieldPhysicalExamination, 0, 4);
+
+        grid.add(new Label("ICD10 codes:"), 0, 5);
+        inputFieldICD10.setMinHeight(45);
+        inputFieldICD10.setMinWidth(400);
+        inputFieldICD10.setMaxHeight(45);
+        inputFieldICD10.setMaxWidth(400);
+        //inputFieldICD10.setAlignment(Pos.TOP_LEFT);
+        inputFieldICD10.setWrapText(true);
+        inputFieldICD10.setPromptText("Eg. M54.4 Cervicalgia");
+        //inputFieldICD10.setTranslateX(50);
+        grid.add(inputFieldICD10, 0, 6);
+
+
+        grid.add(new Label("Recommendation id:"), 0, 7);
+        inputFieldRecommendationId.setMaxWidth(50);
+        inputFieldRecommendationId.setAlignment(Pos.TOP_LEFT);
+        inputFieldRecommendationId.setPromptText("Eg. 1");
+        inputFieldRecommendationId.setTranslateX(120);
+        grid.add(inputFieldRecommendationId, 0, 7);
+
+        return createEditDataAlert(grid, inputFieldInterview, okButtonType, labelName);
+    }
+
     private void getMedicalHistoryFromDB() throws IOException {
         message.sendGetDoctorMedicalHistoryMessage(SendToServer, Client.clientId + "," + peselTextField.getText());
         String serverAnswer = Client.getServerResponse(ReadFromServer);
@@ -88,7 +120,7 @@ public class DoctorUserController implements Initializable {
             Pane newMedicalHistory = new Pane();
             Label newMedicalHistoryTitle = new Label("There is no medical history.");
             newMedicalHistoryTitle.setPrefHeight(120);
-            newMedicalHistoryTitle.setPrefWidth(1334);
+            newMedicalHistoryTitle.setPrefWidth(934);
             newMedicalHistoryTitle.setLayoutX(14);
             newMedicalHistoryTitle.setAlignment(Pos.CENTER);
             newMedicalHistoryTitle.setFont(new Font("Consolas Bold", 50.0));
@@ -96,16 +128,14 @@ public class DoctorUserController implements Initializable {
             gridPane.add(newMedicalHistory, 0, 0);
         } else {
             String[] medicalHistoriesData = serverAnswer.substring(2, serverAnswer.length() - 2).split("], \\[");
+            Button newAddButton = new Button("Add new");
 
             for (int i = 0; i < medicalHistoriesData.length; i++) {
                 String[] medicalHistoryData = medicalHistoriesData[i].split(", ");
 
-                // be ready to generate pdf without checking database again
-                //content.add(List.of(medicalHistoryData[0] + medicalHistoryData[1], medicalHistoryData[2]));
-
                 Pane newMedicalHistory = new Pane();
-                Label newMedicalHistoryTitle = new Label(medicalHistoryData[0] + medicalHistoryData[1]);
-                Label newMedicalHistoryContent = new Label(medicalHistoryData[2]);
+                Label newMedicalHistoryTitle = new Label(medicalHistoryData[1] + medicalHistoryData[2]);
+                Label newMedicalHistoryContent = new Label(medicalHistoryData[3]);
 
                 newMedicalHistoryTitle.setPrefHeight(40);
                 newMedicalHistoryTitle.setPrefWidth(830);
@@ -131,30 +161,49 @@ public class DoctorUserController implements Initializable {
 
                 Pane newDeleteButtonPane = new Pane();
                 Button newDeleteButton = new Button("Delete");
-                //newDeleteButton.getStyleClass().add("darkblue-button");
-                //newDeleteButtonPane.setMinWidth(119);
                 newDeleteButtonPane.setPrefWidth(104);
-                //newDeleteButtonPane.setMaxWidth(120);
                 newDeleteButton.setPrefHeight(40);
                 newDeleteButton.setPrefWidth(80);
-                //newDeleteButton.setMaxWidth(80);
-                //newDeleteButton.setMinWidth(80);
                 newDeleteButton.setLayoutY(40);
                 newDeleteButton.setLayoutX(12);
-               // newDeleteButton.setPadding(new Insets(40, 10, 40, 10));
-                //newDeleteButton.setAlignment(Pos.CENTER);
                 newDeleteButton.setFocusTraversable(false);
-                //newDeleteButton.setTextAlignment(TextAlignment.CENTER);
-
-                //newDeleteButton.setLayoutX(newDeleteButton.getMinWidth() - newDeleteButton.getMinWidth() / 2);
-                //newDeleteButton.setLayoutY(newDeleteButton.getMinHeight() - newDeleteButton.getMinHeight() / 2);
-                Platform.runLater(() -> {
-                    System.out.println(newDeleteButton.getWidth() + " " + newDeleteButton.getHeight());
-                    System.out.println(newDeleteButtonPane.getWidth() + "! !" + newDeleteButtonPane.getHeight());
-                });
 
                 newDeleteButton.setOnMouseClicked(MouseEvent -> {
-                    System.out.println("Delete button clicked");
+                    if (checkPesel() && !peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
+                        try {
+                            message.sendDeleteMedicialHistory(SendToServer, Client.clientId + "," + medicalHistoryData[0]);
+                            String serverAnswer1 = Client.getServerResponse(ReadFromServer);
+
+                            if (serverAnswer1.equals("Medical history deleted correctly.")) {
+                                peselStatusLabel.setTextFill(Color.greenGradient());
+                                peselStatusLabel.setText("Medical history deleted correctly!");
+                                scrollPane.setVisible(false);
+                                scrollPane1.setVisible(false);
+                                scrollPane2.setVisible(false);
+                                addPane.setVisible(false);
+                                addPane.getChildren().remove(newAddButton);
+                                gridPane.getChildren().remove(newMedicalHistory);
+                                gridPane.getChildren().remove(newDeleteButtonPane);
+                                gridPane.requestLayout(); // call layoutChildren() on the GridPane
+                            } else {
+                                peselStatusLabel.setTextFill(Color.redGradient());
+                                peselStatusLabel.setText("Error while deleting medical history!");
+                            }
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                        Timeline timeline = new Timeline(
+                                new KeyFrame(Duration.millis(2000), TimeEvent -> {
+                                    peselStatusLabel.setText("");
+                                    peselStatusLabel.setTextFill(javafx.scene.paint.Color.RED);
+                                }));
+                        timeline.setCycleCount(1);
+                        timeline.play();
+                    } else {
+                        peselStatusLabel.setTextFill(javafx.scene.paint.Color.RED);
+                        peselStatusLabel.setText("First enter pesel!");
+                    }
                 });
 
                 newDeleteButtonPane.getChildren().add(newDeleteButton);
@@ -164,41 +213,20 @@ public class DoctorUserController implements Initializable {
                 gridPane.add(newDeleteButtonPane, 1, i);
             }
 
-            addMedicalHistoryPane.setVisible(true);
-            Button newAddButton = new Button("Add new");
-            //newDeleteButton.getStyleClass().add("darkblue-button");
-            //newDeleteButtonPane.setMinWidth(119);
-            //addMedicalHistoryPane.setPrefWidth(104);
-            //newDeleteButtonPane.setMaxWidth(120);
+            addPane.setVisible(true);
             newAddButton.setPrefHeight(40);
             newAddButton.setPrefWidth(80);
-            addMedicalHistoryPane.setStyle("-fx-border-color: grey; -fx-border-width: 2px; -fx-background-color: transparent; -fx-background-radius: 2;");
-            //addMedicalHistoryPane.setPrefHeight(24);
-            addMedicalHistoryPane.setPrefWidth(106);
-            //addMedicalHistoryPane.setMinHeight(50);
-            addMedicalHistoryPane.setMinHeight(62);
-            //newDeleteButton.setMaxWidth(80);
-            //newDeleteButton.setMinWidth(80);
-//            newAddButton.setLayoutY(10);
-//            newAddButton.setLayoutX(32);
+            addPane.setStyle("-fx-border-color: grey; -fx-border-width: 2px; -fx-background-color: transparent; -fx-background-radius: 2;");
+            addPane.setPrefWidth(106);
+            addPane.setMinHeight(62);
             newAddButton.setLayoutY(10);
             newAddButton.setLayoutX(13);
-            // newDeleteButton.setPadding(new Insets(40, 10, 40, 10));
-            //newDeleteButton.setAlignment(Pos.CENTER);
             newAddButton.setFocusTraversable(false);
-            //newDeleteButton.setTextAlignment(TextAlignment.CENTER);
-
-            //newDeleteButton.setLayoutX(newDeleteButton.getMinWidth() - newDeleteButton.getMinWidth() / 2);
-            //newDeleteButton.setLayoutY(newDeleteButton.getMinHeight() - newDeleteButton.getMinHeight() / 2);
-            Platform.runLater(() -> {
-                System.out.println(newAddButton.getWidth() + " " + newAddButton.getHeight());
-                System.out.println(addMedicalHistoryPane.getWidth() + "! !" + addMedicalHistoryPane.getHeight());
-            });
 
             newAddButton.setOnMouseClicked(MouseEvent -> {
                 if (checkPesel() && !peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
                     GridPane grid = new GridPane();
-                    TextField inputFieldMedicalCase = new TextField();
+                    TextArea inputFieldMedicalCase = new TextArea();
                     inputFieldMedicalCase.setPromptText("Eg. Asthma");
                     TextField inputFieldICD10FirstLetter = new TextField();
                     TextField inputFieldICD10Code = new TextField();
@@ -220,7 +248,7 @@ public class DoctorUserController implements Initializable {
 
                     alert.setOnCloseRequest(alertEvent -> {
                         if (alert.getResult() == okButtonType && !peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
-                            if(!inputFieldMedicalCase.getText().isEmpty() && !inputFieldICD10FirstLetter.getText().isEmpty() && !inputFieldICD10Code.getText().isEmpty()) {
+                            if (!inputFieldMedicalCase.getText().isEmpty() && !inputFieldICD10FirstLetter.getText().isEmpty() && !inputFieldICD10Code.getText().isEmpty()) {
                                 message.addMedicalHistory(SendToServer, Client.clientId + "," + inputFieldMedicalCase.getText() + "," + inputFieldICD10FirstLetter.getText() + "," + inputFieldICD10Code.getText() + "," + peselTextField.getText());
 
                                 try {
@@ -230,8 +258,10 @@ public class DoctorUserController implements Initializable {
                                         peselStatusLabel.setTextFill(Color.greenGradient());
                                         peselStatusLabel.setText("Medical history added correctly!");
                                         scrollPane.setVisible(false);
-                                        addMedicalHistoryPane.setVisible(false);
-                                        addMedicalHistoryPane.getChildren().remove(newAddButton);
+                                        scrollPane1.setVisible(false);
+                                        scrollPane2.setVisible(false);
+                                        addPane.setVisible(false);
+                                        addPane.getChildren().remove(newAddButton);
                                     } else {
                                         peselStatusLabel.setTextFill(Color.redGradient());
                                         peselStatusLabel.setText("Error while adding medical history!");
@@ -269,13 +299,68 @@ public class DoctorUserController implements Initializable {
                 }
             });
 
-            addMedicalHistoryPane.getChildren().add(newAddButton);
+            addPane.getChildren().add(newAddButton);
+        }
+    }
+
+    private void getFindingsFromDB() throws IOException {
+        message.sendGetDoctorFindingsMessage(SendToServer, Client.clientId + "," + peselTextField.getText());
+        String serverAnswer = Client.getServerResponse(ReadFromServer);
+
+        if(serverAnswer.equals("[[No findings in database]]")) {
+            Pane newFinding = new Pane();
+            Label newFindingTitle = new Label("There is no findings.");
+            newFindingTitle.setPrefHeight(120);
+            newFindingTitle.setPrefWidth(948);
+            newFindingTitle.setAlignment(Pos.CENTER);
+            newFindingTitle.setFont(new Font("Consolas Bold", 35.0));
+            newFinding.getChildren().add(newFindingTitle);
+            gridPane2.add(newFinding, 0, 0);
+        } else {
+            String[] findingsData = serverAnswer.substring(2, serverAnswer.length() - 2).split("], \\[");
+
+            for (int i = 0; i < findingsData.length; i++) {
+                String[] findingData = findingsData[i].split(", ");
+
+                Pane newFinding = new Pane();
+                Label newFindingTitle = new Label(findingData[2]);
+                Label newFindingContent = new Label(findingData[4]);
+
+                newFindingTitle.setPrefHeight(40);
+                newFindingTitle.setPrefWidth(830);
+                newFindingContent.setPrefWidth(830);
+
+                // Set fitting to scroll bar
+                if (findingsData.length > 6) {
+                    newFindingTitle.setPrefWidth(1321); //1334 1321
+                    newFindingContent.setPrefWidth(1321);
+                } else {
+
+                }
+
+                newFindingTitle.setLayoutX(14);
+                newFindingTitle.setFont(new Font("Consolas Bold", 36.0));
+                newFindingContent.setPrefHeight(120);
+                newFindingContent.setLayoutX(14);
+                newFindingContent.setPadding(new Insets(40, 0, 0, 0));
+                newFindingContent.setWrapText(true); // Text wrapping
+                newFindingContent.setFont(new Font("Consolas", 28.0));
+
+                newFinding.getChildren().addAll(newFindingTitle, newFindingContent);
+                gridPane2.add(newFinding, 0, i);
+            }
+
         }
     }
 
     @FXML
     public void changeMedicalHistoryButtonClicked(ActionEvent actionEvent) throws IOException {
-        if (!peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
+        addPane.setVisible(false);
+        scrollPane.setVisible(false);
+        scrollPane1.setVisible(false);
+        scrollPane2.setVisible(false);
+
+        if (checkPesel() && !peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
             scrollPane.setVisible(true);
             getMedicalHistoryFromDB();
         } else {
@@ -286,11 +371,17 @@ public class DoctorUserController implements Initializable {
 
     @FXML
     public void prescribeEPrescriptionButtonClicked(ActionEvent actionEvent) {
+        scrollPane.setVisible(false);
+        scrollPane1.setVisible(false);
+        scrollPane2.setVisible(false);
+        addPane.setVisible(false);
+
         if (checkPesel() && !peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
             GridPane grid = new GridPane();
-            TextField inputFieldMedicines = new TextField();
+            TextArea inputFieldMedicines = new TextArea();
             inputFieldMedicines.setPromptText("Eg. 2x Metoprolol; 1x Warfarin");
-            ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);;
+            ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+            ;
             Alert alert = createEditDataAlert(grid, inputFieldMedicines, okButtonType, "Medicines:");
             alert.setTitle("Prescribe e-prescription:");
             alert.setHeaderText("Write below medicines to e-prescription.");
@@ -329,7 +420,7 @@ public class DoctorUserController implements Initializable {
         }
     }
 
-    private Alert createEditDataAlert(GridPane grid, TextField inputField, ButtonType okButtonType, String labelName) {
+    private Alert createEditDataAlert(GridPane grid, TextArea inputField, ButtonType okButtonType, String labelName) {
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
@@ -339,7 +430,10 @@ public class DoctorUserController implements Initializable {
 
         inputField.setMinHeight(100);
         inputField.setMinWidth(400);
-        inputField.setAlignment(Pos.TOP_LEFT);
+        inputField.setMaxHeight(100);
+        inputField.setMaxWidth(400);
+        //inputField.setAlignment(Pos.TOP_LEFT);
+        inputField.setWrapText(true);
 
         Label dateAlertLabel = new Label(LocalDate.now().toString());
         dateAlertLabel.setTranslateX(285);
@@ -358,11 +452,17 @@ public class DoctorUserController implements Initializable {
 
     @FXML
     public void prescribeEReferralButtonClicked(ActionEvent actionEvent) {
+        scrollPane.setVisible(false);
+        scrollPane1.setVisible(false);
+        scrollPane2.setVisible(false);
+        addPane.setVisible(false);
+
         if (checkPesel() && !peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
             GridPane grid = new GridPane();
-            TextField inputFieldEReferralName = new TextField();
+            TextArea inputFieldEReferralName = new TextArea();
             inputFieldEReferralName.setPromptText("Eg. Dermatology Consultation");
-            ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);;
+            ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+            ;
             Alert alert = createEditDataAlert(grid, inputFieldEReferralName, okButtonType, "E-referral name:");
             alert.setTitle("Prescribe e-referral:");
             alert.setHeaderText("Write below name of e-referral.");
@@ -402,27 +502,39 @@ public class DoctorUserController implements Initializable {
     }
 
     @FXML
-    public void checkFindingsButtonClicked(ActionEvent actionEvent) {
-        if (!peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
+    public void checkFindingsButtonClicked(ActionEvent actionEvent) throws IOException {
+        scrollPane.setVisible(false);
+        scrollPane1.setVisible(false);
+        scrollPane2.setVisible(false);
+        addPane.setVisible(false);
 
+        if (checkPesel() && !peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
+            scrollPane2.setVisible(true);
+            getFindingsFromDB();
         } else {
             peselStatusLabel.setTextFill(javafx.scene.paint.Color.RED);
             peselStatusLabel.setText("First enter pesel!");
         }
     }
 
-    private Alert createRecommendationAlert(GridPane grid, TextField inputFieldMedicines, ButtonType okButtonType, String labelName, DatePicker nextCheckUpDate, TextField inputFieldNextCheckUpName, TextField inputFieldAdditionalInformation, TextField inputFieldDiet) {
+    private Alert createRecommendationAlert(GridPane grid, TextArea inputFieldMedicines, ButtonType okButtonType, String labelName, DatePicker nextCheckUpDate, TextField inputFieldNextCheckUpName, TextArea inputFieldAdditionalInformation, TextArea inputFieldDiet) {
         grid.add(new Label("Medicines:"), 0, 3);
         inputFieldMedicines.setMinHeight(100);
         inputFieldMedicines.setMinWidth(400);
-        inputFieldMedicines.setAlignment(Pos.TOP_LEFT);
+        inputFieldMedicines.setMaxHeight(100);
+        inputFieldMedicines.setMaxWidth(400);
+        //inputFieldMedicines.setAlignment(Pos.TOP_LEFT);
+        inputFieldMedicines.setWrapText(true);
         inputFieldMedicines.setPromptText("Eg. 2x Metoprolol; 1x Warfarin");
         grid.add(inputFieldMedicines, 0, 4);
 
         grid.add(new Label("Additional information:"), 0, 5);
         inputFieldAdditionalInformation.setMinHeight(150);
         inputFieldAdditionalInformation.setMinWidth(400);
-        inputFieldAdditionalInformation.setAlignment(Pos.TOP_LEFT);
+        inputFieldAdditionalInformation.setMaxHeight(150);
+        inputFieldAdditionalInformation.setMaxWidth(400);
+        //inputFieldAdditionalInformation.setAlignment(Pos.TOP_LEFT);
+        inputFieldAdditionalInformation.setWrapText(true);
         inputFieldAdditionalInformation.setPromptText("Eg. Patient should avoid alcohol.");
         grid.add(inputFieldAdditionalInformation, 0, 6);
 
@@ -434,7 +546,7 @@ public class DoctorUserController implements Initializable {
         nextCheckUpDate.setMinWidth(100);
         nextCheckUpDate.setMaxWidth(100);
         nextCheckUpDate.setPromptText(LocalDate.now().getDayOfMonth() + "." + LocalDate.now().getMonthValue() + "." + LocalDate.now().getYear());
-        nextCheckUpDate.setTranslateX(300);
+        nextCheckUpDate.setTranslateX(110);
         grid.add(nextCheckUpDate, 0, 9);
         grid.add(new Pane(), 0, 11);
 
@@ -443,13 +555,18 @@ public class DoctorUserController implements Initializable {
 
     @FXML
     public void addRecommendationsButtonClicked(ActionEvent actionEvent) {
+        scrollPane.setVisible(false);
+        scrollPane1.setVisible(false);
+        scrollPane2.setVisible(false);
+        addPane.setVisible(false);
+
         if (checkPesel() && !peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
             GridPane grid = new GridPane();
-            TextField inputFieldDiet = new TextField();
+            TextArea inputFieldDiet = new TextArea();
             inputFieldDiet.setPromptText("Eg. Low-carb diet with increased protein intake.");
-            TextField inputFieldMedicines = new TextField();
+            TextArea inputFieldMedicines = new TextArea();
             TextField inputFieldNextCheckUpName = new TextField();
-            TextField inputFieldAdditionalInformation = new TextField();
+            TextArea inputFieldAdditionalInformation = new TextArea();
             DatePicker nextCheckUpDate = new DatePicker();
 
             ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
@@ -491,10 +608,236 @@ public class DoctorUserController implements Initializable {
         }
     }
 
-    @FXML
-    public void checkDocumentationButtonClicked(ActionEvent actionEvent) {
-        if (!peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
+    private void getDocumentationsFromDB() throws IOException {
+        message.sendGetDoctorDocumentationsMessage(SendToServer, Client.clientId + "," + peselTextField.getText());
+        String serverAnswer = Client.getServerResponse(ReadFromServer);
 
+        if (serverAnswer.equals("[[No documentations in database]]")) {
+            Pane newDocumentation = new Pane();
+            Label newDocumentationTitle = new Label("There is no documentations.");
+            newDocumentationTitle.setPrefHeight(120);
+            newDocumentationTitle.setPrefWidth(934);
+            newDocumentationTitle.setLayoutX(14);
+            newDocumentationTitle.setAlignment(Pos.CENTER);
+            newDocumentationTitle.setFont(new Font("Consolas Bold", 50.0));
+            newDocumentation.getChildren().add(newDocumentationTitle);
+            gridPane.add(newDocumentation, 0, 0);
+        } else {
+            String[] documentationsData = serverAnswer.substring(2, serverAnswer.length() - 2).split("], \\[");
+            Button newAddButton = new Button("Add new");
+
+            for (int i = 0; i < documentationsData.length; i++) {
+                String[] documentationData = documentationsData[i].split(", ");
+
+                Pane newDocumentation = new Pane();
+                newDocumentation.setMaxHeight(600);
+                newDocumentation.setMinHeight(320);
+                Label newDocumentationTitle = new Label("Documentation id: " + documentationData[0]);
+                if (documentationData[7].equals("null"))
+                    newDocumentationTitle.setText("Documentation id: " + documentationData[0] + " (no recommendation)");
+                else
+                    newDocumentationTitle.setText("Documentation id: " + documentationData[0] + " (recommendation id: " + documentationData[7] + ")");
+
+                Label newDocumentationContent = new Label();
+
+                if (documentationData[4].equals("null"))
+                    newDocumentationContent.setText("Interview description: \n" + documentationData[2] + "\nExamination description: \n" + documentationData[3]);
+                else
+                    newDocumentationContent.setText("ICD10: " + documentationData[4] + "\nInterview description: \n" + documentationData[2] + "\nExamination description: \n" + documentationData[3]);
+
+
+                Label newDocumentationDate = new Label(documentationData[1]);
+
+                newDocumentationTitle.setPrefHeight(40);
+                newDocumentationTitle.setPrefWidth(830);
+                newDocumentationContent.setPrefWidth(830);
+                newDocumentationContent.setMinHeight(320);
+
+
+                // Set fitting to scroll bar
+//                if (documentationsData.length > 6) {
+//                    newDocumentationTitle.setPrefWidth(1321); //1334 1321
+//                    newDocumentationContent.setPrefWidth(1321);
+//                } else {
+//                    scrollPane.prefWidth(1000);
+//                    scrollPane.maxWidth(1000);
+//                    gridPane.setMaxWidth(950);
+//                }
+
+                newDocumentationTitle.setLayoutX(14);
+                newDocumentationTitle.setFont(new Font("Consolas Bold", 26.0));
+                newDocumentationDate.setPrefHeight(50);
+                newDocumentationDate.setPrefWidth(130);
+                newDocumentationDate.setLayoutX(710);
+                newDocumentationDate.setLayoutY(0);
+                newDocumentationDate.setFont(new Font("Consolas Bold", 20.0));
+                //newDocumentationContent.setMaxHeight(560);
+                newDocumentationContent.setLayoutX(14);
+                newDocumentationContent.setPadding(new Insets(40, 0, 0, 0));
+                newDocumentationContent.setWrapText(true); // Text wrapping
+                newDocumentationContent.setFont(new Font("Consolas", 14.0));
+
+                newDocumentation.getChildren().addAll(newDocumentationTitle, newDocumentationDate, newDocumentationContent);
+
+                Pane newDeleteButtonPane = new Pane();
+                Button newDeleteButton = new Button("Delete");
+                newDeleteButtonPane.setPrefWidth(104);
+                newDeleteButton.setPrefHeight(40);
+                newDeleteButton.setPrefWidth(80);
+                newDeleteButton.setLayoutY(140);
+                newDeleteButton.setLayoutX(12);
+                newDeleteButton.setFocusTraversable(false);
+
+                newDeleteButton.setOnMouseClicked(MouseEvent -> {
+                    if (checkPesel() && !peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
+                        try {
+                            message.sendDeleteDocumentation(SendToServer, Client.clientId + "," + documentationData[0]);
+                            String serverAnswer1 = Client.getServerResponse(ReadFromServer);
+
+                            if (serverAnswer1.equals("Documentation deleted correctly.")) {
+                                peselStatusLabel.setTextFill(Color.greenGradient());
+                                peselStatusLabel.setText("Documentation deleted correctly!");
+                                scrollPane.setVisible(false);
+                                scrollPane1.setVisible(false);
+                                scrollPane2.setVisible(false);
+                                addPane.setVisible(false);
+                                addPane.getChildren().remove(newAddButton);
+                                gridPane1.getChildren().remove(newDocumentation);
+                                gridPane1.getChildren().remove(newDeleteButtonPane);
+                                gridPane1.requestLayout(); // call layoutChildren() on the GridPane
+                            } else {
+                                peselStatusLabel.setTextFill(Color.redGradient());
+                                peselStatusLabel.setText("Error while deleting documentation!");
+                            }
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                        Timeline timeline = new Timeline(
+                                new KeyFrame(Duration.millis(2000), TimeEvent -> {
+                                    peselStatusLabel.setText("");
+                                    peselStatusLabel.setTextFill(javafx.scene.paint.Color.RED);
+                                }));
+                        timeline.setCycleCount(1);
+                        timeline.play();
+                    } else {
+                        peselStatusLabel.setTextFill(javafx.scene.paint.Color.RED);
+                        peselStatusLabel.setText("First enter pesel!");
+                    }
+                });
+
+                newDeleteButtonPane.getChildren().add(newDeleteButton);
+
+                // Add new notification to the GridPane on the appropriate row
+                gridPane1.add(newDocumentation, 0, i);
+                gridPane1.add(newDeleteButtonPane, 1, i);
+            }
+
+            addPane.setVisible(true);
+            newAddButton.setPrefHeight(40);
+            newAddButton.setPrefWidth(80);
+            addPane.setStyle("-fx-border-color: grey; -fx-border-width: 2px; -fx-background-color: transparent; -fx-background-radius: 2;");
+            addPane.setPrefWidth(106);
+            addPane.setMinHeight(62);
+            newAddButton.setLayoutY(10);
+            newAddButton.setLayoutX(13);
+            newAddButton.setFocusTraversable(false);
+
+            newAddButton.setOnMouseClicked(MouseEvent -> {
+                if (checkPesel() && !peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
+                    GridPane grid = new GridPane();
+                    TextArea inputFieldInterview = new TextArea();
+                    inputFieldInterview.setPromptText("Information about interview.");
+                    TextArea inputFieldPhysicalExamination = new TextArea();
+                    TextArea inputFieldICD10 = new TextArea();
+                    TextField inputFieldRecommendationId = new TextField();
+                    Label label = new Label("");
+                    label.setTextFill(Paint.valueOf("#ff0000"));
+
+                    ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+                    Alert alert = createDocumentationAlert(grid, inputFieldInterview, okButtonType, "Interview description:", inputFieldPhysicalExamination, inputFieldRecommendationId, inputFieldICD10);
+                    alert.setTitle("Add new documentation:");
+                    alert.setHeaderText("Write below properties of documentation.");
+                    label.setMinWidth(100);
+                    label.setMinHeight(30);
+                    label.setStyle("-fx-font-size: 20; -fx-font-weight: bold;");
+
+                    VBox vBox = new VBox();
+                    vBox.getChildren().addAll(label, grid);
+                    vBox.setAlignment(Pos.CENTER);
+                    alert.getDialogPane().setContent(vBox);
+
+                    alert.setOnCloseRequest(alertEvent -> {
+                        if (alert.getResult() == okButtonType && !peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
+                            if (!inputFieldInterview.getText().isEmpty() && !inputFieldICD10.getText().isEmpty() && !inputFieldRecommendationId.getText().isEmpty()) {
+                                message.addDocumentation(SendToServer, Client.clientId + "," + inputFieldInterview.getText() + "," + inputFieldPhysicalExamination.getText() + "," + inputFieldICD10.getText() + "," + inputFieldRecommendationId.getText() + "," + peselTextField.getText() + "," + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "," + Client.doctor_id);
+
+                                try {
+                                    String serverAnswer1 = Client.getServerResponse(ReadFromServer);
+
+                                    if (serverAnswer1.equals("Documentation added correctly.")) {
+                                        peselStatusLabel.setTextFill(Color.greenGradient());
+                                        peselStatusLabel.setText("Documentation added correctly!");
+                                        scrollPane.setVisible(false);
+                                        scrollPane1.setVisible(false);
+                                        scrollPane2.setVisible(false);
+                                        addPane.setVisible(false);
+                                        addPane.getChildren().remove(newAddButton);
+                                    } else {
+                                        peselStatusLabel.setTextFill(Color.redGradient());
+                                        peselStatusLabel.setText("Error while adding documentation!");
+                                    }
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+
+                                Timeline timeline = new Timeline(
+                                        new KeyFrame(Duration.millis(2000), TimeEvent -> {
+                                            peselStatusLabel.setText("");
+                                            peselStatusLabel.setTextFill(javafx.scene.paint.Color.RED);
+                                        }));
+                                timeline.setCycleCount(1);
+                                timeline.play();
+                            } else if (!inputFieldRecommendationId.getText().matches("\\d+")) {
+                                alertEvent.consume(); // cancel closing alert on ok button pressed
+                                label.setText("Wrong Recommendation ID!");
+                                label.setTextFill(Paint.valueOf("#ff0000"));
+                            } else if (inputFieldInterview.getText().isEmpty()) {
+                                alertEvent.consume(); // cancel closing alert on ok button pressed
+                                label.setText("Empty interview description!");
+                                label.setTextFill(Paint.valueOf("#ff0000"));
+                            } else if (inputFieldPhysicalExamination.getText().isEmpty()) {
+                                alertEvent.consume(); // cancel closing alert on ok button pressed
+                                label.setText("Empty physical examination!");
+                                label.setTextFill(Paint.valueOf("#ff0000"));
+                            } else {
+                                alertEvent.consume(); // cancel closing alert on ok button pressed
+                                label.setText("Fill all gaps!");
+                                label.setTextFill(Paint.valueOf("#ff0000"));
+                            }
+                        }
+                    });
+                    Platform.runLater(alert::showAndWait);
+                } else {
+                    peselStatusLabel.setTextFill(javafx.scene.paint.Color.RED);
+                    peselStatusLabel.setText("First enter pesel!");
+                }
+            });
+
+            addPane.getChildren().add(newAddButton);
+        }
+    }
+
+    @FXML
+    public void checkDocumentationButtonClicked(ActionEvent actionEvent) throws IOException {
+        scrollPane.setVisible(false);
+        scrollPane1.setVisible(false);
+        scrollPane2.setVisible(false);
+        addPane.setVisible(false);
+
+        if (checkPesel() && !peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
+            scrollPane1.setVisible(true);
+            getDocumentationsFromDB();
         } else {
             peselStatusLabel.setTextFill(javafx.scene.paint.Color.RED);
             peselStatusLabel.setText("First enter pesel!");
@@ -517,6 +860,9 @@ public class DoctorUserController implements Initializable {
             if (serverAnswer.equals("[Patient not found, Patient not found, Patient not found]")) {
                 peselStatusLabel.setTextFill(Color.redGradient());
                 peselStatusLabel.setText("Patient not found!");
+                firstNameLabel.setText("");
+                lastNameLabel.setText("");
+                birthDateLabel.setText("");
             } else {
                 peselStatusLabel.setTextFill(javafx.scene.paint.Color.RED);
                 firstNameLabel.setText(settingsData[0]);
@@ -587,6 +933,9 @@ public class DoctorUserController implements Initializable {
         DoctorUserController.ReadFromServer = Client.ReadFromServer;
         DoctorUserController.SendToServer = Client.SendToServer;
         scrollPane.setVisible(false);
+        scrollPane1.setVisible(false);
+        scrollPane2.setVisible(false);
+        addPane.setVisible(false);
 
         try {
             getSettingsFromDB();
