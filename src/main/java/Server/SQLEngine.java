@@ -1529,4 +1529,181 @@ public class SQLEngine {
         }
         return returnStatement;
     }
+
+    String[][] getEContact(int clientID, int user_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT d.first_name, d.last_name, d.profession, e.name, e.examination_date, e.meeting_link FROM examination_table e JOIN doctor_table d ON e.doctor_id = d.doctor_id WHERE e.user_id = ? AND e.name LIKE '%E-Contact%' AND e.examination_date >= DATE_ADD(NOW(), INTERVAL 30 MINUTE) ORDER BY e.examination_date ASC LIMIT 1;";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            preparedStatement.setInt(1, user_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            if (rowCount == 0) {
+                System.out.println("No EContact information in database.");
+                return new String[][]{{"No EContact information in database"}};
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
+
+    String[][] getExaminationsForToday(int clientID, int doctor_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT examination_nr, name, examination_date, user_table.first_name, user_table.last_name, user_table.phone FROM examination_table INNER JOIN user_table ON examination_table.user_id = user_table.user_id WHERE doctor_id = ? AND DATE(examination_date) = CURRENT_DATE;";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            preparedStatement.setInt(1, doctor_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            if (rowCount == 0) {
+                System.out.println("No examinations in database.");
+                return new String[][]{{"No examinations in database"}};
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
+
+    String addExaminationLink(int clientID, String examination_nr, String link) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String addSMISql = "UPDATE examination_table SET meeting_link = ? WHERE examination_nr = ?;";
+
+            // insert link into examination_table
+            preparedStatement = connection.prepareStatement(addSMISql);
+            preparedStatement.setString(1, link);
+            preparedStatement.setInt(2, Integer.parseInt(examination_nr));
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 1) {
+                System.out.println("Examination link added correctly.");
+                returnStatement = "Examination link added correctly.";
+            } else {
+                System.out.println("Error in database while adding Examination link.");
+                returnStatement = "Error in database while adding Examination link.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    /**
+     * The getExaminations method is responsible for retrieving the examinations of a user.
+     * @param clientID the ID of the client
+     * @param doctor_id the ID of the doctor
+     * @return a 2D array of strings containing the examinations
+     */
+    String[][] getDoctorExaminations(int clientID, int doctor_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT examination_nr, name, examination_date, user_table.first_name, user_table.last_name, user_table.phone FROM examination_table INNER JOIN user_table ON examination_table.user_id = user_table.user_id WHERE doctor_id = ? AND DATE(examination_date) >= CURDATE() - INTERVAL 1 DAY;";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            preparedStatement.setInt(1, doctor_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            if (rowCount == 0) {
+                System.out.println("No examinations in database.");
+                return new String[][]{{"No examinations in database"}};
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
 }

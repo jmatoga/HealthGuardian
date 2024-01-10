@@ -16,7 +16,7 @@
 
 <AnchorPane fx:id="eContactScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.EContactController">
     <children>
-        <ImageView fitHeight="1200.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ImageView fitHeight="1200.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="0.0">
             <image>
                 <Image url="@../Images/bg2.jpg" />
             </image>
@@ -81,14 +81,14 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Pane fx:id="copyButton" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #b3b4b7; -fx-border-color: black; -fx-background-radius: 3;">
-               <children>
-                  <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="9.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyToText" prefHeight="50.0" prefWidth="50.0" styleClass="turquoise-button" stylesheets="@../Styles/buttonsStyle.css">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Images/copy_icon_32x32.png" />
                      </image></ImageView>
-               </children>
-            </Pane>
+               </graphic>
+            </Button>
          </children>
       </HBox>
       <Pane layoutX="600.0" layoutY="192.0" prefHeight="380.0" prefWidth="700.0" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="190.0">
@@ -101,29 +101,34 @@
             </Label>
          </children>
       </Pane>
-      <VBox layoutX="782.0" layoutY="600.0" prefHeight="150.0" prefWidth="300.0" AnchorPane.leftAnchor="800.0" AnchorPane.topAnchor="600.0">
+      <VBox layoutX="782.0" layoutY="600.0" prefHeight="150.0" prefWidth="500.0" AnchorPane.leftAnchor="800.0" AnchorPane.topAnchor="600.0">
          <children>
-            <Label fx:id="DoctorFirstNameLabel" prefHeight="32.0" prefWidth="300.0" text="Doctor First Name" textFill="WHITE">
+            <Label fx:id="DoctorFirstNameLabel" prefHeight="32.0" prefWidth="500.0" text="Doctor First Name" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="DoctorLastNameLabel" prefHeight="32.0" prefWidth="300.0" text="Doctor Last Name" textFill="WHITE">
+            <Label fx:id="DoctorLastNameLabel" prefHeight="32.0" prefWidth="500.0" text="Doctor Last Name" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="DoctorProfessionLabel" prefHeight="32.0" prefWidth="300.0" text="Doctor Profession" textFill="WHITE">
+            <Label fx:id="DoctorProfessionLabel" prefHeight="32.0" prefWidth="500.0" text="Doctor Profession" textFill="WHITE">
                <font>
                   <Font name="System Italic" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="ContactDateLabel" prefHeight="32.0" prefWidth="300.0" text="Contact Date: 00-00-0000" textFill="WHITE">
+            <Label fx:id="examinationNameLabel" prefHeight="32.0" prefWidth="500.0" text="Examination_name" textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="ContactDateLabel" prefHeight="32.0" prefWidth="500.0" text="Contact Date: 00-00-0000" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label fx:id="ContactHourLabel" prefHeight="32.0" prefWidth="300.0" text="Contact Hour: 00:00" textFill="WHITE">
+            <Label fx:id="ContactHourLabel" prefHeight="32.0" prefWidth="500.0" text="Contact Hour: 00:00" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
@@ -154,5 +159,34 @@
             </RadialGradient>
          </textFill>
       </Button>
+      <Button fx:id="RefreshButton" layoutX="862.0" layoutY="933.0" mnemonicParsing="false" onAction="#RefreshButtonClicked" prefHeight="60.0" prefWidth="180.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="REFRESH" AnchorPane.leftAnchor="860.0" AnchorPane.topAnchor="930.0">
+         <font>
+            <Font name="Consolas Bold" size="20.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.28700000047683716" green="0.7103614211082458" blue="0.8199999928474426" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color green="0.27843138575553894" blue="0.4313725531101227" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Button>
+      <Label fx:id="correctLabel" layoutX="838.0" layoutY="902.0" prefHeight="40.0" prefWidth="260.0" textFill="#48ff00" AnchorPane.leftAnchor="1550.0" AnchorPane.topAnchor="880.0">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

@@ -181,5 +181,16 @@ public class Message {
     public void addReferralSMI(PrintWriter writer, String message) {
         writer.println("ADD_SMI_EREFERRAL:" + message);
     }
-
+    public void sendGetEContact(PrintWriter writer, String message) {
+        writer.println("GET_ECONTACT:" + message);
+    }
+    public void sendGetExaminationsForTodayMessage(PrintWriter writer, String message) {
+        writer.println("GET_EXAMINATIONS_FOR_TODAY:" + message);
+    }
+    public void addLinkToExamination(PrintWriter writer, String message) {
+        writer.println("ADD_LINK:" + message);
+    }
+    public void sendGetExaminationsDoctorMessage(PrintWriter writer, String message) {
+        writer.println("GET_DOCTOR_EXAMINATIONS:" + message);
+    }
 }

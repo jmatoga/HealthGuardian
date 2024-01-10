@@ -338,7 +338,40 @@ class ClientHandler implements Callable<String> {
                     String addingResult = sqlEngine.addSMIEreferral(Integer.parseInt(clientId), referral_id, barcode, date_of_issue, e_referral_code, referral_name, Integer.parseInt(doctor_id), Integer.parseInt(user_id));
                     SendToClient.println(addingResult);
 
-                }else {
+                }else if (serverMessage.startsWith("GET_ECONTACT:")) {
+                    String[] resources = serverMessage.substring(13).split(",");
+                    String clientId = resources[0];
+                    String user_id = resources[1];
+
+                    String[][] eContactResult = sqlEngine.getEContact(Integer.parseInt(clientId), Integer.parseInt(user_id));
+                    SendToClient.println(Arrays.deepToString(eContactResult));
+
+                } else if (serverMessage.startsWith("GET_EXAMINATIONS_FOR_TODAY:")) {
+                    String[] resources = serverMessage.substring(27).split(",");
+                    String clientId = resources[0];
+                    String doctorId = resources[1];
+
+                    String[][] messagesResult = sqlEngine.getExaminationsForToday(Integer.parseInt(clientId), Integer.parseInt(doctorId));
+                    SendToClient.println(Arrays.deepToString(messagesResult));
+
+                }else if (serverMessage.startsWith("ADD_LINK:")) {
+                    String[] resources = serverMessage.substring(9).split(",");
+                    String clientId = resources[0];
+                    String examination_nr = resources[1];
+                    String link = resources[2];
+
+                    String addingResult = sqlEngine.addExaminationLink(Integer.parseInt(clientId), examination_nr, link);
+                    SendToClient.println(addingResult);
+
+                } else if (serverMessage.startsWith("GET_DOCTOR_EXAMINATIONS:")) {
+                    String[] resources = serverMessage.substring(24).split(",");
+                    String clientId = resources[0];
+                    String doctorId = resources[1];
+
+                    String[][] messagesResult = sqlEngine.getDoctorExaminations(Integer.parseInt(clientId), Integer.parseInt(doctorId));
+                    SendToClient.println(Arrays.deepToString(messagesResult));
+
+                } else {
                     System.out.println(Color.ColorString("Something went wrong in ClientHandler (probably wrong substring number)", Color.ANSI_RED));
                     exit(-100);
                 }
