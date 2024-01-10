@@ -691,9 +691,11 @@ public class ShortMedicalInterviewController implements Initializable {
         doctorResult();
         additionalDescriptionToDB = additionalDescriptionTextField.getText();
         resultSmiToDB = doctorResultLabel.getText();
-        message.addShortMedicalInterview(SendToServer, Client.clientId + "," + whatHurtsYouToDB + "," + painSymptomsToDB + "," + otherSymptomsToDB + "," + symptomsOtherSymptomsToDB + "," + medicinesToDB + "," + painDurationToDB + "," + whenThePainStartedToDB + "," + temperatureToDB + "," + additionalDescriptionToDB + "," + resultSmiToDB + "," + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "," + Client.user_id);
+        //System.out.println(Client.clientId + "," + whatHurtsYouToDB + "," + painSymptomsToDB + "," + otherSymptomsToDB + "," + symptomsOtherSymptomsToDB + "," + medicinesToDB + "," + painDurationToDB + "," + whenThePainStartedToDB + "," + temperatureToDB + "," + additionalDescriptionToDB + "," + resultSmiToDB + "," + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "," + Client.user_id);
+        message.addShortMedicalInterview(SendToServer, Client.clientId + "#/#" + whatHurtsYouToDB + "#/#" + painSymptomsToDB + "#/#" + otherSymptomsToDB + "#/#" + symptomsOtherSymptomsToDB + "#/#" + medicinesToDB + "#/#" + painDurationToDB + "#/#" + whenThePainStartedToDB + "#/#" + temperatureToDB + "#/#" + additionalDescriptionToDB + "#/#" + resultSmiToDB + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "#/#" + Client.user_id);
         String serverAnswer = ReadFromServer.readLine();
         System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
+
         if(serverAnswer.startsWith("SMI added correctly with nr: ")){
             SMIcode = serverAnswer.substring(29);
             smiCodeLabel.setText("Your unique SMI code: " + SMIcode);
@@ -709,7 +711,7 @@ public class ShortMedicalInterviewController implements Initializable {
         askForAReferralButton.setVisible(false);
         progressProgressIndicator.setOpacity(1);
         progressProgressIndicator.setProgress(0.2);
-        message.addReferralSMI(SendToServer, Client.clientId + "," + SMIcode + "," + SMIcode + "," + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "," + SMIcode + "," + ("to " + resultSmiToDB + "(create by SMI)") + "," + 16 + "," + Client.user_id);
+        message.addReferralSMI(SendToServer, Client.clientId + "#/#" + SMIcode + "#/#" + SMIcode + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "#/#" + SMIcode + "#/#" + ("to " + resultSmiToDB + "(create by SMI)") + "#/#" + 16 + "#/#" + Client.user_id);
         progressProgressIndicator.setProgress(0.5);
         String serverAnswer = ReadFromServer.readLine();
         progressProgressIndicator.setProgress(0.7);
