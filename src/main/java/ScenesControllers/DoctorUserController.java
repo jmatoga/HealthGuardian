@@ -113,7 +113,7 @@ public class DoctorUserController implements Initializable {
     }
 
     private void getMedicalHistoryFromDB() throws IOException {
-        message.sendGetDoctorMedicalHistoryMessage(SendToServer, Client.clientId + "," + peselTextField.getText());
+        message.sendGetDoctorMedicalHistoryMessage(SendToServer, Client.clientId + "#/#" + peselTextField.getText());
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if (serverAnswer.equals("[[No medical history in database]]")) {
@@ -171,7 +171,7 @@ public class DoctorUserController implements Initializable {
                 newDeleteButton.setOnMouseClicked(MouseEvent -> {
                     if (checkPesel() && !peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
                         try {
-                            message.sendDeleteMedicialHistory(SendToServer, Client.clientId + "," + medicalHistoryData[0]);
+                            message.sendDeleteMedicialHistory(SendToServer, Client.clientId + "#/#" + medicalHistoryData[0]);
                             String serverAnswer1 = Client.getServerResponse(ReadFromServer);
 
                             if (serverAnswer1.equals("Medical history deleted correctly.")) {
@@ -249,7 +249,7 @@ public class DoctorUserController implements Initializable {
                     alert.setOnCloseRequest(alertEvent -> {
                         if (alert.getResult() == okButtonType && !peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
                             if (!inputFieldMedicalCase.getText().isEmpty() && !inputFieldICD10FirstLetter.getText().isEmpty() && !inputFieldICD10Code.getText().isEmpty()) {
-                                message.addMedicalHistory(SendToServer, Client.clientId + "," + inputFieldMedicalCase.getText() + "," + inputFieldICD10FirstLetter.getText() + "," + inputFieldICD10Code.getText() + "," + peselTextField.getText());
+                                message.addMedicalHistory(SendToServer, Client.clientId + "#/#" + inputFieldMedicalCase.getText() + "#/#" + inputFieldICD10FirstLetter.getText() + "#/#" + inputFieldICD10Code.getText() + "#/#" + peselTextField.getText());
 
                                 try {
                                     String serverAnswer1 = Client.getServerResponse(ReadFromServer);
@@ -304,7 +304,7 @@ public class DoctorUserController implements Initializable {
     }
 
     private void getFindingsFromDB() throws IOException {
-        message.sendGetDoctorFindingsMessage(SendToServer, Client.clientId + "," + peselTextField.getText());
+        message.sendGetDoctorFindingsMessage(SendToServer, Client.clientId + "#/#" + peselTextField.getText());
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if(serverAnswer.equals("[[No findings in database]]")) {
@@ -388,7 +388,7 @@ public class DoctorUserController implements Initializable {
 
             alert.setOnCloseRequest(alertEvent -> {
                 if (alert.getResult() == okButtonType && !inputFieldMedicines.getText().isEmpty() && !peselTextField.getText().isEmpty()) {
-                    message.prescribeEPrescription(SendToServer, Client.clientId + "," + inputFieldMedicines.getText() + "," + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "," + Client.doctor_id + "," + peselTextField.getText());
+                    message.prescribeEPrescription(SendToServer, Client.clientId + "#/#" + inputFieldMedicines.getText() + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "#/#" + Client.doctor_id + "#/#" + peselTextField.getText());
 
                     try {
                         String serverAnswer = Client.getServerResponse(ReadFromServer);
@@ -469,7 +469,7 @@ public class DoctorUserController implements Initializable {
 
             alert.setOnCloseRequest(alertEvent -> {
                 if (alert.getResult() == okButtonType && !inputFieldEReferralName.getText().isEmpty() && !peselTextField.getText().isEmpty()) {
-                    message.prescribeEReferral(SendToServer, Client.clientId + "," + inputFieldEReferralName.getText() + "," + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "," + Client.doctor_id + "," + peselTextField.getText());
+                    message.prescribeEReferral(SendToServer, Client.clientId + "#/#" + inputFieldEReferralName.getText() + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "#/#" + Client.doctor_id + "#/#" + peselTextField.getText());
 
                     try {
                         String serverAnswer = Client.getServerResponse(ReadFromServer);
@@ -576,7 +576,7 @@ public class DoctorUserController implements Initializable {
 
             alert.setOnCloseRequest(alertEvent -> {
                 if (alert.getResult() == okButtonType && !peselTextField.getText().isEmpty()) {
-                    message.addRecommendation(SendToServer, Client.clientId + "," + inputFieldDiet.getText() + "," + inputFieldMedicines.getText() + "," + nextCheckUpDate.getValue() + "," + inputFieldNextCheckUpName.getText() + "," + inputFieldAdditionalInformation.getText() + "," + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "," + Client.doctor_id + "," + peselTextField.getText());
+                    message.addRecommendation(SendToServer, Client.clientId + "#/#" + inputFieldDiet.getText() + "#/#" + inputFieldMedicines.getText() + "#/#" + nextCheckUpDate.getValue() + "#/#" + inputFieldNextCheckUpName.getText() + "#/#" + inputFieldAdditionalInformation.getText() + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "#/#" + Client.doctor_id + "#/#" + peselTextField.getText());
 
                     try {
                         String serverAnswer = Client.getServerResponse(ReadFromServer);
@@ -609,7 +609,7 @@ public class DoctorUserController implements Initializable {
     }
 
     private void getDocumentationsFromDB() throws IOException {
-        message.sendGetDoctorDocumentationsMessage(SendToServer, Client.clientId + "," + peselTextField.getText());
+        message.sendGetDoctorDocumentationsMessage(SendToServer, Client.clientId + "#/#" + peselTextField.getText());
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if (serverAnswer.equals("[[No documentations in database]]")) {
@@ -691,7 +691,7 @@ public class DoctorUserController implements Initializable {
                 newDeleteButton.setOnMouseClicked(MouseEvent -> {
                     if (checkPesel() && !peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
                         try {
-                            message.sendDeleteDocumentation(SendToServer, Client.clientId + "," + documentationData[0]);
+                            message.sendDeleteDocumentation(SendToServer, Client.clientId + "#/#" + documentationData[0]);
                             String serverAnswer1 = Client.getServerResponse(ReadFromServer);
 
                             if (serverAnswer1.equals("Documentation deleted correctly.")) {
@@ -770,7 +770,7 @@ public class DoctorUserController implements Initializable {
                     alert.setOnCloseRequest(alertEvent -> {
                         if (alert.getResult() == okButtonType && !peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
                             if (!inputFieldInterview.getText().isEmpty() && !inputFieldICD10.getText().isEmpty() && !inputFieldRecommendationId.getText().isEmpty()) {
-                                message.addDocumentation(SendToServer, Client.clientId + "," + inputFieldInterview.getText() + "," + inputFieldPhysicalExamination.getText() + "," + inputFieldICD10.getText() + "," + inputFieldRecommendationId.getText() + "," + peselTextField.getText() + "," + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "," + Client.doctor_id);
+                                message.addDocumentation(SendToServer, Client.clientId + "#/#" + inputFieldInterview.getText() + "#/#" + inputFieldPhysicalExamination.getText() + "#/#" + inputFieldICD10.getText() + "#/#" + inputFieldRecommendationId.getText() + "#/#" + peselTextField.getText() + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "#/#" + Client.doctor_id);
 
                                 try {
                                     String serverAnswer1 = Client.getServerResponse(ReadFromServer);
@@ -852,7 +852,7 @@ public class DoctorUserController implements Initializable {
 
     private void getPatient() throws IOException {
         if (checkPesel()) {
-            message.sendGetPatientMessage(SendToServer, Client.clientId + "," + peselTextField.getText());
+            message.sendGetPatientMessage(SendToServer, Client.clientId + "#/#" + peselTextField.getText());
             String serverAnswer = Client.getServerResponse(ReadFromServer);
 
             String[] settingsData = serverAnswer.substring(1, serverAnswer.length() - 1).split(", ");
@@ -906,7 +906,7 @@ public class DoctorUserController implements Initializable {
     }
 
     private void getSettingsFromDB() throws IOException {
-        message.sendGetDoctorSettingsMessage(SendToServer, Client.clientId + "," + Client.doctor_id);
+        message.sendGetDoctorSettingsMessage(SendToServer, Client.clientId + "#/#" + Client.doctor_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         String[] settingsData = serverAnswer.substring(1, serverAnswer.length() - 1).split(", ");

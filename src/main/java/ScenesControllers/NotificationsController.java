@@ -48,7 +48,7 @@ public class NotificationsController implements Initializable {
     }
 
     private void getNotificationsFromDB() throws IOException {
-        message.sendGetNotificationsMessage(SendToServer, Client.clientId  + "," + Client.user_id);
+        message.sendGetNotificationsMessage(SendToServer, Client.clientId  + "#/#" + Client.user_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if(serverAnswer.equals("[[No notifications in database]]")) {

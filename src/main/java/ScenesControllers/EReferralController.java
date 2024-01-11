@@ -283,7 +283,7 @@ public class EReferralController implements Initializable {
     }
 
     private void getEReferralFromDB() throws IOException {
-        message.sendGetEReferralMessage(SendToServer, Client.clientId  + "," + Client.user_id);
+        message.sendGetEReferralMessage(SendToServer, Client.clientId  + "#/#" + Client.user_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if(serverAnswer.equals("[[No EReferrals in database]]")) {

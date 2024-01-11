@@ -100,7 +100,7 @@ public class SignInController implements Initializable {
 
     void signInUser() throws IOException {
         if(checkWrittenText()) {
-            message.checkIfUserExists(SendToServer, Client.clientId + "," + username.getText() + "," + email.getText());
+            message.checkIfUserExists(SendToServer, Client.clientId + "#/#" + username.getText() + "#/#" + email.getText());
 
             String serverAnswer = Client.getServerResponse(ReadFromServer);
 
@@ -115,7 +115,7 @@ public class SignInController implements Initializable {
                         label.setTextFill(Paint.valueOf("#ff0000"));
                         label.setText("Empty code!");
                     } else {
-                        message.checkOneTimeCode(SendToServer, Client.clientId + "," + inputField.getText() + "," + firstName.getText() + "," + lastName.getText() + "," + email.getText() + "," + phoneNumber.getText() + "," + pesel.getText() + "," + username.getText() + "," + password.getText());
+                        message.checkOneTimeCode(SendToServer, Client.clientId + "#/#" + inputField.getText() + "#/#" + firstName.getText() + "#/#" + lastName.getText() + "#/#" + email.getText() + "#/#" + phoneNumber.getText() + "#/#" + pesel.getText() + "#/#" + username.getText() + "#/#" + password.getText());
                         String serverAnswer1;
 
                         try {

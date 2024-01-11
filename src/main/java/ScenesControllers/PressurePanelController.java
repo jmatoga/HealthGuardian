@@ -79,7 +79,7 @@ public class PressurePanelController implements Initializable {
     }
 
     private void getSettingsFromDB() throws IOException {
-        message.sendGetSettingsMessage(SendToServer,Client.clientId  + "," + Client.user_id);
+        message.sendGetSettingsMessage(SendToServer,Client.clientId  + "#/#" + Client.user_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
         String[] settingsData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
 
@@ -88,7 +88,7 @@ public class PressurePanelController implements Initializable {
     }
 
     private void getPressureFromDB() throws IOException {
-        message.sendGetPressureMessage(SendToServer, Client.clientId  + "," + Client.user_id);
+        message.sendGetPressureMessage(SendToServer, Client.clientId  + "#/#" + Client.user_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         String[] pressuresData = serverAnswer.substring(2, serverAnswer.length() - 2).split("], \\[");

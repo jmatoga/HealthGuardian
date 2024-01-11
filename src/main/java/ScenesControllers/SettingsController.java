@@ -49,7 +49,7 @@ public class SettingsController implements Initializable {
 
     @FXML
     private void saveSettingsButtonClicked(ActionEvent event) throws IOException {
-        message.sendSetSettingsMessage(SendToServer, Client.clientId + "," + Client.user_id + "," + bmiSettingsCheckBox.isSelected() + "," + ageSettingsCheckBox.isSelected() + "," + dateSettingsCheckBox.isSelected() + "," + weightInChartSettingsCheckBox.isSelected() + "," + temperatureInChartSettingsCheckBox.isSelected() + "," + settingsCheckBox6.isSelected());
+        message.sendSetSettingsMessage(SendToServer, Client.clientId + "#/#" + Client.user_id + "#/#" + bmiSettingsCheckBox.isSelected() + "#/#" + ageSettingsCheckBox.isSelected() + "#/#" + dateSettingsCheckBox.isSelected() + "#/#" + weightInChartSettingsCheckBox.isSelected() + "#/#" + temperatureInChartSettingsCheckBox.isSelected() + "#/#" + settingsCheckBox6.isSelected());
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if (serverAnswer.equals("Settings changed correctly.")) {
@@ -73,7 +73,7 @@ public class SettingsController implements Initializable {
     }
 
     private void getSettingsFromDB() throws IOException {
-        message.sendGetSettingsMessage(SendToServer, Client.clientId + "," + Client.user_id);
+        message.sendGetSettingsMessage(SendToServer, Client.clientId + "#/#" + Client.user_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         String[] settingsData = serverAnswer.substring(1, serverAnswer.length() - 1).split(", ");

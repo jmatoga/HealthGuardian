@@ -93,7 +93,7 @@ public class LogInController implements Initializable {
         else if (username.getText().isEmpty() && !password.getText().isEmpty())
             loggingStatus.setText("Username can't be empty!");
         else {
-            message.sendLoginMessage(SendToServer, Client.clientId + "," + username.getText() + "," + password.getText());
+            message.sendLoginMessage(SendToServer, Client.clientId + "#/#" + username.getText() + "#/#" + password.getText());
             String serverAnswer = Client.getServerResponse(ReadFromServer);
 
             if (serverAnswer.startsWith("Logged successfully. Your user_id: ") && Integer.parseInt(serverAnswer.substring(35)) > 0) {

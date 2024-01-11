@@ -127,7 +127,7 @@ public class ClientPanelController implements Initializable {
 
         alert.setOnCloseRequest(alertEvent -> {
             if(checkEditData(alertEvent, inputFieldWeight, inputFieldHeight, inputFieldTemperature, inputFieldPressure1, inputFieldPressure2, label)) {
-                message.updateUserBasicData(SendToServer, Client.clientId + "," + "withoutBirthdayDate" + "," + inputFieldWeight.getText() + "," + inputFieldHeight.getText() + "," + inputFieldTemperature.getText() + "," + inputFieldPressure1.getText() + "," + inputFieldPressure2.getText() + "," + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "," + Client.user_id);
+                message.updateUserBasicData(SendToServer, Client.clientId + "#/#" + "withoutBirthdayDate" + "#/#" + inputFieldWeight.getText() + "#/#" + inputFieldHeight.getText() + "#/#" + inputFieldTemperature.getText() + "#/#" + inputFieldPressure1.getText() + "#/#" + inputFieldPressure2.getText() + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "#/#" + Client.user_id);
 
                 try {
                     String serverAnswer = Client.getServerResponse(ReadFromServer);
@@ -188,7 +188,7 @@ public class ClientPanelController implements Initializable {
     }
 
     void getUserDataFromDB() throws IOException {
-        message.sendGetNameMessage(SendToServer,Client.clientId  + "," + Client.user_id);
+        message.sendGetNameMessage(SendToServer,Client.clientId  + "#/#" + Client.user_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         String[] userData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
@@ -218,7 +218,7 @@ public class ClientPanelController implements Initializable {
                     alertEvent.consume(); // cancel closing alert on ok button pressed
                     label.setText("Wrong Date!");
                 } else if(checkEditData(alertEvent, inputFieldWeight, inputFieldHeight, inputFieldTemperature, inputFieldPressure1, inputFieldPressure2, label)) {
-                    message.updateUserBasicData(SendToServer, Client.clientId + "," + datePicker.getValue() + "," + inputFieldWeight.getText() + "," + inputFieldHeight.getText() + "," + inputFieldTemperature.getText() + "," + inputFieldPressure1.getText() + "," + inputFieldPressure2.getText() + "," + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "," + Client.user_id);
+                    message.updateUserBasicData(SendToServer, Client.clientId + "#/#" + datePicker.getValue() + "#/#" + inputFieldWeight.getText() + "#/#" + inputFieldHeight.getText() + "#/#" + inputFieldTemperature.getText() + "#/#" + inputFieldPressure1.getText() + "#/#" + inputFieldPressure2.getText() + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "#/#" + Client.user_id);
 
                     if(userData[2].equals("No data")) {
                         try {
@@ -264,7 +264,7 @@ public class ClientPanelController implements Initializable {
     }
 
     private void getSettingsFromDB() throws IOException {
-        message.sendGetSettingsMessage(SendToServer,Client.clientId  + "," + Client.user_id);
+        message.sendGetSettingsMessage(SendToServer,Client.clientId  + "#/#" + Client.user_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         String[] settingsData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
@@ -424,7 +424,7 @@ public class ClientPanelController implements Initializable {
                 bmiStatusLabel.setTextFill(Paint.valueOf("#f54040"));
             }
 
-            bmiStatusLabel.setText(String.format(Locale.US, "%.2f", bmi)); // Locale.US to use "." instead of "," in double
+            bmiStatusLabel.setText(String.format(Locale.US, "%.2f", bmi)); // Locale.US to use "." instead of "#/#" in double
         }
     }
 

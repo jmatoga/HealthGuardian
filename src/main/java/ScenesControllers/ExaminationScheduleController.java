@@ -51,7 +51,7 @@ public class ExaminationScheduleController implements Initializable {
     }
 
     private void getExaminationsFromDB() throws IOException {
-        message.sendGetExaminationsMessage(SendToServer, Client.clientId  + "," + Client.user_id);
+        message.sendGetExaminationsMessage(SendToServer, Client.clientId  + "#/#" + Client.user_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if(serverAnswer.equals("[[No examinations in database]]")) {

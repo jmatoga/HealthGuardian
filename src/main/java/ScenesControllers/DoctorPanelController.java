@@ -57,7 +57,7 @@ public class DoctorPanelController implements Initializable {
     }
 
     void getDoctorDataFromDB() throws IOException {
-        message.sendGetDoctorDataMessage(SendToServer,Client.clientId  + "," + Client.doctor_id);
+        message.sendGetDoctorDataMessage(SendToServer,Client.clientId  + "#/#" + Client.doctor_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         String[] doctorData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
@@ -82,7 +82,7 @@ public class DoctorPanelController implements Initializable {
     }
 
     private void getSettingsFromDB() throws IOException {
-        message.sendGetDoctorSettingsMessage(SendToServer,Client.clientId  + "," + Client.doctor_id);
+        message.sendGetDoctorSettingsMessage(SendToServer,Client.clientId  + "#/#" + Client.doctor_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         String[] settingsData = serverAnswer.substring(1, serverAnswer.length() - 1).split(", ");
