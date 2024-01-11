@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
@@ -66,7 +68,12 @@
                 </RadialGradient>
             </textFill>
         </Label>
-        <Pane layoutX="817.0" layoutY="168.0" prefHeight="720.0" prefWidth="950.0" style="-fx-border-color: orange; -fx-border-width: 3;" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="170.0" />
+        <Pane layoutX="817.0" layoutY="168.0" prefHeight="720.0" prefWidth="950.0" style="-fx-border-color: orange; -fx-border-width: 3;" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="170.0">
+         <children>
+            <DatePicker layoutX="374.0" layoutY="116.0" />
+            <ChoiceBox layoutX="374.0" layoutY="166.0" prefHeight="25.0" prefWidth="174.0" />
+            <ChoiceBox layoutX="374.0" layoutY="218.0" prefHeight="25.0" prefWidth="174.0" />
+         </children></Pane>
         <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="68.0" layoutY="169.0" maxHeight="800.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="720.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="170.0">
             <content>
                 <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="0.0" layoutY="0.0">

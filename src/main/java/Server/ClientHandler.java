@@ -206,8 +206,9 @@ class ClientHandler implements Callable<String> {
                     String dateSetting = resources[4];
                     String weightInChart_setting = resources[5];
                     String temperatureInChart_setting = resources[6];
+                    String background_setting = resources[7];
 
-                    String settingsChangedResult = sqlEngine.setSettings(Integer.parseInt(clientId), userId, bmiSetting, ageSetting, dateSetting, weightInChart_setting, temperatureInChart_setting);
+                    String settingsChangedResult = sqlEngine.setSettings(Integer.parseInt(clientId), userId, bmiSetting, ageSetting, dateSetting, weightInChart_setting, temperatureInChart_setting, background_setting);
                     SendToClient.println(settingsChangedResult);
                 } else if (serverMessage.startsWith("PRESCRIBE_EPRESCRIPTION:")) {
                     String[] resources = serverMessage.substring(24).split(",");

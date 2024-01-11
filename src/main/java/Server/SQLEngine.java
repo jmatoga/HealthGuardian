@@ -537,7 +537,7 @@ public class SQLEngine {
      * @return an array of strings containing the settings
      */
     String[] getSettings(int clientID, String user_id) {
-        String[] returnStatement = {"Error", "Error", "Error", "Error", "Error"};
+        String[] returnStatement = {"Error", "Error", "Error", "Error", "Error", "Error"};
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -558,6 +558,7 @@ public class SQLEngine {
                 returnStatement[2] = String.valueOf(resultSet.getString("currentDate_setting"));
                 returnStatement[3] = String.valueOf(resultSet.getString("weightInChart_setting"));
                 returnStatement[4] = String.valueOf(resultSet.getString("temperatureInChart_setting"));
+                returnStatement[5] = String.valueOf(resultSet.getString("background_setting"));
             } else
                 System.out.println("Error in database while getting settings.");
 
@@ -617,7 +618,7 @@ public class SQLEngine {
      * @param temperatureInChart_setting the fifth setting of the user
      * @return a string indicating the status of the set operation
      */
-    String setSettings(int clientID, String user_id, String bmi_setting, String age_setting, String currentDate_setting, String weightInChart_setting, String temperatureInChart_setting) {
+    String setSettings(int clientID, String user_id, String bmi_setting, String age_setting, String currentDate_setting, String weightInChart_setting, String temperatureInChart_setting, String background_setting) {
         String returnStatement = "Error";
 
         Connection connection = null;
@@ -626,14 +627,15 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String sql = "UPDATE settings_table SET bmi_setting = ?, age_setting = ?, currentDate_setting = ?, weightInChart_setting = ?, temperatureInChart_setting = ? WHERE user_id = ?";
+            String sql = "UPDATE settings_table SET bmi_setting = ?, age_setting = ?, currentDate_setting = ?, weightInChart_setting = ?, temperatureInChart_setting = ?, background_setting = ? WHERE user_id = ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, bmi_setting);
             preparedStatement.setString(2, age_setting);
             preparedStatement.setString(3, currentDate_setting);
             preparedStatement.setString(4, weightInChart_setting);
             preparedStatement.setString(5, temperatureInChart_setting);
-            preparedStatement.setInt(6, Integer.parseInt(user_id));
+            preparedStatement.setString(6, background_setting);
+            preparedStatement.setInt(7, Integer.parseInt(user_id));
 
             int rowsAffected = preparedStatement.executeUpdate();
 
