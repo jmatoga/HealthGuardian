@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="adminScene" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.AdminPanelController">
+    <children>
+        <ImageView fx:id="imageView" fitHeight="500.0" fitWidth="800.0" layoutX="1.0" layoutY="1.0" onMouseClicked="#unHighlightButtonsOnImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@../Images/background_admin.png" />
+            </image></ImageView>
+        <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="463.0" layoutY="59.0" prefHeight="76.0" prefWidth="282.0" text="&#10;" textFill="RED" wrapText="true" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
+            <font>
+                <Font name="Arial Bold" size="20.0" />
+            </font>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets></Label>
+        <Button fx:id="logOutButton" layoutX="705.0" layoutY="455.0" mnemonicParsing="false" onAction="#logOutButtonClicked" prefHeight="31.0" prefWidth="80.0" styleClass="turquoise-button" stylesheets="@../Styles/buttonsStyle.css" text="LOG OUT" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+            <font>
+                <Font name="Consolas Bold" size="13.0" />
+            </font>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Button>
+      <Button fx:id="addNewDoctorButton" layoutX="42.0" layoutY="56.0" mnemonicParsing="false" onAction="#addNewDoctorButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="ADD NEW DOCTOR" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="80.0">
+         <font>
+            <Font name="Consolas Bold" size="24.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.27450981736183167" green="0.8313725590705872" blue="0.7019608020782471" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color green="0.43921568989753723" blue="0.32156863808631897" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Button>
+      <Button fx:id="newOneTimeCodeButton" layoutX="50.0" layoutY="162.0" mnemonicParsing="false" onAction="#newOneTimeCodeButtonClicked" prefHeight="90.0" prefWidth="260.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="GENERATE NEW ONE TIME CODES" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="200.0">
+         <font>
+            <Font name="Consolas Bold" size="21.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.27450981736183167" green="0.8313725590705872" blue="0.7019608020782471" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color green="0.43921568989753723" blue="0.32156863808631897" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Button>
+      <Button fx:id="openDataBaseButton" layoutX="50.0" layoutY="283.0" mnemonicParsing="false" onAction="#openDataBaseButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="OPEN DATA BASE" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="330.0">
+         <font>
+            <Font name="Consolas Bold" size="24.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.27450981736183167" green="0.8313725590705872" blue="0.7019608020782471" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color green="0.43921568989753723" blue="0.32156863808631897" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/web_link_32x32.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="generateRaportButton" layoutX="520.0" layoutY="330.0" mnemonicParsing="false" onAction="#generateRaportButtonClicked" prefHeight="90.0" prefWidth="260.0" styleClass="yellow-button" stylesheets="@../Styles/buttonsStyle.css" text="GENERATE RAPORT " AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="250.0">
+         <font>
+            <Font name="Consolas Bold" size="24.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.27450981736183167" green="0.8313725590705872" blue="0.7019608020782471" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color green="0.43921568989753723" blue="0.32156863808631897" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/raport_32x32.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+    </children>
+</AnchorPane>
