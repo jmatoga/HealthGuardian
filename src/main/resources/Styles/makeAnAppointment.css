@@ -1,0 +1,135 @@
+.calendar-grid {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0);
+}
+
+.combo-box-popup > .list-view > .placeholder > .label {
+    -fx-text-fill: black; /* Kolor tekstu z kodu niebieskiego */
+}
+
+.calendar-header {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); /* Kolor tła z kodu niebieskiego */
+    -fx-base: #b0cbf7; /* Kolor bazowy z kodu niebieskiego */
+    -fx-text-fill: black; /* Kolor tekstu z kodu niebieskiego */
+}
+
+.date-picker-popup {
+    -fx-text-fill: black; /* Kolor tekstu z kodu niebieskiego */
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0),
+        -fx-control-inner-background;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 0;
+    -fx-alignment: CENTER; /* VBox */
+    -fx-spacing: 0; /* VBox */
+    -fx-padding: 0.083333em; /* 1 1 1 1 */
+    -fx-effect: dropshadow(gaussian, rgba(73, 122, 201, 0.2), 12, 0.0, 0, 8);
+}
+
+.date-picker > .text-field {
+    -fx-text-fill: black; /* Kolor tekstu z kodu niebieskiego */
+}
+
+.date-picker-popup > .month-year-pane {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0) /* Kolor tła z kodu niebieskiego */
+    -fx-text-fill: black; /* Kolor tekstu z kodu niebieskiego */
+}
+
+
+.blue.choiceBox {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5;
+    -fx-border-color: #497ac9;
+    -fx-border-width: 3;
+    -fx-border-radius: 2;
+}
+
+.blue.field {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5;
+    -fx-border-color: #497ac9;
+    -fx-border-width: 3;
+    -fx-border-radius: 2;
+    -fx-font-family: "Consolas";
+    -fx-wrap-text: true;
+    -fx-effect: dropshadow(three-pass-box, rgba(73, 122, 201, 0.3), 5, 0.0, 0, 1);
+}
+
+.blue-20-button {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5;
+    -fx-border-color: #497ac9;
+    -fx-border-width: 3;
+    -fx-border-radius: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(73, 122, 201, 0.3), 5, 0.0, 0, 1);
+    -fx-text-fill: radial-gradient(focus-angle 0.0deg, focus-distance 0.0%, center 50.0% 54.2654%, radius 74.1379%, #497ac9 0.0%, #00476e 100.0%);
+    -fx-font-family: "Consolas bold";
+    -fx-font-size: 20px;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.blue-20-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #c5d7e9, #9fb5d3);
+    -fx-border-color: #49649e;
+}
+
+.blue-20-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #9fb5d3, #c5d7e9);
+    -fx-border-color: #497ac9;
+}
+
+.blue-textfield {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0);
+    -fx-background-radius: 5;
+    -fx-border-color: #497ac9;
+    -fx-border-width: 3;
+    -fx-border-radius: 2;
+    -fx-padding: 5 10;
+}
+
+.check-box .box {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); /* Kolor tła CheckBoxa */
+    -fx-background-radius: 5;
+    -fx-border-color: #497ac9;
+    -fx-border-width: 3;
+    -fx-border-radius: 2;
+    -fx-background-insets: 0, 1;
+}
+
+.check-box .box:hover {
+    -fx-background-color: linear-gradient(to bottom, #c5d7e9, #9fb5d3); /* Kolor tła CheckBoxa po najechaniu myszą */
+    -fx-background-radius: 5;
+    -fx-border-color: #497ac9;
+    -fx-border-width: 3;
+    -fx-border-radius: 2;
+    -fx-background-insets: 0, 1;
+}
+
+.check-box .box:selected {
+    -fx-background-color: linear-gradient(to bottom, #9fb5d3, #c5d7e9); /* Kolor tła zaznaczonego CheckBoxa */
+    -fx-background-radius: 5;
+    -fx-border-color: #497ac9;
+    -fx-border-width: 3;
+    -fx-border-radius: 2;
+    -fx-background-insets: 0, 1;
+}
+
+.check-box .box:selected:hover {
+    -fx-background-color: linear-gradient(to bottom, #9fb5d3, #c5d7e9); /* Kolor tła zaznaczonego CheckBoxa po najechaniu myszą */
+    -fx-background-radius: 5;
+    -fx-border-color: #497ac9;
+    -fx-border-width: 3;
+    -fx-border-radius: 2;
+    -fx-background-insets: 0, 1;
+}
+
+.check-box .mark {
+    -fx-background-color: #497ac9; /* Kolor znacznika CheckBoxa (kiedy jest zaznaczony) */
+    -fx-background-radius: 5;
+    -fx-border-color: #497ac9;
+    -fx-border-width: 3;
+    -fx-border-radius: 2;
+    -fx-background-insets: 0, 1;
+}

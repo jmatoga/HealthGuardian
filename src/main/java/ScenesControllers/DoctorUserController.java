@@ -40,6 +40,33 @@ public class DoctorUserController implements Initializable {
     private static PrintWriter SendToServer;
 
     @FXML
+    public Pane smiPanel;
+
+    @FXML
+    public TextField smiCodeTextField;
+
+    @FXML
+    public Label smiMainFieldOfCaseLabel;
+
+    @FXML
+    public Label smiMedicinesLabel;
+
+    @FXML
+    public Label smiWhenThePainSatrtLabel;
+
+    @FXML
+    public Label smiExtenetOfThePainLabel;
+
+    @FXML
+    public Label smiTemperatureLabel;
+
+    @FXML
+    public Label smiAdditionalInformationLabel;
+
+    @FXML
+    public Label smiDateLabel;
+
+    @FXML
     private ImageView imageView;
 
     @FXML
@@ -850,6 +877,10 @@ public class DoctorUserController implements Initializable {
             getPatient();
     }
 
+    @FXML
+    public void checkSMIButtonClicked(ActionEvent actionEvent) {
+    }
+
     private void getPatient() throws IOException {
         if (checkPesel()) {
             message.sendGetPatientMessage(SendToServer, Client.clientId + "," + peselTextField.getText());
@@ -949,4 +980,6 @@ public class DoctorUserController implements Initializable {
             timeline.play();
         }
     }
+
+
 }

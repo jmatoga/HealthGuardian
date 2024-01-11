@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -56,7 +57,7 @@
             <Font name="Consolas" size="20.0" />
          </font>
       </Label>
-      <VBox layoutX="292.0" layoutY="290.0" prefHeight="112.0" prefWidth="280.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="290.0">
+      <VBox layoutX="292.0" layoutY="290.0" prefHeight="112.0" prefWidth="280.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="290.0">
          <children>
             <Label fx:id="firstNameLabel" prefHeight="35.0" prefWidth="287.0" text="First_Name" textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -75,7 +76,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox layoutX="292.0" layoutY="403.0" prefHeight="255.0" prefWidth="280.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="400.0">
+      <VBox layoutX="292.0" layoutY="403.0" prefHeight="255.0" prefWidth="280.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="400.0">
          <children>
             <Label fx:id="weightLabel" prefHeight="27.0" prefWidth="285.0" text="weight:" textFill="WHITE">
                <font>
@@ -118,7 +119,7 @@
             </Label>
          </children>
       </VBox>
-      <Button fx:id="editDataButton" layoutX="292.0" layoutY="658.0" mnemonicParsing="false" onAction="#editDataButtonClicked" prefHeight="50.0" prefWidth="148.0" styleClass="darkblue-20-button" stylesheets="@../Styles/buttonsStyle.css" text="EDIT DATA" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="660.0">
+      <Button fx:id="editDataButton" layoutX="292.0" layoutY="658.0" mnemonicParsing="false" onAction="#editDataButtonClicked" prefHeight="50.0" prefWidth="148.0" styleClass="darkblue-20-button" stylesheets="@../Styles/buttonsStyle.css" text="EDIT DATA" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="700.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -387,7 +388,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Label fx:id="dataUpdatedStatusLabel" layoutX="250.0" layoutY="247.0" prefHeight="53.0" prefWidth="315.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="250.0">
+      <Label fx:id="dataUpdatedStatusLabel" layoutX="250.0" layoutY="247.0" prefHeight="53.0" prefWidth="315.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="250.0">
          <font>
             <Font size="30.0" />
          </font>
@@ -433,17 +434,21 @@
             <Font name="Consolas Bold" size="20.0" />
          </font>
       </Button>
-
-      <Label fx:id="bmiLabel" layoutX="565.0" layoutY="412.0" prefHeight="35.0" prefWidth="60.0" text="BMI: " textFill="WHITE" visible="false">
-         <font>
-            <Font name="Consolas Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="bmiStatusLabel" layoutX="616.0" layoutY="412.0" prefHeight="35.0" prefWidth="60.0" textFill="WHITE" visible="false">
-         <font>
-            <Font name="Consolas Bold" size="20.0" />
-         </font>
-      </Label>
+      <HBox layoutX="546.0" layoutY="499.0" prefHeight="35.0" prefWidth="124.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="650.0">
+         <children>
+      
+            <Label fx:id="bmiLabel" prefHeight="35.0" prefWidth="62.0" text="BMI: " textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Consolas Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="bmiStatusLabel" prefHeight="35.0" prefWidth="60.0" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Consolas Bold" size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
 
    </children>
 </AnchorPane>
