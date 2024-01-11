@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
@@ -18,7 +22,7 @@
 
 <AnchorPane fx:id="examinationScheduleScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.ExaminationScheduleController">
     <children>
-        <ImageView fitHeight="1200.0" fitWidth="1920.0" layoutX="8.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ImageView fitHeight="1200.0" fitWidth="1920.0" layoutX="6.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="-9.0">
             <image>
                 <Image url="@../Images/bg2.jpg" />
             </image>
@@ -68,12 +72,63 @@
                 </RadialGradient>
             </textFill>
         </Label>
-        <Pane layoutX="817.0" layoutY="168.0" prefHeight="720.0" prefWidth="950.0" style="-fx-border-color: orange; -fx-border-width: 3;" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="170.0">
+      <Pane prefHeight="720.0" prefWidth="700.0" style="-fx-border-color: #4287f5; -fx-border-width: 8; -fx-border-radius: 15;" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="170.0">
          <children>
-            <DatePicker layoutX="374.0" layoutY="116.0" />
-            <ChoiceBox layoutX="374.0" layoutY="166.0" prefHeight="25.0" prefWidth="174.0" />
-            <ChoiceBox layoutX="374.0" layoutY="218.0" prefHeight="25.0" prefWidth="174.0" />
-         </children></Pane>
+              <Pane layoutX="8.0" layoutY="8.0" opacity="0.2" prefHeight="704.0" prefWidth="684.0" style="-fx-background-color: #4287f5; -fx-background-radius: 10;" />
+            <VBox layoutX="150.0" prefHeight="720.0" prefWidth="400.0">
+               <children>
+                  <Pane prefHeight="10.0" prefWidth="400.0" />
+                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="400.0" text="MAKE AN APPOINTMENT" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Bold" size="35.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="40.0" prefWidth="400.0" />
+                  <DatePicker prefHeight="40.0" prefWidth="400.0" stylesheets="@../Styles/makeAnAppointment.css">
+                     <styleClass>
+                        <String fx:value="calendar-grid" />
+                        <String fx:value="calendar-header" />
+                        <String fx:value="combo-box-popup" />
+                        <String fx:value="list-view" />
+                        <String fx:value="date-picker" />
+                        <String fx:value="date-picker-popup" />
+                     </styleClass>
+                  </DatePicker>
+                  <Pane prefHeight="40.0" prefWidth="400.0" />
+                  <ChoiceBox prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); -fx-border-color: #497ac9; -fx-border-width: 3; -fx-border-radius: 2; -fx-background-radius: 5; -fx-background-insets: 0, 1; -fx-effect: dropshadow(three-pass-box, rgba(73, 122, 201, 0.3), 5, 0.0, 0, 1);" />
+                  <Pane prefHeight="40.0" prefWidth="400.0" />
+                  <ChoiceBox prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); -fx-border-color: #497ac9; -fx-border-width: 3; -fx-border-radius: 2; -fx-background-radius: 5; -fx-background-insets: 0, 1; -fx-effect: dropshadow(three-pass-box, rgba(73, 122, 201, 0.3), 5, 0.0, 0, 1);" />
+                  <Pane prefHeight="40.0" prefWidth="400.0" />
+                  <TextField alignment="TOP_LEFT" prefHeight="80.0" prefWidth="400.0" promptText="Short descripiotn to examination" styleClass="blue-textfield" stylesheets="@../Styles/makeAnAppointment.css" />
+                  <Pane prefHeight="40.0" prefWidth="400.0" />
+                  <CheckBox mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" stylesheets="@../Styles/makeAnAppointment.css" text="Do you want to arrange e-contact?" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </CheckBox>
+                  <Pane prefHeight="40.0" prefWidth="400.0" />
+                  <Label prefHeight="60.0" prefWidth="400.0" textAlignment="CENTER" textFill="#00ff15" wrapText="true">
+                     <font>
+                        <Font name="Consolas Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="40.0" prefWidth="400.0" />
+                  <Pane prefHeight="43.0" prefWidth="400.0">
+                     <children>
+                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="140.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="117.0" styleClass="blue-20-button" stylesheets="@../Styles/makeAnAppointment.css" text="CONFIRM">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
         <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="68.0" layoutY="169.0" maxHeight="800.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="720.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="170.0">
             <content>
                 <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="0.0" layoutY="0.0">
