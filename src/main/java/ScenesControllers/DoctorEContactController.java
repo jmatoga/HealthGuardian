@@ -83,7 +83,7 @@ public class DoctorEContactController implements Initializable {
 
     @FXML
     public void sendButtonClicked(ActionEvent actionEvent) throws IOException {
-        message.addLinkToExamination(SendToServer, Client.clientId + "," + Examination_nr + "," + linkTextField.getText());
+        message.addLinkToExamination(SendToServer, Client.clientId + "#/#" + Examination_nr + "#/#" + linkTextField.getText());
         String serverAnswer = ReadFromServer.readLine();
         System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
 
@@ -103,7 +103,7 @@ public class DoctorEContactController implements Initializable {
     }
 
     private void getExaminationsForTodayFromDB() throws IOException {
-        message.sendGetExaminationsForTodayMessage(SendToServer, Client.clientId  + "," + Client.doctor_id);
+        message.sendGetExaminationsForTodayMessage(SendToServer, Client.clientId  + "#/#" + Client.doctor_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if(serverAnswer.equals("[[No examinations in database]]")) {
@@ -141,9 +141,9 @@ public class DoctorEContactController implements Initializable {
                 newExamination.setOnMouseClicked(event -> {
                     String text = newExaminationDescription.getText();
 
-                    Examination_nr = text.split(":")[1].split(",")[0].trim();
+                    Examination_nr = text.split(":")[1].split("#/#")[0].trim();
 
-                    String patientInfo = text.split(",")[1].trim();
+                    String patientInfo = text.split("#/#")[1].trim();
                     String patientFirstName = patientInfo.split(" ")[1];
                     String patientLastName = patientInfo.split(" ")[2];
 

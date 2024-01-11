@@ -87,7 +87,7 @@ public class DoctorLogInController implements Initializable {
         else if (username.getText().isEmpty() && !password.getText().isEmpty())
             loggingStatus.setText("Username can't be empty!");
         else {
-            message.sendDoctorLoginMessage(SendToServer, Client.clientId + "," + username.getText() + "," + password.getText());
+            message.sendDoctorLoginMessage(SendToServer, Client.clientId + "#/#" + username.getText() + "#/#" + password.getText());
             String serverAnswer = Client.getServerResponse(ReadFromServer);
 
             if (serverAnswer.startsWith("Doctor logged successfully. Your doctor_id: ") && Integer.parseInt(serverAnswer.substring(44)) > 0) {

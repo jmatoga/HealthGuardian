@@ -49,7 +49,7 @@ public class DoctorSettingsController implements Initializable {
 
     @FXML
     private void saveSettingsButtonClicked(ActionEvent event) throws IOException {
-        message.sendDoctorSetSettingsMessage(SendToServer, Client.clientId + "," + Client.doctor_id + "," + bmiSettingsCheckBox.isSelected() + "," + ageSettingsCheckBox.isSelected() + "," + dateSettingsCheckBox.isSelected() + "," + settingsCheckBox4.isSelected() + "," + settingsCheckBox5.isSelected());
+        message.sendDoctorSetSettingsMessage(SendToServer, Client.clientId + "#/#" + Client.doctor_id + "#/#" + bmiSettingsCheckBox.isSelected() + "#/#" + ageSettingsCheckBox.isSelected() + "#/#" + dateSettingsCheckBox.isSelected() + "#/#" + settingsCheckBox4.isSelected() + "#/#" + settingsCheckBox5.isSelected());
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if (serverAnswer.equals("Settings changed correctly.")) {
@@ -73,7 +73,7 @@ public class DoctorSettingsController implements Initializable {
     }
 
     private void getSettingsFromDB() throws IOException {
-        message.sendGetDoctorSettingsMessage(SendToServer, Client.clientId + "," + Client.doctor_id);
+        message.sendGetDoctorSettingsMessage(SendToServer, Client.clientId + "#/#" + Client.doctor_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         String[] settingsData = serverAnswer.substring(1, serverAnswer.length() - 1).split(", ");

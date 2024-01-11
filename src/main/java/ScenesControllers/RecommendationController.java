@@ -54,7 +54,7 @@ public class RecommendationController implements Initializable {
     }
 
     private void getRecommendationsFromDB() throws IOException {
-        message.sendGetRecommendationMessage(SendToServer, Client.clientId + "," + Client.user_id);
+        message.sendGetRecommendationMessage(SendToServer, Client.clientId + "#/#" + Client.user_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if (serverAnswer.equals("[[No recommendations in database]]")) {

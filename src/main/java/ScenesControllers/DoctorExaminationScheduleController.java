@@ -48,7 +48,7 @@ public class DoctorExaminationScheduleController implements Initializable {
     }
 
     private void getExaminationsDoctorFromDB() throws IOException {
-        message.sendGetExaminationsDoctorMessage(SendToServer, Client.clientId  + "," + Client.doctor_id);
+        message.sendGetExaminationsDoctorMessage(SendToServer, Client.clientId  + "#/#" + Client.doctor_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if(serverAnswer.equals("[[No examinations in database]]")) {

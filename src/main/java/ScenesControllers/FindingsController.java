@@ -257,7 +257,7 @@ public class FindingsController implements Initializable {
     }
 
     private void getFindingsFromDB() throws IOException {
-        message.sendGetFindingsMessage(SendToServer, Client.clientId  + "," + Client.user_id);
+        message.sendGetFindingsMessage(SendToServer, Client.clientId  + "#/#" + Client.user_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if(serverAnswer.equals("[[No findings in database]]")) {

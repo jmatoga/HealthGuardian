@@ -87,7 +87,7 @@ public class EContactController implements Initializable {
     }
 
     public void SendEContactInformation() throws IOException {
-        message.sendGetEContact(SendToServer, Client.clientId + "," + Client.user_id);
+        message.sendGetEContact(SendToServer, Client.clientId + "#/#" + Client.user_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if (serverAnswer.equals("[[No EContact information in database]]")) {

@@ -72,7 +72,7 @@ class ClientHandler implements Callable<String> {
                     break;
                 } else if (serverMessage.startsWith("LOGIN:")) {
                     // TODO move this to separate function
-                    String[] resources = serverMessage.substring(6).split(",");
+                    String[] resources = serverMessage.substring(6).split("#/#");
                     String clientId = resources[0];
                     String username = resources[1];
                     String password = resources[2];
@@ -84,7 +84,7 @@ class ClientHandler implements Callable<String> {
                         SendToClient.println("Wrong password.");
                     }
                 } else if (serverMessage.startsWith("DOCTOR_LOGIN:")) {
-                    String[] resources = serverMessage.substring(13).split(",");
+                    String[] resources = serverMessage.substring(13).split("#/#");
                     String clientId = resources[0];
                     String username = resources[1];
                     String password = resources[2];
@@ -96,7 +96,7 @@ class ClientHandler implements Callable<String> {
                         SendToClient.println("Wrong doctor password.");
                     }
                 } else if (serverMessage.startsWith("GET_USER_DATA:")) {
-                    String[] resources = serverMessage.substring(14).split(",");
+                    String[] resources = serverMessage.substring(14).split("#/#");
                     String clientId = resources[0];
                     String userId = resources[1];
 
@@ -104,7 +104,7 @@ class ClientHandler implements Callable<String> {
                     SendToClient.println(Arrays.toString(dataResult));
 
                 } else if (serverMessage.startsWith("GET_DOCTOR_DATA:")) {
-                    String[] resources = serverMessage.substring(16).split(",");
+                    String[] resources = serverMessage.substring(16).split("#/#");
                     String clientId = resources[0];
                     String doctorId = resources[1];
 
@@ -117,21 +117,21 @@ class ClientHandler implements Callable<String> {
                     String[][] dataResult = sqlEngine.getClinics(Integer.parseInt(clientId));
                     SendToClient.println(Arrays.deepToString(dataResult));
                 } else if (serverMessage.startsWith("GET_NOTIFICATIONS:")) {
-                    String[] resources = serverMessage.substring(18).split(",");
+                    String[] resources = serverMessage.substring(18).split("#/#");
                     String clientId = resources[0];
                     String userId = resources[1];
 
                     String[][] messagesResult = sqlEngine.getNotifications(Integer.parseInt(clientId), Integer.parseInt(userId));
                     SendToClient.println(Arrays.deepToString(messagesResult));
                 } else if (serverMessage.startsWith("GET_MEDICAL_HISTORY:")) {
-                    String[] resources = serverMessage.substring(20).split(",");
+                    String[] resources = serverMessage.substring(20).split("#/#");
                     String clientId = resources[0];
                     String userId = resources[1];
 
                     String[][] medicalHistoryResult = sqlEngine.getMedicalHistory(Integer.parseInt(clientId), Integer.parseInt(userId));
                     SendToClient.println(Arrays.deepToString(medicalHistoryResult));
                 } else if (serverMessage.startsWith("GET_DOCTOR_MEDICAL_HISTORY:")) {
-                    String[] resources = serverMessage.substring(27).split(",");
+                    String[] resources = serverMessage.substring(27).split("#/#");
                     String clientId = resources[0];
                     String pesel = resources[1];
 
@@ -140,7 +140,7 @@ class ClientHandler implements Callable<String> {
                     String[][] medicalHistoryResult = sqlEngine.getMedicalHistory(Integer.parseInt(clientId), user_id);
                     SendToClient.println(Arrays.deepToString(medicalHistoryResult));
                 } else if (serverMessage.startsWith("GET_DOCTOR_DOCUMENTATIONS:")) {
-                    String[] resources = serverMessage.substring(26).split(",");
+                    String[] resources = serverMessage.substring(26).split("#/#");
                     String clientId = resources[0];
                     String pesel = resources[1];
 
@@ -149,28 +149,28 @@ class ClientHandler implements Callable<String> {
                     String[][] documentationsResult = sqlEngine.getDocumentations(Integer.parseInt(clientId), user_id);
                     SendToClient.println(Arrays.deepToString(documentationsResult));
                 } else if (serverMessage.startsWith("GET_PRESSURE:")) {
-                    String[] resources = serverMessage.substring(13).split(",");
+                    String[] resources = serverMessage.substring(13).split("#/#");
                     String clientId = resources[0];
                     String userId = resources[1];
 
                     String[][] pressureResult = sqlEngine.getPressure(Integer.parseInt(clientId), Integer.parseInt(userId));
                     SendToClient.println(Arrays.deepToString(pressureResult));
                 } else if (serverMessage.startsWith("GET_EREFERRAL:")) {
-                    String[] resources = serverMessage.substring(14).split(",");
+                    String[] resources = serverMessage.substring(14).split("#/#");
                     String clientId = resources[0];
                     String userId = resources[1];
 
                     String[][] eReferralResult = sqlEngine.getEReferral(Integer.parseInt(clientId), Integer.parseInt(userId));
                     SendToClient.println(Arrays.deepToString(eReferralResult));
                 } else if (serverMessage.startsWith("GET_FINDINGS:")) {
-                    String[] resources = serverMessage.substring(13).split(",");
+                    String[] resources = serverMessage.substring(13).split("#/#");
                     String clientId = resources[0];
                     String userId = resources[1];
 
                     String[][] findingsResult = sqlEngine.getFindings(Integer.parseInt(clientId), Integer.parseInt(userId));
                     SendToClient.println(Arrays.deepToString(findingsResult));
                 } else if (serverMessage.startsWith("GET_DOCTOR_FINDINGS:")) {
-                    String[] resources = serverMessage.substring(20).split(",");
+                    String[] resources = serverMessage.substring(20).split("#/#");
                     String clientId = resources[0];
                     String pesel = resources[1];
 
@@ -179,21 +179,21 @@ class ClientHandler implements Callable<String> {
                     String[][] findingsResult = sqlEngine.getFindings(Integer.parseInt(clientId), user_id);
                     SendToClient.println(Arrays.deepToString(findingsResult));
                 } else if (serverMessage.startsWith("GET_EPRESCRIPTION:")) {
-                    String[] resources = serverMessage.substring(18).split(",");
+                    String[] resources = serverMessage.substring(18).split("#/#");
                     String clientId = resources[0];
                     String userId = resources[1];
 
                     String[][] ePrescriptionResult = sqlEngine.getEPrescrition(Integer.parseInt(clientId), Integer.parseInt(userId));
                     SendToClient.println(Arrays.deepToString(ePrescriptionResult));
                 } else if (serverMessage.startsWith("GET_RECOMMENDATION:")) {
-                    String[] resources = serverMessage.substring(19).split(",");
+                    String[] resources = serverMessage.substring(19).split("#/#");
                     String clientId = resources[0];
                     String userId = resources[1];
 
                     String[][] recommendationResult = sqlEngine.getRecommendation(Integer.parseInt(clientId), Integer.parseInt(userId));
                     SendToClient.println(Arrays.deepToString(recommendationResult));
                 } else if (serverMessage.startsWith("GET_EXAMINATIONS:")) {
-                    String[] resources = serverMessage.substring(17).split(",");
+                    String[] resources = serverMessage.substring(17).split("#/#");
                     String clientId = resources[0];
                     String userId = resources[1];
 
@@ -201,21 +201,21 @@ class ClientHandler implements Callable<String> {
                     SendToClient.println(Arrays.deepToString(messagesResult));
 
                 } else if (serverMessage.startsWith("GET_SETTINGS:")) {
-                    String[] resources = serverMessage.substring(13).split(",");
+                    String[] resources = serverMessage.substring(13).split("#/#");
                     String clientId = resources[0];
                     String userId = resources[1];
 
                     String[] settingsResult = sqlEngine.getSettings(Integer.parseInt(clientId), userId);
                     SendToClient.println(Arrays.toString(settingsResult));
                 } else if (serverMessage.startsWith("GET_DOCTOR_SETTINGS:")) {
-                    String[] resources = serverMessage.substring(20).split(",");
+                    String[] resources = serverMessage.substring(20).split("#/#");
                     String clientId = resources[0];
                     String doctorId = resources[1];
 
                     String[] settingsResult = sqlEngine.getDoctorSettings(Integer.parseInt(clientId), doctorId);
                     SendToClient.println(Arrays.toString(settingsResult));
                 } else if (serverMessage.startsWith("GET_PATIENT:")) {
-                    String[] resources = serverMessage.substring(12).split(",");
+                    String[] resources = serverMessage.substring(12).split("#/#");
                     String clientId = resources[0];
                     String pesel = resources[1];
 
@@ -223,7 +223,7 @@ class ClientHandler implements Callable<String> {
                     SendToClient.println(Arrays.toString(patientResult));
 
                 } else if (serverMessage.startsWith("SET_SETTINGS:")) {
-                    String[] resources = serverMessage.substring(13).split(",");
+                    String[] resources = serverMessage.substring(13).split("#/#");
                     String clientId = resources[0];
                     String userId = resources[1];
                     String bmiSetting = resources[2];
@@ -236,7 +236,7 @@ class ClientHandler implements Callable<String> {
                     String settingsChangedResult = sqlEngine.setSettings(Integer.parseInt(clientId), userId, bmiSetting, ageSetting, dateSetting, weightInChart_setting, temperatureInChart_setting, background_setting);
                     SendToClient.println(settingsChangedResult);
                 } else if (serverMessage.startsWith("PRESCRIBE_EPRESCRIPTION:")) {
-                    String[] resources = serverMessage.substring(24).split(",");
+                    String[] resources = serverMessage.substring(24).split("#/#");
                     String clientId = resources[0];
                     String medicines = resources[1];
                     String date = resources[2];
@@ -246,7 +246,7 @@ class ClientHandler implements Callable<String> {
                     String prescribingResult = sqlEngine.prescribeEPrescription(Integer.parseInt(clientId), medicines, date, doctorId, pesel);
                     SendToClient.println(prescribingResult);
                 } else if (serverMessage.startsWith("PRESCRIBE_EREFERRAL:")) {
-                    String[] resources = serverMessage.substring(20).split(",");
+                    String[] resources = serverMessage.substring(20).split("#/#");
                     String clientId = resources[0];
                     String eReferralName = resources[1];
                     String date = resources[2];
@@ -256,7 +256,7 @@ class ClientHandler implements Callable<String> {
                     String prescribingResult = sqlEngine.prescribeEReferral(Integer.parseInt(clientId), eReferralName, date, doctorId, pesel);
                     SendToClient.println(prescribingResult);
                 } else if (serverMessage.startsWith("ADD_MEDICAL_HISTORY:")) {
-                    String[] resources = serverMessage.substring(20).split(",");
+                    String[] resources = serverMessage.substring(20).split("#/#");
                     String clientId = resources[0];
                     String medicalCase = resources[1];
                     String ICD10FirstLetter = resources[2];
@@ -266,7 +266,7 @@ class ClientHandler implements Callable<String> {
                     String addingResult = sqlEngine.addMedicalHistory(Integer.parseInt(clientId), medicalCase, ICD10FirstLetter, ICD10Code, pesel);
                     SendToClient.println(addingResult);
                 } else if (serverMessage.startsWith("ADD_DOCUMENTATION:")) {
-                    String[] resources = serverMessage.substring(18).split(",");
+                    String[] resources = serverMessage.substring(18).split("#/#");
                     String clientId = resources[0];
                     String interview = resources[1];
                     String physicalExamination = resources[2];
@@ -279,21 +279,21 @@ class ClientHandler implements Callable<String> {
                     String addingResult = sqlEngine.addDocumentation(Integer.parseInt(clientId), interview, physicalExamination, ICD10Code, recommendationId, pesel, date, doctorId);
                     SendToClient.println(addingResult);
                 } else if (serverMessage.startsWith("DELETE_DOCUMENTATION:")) {
-                    String[] resources = serverMessage.substring(21).split(",");
+                    String[] resources = serverMessage.substring(21).split("#/#");
                     String clientId = resources[0];
                     String documentationId = resources[1];
 
                     String addingResult = sqlEngine.deleteDocumentation(Integer.parseInt(clientId), documentationId);
                     SendToClient.println(addingResult);
                 } else if (serverMessage.startsWith("DELETE_MEDICAL_HISTORY:")) {
-                    String[] resources = serverMessage.substring(23).split(",");
+                    String[] resources = serverMessage.substring(23).split("#/#");
                     String clientId = resources[0];
                     String medicalHistoryId = resources[1];
 
                     String addingResult = sqlEngine.deleteMedicalHistory(Integer.parseInt(clientId), medicalHistoryId);
                     SendToClient.println(addingResult);
                 } else if (serverMessage.startsWith("ADD_RECOMMENDATION:")) {
-                    String[] resources = serverMessage.substring(19).split(",");
+                    String[] resources = serverMessage.substring(19).split("#/#");
                     String clientId = resources[0];
                     String diet = resources[1];
                     String medicines = resources[2];
@@ -307,7 +307,7 @@ class ClientHandler implements Callable<String> {
                     String addingResult = sqlEngine.addRecommendation(Integer.parseInt(clientId), diet, medicines, nextCheckUpDate, nextCheckUpName, additionalInformation, date, doctor_id, pesel);
                     SendToClient.println(addingResult);
                 } else if (serverMessage.startsWith("SET_DOCTOR_SETTINGS:")) {
-                    String[] resources = serverMessage.substring(20).split(",");
+                    String[] resources = serverMessage.substring(20).split("#/#");
                     String clientId = resources[0];
                     String doctorId = resources[1];
                     String bmiSetting = resources[2];
@@ -320,7 +320,7 @@ class ClientHandler implements Callable<String> {
                     SendToClient.println(settingsChangedResult);
 
                 } else if (serverMessage.startsWith("CHECK_IF_USER_EXISTS:")) {
-                    String[] resources = serverMessage.substring(21).split(",");
+                    String[] resources = serverMessage.substring(21).split("#/#");
                     String clientId = resources[0];
                     String username = resources[1];
                     String email = resources[2];
@@ -329,7 +329,7 @@ class ClientHandler implements Callable<String> {
                     SendToClient.println("EXISTING RESULT:" + existingResult);
 
                 } else if (serverMessage.startsWith("CHECK_ONE_TIME_CODE:")) {
-                    String[] resources = serverMessage.substring(20).split(",");
+                    String[] resources = serverMessage.substring(20).split("#/#");
                     String clientId = resources[0];
                     String oneTimeCode = resources[1];
                     String firstname = resources[2];
@@ -344,7 +344,7 @@ class ClientHandler implements Callable<String> {
                     SendToClient.println("CODE RESULT:" + codeResult);
 
                 } else if (serverMessage.startsWith("UPDATE_USER_BASIC_DATA:")) {
-                    String[] resources = serverMessage.substring(23).split(",");
+                    String[] resources = serverMessage.substring(23).split("#/#");
                     String clientId = resources[0];
                     String birthdayDate = resources[1];
                     String weight = resources[2];
@@ -392,7 +392,7 @@ class ClientHandler implements Callable<String> {
                     SendToClient.println(addingResult);
 
                 }else if (serverMessage.startsWith("GET_ECONTACT:")) {
-                    String[] resources = serverMessage.substring(13).split(",");
+                    String[] resources = serverMessage.substring(13).split("#/#");
                     String clientId = resources[0];
                     String user_id = resources[1];
 
@@ -400,7 +400,7 @@ class ClientHandler implements Callable<String> {
                     SendToClient.println(Arrays.deepToString(eContactResult));
 
                 } else if (serverMessage.startsWith("GET_EXAMINATIONS_FOR_TODAY:")) {
-                    String[] resources = serverMessage.substring(27).split(",");
+                    String[] resources = serverMessage.substring(27).split("#/#");
                     String clientId = resources[0];
                     String doctorId = resources[1];
 
@@ -408,7 +408,7 @@ class ClientHandler implements Callable<String> {
                     SendToClient.println(Arrays.deepToString(messagesResult));
 
                 }else if (serverMessage.startsWith("ADD_LINK:")) {
-                    String[] resources = serverMessage.substring(9).split(",");
+                    String[] resources = serverMessage.substring(9).split("#/#");
                     String clientId = resources[0];
                     String examination_nr = resources[1];
                     String link = resources[2];
@@ -417,7 +417,7 @@ class ClientHandler implements Callable<String> {
                     SendToClient.println(addingResult);
 
                 } else if (serverMessage.startsWith("GET_DOCTOR_EXAMINATIONS:")) {
-                    String[] resources = serverMessage.substring(24).split(",");
+                    String[] resources = serverMessage.substring(24).split("#/#");
                     String clientId = resources[0];
                     String doctorId = resources[1];
 

@@ -691,7 +691,7 @@ public class ShortMedicalInterviewController implements Initializable {
         doctorResult();
         additionalDescriptionToDB = additionalDescriptionTextField.getText();
         resultSmiToDB = doctorResultLabel.getText();
-        //System.out.println(Client.clientId + "," + whatHurtsYouToDB + "," + painSymptomsToDB + "," + otherSymptomsToDB + "," + symptomsOtherSymptomsToDB + "," + medicinesToDB + "," + painDurationToDB + "," + whenThePainStartedToDB + "," + temperatureToDB + "," + additionalDescriptionToDB + "," + resultSmiToDB + "," + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "," + Client.user_id);
+        //System.out.println(Client.clientId + "#/#" + whatHurtsYouToDB + "#/#" + painSymptomsToDB + "#/#" + otherSymptomsToDB + "#/#" + symptomsOtherSymptomsToDB + "#/#" + medicinesToDB + "#/#" + painDurationToDB + "#/#" + whenThePainStartedToDB + "#/#" + temperatureToDB + "#/#" + additionalDescriptionToDB + "#/#" + resultSmiToDB + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "#/#" + Client.user_id);
         message.addShortMedicalInterview(SendToServer, Client.clientId + "#/#" + whatHurtsYouToDB + "#/#" + painSymptomsToDB + "#/#" + otherSymptomsToDB + "#/#" + symptomsOtherSymptomsToDB + "#/#" + medicinesToDB + "#/#" + painDurationToDB + "#/#" + whenThePainStartedToDB + "#/#" + temperatureToDB + "#/#" + additionalDescriptionToDB + "#/#" + resultSmiToDB + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "#/#" + Client.user_id);
         String serverAnswer = ReadFromServer.readLine();
         System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
