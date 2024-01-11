@@ -15,6 +15,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
@@ -38,6 +40,7 @@ public class ClientPanelController implements Initializable {
     private static BufferedReader ReadFromServer;
     private static PrintWriter SendToServer;
 
+
     @FXML
     private Label dataUpdatedStatusLabel, dateLabel, firstNameLabel, lastNameLabel, birthDateLabel, weightLabel, heightLabel, temperatureLabel, ageLabel, pressureLabel, dateOfLastUpdateLabel, bmiLabel, bmiStatusLabel;
 
@@ -46,6 +49,9 @@ public class ClientPanelController implements Initializable {
 
     @FXML
     AnchorPane clientPanelScene;
+
+    @FXML
+    public ImageView bgImage;
 
     private boolean ifCalcualteBMI = false;
 
@@ -275,6 +281,7 @@ public class ClientPanelController implements Initializable {
 
         ageLabel.setVisible(settingsData[1].equals("false"));
         dateLabel.setVisible(settingsData[2].equals("false"));
+
     }
 
     private Alert createDataAlert(TextField inputFieldWeight, TextField inputFieldHeight, TextField inputFieldTemperature, TextField inputFieldPressure1, TextField inputFieldPressure2, DatePicker datePicker, Label label) {

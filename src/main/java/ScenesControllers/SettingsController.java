@@ -49,7 +49,7 @@ public class SettingsController implements Initializable {
 
     @FXML
     private void saveSettingsButtonClicked(ActionEvent event) throws IOException {
-        message.sendSetSettingsMessage(SendToServer, Client.clientId + "," + Client.user_id + "," + bmiSettingsCheckBox.isSelected() + "," + ageSettingsCheckBox.isSelected() + "," + dateSettingsCheckBox.isSelected() + "," + weightInChartSettingsCheckBox.isSelected() + "," + temperatureInChartSettingsCheckBox.isSelected());
+        message.sendSetSettingsMessage(SendToServer, Client.clientId + "," + Client.user_id + "," + bmiSettingsCheckBox.isSelected() + "," + ageSettingsCheckBox.isSelected() + "," + dateSettingsCheckBox.isSelected() + "," + weightInChartSettingsCheckBox.isSelected() + "," + temperatureInChartSettingsCheckBox.isSelected() + "," + settingsCheckBox6.isSelected());
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if (serverAnswer.equals("Settings changed correctly.")) {
@@ -83,6 +83,7 @@ public class SettingsController implements Initializable {
         dateSettingsCheckBox.setSelected(settingsData[2].equals("true"));
         weightInChartSettingsCheckBox.setSelected(settingsData[3].equals("true"));
         temperatureInChartSettingsCheckBox.setSelected(settingsData[4].equals("true"));
+        settingsCheckBox6.setSelected(settingsData[5].equals("true"));
     }
 
     @Override
