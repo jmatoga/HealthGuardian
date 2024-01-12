@@ -434,7 +434,7 @@
             <Font name="Consolas Bold" size="20.0" />
          </font>
       </Button>
-      <HBox layoutX="546.0" layoutY="499.0" prefHeight="35.0" prefWidth="124.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="650.0">
+      <HBox layoutX="546.0" layoutY="499.0" prefHeight="35.0" prefWidth="220.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="650.0">
          <children>
       
             <Label fx:id="bmiLabel" prefHeight="35.0" prefWidth="62.0" text="BMI: " textFill="WHITE" visible="false">
@@ -442,7 +442,7 @@
                   <Font name="Consolas Bold" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="bmiStatusLabel" prefHeight="35.0" prefWidth="60.0" textFill="WHITE" visible="false">
+            <Label fx:id="bmiStatusLabel" prefHeight="35.0" prefWidth="158.0" textFill="WHITE" visible="false">
                <font>
                   <Font name="Consolas Bold" size="22.0" />
                </font>

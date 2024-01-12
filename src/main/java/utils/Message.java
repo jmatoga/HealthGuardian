@@ -195,6 +195,9 @@ public class Message {
     public void sendGetRecommendationMessage(PrintWriter writer, String message) {
         writer.println("GET_RECOMMENDATION:" + message);
     }
+    public void sendGetSMIMessage(PrintWriter writer, String message) {
+        writer.println("GET_SMI:" + message);
+    }
     public void addShortMedicalInterview(PrintWriter writer, String message) {
         writer.println("ADD_SMI:" + message);
     }

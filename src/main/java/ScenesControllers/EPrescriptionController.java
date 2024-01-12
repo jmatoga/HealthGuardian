@@ -285,7 +285,7 @@ public class EPrescriptionController implements Initializable {
     }
 
     private void getEPrescriptionFromDB() throws IOException {
-        message.sendGetEPrescriptionMessage(SendToServer, Client.clientId + "," + Client.user_id);
+        message.sendGetEPrescriptionMessage(SendToServer, Client.clientId + "#/#" + Client.user_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if (serverAnswer.equals("[[No EPrescriptions in database]]")) {
