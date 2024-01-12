@@ -77,7 +77,7 @@ public class EContactController implements Initializable {
         Clipboard.getSystemClipboard().setContent(clipboardContent);
 
 
-        correctLabel.setText("LINK COPY CORRECTLY!");
+        correctLabel.setText("LINK COPIED CORRECTLY!");
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.millis(1300), TimeEvent -> {
                     correctLabel.setText("");
