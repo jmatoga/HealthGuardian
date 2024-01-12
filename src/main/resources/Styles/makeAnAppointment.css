@@ -2,37 +2,51 @@
     -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0);
 }
 
-.combo-box-popup > .list-view > .placeholder > .label {
-    -fx-text-fill: black; /* Kolor tekstu z kodu niebieskiego */
+.date-picker {
+    -fx-base: #b9d4f0;
 }
 
-.calendar-header {
-    -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); /* Kolor tła z kodu niebieskiego */
-    -fx-base: #b0cbf7; /* Kolor bazowy z kodu niebieskiego */
-    -fx-text-fill: black; /* Kolor tekstu z kodu niebieskiego */
+.date-picker .arrow-button {
+  -fx-background-color: #b9d4f0;
+  -fx-background-radius: 0;
+}
+
+.date-picker .arrow-button:hover {
+  -fx-background-color: #497ac9;
+}
+
+.date-picker .arrow-button .arrow {
+  -fx-background-color: #383838;
+}
+
+.date-picker .cell {
+  -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0);
+}
+
+.date-picker .cell:hover {
+  -fx-background-color: #b9d4f0;
+}
+
+.date-picker .cell:focused {
+  -fx-background-color: #497ac9;
 }
 
 .date-picker-popup {
-    -fx-text-fill: black; /* Kolor tekstu z kodu niebieskiego */
-    -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0),
-        -fx-control-inner-background;
-    -fx-background-insets: 0, 1;
-    -fx-background-radius: 0;
-    -fx-alignment: CENTER; /* VBox */
-    -fx-spacing: 0; /* VBox */
-    -fx-padding: 0.083333em; /* 1 1 1 1 */
-    -fx-effect: dropshadow(gaussian, rgba(73, 122, 201, 0.2), 12, 0.0, 0, 8);
+  -fx-border-color: transparent;
 }
 
-.date-picker > .text-field {
-    -fx-text-fill: black; /* Kolor tekstu z kodu niebieskiego */
+.date-picker-popup .month-year-pane {
+  -fx-background-color: #b9d4f0;
 }
 
-.date-picker-popup > .month-year-pane {
-    -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0) /* Kolor tła z kodu niebieskiego */
-    -fx-text-fill: black; /* Kolor tekstu z kodu niebieskiego */
+.date-picker-popup .month-year-pane .label {
+  -fx-text-fill: black;
 }
 
+.date-picker-popup .spinner .button .left-arrow,
+.date-picker-popup .spinner .button .right-arrow {
+  -fx-background-color: #497ac9;
+}
 
 .blue.choiceBox {
     -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0);
@@ -125,11 +139,4 @@
     -fx-background-insets: 0, 1;
 }
 
-.check-box .mark {
-    -fx-background-color: #497ac9; /* Kolor znacznika CheckBoxa (kiedy jest zaznaczony) */
-    -fx-background-radius: 5;
-    -fx-border-color: #497ac9;
-    -fx-border-width: 3;
-    -fx-border-radius: 2;
-    -fx-background-insets: 0, 1;
-}
+
