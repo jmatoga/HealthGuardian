@@ -39,6 +39,7 @@ import utils.Message;
 import javafx.embed.swing.SwingFXUtils;
 
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage; // TODO
 import java.io.BufferedReader;
 import java.io.File;
@@ -142,12 +143,21 @@ public class EPrescriptionController implements Initializable {
 
             PDType0Font font1 = PDType0Font.load(document, new File("src/main/resources/Fonts/calibri.ttf"));
 
+            BufferedImage logoImage = ImageIO.read(new File("src/main/resources/Images/e_recepta_logo.png"));
+            PDImageXObject logoImageXObject = LosslessFactory.createFromImage(document, logoImage);
+            int logoWidth = 184; // Ustaw szerokość loga (możesz dostosować do swoich potrzeb)
+            int logoHeight = 50; // Ustaw wysokość loga (możesz dostosować do swoich potrzeb)
+            float logoX = 240 - logoWidth - 20; // Ustaw X, aby umieścić logo w prawym górnym rogu
+            float logoY = 720; // Ustaw Y, aby umieścić logo w prawym górnym rogu
+            contentStream.drawImage(logoImageXObject, logoX, logoY, logoWidth, logoHeight);
+
+
             int fontSize = 30;
             contentStream.setFont(PDType1Font.HELVETICA_BOLD, fontSize);
             contentStream.beginText();
             String tempText = "E-Prescription ";
             float textWidth = PDType1Font.HELVETICA_BOLD.getStringWidth(tempText) / 1000 * fontSize;
-            contentStream.newLineAtOffset((595 - textWidth) / 2, 700);
+            contentStream.newLineAtOffset((595 - textWidth) / 2, 660);
             contentStream.showText(tempText);
             contentStream.endText();
 
@@ -156,7 +166,7 @@ public class EPrescriptionController implements Initializable {
             contentStream.beginText();
             tempText = "Issued on " + ePrescriptionDate;
             textWidth = PDType1Font.HELVETICA.getStringWidth(tempText) / 1000 * fontSize;
-            contentStream.newLineAtOffset((595 - textWidth) / 2, 500);
+            contentStream.newLineAtOffset((595 - textWidth) / 2, 460);
             contentStream.showText(tempText);
             contentStream.endText();
 
@@ -196,7 +206,7 @@ public class EPrescriptionController implements Initializable {
 
             PDImageXObject pdImageXObject = LosslessFactory.createFromImage(document, bufferedImage);
             // Adding barcode to the page
-            contentStream.drawImage(pdImageXObject, 100, 600, width, height);
+            contentStream.drawImage(pdImageXObject, 100, 560, width, height);
 
             contentStream.close();
 
