@@ -98,10 +98,13 @@
         <Pane layoutX="600.0" layoutY="192.0" prefHeight="380.0" prefWidth="700.0" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="190.0">
             <children>
                 <Pane opacity="0.4" prefHeight="380.0" prefWidth="700.0" style="-fx-background-color: white; -fx-background-radius: 30;" />
-                <Label alignment="TOP_CENTER" prefHeight="380.0" prefWidth="700.0" text="Before contacting the patient, make sure that the microphone and headphones are working properly. Then, before the visit, open the ZOOM application and create a new meeting, then in the HealtGuardian application select the visit you will be conducting.Then, once selected, paste the meeting link from the ZOOM application.If the patient decides that he or she prefers a telephone visit, you will be informed about the time of the visit before the visit, so remain in the HealthGuardian service until you connect with the patient." textAlignment="CENTER" textFill="#610606" wrapText="true">
+                <Label alignment="TOP_CENTER" prefHeight="380.0" prefWidth="700.0" text="Before contacting the patient, make sure that the microphone and headphones are working properly. Then, before the visit, open the ZOOM application and create a new meeting, then in the HealtGuardian application select the visit you will conduct. Then, once selected, paste the meeting link from the ZOOM application. Stay on HealthGuardian until you connect with a patient." textAlignment="CENTER" textFill="#610606" wrapText="true">
                     <font>
-                        <Font name="Consolas Bold" size="23.0" />
+                        <Font name="Consolas Bold" size="27.0" />
                     </font>
+               <padding>
+                  <Insets left="5.0" right="5.0" top="5.0" />
+               </padding>
                 </Label>
             </children>
         </Pane>
