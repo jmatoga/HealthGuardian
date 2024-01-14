@@ -252,30 +252,6 @@
 <!--            <Button alignment="CENTER" disable="true" layoutX="20.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Button" />-->
          </children>
       </Pane>
-      <Button fx:id="checkSMIButton" disable="true" layoutX="180.0" layoutY="765.0" mnemonicParsing="false" onAction="#checkSMIButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHECK SMI" visible="false" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="860.0">
-         <font>
-            <Font name="Consolas Bold" size="20.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <textFill>
-            <RadialGradient centerX="0.5" centerY="0.542654028436019" radius="0.7413793103448276">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.241799995303154" green="0.9300000071525574" blue="0.889035701751709" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color green="0.7254902124404907" blue="0.7607843279838562" />
-                     </color>
-                  </Stop>
-               </stops>
-            </RadialGradient>
-         </textFill>
-      </Button>
       <Pane fx:id="smiCodePane" layoutX="753.0" layoutY="65.0" prefHeight="100.0" prefWidth="800.0">
          <children>
             <HBox prefHeight="60.0" prefWidth="800.0">
