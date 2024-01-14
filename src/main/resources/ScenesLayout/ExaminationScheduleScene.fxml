@@ -101,7 +101,7 @@
                   <Pane prefHeight="40.0" prefWidth="400.0" />
                   <TextField alignment="TOP_LEFT" prefHeight="80.0" prefWidth="400.0" promptText="Short descripiotn to examination" styleClass="blue-textfield" stylesheets="@../Styles/makeAnAppointment.css" />
                   <Pane prefHeight="40.0" prefWidth="400.0" />
-                  <CheckBox mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" stylesheets="@../Styles/makeAnAppointment.css" text="Do you want to arrange e-contact?" textAlignment="CENTER" textFill="WHITE">
+                  <CheckBox mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" styleClass="choiceBox" stylesheets="@../Styles/makeAnAppointment.css" text="Do you want to arrange e-contact?" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
