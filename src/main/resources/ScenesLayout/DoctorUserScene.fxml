@@ -19,9 +19,9 @@
 
 <AnchorPane fx:id="doctorUserPanelScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.DoctorUserController">
     <children>
-        <ImageView fx:id="imageView" blendMode="DIFFERENCE" fitHeight="1200.0" fitWidth="1920.0" onMouseClicked="#unHighlightOnImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ImageView fx:id="imageView" blendMode="DIFFERENCE" fitHeight="1109.0" fitWidth="2053.0" layoutX="-17.0" layoutY="-4.0" onMouseClicked="#unHighlightOnImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="-17.0" AnchorPane.topAnchor="-4.0">
             <image>
-                <Image url="@../Images/background_clear.png" />
+                <Image url="@../Images/background_1.png" />
             </image>
         </ImageView>
         <VBox layoutX="171.0" layoutY="168.0" prefHeight="112.0" prefWidth="280.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="170.0">
@@ -72,9 +72,9 @@
                 <Font name="Consolas" size="20.0" />
             </font>
         </Label>
-      <VBox layoutX="170.0" layoutY="88.0" prefHeight="80.0" prefWidth="444.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="90.0">
+      <VBox layoutX="170.0" layoutY="88.0" prefHeight="80.0" prefWidth="333.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="90.0">
          <children>
-            <TextField fx:id="peselTextField" onKeyPressed="#enterPressedInPeselField" prefHeight="40.0" prefWidth="361.0" promptText="Patient PESEL">
+            <TextField fx:id="peselTextField" onKeyPressed="#enterPressedInPeselField" prefHeight="40.0" prefWidth="377.0" promptText="Patient PESEL">
                <font>
                   <Font name="Consolas" size="20.0" />
                </font></TextField>
@@ -252,7 +252,7 @@
 <!--            <Button alignment="CENTER" disable="true" layoutX="20.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Button" />-->
          </children>
       </Pane>
-      <Button fx:id="checkSMIButton" layoutX="180.0" layoutY="765.0" mnemonicParsing="false" onAction="#checkSMIButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHECK SMI" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="860.0">
+      <Button fx:id="checkSMIButton" disable="true" layoutX="180.0" layoutY="765.0" mnemonicParsing="false" onAction="#checkSMIButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHECK SMI" visible="false" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="860.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -276,24 +276,33 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Pane fx:id="smiPanel" layoutX="1158.0" layoutY="460.0" prefHeight="960.0" prefWidth="800.0" visible="false" AnchorPane.leftAnchor="800.0" AnchorPane.topAnchor="80.0">
+      <Pane fx:id="smiCodePane" layoutX="753.0" layoutY="65.0" prefHeight="100.0" prefWidth="800.0">
+         <children>
+            <HBox prefHeight="60.0" prefWidth="800.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="400.0" text="Enter SMI code: ">
+                     <font>
+                        <Font name="Consolas Bold" size="26.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="smiCodeTextField" onKeyPressed="#smiCodeEntered" prefHeight="40.0" prefWidth="127.0" promptText="SMI code">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Label fx:id="smiStatusLabel" layoutX="152.0" layoutY="51.0" prefHeight="32.0" prefWidth="518.0" textFill="RED">
+               <font>
+                  <Font name="Consolas" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="smiPanelPane" layoutX="753.0" layoutY="120.0" prefHeight="960.0" prefWidth="800.0" AnchorPane.leftAnchor="753.0" AnchorPane.topAnchor="140.0">
          <children>
             <VBox prefHeight="960.0" prefWidth="800.0">
                <children>
-                  <HBox prefHeight="60.0" prefWidth="800.0">
-                     <children>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="400.0" text="Enter SMI code: ">
-                           <font>
-                              <Font name="Consolas Bold" size="26.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="smiCodeTextField" prefHeight="40.0" prefWidth="250.0" promptText="SMI code">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                  </HBox>
                   <Label prefHeight="20.0" prefWidth="800.0" text="Main field of case" textFill="BLUE">
                      <font>
                         <Font name="Consolas Bold" size="14.0" />
@@ -332,25 +341,42 @@
                         <Font name="Consolas Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="smiExtenetOfThePainLabel" alignment="TOP_LEFT" prefHeight="75.0" prefWidth="800.0" style="-fx-border-color: black; -fx-border-width: 2; -fx-background-color: white;" wrapText="true">
+                  <Label fx:id="smiExtentOfThePainLabel" alignment="TOP_LEFT" prefHeight="75.0" prefWidth="800.0" style="-fx-border-color: black; -fx-border-width: 2; -fx-background-color: white;" wrapText="true">
                      <padding>
                         <Insets left="2.0" />
                      </padding>
                   </Label>
                   <Pane prefHeight="10.0" prefWidth="800.0" />
-                  <Label prefHeight="20.0" prefWidth="800.0" text="Temperature" textFill="BLUE">
-                     <font>
-                        <Font name="Consolas Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="smiTemperatureLabel" prefHeight="40.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 2; -fx-background-color: white;" wrapText="true">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding>
-                  </Label>
+                  <Pane prefHeight="68.0" prefWidth="800.0">
+                     <children>
+                        <Label layoutX="1.0" prefHeight="20.0" prefWidth="374.0" text="Temperature" textFill="BLUE">
+                           <font>
+                              <Font name="Consolas Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="smiTemperatureLabel" layoutX="1.0" layoutY="17.0" prefHeight="40.0" prefWidth="87.0" style="-fx-border-color: black; -fx-border-width: 2; -fx-background-color: white;" wrapText="true">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label layoutX="680.0" prefHeight="20.0" prefWidth="120.0" text="Date of SMI" textFill="BLUE">
+                           <font>
+                              <Font name="Consolas Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="smiDateLabel" layoutX="680.0" layoutY="17.0" prefHeight="40.0" prefWidth="120.0" style="-fx-border-color: black; -fx-border-width: 2; -fx-background-color: white;" wrapText="true">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </Pane>
                   <Pane prefHeight="10.0" prefWidth="800.0" />
                   <Label prefHeight="20.0" prefWidth="800.0" text="Additional information" textFill="BLUE">
                      <font>
@@ -363,19 +389,6 @@
                      </padding>
                   </Label>
                   <Pane prefHeight="10.0" prefWidth="800.0" />
-                  <Label prefHeight="20.0" prefWidth="800.0" text="Date of SMI" textFill="BLUE">
-                     <font>
-                        <Font name="Consolas Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="smiDateLabel" prefHeight="30.0" prefWidth="140.0">
-                     <padding>
-                        <Insets left="2.0" />
-                     </padding>
-                     <font>
-                        <Font name="Consolas Italic" size="22.0" />
-                     </font>
-                  </Label>
                </children>
             </VBox>
          </children>

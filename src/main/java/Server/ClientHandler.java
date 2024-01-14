@@ -192,6 +192,14 @@ class ClientHandler implements Callable<String> {
 
                     String[][] recommendationResult = sqlEngine.getRecommendation(Integer.parseInt(clientId), Integer.parseInt(userId));
                     SendToClient.println(Arrays.deepToString(recommendationResult));
+                } else if (serverMessage.startsWith("GET_SMI:")) {
+                    String[] resources = serverMessage.substring(8).split("#/#");
+                    String clientId = resources[0];
+                    String smiCode = resources[1];
+                    String pesel = resources[2];
+
+                    String[] smiResult = sqlEngine.getSMI(Integer.parseInt(clientId), Integer.parseInt(smiCode), pesel);
+                    SendToClient.println(Arrays.toString(smiResult));
                 } else if (serverMessage.startsWith("GET_EXAMINATIONS:")) {
                     String[] resources = serverMessage.substring(17).split("#/#");
                     String clientId = resources[0];
@@ -366,7 +374,7 @@ class ClientHandler implements Callable<String> {
                     String other_symptoms = resources[3];
                     String symptoms_other_symptoms = resources[4];
                     String medicines = resources[5];
-                    String pain_duration = resources[6];
+                    String extent_of_pain = resources[6];
                     String when_the_pain_started = resources[7];
                     String temperature = resources[8];
                     String additional_description = resources[9];
@@ -374,7 +382,7 @@ class ClientHandler implements Callable<String> {
                     String smi_date = resources[11];
                     String user_id = resources[12];
 
-                    String addingResult = sqlEngine.addShortMedicalInterview(Integer.parseInt(clientId), what_hurts_you, pain_symptoms, other_symptoms, symptoms_other_symptoms, medicines, pain_duration, when_the_pain_started, temperature, additional_description, result_smi, smi_date, Integer.parseInt(user_id));
+                    String addingResult = sqlEngine.addShortMedicalInterview(Integer.parseInt(clientId), what_hurts_you, pain_symptoms, other_symptoms, symptoms_other_symptoms, medicines, extent_of_pain, when_the_pain_started, temperature, additional_description, result_smi, smi_date, Integer.parseInt(user_id));
                     SendToClient.println(addingResult);
 
                 } else if (serverMessage.startsWith("ADD_SMI_EREFERRAL:")) {
