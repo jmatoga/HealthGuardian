@@ -77,11 +77,13 @@ public class ExaminationScheduleController implements Initializable {
                 newExaminationName.setPrefHeight(40);
                 // Set fitting to scroll bar
                 if(examinationsData.length > 6) {
-                    newExaminationName.setPrefWidth(691);
-                    newExaminationDescription.setPrefWidth(691);
+                    newExamination.setPrefWidth(705);
+                    newExaminationName.setPrefWidth(705);
+                    newExaminationDescription.setPrefWidth(705);
                 } else {
-                    newExaminationName.setPrefWidth(704);
-                    newExaminationDescription.setPrefWidth(704);
+                    newExamination.setPrefWidth(718);
+                    newExaminationName.setPrefWidth(718);
+                    newExaminationDescription.setPrefWidth(718);
                 }
                 newExaminationName.setLayoutX(14);
                 newExaminationName.setFont(new Font("Consolas Bold", 36.0));

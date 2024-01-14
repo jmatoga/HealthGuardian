@@ -29,7 +29,7 @@
 }
 
 .date-picker-popup > .month-year-pane {
-    -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0) /* Kolor tła z kodu niebieskiego */
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); /* Kolor tła z kodu niebieskiego */
     -fx-text-fill: black; /* Kolor tekstu z kodu niebieskiego */
 }
 
