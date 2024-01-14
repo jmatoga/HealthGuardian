@@ -100,9 +100,6 @@ public class EPrescriptionController implements Initializable {
         saveButton.setVisible(false);
         printButton.setVisible(false);
 
-        //scrollPane.setFocusTraversable(false);
-        //gridPane.setFocusTraversable(false);
-
         try {
             getEPrescriptionFromDB();
         } catch (IOException e) {
