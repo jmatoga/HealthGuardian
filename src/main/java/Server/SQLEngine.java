@@ -4,6 +4,8 @@ import utils.Color;
 
 import java.math.BigInteger;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -2397,6 +2399,48 @@ public class SQLEngine {
             } else {
                 System.out.println("Error in database while adding SMI E-Referral.");
                 returnStatement = "Error in database while adding SMI E-Referral.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    String getLastBloodPressureCheck(int clientID, int user_id) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String getLastBloodPressureCheckSql = "SELECT * FROM user_basic_data_table WHERE user_id = ? ORDER BY entry_date DESC LIMIT 1;";
+
+            preparedStatement = connection.prepareStatement(getLastBloodPressureCheckSql);
+            preparedStatement.setInt(1, user_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                LocalDateTime lastBloodPressureCheck = resultSet.getTimestamp("entry_date").toLocalDateTime();
+                LocalDateTime currentDate = LocalDateTime.now();
+                long daysBetween = ChronoUnit.DAYS.between(lastBloodPressureCheck, currentDate);
+                if (daysBetween > 3) {
+                    System.out.println("User didn't checked blood pressure less than 3 days ago.");
+                    returnStatement = "User didn't checked blood pressure less than 3 days ago.";
+                } else {
+                    System.out.println("User checked blood pressure less than 3 days ago.");
+                    returnStatement = "User checked blood pressure less than 3 days ago.";
+                }
+            } else {
+                System.out.println("Error while checking last blood pressure check.");
+                returnStatement = "Error while checking last blood pressure check.";
             }
 
             return returnStatement;

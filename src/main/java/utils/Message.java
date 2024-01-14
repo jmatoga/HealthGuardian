@@ -233,4 +233,8 @@ public class Message {
     public void sendGetExaminationsDoctorMessage(PrintWriter writer, String message) {
         writer.println("GET_DOCTOR_EXAMINATIONS:" + message);
     }
+
+    public void getLastBloodPressureCheck(PrintWriter writer, String message) {
+        writer.println("GET_LAST_BLOOD_PRESSURE_CHECK:" + message);
+    }
 }

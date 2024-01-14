@@ -151,6 +151,13 @@ class ClientHandler implements Callable<String> {
 
                     String[][] messagesResult = sqlEngine.getDoctorNotifications(Integer.parseInt(clientId), Integer.parseInt(doctorId));
                     SendToClient.println(Arrays.deepToString(messagesResult));
+                } else if (serverMessage.startsWith("GET_LAST_BLOOD_PRESSURE_CHECK:")) {
+                    String[] resources = serverMessage.substring(30).split("#/#");
+                    String clientId = resources[0];
+                    String userId = resources[1];
+
+                    String messagesResult = sqlEngine.getLastBloodPressureCheck(Integer.parseInt(clientId), Integer.parseInt(userId));
+                    SendToClient.println(messagesResult);
                 } else if (serverMessage.startsWith("GET_MEDICAL_HISTORY:")) {
                     String[] resources = serverMessage.substring(20).split("#/#");
                     String clientId = resources[0];

@@ -22,7 +22,7 @@
             <Image url="@../Images/background_1.png" />
          </image>
       </ImageView>
-      <Pane fx:id="notificationtAlertPane" layoutX="1455.0" layoutY="340.0" prefHeight="120.0" prefWidth="350.0" style="-fx-border-radius: 20; -fx-border-width: 5; -fx-border-color: black;" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="340.0">
+      <Pane fx:id="notificationtAlertPane" layoutX="1455.0" layoutY="340.0" onMouseClicked="#notificationtAlertPaneClicked" prefHeight="120.0" prefWidth="350.0" style="-fx-border-radius: 20; -fx-border-width: 5; -fx-border-color: black;" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="340.0">
          <children>
             <Pane layoutX="5.0" layoutY="5.0" opacity="0.29" prefHeight="110.0" prefWidth="340.0" style="-fx-background-color: #b0ffff; -fx-background-radius: 18;">
                <opaqueInsets>

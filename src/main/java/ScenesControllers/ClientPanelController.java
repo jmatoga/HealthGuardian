@@ -15,13 +15,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import utils.Color;
 import utils.Message;
 
 import java.io.BufferedReader;
@@ -42,16 +41,19 @@ public class ClientPanelController implements Initializable {
 
 
     @FXML
-    private Label dataUpdatedStatusLabel, dateLabel, firstNameLabel, lastNameLabel, birthDateLabel, weightLabel, heightLabel, temperatureLabel, ageLabel, pressureLabel, dateOfLastUpdateLabel, bmiLabel, bmiStatusLabel;
+    private Label notificationTitleLabel, notificationDescriptionLabel, dataUpdatedStatusLabel, dateLabel, firstNameLabel, lastNameLabel, birthDateLabel, weightLabel, heightLabel, temperatureLabel, ageLabel, pressureLabel, dateOfLastUpdateLabel, bmiLabel, bmiStatusLabel;
 
     @FXML
     private Button ePrescriptionButton, eReferralButton, testScheduleButton, findingsButton, eContactWithADoctorButton, listOfClinicsButton, MessageButton, pressurePanelButton, medicalHistoryButton, settingsButton, editDataButton, SMIButton, logOutButton;
 
     @FXML
-    AnchorPane clientPanelScene;
+    private AnchorPane clientPanelScene;
 
     @FXML
     public ImageView bgImage;
+
+    @FXML
+    private Pane notificationtAlertPane;
 
     private boolean ifCalcualteBMI = false;
 
@@ -383,6 +385,9 @@ public class ClientPanelController implements Initializable {
             try {
                 getSettingsFromDB();
                 getUserDataFromDB();
+                notificationtAlertPane.setVisible(false);
+                checkNotification();
+                manageNotificationAlert();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -393,6 +398,36 @@ public class ClientPanelController implements Initializable {
                 timeline.play();
             }
         }
+    }
+
+    private void manageNotificationAlert() {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.minutes(1), event -> checkNotification()));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    private void checkNotification() {
+        try {
+            message.getLastBloodPressureCheck(SendToServer, Client.clientId + "#/#" + Client.user_id);
+            String serverAnswer = Client.getServerResponse(ReadFromServer);
+
+            if (serverAnswer.equals("User checked blood pressure less than 3 days ago.")) {
+                notificationtAlertPane.setVisible(false);
+            } else {
+                //String[] notificationData = serverAnswer.substring(1, serverAnswer.length() - 1).split(", ");
+
+                notificationTitleLabel.setText("Check Reminder");
+                notificationDescriptionLabel.setText("It has been 3 days since your last blood pressure check. Perform a blood pressure measurement.");
+                notificationtAlertPane.setVisible(true);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    private void notificationtAlertPaneClicked(MouseEvent event) {
+        notificationtAlertPane.setVisible(false);
     }
 
     private void updateDateTime() {
