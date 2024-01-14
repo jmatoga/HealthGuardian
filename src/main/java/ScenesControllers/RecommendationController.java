@@ -57,12 +57,12 @@ public class RecommendationController implements Initializable {
         message.sendGetRecommendationMessage(SendToServer, Client.clientId + "#/#" + Client.user_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
-        if (serverAnswer.equals("[[No recommendations in database]]")) {
+        if (!serverAnswer.equals("[[No recommendations in database]]")) {
             Pane newRecommendation = new Pane();
             Label newRecommendationTitle = new Label("There is no recommendations.");
             newRecommendationTitle.setPrefHeight(200);
-            newRecommendationTitle.setPrefWidth(817);
-            newRecommendation.setMinWidth(817);
+            newRecommendationTitle.setPrefWidth(816);
+            newRecommendation.setMinWidth(816);
             newRecommendationTitle.setAlignment(Pos.CENTER);
             newRecommendationTitle.setFont(new Font("Consolas Bold", 35.0));
             newRecommendation.getChildren().add(newRecommendationTitle);
@@ -140,9 +140,9 @@ public class RecommendationController implements Initializable {
 
                 // Set fitting to scroll bar
                 if(recommendationsData.length > 9) {
-                    newRecommendation.setPrefWidth(268);
-                    newRecommendation.setMinWidth(268);
-                    newRecommendation.setMaxWidth(268);
+                    newRecommendation.setPrefWidth(267);
+                    newRecommendation.setMinWidth(267);
+                    newRecommendation.setMaxWidth(267);
                 } else {
                     newRecommendation.setPrefWidth(272);
                     newRecommendation.setMinWidth(272);

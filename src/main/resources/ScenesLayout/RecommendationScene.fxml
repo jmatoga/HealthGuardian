@@ -68,7 +68,7 @@
                 </RadialGradient>
             </textFill>
         </Label>
-        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="936.0" layoutY="279.0" maxHeight="650.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="820.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="936.0" AnchorPane.topAnchor="270.0">
+        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="936.0" layoutY="279.0" maxHeight="650.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="818.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="936.0" AnchorPane.topAnchor="270.0">
             <content>
                 <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="7.0" layoutY="7.0" prefWidth="794.0">
                 </GridPane>
