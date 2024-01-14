@@ -955,10 +955,6 @@ public class DoctorUserController implements Initializable {
             getPatient();
     }
 
-    @FXML
-    public void checkSMIButtonClicked(ActionEvent actionEvent) {
-    }
-
     private void getPatient() throws IOException {
         if (checkPesel()) {
             message.sendGetPatientMessage(SendToServer, Client.clientId + "#/#" + peselTextField.getText());

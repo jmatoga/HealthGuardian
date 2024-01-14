@@ -44,6 +44,9 @@ public class Message {
     public void sendLoginMessage(PrintWriter writer, String message) {
         writer.println("LOGIN:" + message);
     }
+    public void sendAdminLoginMessage(PrintWriter writer, String message) {
+        writer.println("ADMIN_LOGIN:" + message);
+    }
 
     /**
      * Sends a doctor login message to the server.
@@ -67,6 +70,7 @@ public class Message {
      * @param message the content of the message
      */
     public void checkIfUserExists(PrintWriter writer, String message) { writer.println("CHECK_IF_USER_EXISTS:" + message); }
+    public void checkIfDoctorExists(PrintWriter writer, String message) { writer.println("CHECK_IF_DOCTOR_EXISTS:" + message); }
 
     /**
      * Sends a check one time code message to the server.
@@ -75,6 +79,9 @@ public class Message {
      */
     public void checkOneTimeCode(PrintWriter writer, String message) {
         writer.println("CHECK_ONE_TIME_CODE:" + message);
+    }
+    public void sendCreateNewOneTimeCodesMessage(PrintWriter writer, String message) {
+        writer.println("CREATE_NEW_ONE_TIME_CODES:" + message);
     }
 
     /**
@@ -117,6 +124,13 @@ public class Message {
     public void addMedicalHistory(PrintWriter writer, String message) {
         writer.println("ADD_MEDICAL_HISTORY:" + message);
     }
+    public void addNewDoctorMessage(PrintWriter writer, String message) {
+        writer.println("ADD_NEW_DOCTOR:" + message);
+    }
+
+    public void generateReport(PrintWriter writer, String message) {
+        writer.println("GENERATE_REPORT:" + message);
+    }
 
     public void addDocumentation(PrintWriter writer, String message) {
         writer.println("ADD_DOCUMENTATION:" + message);
@@ -158,6 +172,9 @@ public class Message {
      */
     public void sendGetNotificationsMessage(PrintWriter writer, String message) {
         writer.println("GET_NOTIFICATIONS:" + message);
+    }
+    public void sendGetDoctorNotificationsMessage(PrintWriter writer, String message) {
+        writer.println("GET_DOCTOR_NOTIFICATIONS:" + message);
     }
 
     /**

@@ -1,11 +1,10 @@
 package Server;
 
-import Client.Client;
 import utils.Color;
 
 import java.math.BigInteger;
 import java.sql.*;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -41,6 +40,8 @@ public class SQLEngine {
      */
     public Connection connectToDataBase(Connection connection, int clientId) {
         try {
+            // EMERGENCY !!!
+            //connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthguardian", "root", "root");
             connection = DriverManager.getConnection(url, DBusername, DBpassword);
             System.out.println(Color.ColorString("Database connection successful. (For ClientID: ", Color.ANSI_GREEN_BACKGROUND) + Color.ColorBgString(Color.ANSI_GREEN_BACKGROUND, "" + clientId, Color.ANSI_BLACK) + Color.ColorString(")", Color.ANSI_GREEN_BACKGROUND));
         } catch (SQLException e) {
@@ -117,6 +118,273 @@ public class SQLEngine {
             disconnectFromDataBase(resultSet, preparedStatement, connection);
         }
         return returnStatement;
+    }
+
+    ArrayList<String> generateReport(int clientID) {
+        ArrayList<String> returnStatement = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT COUNT(*) AS 'users' " +
+                                 "FROM user_table " +
+                                 "UNION " +
+                                 "SELECT COUNT(*) AS 'doctors' " +
+                                 "FROM doctor_table; ";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+
+            if (rowCount <= 0) {
+                System.out.println("Error in database while getting count of users and doctors.");
+                returnStatement.add("Error");
+                return returnStatement;
+            }
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    if (row == 0)
+                        returnStatement.add("Users: " + resultSet.getString(col + 1));
+                    else
+                        returnStatement.add("Doctors: " + resultSet.getString(col + 1));
+                }
+                row++;
+                returnStatement.add("$/$");
+            }
+            returnStatement.add("&/&");
+
+            sql = "SELECT c.clinic_id, " +
+                          "c.clinic_nr, " +
+                          "c.name AS clinic_name, " +
+                          "c.adress, " +
+                          "c.phone, " +
+                          "CONCAT(d.first_name, ' ', d.last_name) AS clinic_director " +
+                          "FROM " +
+                          "clinic_table c " +
+                          "LEFT JOIN " +
+                          "doctor_table d ON c.director_id = d.doctor_id; ";
+
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            resultSet = preparedStatement.executeQuery();
+
+            rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            columnCount = resultSet.getMetaData().getColumnCount();
+
+            if (rowCount <= 0) {
+                System.out.println("Error in database while getting list of clinics.");
+                returnStatement.add("Error");
+                return returnStatement;
+            }
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    if (col == 0)
+                        returnStatement.add("ID: " + resultSet.getString(col + 1));
+                    else if (col == 1)
+                        returnStatement.add("No: " + resultSet.getString(col + 1));
+                    else if (col == 2)
+                        returnStatement.add("Name: " + resultSet.getString(col + 1));
+                    else if (col == 3)
+                        returnStatement.add("Adress: " + resultSet.getString(col + 1));
+                    else if (col == 4)
+                        returnStatement.add("Phone: " + resultSet.getString(col + 1));
+                    else
+                        returnStatement.add("Director: " + resultSet.getString(col + 1));
+                }
+                row++;
+                returnStatement.add("$/$");
+            }
+            returnStatement.add("&/&");
+
+            sql = "SELECT DATE_FORMAT(date_of_issue, '%Y-%m') AS issued_month, " +
+                          "COUNT(referral_id) AS prescriptions_issued " +
+                          "FROM " +
+                          "e_referral_table " +
+                          "WHERE " +
+                          "date_of_issue >= '2022-01-01' AND date_of_issue <= CURDATE() " +
+                          "GROUP BY " +
+                          "issued_month " +
+                          "ORDER BY issued_month; ";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            resultSet = preparedStatement.executeQuery();
+
+            rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            columnCount = resultSet.getMetaData().getColumnCount();
+
+            if (rowCount <= 0) {
+                System.out.println("Error in database while getting count of prescribed e-referral in each month.");
+                returnStatement.add("Error");
+                return returnStatement;
+            }
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement.add(resultSet.getString(col + 1));
+                }
+                row++;
+                returnStatement.add("$/$");
+            }
+            returnStatement.add("&/&");
+
+            sql = "SELECT DATE_FORMAT(date_of_issue, '%Y-%m') AS issued_month, " +
+                          "COUNT(prescription_id) AS prescriptions_issued " +
+                          "FROM " +
+                          "e_prescription_table " +
+                          "WHERE " +
+                          "date_of_issue >= '2022-01-01' AND date_of_issue <= CURDATE() " +
+                          "GROUP BY " +
+                          "issued_month " +
+                          "ORDER BY issued_month; ";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            resultSet = preparedStatement.executeQuery();
+
+            rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            columnCount = resultSet.getMetaData().getColumnCount();
+
+            if (rowCount <= 0) {
+                System.out.println("Error in database while getting count of prescribed e-prescription in each month.");
+                returnStatement.add("Error");
+                return returnStatement;
+            }
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement.add(resultSet.getString(col + 1));
+                }
+                row++;
+                returnStatement.add("$/$");
+            }
+            returnStatement.add("&/&");
+
+            sql = "SELECT clinic_id, COUNT(user_id) AS number_of_users " +
+                          "FROM user_clinic_table " +
+                          "GROUP BY clinic_id; ";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            resultSet = preparedStatement.executeQuery();
+
+            rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            columnCount = resultSet.getMetaData().getColumnCount();
+
+            if (rowCount <= 0) {
+                System.out.println("Error in database while getting number of users in each clinic.");
+                returnStatement.add("Error");
+                return returnStatement;
+            }
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    if (col == 0)
+                        returnStatement.add("ID: " + resultSet.getString(col + 1));
+                    else
+                        returnStatement.add("Users: " + resultSet.getString(col + 1));
+                }
+                row++;
+                returnStatement.add("$/$");
+            }
+            returnStatement.add("&/&");
+
+            sql = "SELECT clinic_id, COUNT(doctor_id) AS number_of_doctors " +
+                          "FROM doctor_clinic_table " +
+                          "GROUP BY clinic_id; ";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            resultSet = preparedStatement.executeQuery();
+
+            rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            columnCount = resultSet.getMetaData().getColumnCount();
+
+            if (rowCount <= 0) {
+                System.out.println("Error in database while getting number of doctors in each clinic.");
+                returnStatement.add("Error");
+                return returnStatement;
+            }
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    if (col == 0)
+                        returnStatement.add("ID: " + resultSet.getString(col + 1));
+                    else
+                        returnStatement.add("Doctors: " + resultSet.getString(col + 1));
+                }
+                row++;
+                returnStatement.add("$/$");
+            }
+            returnStatement.add("&/&");
+
+            sql = "SELECT * FROM one_time_code_table";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            resultSet = preparedStatement.executeQuery();
+
+            rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            columnCount = resultSet.getMetaData().getColumnCount();
+
+            if (rowCount <= 0) {
+                System.out.println("Error in database while getting one time codes.");
+                returnStatement.add("Error");
+                return returnStatement;
+            }
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement.add(resultSet.getString(col + 1));
+                }
+                row++;
+                returnStatement.add("$/$");
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
     }
 
     String[] getDoctorData(int clientID, String doctor_id) {
@@ -234,6 +502,57 @@ public class SQLEngine {
         return "Error";
     }
 
+    String checkIfDoctorExists(int clientID, String username, String email, String clinic) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet userResultSet = null;
+        ResultSet emailResultSet = null;
+        ResultSet clinicResultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT username FROM doctor_pass_table WHERE username = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);  // username
+
+            userResultSet = preparedStatement.executeQuery();
+
+            String emailSql = "SELECT email FROM doctor_table WHERE email = ?";
+            preparedStatement = connection.prepareStatement(emailSql);
+            preparedStatement.setString(1, email);  // email
+
+            emailResultSet = preparedStatement.executeQuery();
+
+            String clinicSql = "SELECT clinic_id FROM clinic_table WHERE name = ?";
+            preparedStatement = connection.prepareStatement(clinicSql);
+            preparedStatement.setString(1, clinic);  // clinic
+
+            clinicResultSet = preparedStatement.executeQuery();
+
+            if (userResultSet.next()) { // if username exist in database
+                System.out.println("Doctor exists!");
+                return "Doctor exists";
+            } else if (emailResultSet.next()) { // if email exist in database
+                System.out.println("Email exists!");
+                return "Email exists";
+            } else if (!clinicResultSet.next()) {
+                System.out.println("Wrong clinic name!");
+                return "Wrong clinic name";
+            } else {
+                System.out.println("Correct, username and email free to use, right clinic name.");
+                return "Free to use, clinic ID: " + clinicResultSet.getInt("clinic_id");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            if (clinicResultSet != null)
+                clinicResultSet.close();
+            disconnectFromDataBase(userResultSet, emailResultSet, preparedStatement, connection);
+        }
+        return "Error";
+    }
+
     /**
      * The checkOneTimeCode method is responsible for checking the one-time code of a user.
      *
@@ -269,7 +588,7 @@ public class SQLEngine {
                 String insertUserSql = "INSERT INTO user_table (user_id, first_name, last_name, phone, email, pesel) VALUES (?, ?, ?, ?, ?, ?)";
                 //String insertUserSqlData = "INSERT INTO user_basic_data_table (user_id) VALUES (?)";
                 String insertUserPassSql = "INSERT INTO user_pass_table (username, password_hash, salt, user_id) VALUES (?, SHA2(CONCAT(?, @salt), 256), @salt, ?)";
-                String insertSettingsSql = "INSERT INTO settings_table (bmi_setting, age_setting, currentDate_setting, settings_no_4, settings_no_5, user_id) VALUES ('false', 'false', 'false', 'false', 'false', ?)";
+                String insertSettingsSql = "INSERT INTO settings_table (bmi_setting, age_setting, currentDate_setting, weightInChart_setting, temperatureInChart_setting, background_setting, user_id) VALUES ('false', 'false', 'false', 'false', 'false', 'false', ?)";
 
                 // get Max user_id from Database
                 preparedStatement = connection.prepareStatement(getMaxUserIdSql);
@@ -313,6 +632,76 @@ public class SQLEngine {
                 System.out.println("Wrong code!");
                 return "false";
             }
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return "error";
+    }
+
+    String addNewDoctor(int clientID, String firstname, String lastname, String phoneNumber, String email, String gender, String profession, String username, String password, String clinicId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+
+            String getMaxDoctorIdSql = "SELECT MAX(doctor_id) AS max_doctor_id FROM doctor_table";
+            String getSaltSql = "SET @salt = SUBSTRING(MD5(RAND()), 1, 16)";
+            String insertDoctorSql = "INSERT INTO doctor_table (doctor_id, first_name, last_name, phone, email, gender, profession) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String insertDoctorPassSql = "INSERT INTO doctor_pass_table (username, password_hash, salt, doctor_id) VALUES (?, SHA2(CONCAT(?, @salt), 256), @salt, ?)";
+            String insertSettingsSql = "INSERT INTO doctor_settings_table (bmi_setting, age_setting, currentDate_setting, weightInChart_setting, temperatureInChart_setting, doctor_id) VALUES ('false', 'false', 'false', 'false', 'false', ?)";
+            String insertDoctorClinicSql = "INSERT INTO doctor_clinic_table (doctor_id, clinic_id) VALUES (?, ?)";
+
+            // get Max doctor_id from Database
+            preparedStatement = connection.prepareStatement(getMaxDoctorIdSql);
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            int maxDoctorId = resultSet.getInt("max_doctor_id");
+
+            // generate salt
+            preparedStatement = connection.prepareStatement(getSaltSql);
+            preparedStatement.executeUpdate();
+
+            // insert into doctor table
+            preparedStatement = connection.prepareStatement(insertDoctorSql);
+            preparedStatement.setInt(1, maxDoctorId + 1);
+            preparedStatement.setString(2, firstname);
+            preparedStatement.setString(3, lastname);
+            preparedStatement.setString(4, phoneNumber);
+            preparedStatement.setString(5, email);
+            preparedStatement.setString(6, gender);
+            preparedStatement.setString(7, profession);
+            int rowsAffected1 = preparedStatement.executeUpdate();
+
+            // insert into settings_table
+            preparedStatement = connection.prepareStatement(insertSettingsSql);
+            preparedStatement.setInt(1, maxDoctorId + 1);
+            int rowsAffected2 = preparedStatement.executeUpdate();
+
+            // insert into doctor_pass_table table
+            preparedStatement = connection.prepareStatement(insertDoctorPassSql);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            preparedStatement.setInt(3, maxDoctorId + 1);
+            int rowsAffected3 = preparedStatement.executeUpdate();
+
+            // insert into doctor_clinic_table
+            preparedStatement = connection.prepareStatement(insertDoctorClinicSql);
+            preparedStatement.setInt(1, maxDoctorId + 1);
+            preparedStatement.setInt(2, Integer.parseInt(clinicId));
+            int rowsAffected4 = preparedStatement.executeUpdate();
+
+            if (rowsAffected1 == 1 && rowsAffected2 == 1 && rowsAffected3 == 1 && rowsAffected4 == 1) {
+                System.out.println("Added new doctor correctly.");
+                return "Added new doctor correctly.";
+            } else {
+                System.out.println("Error while adding new doctor. {" + rowsAffected2 + ", " + rowsAffected3 + ", " + rowsAffected4 + "}");
+                return "Error while adding new doctor.";
+            }
+
         } catch (SQLException e) {
             System.err.println("Error while executing SELECT: " + e.getMessage());
         } finally {
@@ -389,6 +778,42 @@ public class SQLEngine {
             if (resultSet.next()) { // if username and password exist in database in same user
                 returnStatement[0] = "true";
                 returnStatement[1] = String.valueOf(resultSet.getInt("doctor_id"));
+
+                return returnStatement;
+            } else {
+                returnStatement[0] = "false";
+                returnStatement[1] = "-1";
+
+                return returnStatement;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    String[] loginToAdmin(int clientID, int adminId, String inputPassword) {
+        String[] returnStatement = {"false", "-1"};
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT admin_id FROM admin_pass_table WHERE admin_id = ? AND password_hash = SHA2(CONCAT(?, (SELECT salt FROM admin_pass_table WHERE admin_id = ?)), 256)";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, adminId);  // password
+            preparedStatement.setString(2, inputPassword);  // password
+            preparedStatement.setInt(3, adminId);  // password
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) { // if username and password exist in database in same user
+                returnStatement[0] = "true";
+                returnStatement[1] = String.valueOf(resultSet.getInt("admin_id"));
 
                 return returnStatement;
             } else {
@@ -756,6 +1181,55 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    String createNewOneTimeCodes(int clientID) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+
+            String selectMaxCode = "SELECT MAX(one_time_code) FROM one_time_code_table";
+            preparedStatement = connection.prepareStatement(selectMaxCode);
+            resultSet = preparedStatement.executeQuery();
+
+            int maxCode = 0;
+            if (resultSet.next()) {
+                maxCode = resultSet.getInt(1);
+            }
+
+            // execute the INSERT statement to add 100 new codes
+            String insertNewCodes = "INSERT INTO one_time_code_table (one_time_code) VALUES ";
+            for (int i = 0; i < 100; i++) {
+                maxCode++;
+                insertNewCodes += "(LPAD(" + maxCode + ", 6, '0')),";
+            }
+
+            // Remove the trailing comma and execute the query
+            insertNewCodes = insertNewCodes.substring(0, insertNewCodes.length() - 1);
+            preparedStatement = connection.prepareStatement(insertNewCodes);
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 100) {
+                System.out.println("100 new one-time codes added correctly.");
+                returnStatement = "100 new one-time codes added correctly.";
+            } else {
+                System.out.println("Error in database while adding new one-time codes.");
+                returnStatement = "Error in database while adding new one-time codes.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SQL: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
     String addRecommendation(int clientID, String diet, String medicines, String nextCheckUpDate, String nextCheckUpName, String additionalInformation, String date, String doctor_id, String pesel) {
         String returnStatement = "Error";
 
@@ -848,10 +1322,16 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
+            String getUserIdFromPeselSql = "SELECT user_id FROM user_table WHERE pesel = ?";
             String addMedicalHistorySql = "INSERT INTO user_medical_history_table (ICD10_first_letter, ICD10_code, medical_case, user_id) VALUES (?, ?, ?, ?);";
 
             // get user_id from pesel
-            int user_id = getUserIdFromPesel(pesel);
+            preparedStatement = connection.prepareStatement(getUserIdFromPeselSql);
+            preparedStatement.setString(1, pesel);
+            resultSet = preparedStatement.executeQuery();
+            int user_id = resultSet.getInt("user_id");
+            ;
+
 
             // insert into user_medical_history_table
             preparedStatement = connection.prepareStatement(addMedicalHistorySql);
@@ -1296,6 +1776,51 @@ public class SQLEngine {
         return null;
     }
 
+    String[][] getDoctorNotifications(int clientID, int doctor_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT * FROM doctor_message_table WHERE doctor_id = ?";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            preparedStatement.setInt(1, doctor_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            if (rowCount == 0) {
+                System.out.println("No notifications in database.");
+                return new String[][]{{"No notifications in database"}};
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
+
     String[][] getEReferral(int clientID, int user_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -1351,6 +1876,51 @@ public class SQLEngine {
             String sql = "SELECT * FROM findings_table WHERE user_id = ?";
             preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setInt(1, user_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            if (rowCount == 0) {
+                System.out.println("No findings in database.");
+                return new String[][]{{"No findings in database"}};
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
+
+    String[][] getDoctorFindings(int clientID, String pesel) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT * FROM findings_table LEFT JOIN user_table ON findings_table.user_id = user_table.user_id WHERE user_table.pesel = ?";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            preparedStatement.setString(1, pesel);
 
             resultSet = preparedStatement.executeQuery();
 
@@ -1475,7 +2045,7 @@ public class SQLEngine {
         }
         return null;
     }
-    
+
     String[] getSMI(int clientID, int registration_nr, String pesel) {
         String[] returnStatement = {"Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error"};
         Connection connection = null;
@@ -1490,7 +2060,7 @@ public class SQLEngine {
             preparedStatement.setString(2, pesel);
             resultSet = preparedStatement.executeQuery();
 
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 returnStatement[0] = String.valueOf(resultSet.getInt("registration_nr"));
                 returnStatement[1] = resultSet.getString("what_hurts_you");
                 returnStatement[2] = resultSet.getString("pain_symptoms");
@@ -1519,28 +2089,49 @@ public class SQLEngine {
         return null;
     }
 
-    int getUserIdFromPesel(String pesel) {
-        String sql = "SELECT user_id FROM user_table WHERE pesel = ?";
+    String[][] getDoctorMedicalHistory(int clientID, String pesel) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
-        try (Connection connection = DriverManager.getConnection(url, DBusername, DBpassword);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        ) {
-
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT * FROM user_medical_history_table LEFT JOIN user_table ON user_medical_history_table.user_id = user_table.user_id WHERE user_table.pesel = ?";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setString(1, pesel);
 
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    return resultSet.getInt("user_id");
-                } else {
-                    System.out.println("Error in database while getting user_id from pesel.");
-                    return -1;
-                }
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
             }
+
+            if (rowCount == 0) {
+                System.out.println("No medical history in database.");
+                return new String[][]{{"No medical history in database"}};
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
         } catch (SQLException e) {
             System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
         }
-
-        return -1;
+        return null;
     }
 
     String[][] getMedicalHistory(int clientID, int user_id) {
@@ -1588,16 +2179,16 @@ public class SQLEngine {
         return null;
     }
 
-    String[][] getDocumentations(int clientID, int user_id) {
+    String[][] getDocumentations(int clientID, String pesel) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String sql = "SELECT * FROM documentation_table WHERE user_id = ?";
+            String sql = "SELECT * FROM documentation_table LEFT JOIN user_table ON documentation_table.user_id = user_table.user_id WHERE user_table.pesel = ?";
             preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            preparedStatement.setInt(1, user_id);
+            preparedStatement.setString(1, pesel);
 
             resultSet = preparedStatement.executeQuery();
 
@@ -1684,6 +2275,8 @@ public class SQLEngine {
     public void checkDataBase() {
         Connection connection = null;
         try {
+            // EMERGENCY !!!
+            //connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthguardian", "root", "root");
             connection = DriverManager.getConnection(url, DBusername, DBpassword);
 
             if (connection != null)
