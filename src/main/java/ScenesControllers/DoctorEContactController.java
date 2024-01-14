@@ -109,8 +109,8 @@ public class DoctorEContactController implements Initializable {
         if(serverAnswer.equals("[[No examinations in database]]")) {
             Pane newExamination = new Pane();
             Label newExaminationName = new Label("There is no examinations for Today.");
-            newExaminationName.setPrefHeight(30);
-            newExaminationName.setPrefWidth(500);
+            newExaminationName.setPrefHeight(34);
+            newExaminationName.setPrefWidth(498);
             newExaminationName.setLayoutX(0);
             newExaminationName.setAlignment(Pos.CENTER);
             newExaminationName.setFont(new Font("Consolas Bold", 20.0));

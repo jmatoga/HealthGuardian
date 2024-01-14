@@ -8,8 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -17,7 +17,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
-import utils.Color;
 import utils.Message;
 
 import java.awt.*;
@@ -27,7 +26,7 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DoctorLogInController implements Initializable {
+public class AdminLogInController implements Initializable {
 
     private final Toolkit toolkit = Toolkit.getDefaultToolkit();
     private final int screenWidth = toolkit.getScreenSize().width;
@@ -37,7 +36,7 @@ public class DoctorLogInController implements Initializable {
     private static PrintWriter SendToServer;
 
     @FXML
-    private TextField username;
+    private TextField adminId;
 
     @FXML
     private PasswordField password;
@@ -55,16 +54,11 @@ public class DoctorLogInController implements Initializable {
     private ImageView imageView;
 
     @FXML
-    private AnchorPane doctorHelloScene;
+    private AnchorPane adminHelloScene;
 
     @FXML
     public void userLogInButtonClicked(MouseEvent mouseEvent) throws IOException {
         new SceneSwitch("/ScenesLayout/LogInScene.fxml", 800, 500, false, false);
-    }
-
-    @FXML
-    public void shieldClicked(MouseEvent mouseEvent) throws IOException {
-        new SceneSwitch("/ScenesLayout/AdminLogInScene.fxml", 800, 500, false, false);
     }
 
     @FXML
@@ -85,28 +79,30 @@ public class DoctorLogInController implements Initializable {
     }
 
     private void checkWrittenText() throws IOException {
-        if (username.getText().isEmpty() && password.getText().isEmpty())
-            loggingStatus.setText("Username and Password can't be empty!");
-        else if (!username.getText().isEmpty() && password.getText().isEmpty())
-            loggingStatus.setText("Password can't be empty!");
-        else if (username.getText().isEmpty() && !password.getText().isEmpty())
-            loggingStatus.setText("Username can't be empty!");
+        if (adminId.getText().isEmpty() && password.getText().isEmpty())
+            loggingStatus.setText("ID and Password can't be empty!");
+        else if (!adminId.getText().isEmpty() && password.getText().isEmpty())
+            loggingStatus.setText("ID can't be empty!");
+        else if (adminId.getText().isEmpty() && !password.getText().isEmpty())
+            loggingStatus.setText("ID can't be empty!");
+        else if(!adminId.getText().matches("\\d+"))
+            loggingStatus.setText("ID must be a number!");
         else {
-            message.sendDoctorLoginMessage(SendToServer, Client.clientId + "#/#" + username.getText() + "#/#" + password.getText());
+            message.sendAdminLoginMessage(SendToServer, Client.clientId + "#/#" + adminId.getText() + "#/#" + password.getText());
             String serverAnswer = Client.getServerResponse(ReadFromServer);
 
-            if (serverAnswer.startsWith("Doctor logged successfully. Your doctor_id: ") && Integer.parseInt(serverAnswer.substring(44)) > 0) {
-                Client.doctor_id = Integer.parseInt(serverAnswer.substring(44));
+            if (serverAnswer.startsWith("Admin logged successfully. Your admin_id: ") && Integer.parseInt(serverAnswer.substring(42)) > 0) {
+                int admin_id = Integer.parseInt(serverAnswer.substring(42));
                 loggingStatus.setTextFill(Paint.valueOf("0x2aff00")); // green color
                 loggingStatus.setText("Logged succesfully!");
-                username.setText("");
+                adminId.setText("");
                 password.setText("");
                 logInButton.requestFocus();
 
                 Timeline timeline = new Timeline(
                         new KeyFrame(Duration.millis(500), event -> {
                             try {
-                                new SceneSwitch("/ScenesLayout/DoctorPanelScene.fxml", 1920, 1080, screenWidth, screenHeight, true, true,"HealthGuardian - doctorID: " + Client.clientId + ", doctor_id: " + Client.doctor_id);
+                                new SceneSwitch("/ScenesLayout/AdminPanelScene.fxml", 815, 520, 815, 520, false, false,"HealthGuardian - ADMIN: " + admin_id + ", ClientID: " + Client.clientId);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
@@ -116,7 +112,7 @@ public class DoctorLogInController implements Initializable {
                 timeline.play();
 
             } else {
-                loggingStatus.setText("Wrong doctor username or password!");
+                loggingStatus.setText("Wrong admin ID or password!");
                 System.out.println(serverAnswer);
             }
         }
@@ -124,7 +120,7 @@ public class DoctorLogInController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        DoctorLogInController.ReadFromServer = Client.ReadFromServer;
-        DoctorLogInController.SendToServer = Client.SendToServer;
+        AdminLogInController.ReadFromServer = Client.ReadFromServer;
+        AdminLogInController.SendToServer = Client.SendToServer;
     }
 }

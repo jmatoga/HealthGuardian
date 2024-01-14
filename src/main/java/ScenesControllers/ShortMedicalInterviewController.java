@@ -1,18 +1,15 @@
 package ScenesControllers;
 
 import Client.Client;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.Pane;
 import utils.Color;
 import utils.Message;
 
-import javax.swing.event.ChangeListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -173,7 +170,7 @@ public class ShortMedicalInterviewController implements Initializable {
     public String otherSymptomsToDB = "";
     public String symptomsOtherSymptomsToDB = "";
     public String medicinesToDB = "";
-    public String painDurationToDB = "";
+    public String extentOfPainToDB = "";
     public String whenThePainStartedToDB = "";
     public String temperatureToDB = "";
     public String additionalDescriptionToDB = "";
@@ -208,7 +205,7 @@ public class ShortMedicalInterviewController implements Initializable {
 
     public void show()
     {
-        System.out.printf(whatHurtsYouToDB + painSymptomsToDB + otherSymptomsToDB + symptomsOtherSymptomsToDB + medicinesToDB + painDurationToDB + whenThePainStartedToDB + temperatureToDB + additionalDescriptionToDB + resultSmiToDB);
+        System.out.printf(whatHurtsYouToDB + painSymptomsToDB + otherSymptomsToDB + symptomsOtherSymptomsToDB + medicinesToDB + extentOfPainToDB + whenThePainStartedToDB + temperatureToDB + additionalDescriptionToDB + resultSmiToDB);
     }
 
 
@@ -630,7 +627,7 @@ public class ShortMedicalInterviewController implements Initializable {
         resultSmiPane.setDisable(true);
         stage7nextButton.setDisable(true);
         ProgressProgressBar.setProgress(0.58);
-        painDurationToDB = painDurationTextField.getText();
+        extentOfPainToDB = painDurationTextField.getText();
     }
 
     public void stage7nextButtonClicked(ActionEvent actionEvent) {
@@ -692,7 +689,7 @@ public class ShortMedicalInterviewController implements Initializable {
         additionalDescriptionToDB = additionalDescriptionTextField.getText();
         resultSmiToDB = doctorResultLabel.getText();
         //System.out.println(Client.clientId + "#/#" + whatHurtsYouToDB + "#/#" + painSymptomsToDB + "#/#" + otherSymptomsToDB + "#/#" + symptomsOtherSymptomsToDB + "#/#" + medicinesToDB + "#/#" + painDurationToDB + "#/#" + whenThePainStartedToDB + "#/#" + temperatureToDB + "#/#" + additionalDescriptionToDB + "#/#" + resultSmiToDB + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "#/#" + Client.user_id);
-        message.addShortMedicalInterview(SendToServer, Client.clientId + "#/#" + whatHurtsYouToDB + "#/#" + painSymptomsToDB + "#/#" + otherSymptomsToDB + "#/#" + symptomsOtherSymptomsToDB + "#/#" + medicinesToDB + "#/#" + painDurationToDB + "#/#" + whenThePainStartedToDB + "#/#" + temperatureToDB + "#/#" + additionalDescriptionToDB + "#/#" + resultSmiToDB + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "#/#" + Client.user_id);
+        message.addShortMedicalInterview(SendToServer, Client.clientId + "#/#" + whatHurtsYouToDB + "#/#" + painSymptomsToDB + "#/#" + otherSymptomsToDB + "#/#" + symptomsOtherSymptomsToDB + "#/#" + medicinesToDB + "#/#" + extentOfPainToDB + "#/#" + whenThePainStartedToDB + "#/#" + temperatureToDB + "#/#" + additionalDescriptionToDB + "#/#" + resultSmiToDB + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "#/#" + Client.user_id);
         String serverAnswer = ReadFromServer.readLine();
         System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
 

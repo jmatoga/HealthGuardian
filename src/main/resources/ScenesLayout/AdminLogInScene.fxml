@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="doctorHelloScene" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.DoctorLogInController">
+<AnchorPane fx:id="adminHelloScene" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.AdminLogInController">
     <children>
         <ImageView fx:id="imageView" fitHeight="500.0" fitWidth="800.0" layoutX="1.0" layoutY="1.0" onMouseClicked="#unHighlightButtonsOnImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
             <image>
@@ -43,7 +43,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <TextField fx:id="username" layoutX="316.0" layoutY="361.0" onKeyPressed="#enterPressedInField" prefHeight="25.0" prefWidth="187.0" promptText="Username" styleClass="turquoise-textfield" stylesheets="@../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="106.0" AnchorPane.leftAnchor="316.0" />
+        <TextField fx:id="adminId" layoutX="379.0" layoutY="363.0" onKeyPressed="#enterPressedInField" prefHeight="31.0" prefWidth="50.0" promptText="ID" styleClass="turquoise-textfield" stylesheets="@../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="106.0" AnchorPane.leftAnchor="379.0" />
         <PasswordField fx:id="password" layoutX="316.0" layoutY="397.0" onKeyPressed="#enterPressedInField" prefHeight="25.0" prefWidth="187.0" promptText="Password" styleClass="turquoise-textfield" stylesheets="@../Styles/textFieldsStyle.css" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="316.0" />
         <Label fx:id="loggingStatus" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="330.0" prefHeight="25.0" prefWidth="373.0" textFill="RED" AnchorPane.bottomAnchor="145.0">
             <font>
@@ -52,7 +52,7 @@
             <opaqueInsets>
                 <Insets />
             </opaqueInsets></Label>
-        <ImageView fitHeight="53.0" fitWidth="58.0" layoutX="14.0" layoutY="439.0" onMouseClicked="#shieldClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0">
+        <ImageView fitHeight="53.0" fitWidth="58.0" layoutX="14.0" layoutY="439.0" onMouseClicked="#userLogInButtonClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0">
             <image>
                 <Image url="@../Images/iconImage64x64.png" />
             </image>
@@ -65,7 +65,7 @@
                 <Insets />
             </opaqueInsets>
         </Button>
-      <Label layoutX="344.0" layoutY="470.0" prefHeight="17.0" prefWidth="119.0" styleClass="outlined-text" stylesheets="@../Styles/textLabel.css" text="LOG IN TO DOCTOR" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="344.0">
+      <Label layoutX="344.0" layoutY="470.0" prefHeight="17.0" prefWidth="119.0" styleClass="outlined-text" stylesheets="@../Styles/textLabel.css" text="LOG IN TO ADMIN" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="344.0">
          <font>
             <Font name="Consolas Bold" size="13.0" />
          </font>
@@ -74,12 +74,17 @@
                <stops>
                   <Stop>
                      <color>
-                        <Color red="0.32549020648002625" green="0.6941176652908325" blue="1.0" />
+                        <Color red="1.0" green="0.9337419867515564" blue="0.33000001311302185" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006711409395973154">
+                     <color>
+                        <Color red="1.0" green="0.9337419867515564" blue="0.33000001311302185" />
                      </color>
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color green="0.05882352963089943" blue="1.0" />
+                        <Color red="1.0" blue="0.20952381193637848" />
                      </color>
                   </Stop>
                </stops>

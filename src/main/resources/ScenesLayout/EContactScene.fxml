@@ -94,10 +94,13 @@
       <Pane layoutX="600.0" layoutY="192.0" prefHeight="380.0" prefWidth="700.0" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="190.0">
          <children>
             <Pane opacity="0.4" prefHeight="380.0" prefWidth="700.0" style="-fx-background-color: white; -fx-background-radius: 30;" />
-            <Label alignment="TOP_CENTER" prefHeight="380.0" prefWidth="700.0" text="When you can use the e-contact service below, you will receive a link to the chat in the ZOOM application (you can use it without installation). The link should be sent by the doctor who will create the meeting, just before the planned visit. Before joining, make sure your microphone, headphones and camera are working properly to make it easier for you and the doctor. You can also only use the chat during the visit if you do not want to use the camera or microphone.If you want to use the telephone option before the visit, please enter the telephone number in the field below that the doctor should call during the visit." textAlignment="CENTER" textFill="#401503" wrapText="true">
+            <Label alignment="TOP_CENTER" prefHeight="380.0" prefWidth="700.0" text="When you can use the e-contact service below, you will receive a link to the chat in the ZOOM application (you can use it without installation). The link should be sent by the doctor creating the meeting just before the planned visit. Before joining, make sure your microphone, headphones and camera are working properly to make it easier for you and your doctor. You can also use the chat during your visit only if you do not want to use the camera or microphone." textAlignment="CENTER" textFill="#401503" wrapText="true">
                <font>
-                  <Font name="Consolas Bold" size="22.0" />
+                  <Font name="Consolas Bold" size="25.0" />
                </font>
+               <padding>
+                  <Insets left="5.0" right="5.0" top="5.0" />
+               </padding>
             </Label>
          </children>
       </Pane>
@@ -183,7 +186,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Label fx:id="correctLabel" layoutX="838.0" layoutY="902.0" prefHeight="40.0" prefWidth="260.0" textFill="#48ff00" AnchorPane.leftAnchor="1550.0" AnchorPane.topAnchor="880.0">
+      <Label fx:id="correctLabel" layoutX="1538.0" layoutY="868.0" prefHeight="40.0" prefWidth="285.0" textAlignment="CENTER" textFill="#48ff00" AnchorPane.leftAnchor="1538.0" AnchorPane.topAnchor="868.0">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
