@@ -22,7 +22,7 @@
 
 <AnchorPane fx:id="examinationScheduleScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom, #E0FFFF 70%, #85fec9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.ExaminationScheduleController">
     <children>
-        <ImageView fitHeight="1200.0" fitWidth="1920.0" layoutX="6.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="-9.0">
+        <ImageView fitHeight="1103.0" fitWidth="1929.0" layoutX="-3.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="-3.0" AnchorPane.topAnchor="-9.0">
             <image>
                 <Image url="@../Images/bg2.jpg" />
             </image>
@@ -101,7 +101,7 @@
                   <Pane prefHeight="40.0" prefWidth="400.0" />
                   <TextField alignment="TOP_LEFT" prefHeight="80.0" prefWidth="400.0" promptText="Short descripiotn to examination" styleClass="blue-textfield" stylesheets="@../Styles/makeAnAppointment.css" />
                   <Pane prefHeight="40.0" prefWidth="400.0" />
-                  <CheckBox mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" stylesheets="@../Styles/makeAnAppointment.css" text="Do you want to arrange e-contact?" textAlignment="CENTER" textFill="WHITE">
+                  <CheckBox mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" styleClass="choiceBox" stylesheets="@../Styles/makeAnAppointment.css" text="Do you want to arrange e-contact?" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>

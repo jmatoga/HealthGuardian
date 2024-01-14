@@ -1475,6 +1475,49 @@ public class SQLEngine {
         }
         return null;
     }
+    
+    String[] getSMI(int clientID, int registration_nr, String pesel) {
+        String[] returnStatement = {"Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error"};
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT short_medical_interview_table.* FROM short_medical_interview_table LEFT JOIN user_table ON short_medical_interview_table.user_id = user_table.user_id WHERE registration_nr = ? AND user_table.pesel = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, registration_nr);
+            preparedStatement.setString(2, pesel);
+            resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()) {
+                returnStatement[0] = String.valueOf(resultSet.getInt("registration_nr"));
+                returnStatement[1] = resultSet.getString("what_hurts_you");
+                returnStatement[2] = resultSet.getString("pain_symptoms");
+                returnStatement[3] = resultSet.getString("other_symptoms");
+                returnStatement[4] = resultSet.getString("symptoms_other_symptoms");
+                returnStatement[5] = resultSet.getString("medicines");
+                returnStatement[6] = resultSet.getString("extent_of_pain");
+                returnStatement[7] = resultSet.getString("when_the_pain_started");
+                returnStatement[8] = String.valueOf(resultSet.getDouble("temperature"));
+                returnStatement[9] = resultSet.getString("additional_description");
+                returnStatement[10] = resultSet.getString("result_smi");
+                returnStatement[11] = String.valueOf(resultSet.getDate("smi_date"));
+                returnStatement[12] = String.valueOf(resultSet.getInt("user_id"));
+            } else {
+                System.out.println("SMI with this code doesn't exist in this user!");
+                return new String[]{"SMI with this code doesn't exist in this user!"};
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
 
     int getUserIdFromPesel(String pesel) {
         String sql = "SELECT user_id FROM user_table WHERE pesel = ?";
@@ -1665,7 +1708,7 @@ public class SQLEngine {
         }
     }
 
-    String addShortMedicalInterview(int clientID, String what_hurts_you, String pain_symptoms, String other_symptoms, String symptoms_other_symptoms, String medicines, String pain_duration, String when_the_pain_started, String temperature, String additional_description, String result_smi, String smi_date, int user_id) {
+    String addShortMedicalInterview(int clientID, String what_hurts_you, String pain_symptoms, String other_symptoms, String symptoms_other_symptoms, String medicines, String extent_of_pain, String when_the_pain_started, String temperature, String additional_description, String result_smi, String smi_date, int user_id) {
         String returnStatement = "Error";
 
         Connection connection = null;
@@ -1675,7 +1718,7 @@ public class SQLEngine {
         try {
             connection = connectToDataBase(connection, clientID);
             String getMaxRegistrationNrSql = "SELECT MAX(registration_nr) AS max_registration_nr FROM short_medical_interview_table";
-            String addSMISql = "INSERT INTO short_medical_interview_table (registration_nr, what_hurts_you, pain_symptoms, other_symptoms, symptoms_other_symptoms, medicines, pain_duration, when_the_pain_started, temperature, additional_description, result_smi, smi_date, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            String addSMISql = "INSERT INTO short_medical_interview_table (registration_nr, what_hurts_you, pain_symptoms, other_symptoms, symptoms_other_symptoms, medicines, extent_of_pain, when_the_pain_started, temperature, additional_description, result_smi, smi_date, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
             // get Max registration_nr from Database
             preparedStatement = connection.prepareStatement(getMaxRegistrationNrSql);
@@ -1704,7 +1747,7 @@ public class SQLEngine {
                 preparedStatement.setNull(5, java.sql.Types.VARCHAR);
 
             preparedStatement.setString(6, medicines);
-            preparedStatement.setString(7, pain_duration);
+            preparedStatement.setString(7, extent_of_pain);
             preparedStatement.setString(8, when_the_pain_started);
             preparedStatement.setDouble(9, Double.parseDouble(temperature));
             preparedStatement.setString(10, additional_description);

@@ -186,7 +186,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Label fx:id="correctLabel" layoutX="838.0" layoutY="902.0" prefHeight="40.0" prefWidth="260.0" textFill="#48ff00" AnchorPane.leftAnchor="1550.0" AnchorPane.topAnchor="880.0">
+      <Label fx:id="correctLabel" layoutX="1538.0" layoutY="868.0" prefHeight="40.0" prefWidth="285.0" textAlignment="CENTER" textFill="#48ff00" AnchorPane.leftAnchor="1538.0" AnchorPane.topAnchor="868.0">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
