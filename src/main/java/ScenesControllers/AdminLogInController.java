@@ -27,10 +27,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminLogInController implements Initializable {
-
-    private final Toolkit toolkit = Toolkit.getDefaultToolkit();
-    private final int screenWidth = toolkit.getScreenSize().width;
-    private final int screenHeight = toolkit.getScreenSize().height;
     private static final Message message = new Message();
     private static BufferedReader ReadFromServer;
     private static PrintWriter SendToServer;
@@ -57,7 +53,7 @@ public class AdminLogInController implements Initializable {
     private AnchorPane adminHelloScene;
 
     @FXML
-    public void userLogInButtonClicked(MouseEvent mouseEvent) throws IOException {
+    public void userLogInButtonClicked(ActionEvent actionEvent) throws IOException {
         new SceneSwitch("/ScenesLayout/LogInScene.fxml", 800, 500, false, false);
     }
 

@@ -58,7 +58,7 @@ public class DoctorLogInController implements Initializable {
     private AnchorPane doctorHelloScene;
 
     @FXML
-    public void userLogInButtonClicked(MouseEvent mouseEvent) throws IOException {
+    public void userLogInButtonClicked(ActionEvent actionEvent) throws IOException {
         new SceneSwitch("/ScenesLayout/LogInScene.fxml", 800, 500, false, false);
     }
 
