@@ -404,7 +404,12 @@ public class ClientPanelController implements Initializable {
             }
         }
 
-        birthday();
+        if(!birthDateLabel.getText().equals("No data"))
+        {
+            birthday();
+        }
+
+
     }
 
     private void checkNotification() {
