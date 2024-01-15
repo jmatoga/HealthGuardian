@@ -97,7 +97,7 @@
                   <Pane prefHeight="40.0" prefWidth="400.0" />
                   <ChoiceBox fx:id="appointmentDoctorChoiceBox" onAction="#appointmentDoctorPickerChosen" prefHeight="40.0" prefWidth="400.0" styleClass="choiceBox" stylesheets="@../Styles/makeAnAppointment.css" />
                   <Pane prefHeight="40.0" prefWidth="400.0" />
-                  <ChoiceBox fx:id="appointmentHourChoiceBox" prefHeight="40.0" prefWidth="400.0" styleClass="choiceBox" stylesheets="@../Styles/makeAnAppointment.css" />
+                  <ChoiceBox fx:id="appointmentHourChoiceBox" onAction="#appointmentHourPickerChosen" prefHeight="40.0" prefWidth="400.0" styleClass="choiceBox" stylesheets="@../Styles/makeAnAppointment.css" />
                   <Pane prefHeight="40.0" prefWidth="400.0" />
                   <TextArea fx:id="appointmentDescriptionTextField" prefHeight="80.0" prefWidth="400.0" promptText="Short descripiotn to examination (eg. SMI CODE)" styleClass="blue-textfield" stylesheets="@../Styles/makeAnAppointment.css" wrapText="true" />
                   <Pane prefHeight="40.0" prefWidth="400.0" />

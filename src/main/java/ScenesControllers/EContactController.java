@@ -126,8 +126,6 @@ public class EContactController implements Initializable {
                 } else {
                     linkLabel.setText(eContactData[5]);
                 }
-
-
             }
         }
     }

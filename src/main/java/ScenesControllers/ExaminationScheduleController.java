@@ -229,6 +229,7 @@ public class ExaminationScheduleController implements Initializable {
 
     @FXML
     public void appointmentDatePickerChosen(ActionEvent actionEvent) {
+        appointmentSatusLabel.setText("");
         if (appointmentDatePicker.getValue() != null && appointmentDatePicker.getValue().isBefore(LocalDate.now())) {
             appointmentSatusLabel.setTextFill(Color.redGradient());
             appointmentSatusLabel.setText("Choose right date!");
@@ -237,6 +238,7 @@ public class ExaminationScheduleController implements Initializable {
         } else {
             appointmentSatusLabel.setText("");
             appointmentDoctorChoiceBox.setDisable(false);
+            appointmentDoctorChoiceBox.setValue(null);
         }
     }
 
@@ -263,26 +265,30 @@ public class ExaminationScheduleController implements Initializable {
                 "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00"
         ));
 
-        String[] doctorId = appointmentDoctorChoiceBox.getValue().toString().split(" - ");
-        examDoctor = appointmentDoctorChoiceBox.getValue().toString().split(" - ");
+        Object selectedDoctor = appointmentDoctorChoiceBox.getValue();
+        if (selectedDoctor != null) {
+            String[] doctorId = selectedDoctor.toString().split(" - ");
+            examDoctor = selectedDoctor.toString().split(" - ");
 
-        message.sendGetHoursToExams(SendToServer, Client.clientId + "#/#" + doctorId[2] + "#/#" + appointmentDatePicker.getValue().toString());
-        String serverAnswer = Client.getServerResponse(ReadFromServer);
+            message.sendGetHoursToExams(SendToServer, Client.clientId + "#/#" + doctorId[2] + "#/#" + appointmentDatePicker.getValue().toString());
+            String serverAnswer = Client.getServerResponse(ReadFromServer);
 
-        String[] busyHours = serverAnswer.substring(1, serverAnswer.length() - 1).split(", ");
-        hourArr.removeIf(busyHoursList -> Arrays.asList(busyHours).contains(busyHoursList));
+            String[] busyHours = serverAnswer.substring(1, serverAnswer.length() - 1).split(", ");
+            hourArr.removeIf(busyHoursList -> Arrays.asList(busyHours).contains(busyHoursList));
 
-        ObservableList<String> hourObservableList = FXCollections.observableArrayList(hourArr);
-        appointmentHourChoiceBox.setItems(hourObservableList);
+            ObservableList<String> hourObservableList = FXCollections.observableArrayList(hourArr);
+            appointmentHourChoiceBox.setItems(hourObservableList);
+        } else {
+            appointmentHourChoiceBox.getItems().clear();
+            appointmentHourChoiceBox.setDisable(true);
+        }
     }
 
     @FXML
     public void appointmentDoctorPickerChosen(ActionEvent actionEvent) throws IOException {
-        if (!flag) {
-            getHoursFromDB();
-            appointmentHourChoiceBox.setDisable(false);
-            flag = true;
-        }
+        appointmentSatusLabel.setText("");
+        getHoursFromDB();
+        appointmentHourChoiceBox.setDisable(false);
     }
 
     private String appointmentNameMaker() {
@@ -304,5 +310,10 @@ public class ExaminationScheduleController implements Initializable {
         String restOfText = input.substring(1).toLowerCase();
 
         return firstLetter + restOfText;
+    }
+
+    @FXML
+    public void appointmentHourPickerChosen(ActionEvent actionEvent) {
+        appointmentSatusLabel.setText("");
     }
 }
