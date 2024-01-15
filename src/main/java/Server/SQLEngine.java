@@ -1893,7 +1893,7 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String sql = "SELECT examination_nr, name, examination_date, doctor_table.first_name, doctor_table.last_name, doctor_table.phone FROM examination_table INNER JOIN doctor_table ON examination_table.doctor_id = doctor_table.doctor_id WHERE user_id = ?";
+            String sql = "SELECT examination_nr, name, examination_date, doctor_table.first_name, doctor_table.last_name, doctor_table.phone FROM examination_table INNER JOIN doctor_table ON examination_table.doctor_id = doctor_table.doctor_id WHERE user_id = ? ORDER BY examination_date DESC";
             preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setInt(1, user_id);
 
@@ -2886,7 +2886,7 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String sql = "SELECT examination_nr, name, examination_date, user_table.first_name, user_table.last_name, user_table.phone FROM examination_table INNER JOIN user_table ON examination_table.user_id = user_table.user_id WHERE doctor_id = ? AND DATE(examination_date) = CURRENT_DATE;";
+            String sql = "SELECT examination_nr, name, examination_date, user_table.first_name, user_table.last_name, user_table.phone FROM examination_table INNER JOIN user_table ON examination_table.user_id = user_table.user_id WHERE doctor_id = ? AND DATE(examination_date) = CURRENT_DATE ORDER BY examination_date DESC;";
             preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setInt(1, doctor_id);
 
