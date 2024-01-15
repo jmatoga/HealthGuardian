@@ -1467,8 +1467,11 @@ public class SQLEngine {
             preparedStatement = connection.prepareStatement(getUserIdFromPeselSql);
             preparedStatement.setString(1, pesel);
             resultSet = preparedStatement.executeQuery();
-            int user_id = resultSet.getInt("user_id");
 
+            if(!resultSet.next())
+                return "User not found with the provided PESEL.";
+
+            int user_id = resultSet.getInt("user_id");
 
             // insert into user_medical_history_table
             preparedStatement = connection.prepareStatement(addMedicalHistorySql);

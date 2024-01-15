@@ -834,7 +834,7 @@ public class DoctorUserController implements Initializable {
 
                 alert.setOnCloseRequest(alertEvent -> {
                     if (alert.getResult() == okButtonType && !peselTextField.getText().isEmpty() && !firstNameLabel.getText().isEmpty()) {
-                        if (!inputFieldInterview.getText().isEmpty() && !inputFieldICD10.getText().isEmpty() && !inputFieldRecommendationId.getText().isEmpty()) {
+                        if (!inputFieldInterview.getText().isEmpty() && !inputFieldICD10.getText().isEmpty()) {
                             message.addDocumentation(SendToServer, Client.clientId + "#/#" + inputFieldInterview.getText() + "#/#" + inputFieldPhysicalExamination.getText() + "#/#" + inputFieldICD10.getText() + "#/#" + inputFieldRecommendationId.getText() + "#/#" + peselTextField.getText() + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "#/#" + Client.doctor_id);
 
                             try {
