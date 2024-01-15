@@ -58,6 +58,11 @@ public class AdminLogInController implements Initializable {
     }
 
     @FXML
+    public void shieldClicked(MouseEvent mouseEvent) throws IOException {
+        new SceneSwitch("/ScenesLayout/LogInScene.fxml", 800, 500, false, false);
+    }
+
+    @FXML
     private void logInButtonClicked(ActionEvent event) throws IOException {
         checkWrittenText();
     }

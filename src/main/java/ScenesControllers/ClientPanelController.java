@@ -1,8 +1,7 @@
 package ScenesControllers;
 
 import Client.Client;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -419,6 +418,31 @@ public class ClientPanelController implements Initializable {
                 notificationTitleLabel.setText("Check Reminder");
                 notificationDescriptionLabel.setText("It has been 3 days since your last blood pressure check. Perform a blood pressure measurement.");
                 notificationtAlertPane.setVisible(true);
+
+                // Set up scaling animation to enlarge the rectangle
+                ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(1000), notificationtAlertPane);
+                scaleTransition.setFromX(0.1);
+                scaleTransition.setFromY(0.1);
+                scaleTransition.setToX(1.0);  // Adjust this value to control the horizontal scaling
+                scaleTransition.setToY(1.0);  // Adjust this value to control the vertical scaling
+
+                // Set up translation animation to move the rectangle to the left bottom corner
+                TranslateTransition translateTransition = new TranslateTransition(Duration.millis(1000), notificationtAlertPane);
+                translateTransition.setFromX(200);
+                translateTransition.setFromY(-100);
+                translateTransition.setToX(0);  // Adjust this value to control the horizontal translation
+                translateTransition.setToY(0);   // Adjust this value to control the vertical translation
+
+                // Set up fade-in animation
+                FadeTransition fadeIn = new FadeTransition(Duration.millis(1000), notificationtAlertPane);
+                fadeIn.setFromValue(0.0);
+                fadeIn.setToValue(1.0);
+
+                // Combine scale, translate, and fade-in animations in sequence
+                ParallelTransition sequence = new ParallelTransition(scaleTransition, translateTransition, fadeIn);
+                sequence.setCycleCount(1);
+                sequence.play();
+
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -427,7 +451,27 @@ public class ClientPanelController implements Initializable {
 
     @FXML
     private void notificationtAlertPaneClicked(MouseEvent event) {
-        notificationtAlertPane.setVisible(false);
+        // Set up scaling animation to shrink the rectangle
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(1000), notificationtAlertPane);
+        scaleTransition.setToX(0.1);  // Adjust this value to control the horizontal scaling
+        scaleTransition.setToY(0.1);  // Adjust this value to control the vertical scaling
+
+        // Set up translation animation to move the rectangle to the right
+        TranslateTransition translateTransition = new TranslateTransition(Duration.millis(1000), notificationtAlertPane);
+        translateTransition.setToX(200);  // Adjust this value to control the horizontal translation
+        translateTransition.setToY(-100);  // Adjust this value to control the vertical translation
+
+        // Set up fade-out animation
+        FadeTransition fadeOut = new FadeTransition(Duration.millis(1000), notificationtAlertPane);
+        fadeOut.setFromValue(1.0);
+        fadeOut.setToValue(0.0);
+
+        // Combine scale, translate, and fade-out animations in sequence
+        ParallelTransition sequence = new ParallelTransition(scaleTransition, translateTransition, fadeOut);
+
+        sequence.setCycleCount(1);
+        sequence.play();
+        //notificationtAlertPane.setVisible(false);
     }
 
     private void updateDateTime() {
