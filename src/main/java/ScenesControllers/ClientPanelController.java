@@ -515,7 +515,7 @@ public class ClientPanelController implements Initializable {
 
         if(LocalDate.now().getDayOfMonth() == bdDate.getDayOfMonth() && LocalDate.now().getMonthValue() == bdDate.getMonthValue())
         {
-            happyBirthdayLabel.setText("Happy birthday to " + firstNameLabel.getText() + " " + lastNameLabel.getText() + ". Health Guardian team wishes you the best!!!");
+            happyBirthdayLabel.setText("Happy birthday to\n" + firstNameLabel.getText() + " " + lastNameLabel.getText() + ".\nHealth Guardian team wishes you the best!!!");
             happyBirthdayPane.setVisible(true);
         }else
         {
