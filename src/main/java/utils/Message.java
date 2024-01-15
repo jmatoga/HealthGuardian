@@ -221,6 +221,16 @@ public class Message {
         writer.println("GET_DOCTOR_EXAMINATIONS:" + message);
     }
 
+    public void sendGetDoctorsToExams(PrintWriter writer, String message) {
+        writer.println("GET_DOCTORS_EXAM:" + message);
+    }
+    public void sendGetHoursToExams(PrintWriter writer, String message) {
+        writer.println("GET_HOURS_EXAM:" + message);
+    }
+    public void sendMakeNewExamination(PrintWriter writer, String message) {
+        writer.println("MAKE_NEW_EXAMINATIONS:" + message);
+    }
+
     public void getLastBloodPressureCheck(PrintWriter writer, String message) {
         writer.println("GET_LAST_BLOOD_PRESSURE_CHECK:" + message);
     }

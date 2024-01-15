@@ -8,7 +8,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -84,7 +84,7 @@
                      </font>
                   </Label>
                   <Pane prefHeight="40.0" prefWidth="400.0" />
-                  <DatePicker prefHeight="40.0" prefWidth="400.0" stylesheets="@../Styles/makeAnAppointment.css">
+                  <DatePicker fx:id="appointmentDatePicker" onAction="#appointmentDatePickerChosen" prefHeight="40.0" prefWidth="400.0" promptText="APPOINTMENT DATE" stylesheets="@../Styles/makeAnAppointment.css">
                      <styleClass>
                         <String fx:value="calendar-grid" />
                         <String fx:value="calendar-header" />
@@ -95,13 +95,13 @@
                      </styleClass>
                   </DatePicker>
                   <Pane prefHeight="40.0" prefWidth="400.0" />
-                  <ChoiceBox prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); -fx-border-color: #497ac9; -fx-border-width: 3; -fx-border-radius: 2; -fx-background-radius: 5; -fx-background-insets: 0, 1; -fx-effect: dropshadow(three-pass-box, rgba(73, 122, 201, 0.3), 5, 0.0, 0, 1);" />
+                  <ChoiceBox fx:id="appointmentDoctorChoiceBox" onAction="#appointmentDoctorPickerChosen" prefHeight="40.0" prefWidth="400.0" styleClass="choiceBox" stylesheets="@../Styles/makeAnAppointment.css" />
                   <Pane prefHeight="40.0" prefWidth="400.0" />
-                  <ChoiceBox prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0); -fx-border-color: #497ac9; -fx-border-width: 3; -fx-border-radius: 2; -fx-background-radius: 5; -fx-background-insets: 0, 1; -fx-effect: dropshadow(three-pass-box, rgba(73, 122, 201, 0.3), 5, 0.0, 0, 1);" />
+                  <ChoiceBox fx:id="appointmentHourChoiceBox" prefHeight="40.0" prefWidth="400.0" styleClass="choiceBox" stylesheets="@../Styles/makeAnAppointment.css" />
                   <Pane prefHeight="40.0" prefWidth="400.0" />
-                  <TextField alignment="TOP_LEFT" prefHeight="80.0" prefWidth="400.0" promptText="Short descripiotn to examination" styleClass="blue-textfield" stylesheets="@../Styles/makeAnAppointment.css" />
+                  <TextArea fx:id="appointmentDescriptionTextField" prefHeight="80.0" prefWidth="400.0" promptText="Short descripiotn to examination (eg. SMI CODE)" styleClass="blue-textfield" stylesheets="@../Styles/makeAnAppointment.css" wrapText="true" />
                   <Pane prefHeight="40.0" prefWidth="400.0" />
-                  <CheckBox mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" styleClass="choiceBox" stylesheets="@../Styles/makeAnAppointment.css" text="Do you want to arrange e-contact?" textAlignment="CENTER" textFill="WHITE">
+                  <CheckBox fx:id="appointmentEContactCheckBox" mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" stylesheets="@../Styles/makeAnAppointment.css" text="Do you want to arrange e-contact?" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -110,7 +110,7 @@
                      </padding>
                   </CheckBox>
                   <Pane prefHeight="40.0" prefWidth="400.0" />
-                  <Label prefHeight="60.0" prefWidth="400.0" textAlignment="CENTER" textFill="#00ff15" wrapText="true">
+                  <Label fx:id="appointmentSatusLabel" prefHeight="60.0" prefWidth="400.0" textAlignment="CENTER" textFill="#00ff15" wrapText="true">
                      <font>
                         <Font name="Consolas Bold" size="17.0" />
                      </font>
@@ -118,7 +118,7 @@
                   <Pane prefHeight="40.0" prefWidth="400.0" />
                   <Pane prefHeight="43.0" prefWidth="400.0">
                      <children>
-                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="140.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="117.0" styleClass="blue-20-button" stylesheets="@../Styles/makeAnAppointment.css" text="CONFIRM">
+                        <Button fx:id="appointmentConfirmButton" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="140.0" mnemonicParsing="false" onAction="#appointmentConfirmButtonClicked" prefHeight="43.0" prefWidth="117.0" styleClass="blue-20-button" stylesheets="@../Styles/makeAnAppointment.css" text="CONFIRM">
                            <font>
                               <Font size="15.0" />
                            </font>

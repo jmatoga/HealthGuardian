@@ -48,7 +48,7 @@
   -fx-background-color: #497ac9;
 }
 
-.blue.choiceBox {
+.choiceBox {
     -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0);
     -fx-background-insets: 0, 1;
     -fx-background-radius: 5;
@@ -56,6 +56,12 @@
     -fx-border-width: 3;
     -fx-border-radius: 2;
 }
+
+.choiceBox .context-menu {
+    -fx-pref-height: 500;
+    -fx-translate-y:  1;
+}
+
 
 .blue.field {
     -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0);
@@ -100,7 +106,7 @@
     -fx-border-color: #497ac9;
     -fx-border-width: 3;
     -fx-border-radius: 2;
-    -fx-padding: 5 10;
+
 }
 
 .check-box .box {

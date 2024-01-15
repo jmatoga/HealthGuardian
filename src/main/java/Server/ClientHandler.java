@@ -491,6 +491,34 @@ class ClientHandler implements Callable<String> {
                     String[][] messagesResult = sqlEngine.getDoctorExaminations(Integer.parseInt(clientId), Integer.parseInt(doctorId));
                     SendToClient.println(Arrays.deepToString(messagesResult));
 
+                } else if (serverMessage.startsWith("GET_DOCTORS_EXAM:")) {
+                    String[] resources = serverMessage.substring(17).split("#/#");
+                    String clientId = resources[0];
+
+                    String[][] messagesResult = sqlEngine.getDoctorsExam(Integer.parseInt(clientId));
+                    SendToClient.println(Arrays.deepToString(messagesResult));
+
+                } else if (serverMessage.startsWith("GET_HOURS_EXAM:")) {
+                    String[] resources = serverMessage.substring(15).split("#/#");
+                    String clientId = resources[0];
+                    String doctorId = resources[1];
+                    String date = resources[2];
+
+                    String messagesResult = sqlEngine.getHoursExam(Integer.parseInt(clientId), Integer.parseInt(doctorId), date);
+                    SendToClient.println(messagesResult);
+
+                } else if (serverMessage.startsWith("MAKE_NEW_EXAMINATIONS:")) {
+                    String[] resources = serverMessage.substring(22).split("#/#");
+                    String clientId = resources[0];
+                    String name =resources[1];
+                    String date = resources[2];
+                    String shortDescription = resources[3];
+                    String doctorId = resources[4];
+                    String userId = resources[5];
+
+                    String messagesResult = sqlEngine.makeNewExaminations(Integer.parseInt(clientId), name, date, shortDescription, Integer.parseInt(doctorId),  Integer.parseInt(userId));
+                    SendToClient.println(messagesResult);
+
                 } else {
                     System.out.println(Color.ColorString("Something went wrong in ClientHandler (probably wrong substring number)", Color.ANSI_RED));
                     exit(-100);
