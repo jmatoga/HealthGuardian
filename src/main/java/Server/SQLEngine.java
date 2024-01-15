@@ -3018,4 +3018,146 @@ public class SQLEngine {
         }
         return null;
     }
+
+    String[][] getDoctorsExam(int clientID) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT doctor_id, first_name, last_name, profession from doctor_table order by last_name, first_name";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            if (rowCount == 0) {
+                System.out.println("No doctors in database.");
+                return new String[][]{{"No doctors in database"}};
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
+
+    String getHoursExam(int clientID, int doctor_id, String date) {
+        List<String> returnStatements = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT DATE_FORMAT(examination_date, '%H:%i') as busy_hours " +
+                    "FROM examination_table " +
+                    "WHERE DATE_FORMAT(examination_date, '%Y-%m-%d') = ? AND doctor_id = ?;";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setDate(1, Date.valueOf(date));
+            preparedStatement.setInt(2, doctor_id);
+            resultSet = preparedStatement.executeQuery();
+
+
+
+            while (resultSet.next()) {
+                String busyHours = resultSet.getString("busy_hours");
+                returnStatements.add(busyHours);
+            }
+
+            if (returnStatements.isEmpty()) {
+                System.out.println("All doctor's hours available!");
+                return new String("All doctor's hours available!");
+            }
+
+            return String.valueOf(returnStatements);
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
+
+    String makeNewExaminations(int clientID, String name, String date, String short_description, int doctor_id, int user_id) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String getMaxExaminationNrSql = "SELECT MAX(examination_nr) AS max_examination_nr FROM examination_table";
+            String addExaminationSql = "INSERT INTO examination_table (examination_nr, name, examination_date, meeting_link, short_description, doctor_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?);";
+
+            // get Max examination_nr from Database
+            preparedStatement = connection.prepareStatement(getMaxExaminationNrSql);
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            int MaxExaminationNr = resultSet.getInt("max_examination_nr");
+
+            // insert into examination_table
+            preparedStatement = connection.prepareStatement(addExaminationSql);
+            preparedStatement.setInt(1, MaxExaminationNr + 1);
+            preparedStatement.setString(2, name);
+
+            if (!date.isEmpty()) {
+                preparedStatement.setDate(3, java.sql.Date.valueOf(date));
+            } else {
+                preparedStatement.setNull(3, java.sql.Types.VARCHAR);
+            }
+
+            preparedStatement.setNull(4, java.sql.Types.VARCHAR);
+
+
+            if (!short_description.isEmpty())
+                preparedStatement.setString(5, short_description);
+            else
+                preparedStatement.setNull(5, java.sql.Types.VARCHAR);
+
+            preparedStatement.setInt(6, doctor_id);
+            preparedStatement.setInt(7, user_id);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 1) {
+                System.out.println("Examination added correctly with nr: " + (MaxExaminationNr + 1));
+                returnStatement = "Examination added correctly with nr: " + (MaxExaminationNr + 1);
+            } else {
+                System.out.println("Error in database while adding Examination.");
+                returnStatement = "Error in database while adding Examination.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
 }
