@@ -19,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import utils.Color;
 import utils.Message;
@@ -99,6 +100,9 @@ public class DoctorUserController implements Initializable {
 
             String[] smiData = serverAnswer.substring(1, serverAnswer.length() - 1).split(", ");
 
+            smiMainFieldOfCaseLabel.setFont(new Font("Consolas", 20.0));
+            smiMainFieldOfCaseLabel.setTextAlignment(TextAlignment.LEFT); // to set text to center after text wrapping
+            smiMainFieldOfCaseLabel.setAlignment(Pos.TOP_LEFT);
             smiMainFieldOfCaseLabel.setText(smiData[1]);
             if (!smiData[2].equals("null"))
                 smiMainFieldOfCaseLabel.setText(smiMainFieldOfCaseLabel.getText() + "\n- " + smiData[2]);
@@ -109,70 +113,35 @@ public class DoctorUserController implements Initializable {
             if (!smiData[4].equals("null"))
                 smiMainFieldOfCaseLabel.setText(smiMainFieldOfCaseLabel.getText() + "\n- " + smiData[4]);
 
-
+            smiMedicinesLabel.setFont(new Font("Consolas", 20.0));
+            smiMedicinesLabel.setTextAlignment(TextAlignment.LEFT); // to set text to center after text wrapping
+            smiMedicinesLabel.setAlignment(Pos.TOP_LEFT);
             smiMedicinesLabel.setText(smiData[5]);
-            smiExtentOfThePainLabel.setText(smiData[6]);
-            smiWhenThePainSatrtLabel.setText(smiData[7]);
-            smiTemperatureLabel.setText(smiData[8] + " °C");
-            smiAdditionalInformationLabel.setText(smiData[9]);
-            smiDateLabel.setText(smiData[11]);
 
-//            if (recommendationData[1].equals("null")) {
-//                dietLabel.setFont(new Font("Consolas Bold", 20.0));
-//                dietLabel.setTextAlignment(TextAlignment.CENTER); // to set text to center after text wrapping
-//                dietLabel.setAlignment(Pos.CENTER);
-//                dietLabel.setText("No diet recommendation.");
-//            } else {
-//                dietLabel.setFont(new Font("Consolas", 20.0));
-//                dietLabel.setTextAlignment(TextAlignment.LEFT); // to set text to center after text wrapping
-//                dietLabel.setAlignment(Pos.TOP_LEFT);
-//                dietLabel.setText(recommendationData[1]);
-//            }
-//
-//            if (recommendationData[2].equals("null")) {
-//                medicinesLabel.setFont(new Font("Consolas Bold", 20.0));
-//                medicinesLabel.setTextAlignment(TextAlignment.CENTER); // to set text to center after text wrapping
-//                medicinesLabel.setAlignment(Pos.CENTER);
-//                medicinesLabel.setText("No medicines recommendation.");
-//            } else {
-//                medicinesLabel.setFont(new Font("Consolas", 20.0));
-//                medicinesLabel.setTextAlignment(TextAlignment.LEFT); // to set text to center after text wrapping
-//                medicinesLabel.setAlignment(Pos.TOP_LEFT);
-//                medicinesLabel.setText(recommendationData[2]);
-//            }
-//
-//            if (recommendationData[5].equals("null")) {
-//                additionalInformationLabel.setFont(new Font("Consolas Bold", 30.0));
-//                additionalInformationLabel.setTextAlignment(TextAlignment.CENTER); // to set text to center after text wrapping
-//                additionalInformationLabel.setAlignment(Pos.CENTER);
-//                additionalInformationLabel.setText("No additional information.");
-//            } else {
-//                additionalInformationLabel.setFont(new Font("Consolas", 20.0));
-//                additionalInformationLabel.setTextAlignment(TextAlignment.LEFT); // to set text to center after text wrapping
-//                additionalInformationLabel.setAlignment(Pos.TOP_LEFT);
-//                additionalInformationLabel.setText(recommendationData[5]);
-//            }
-//
-//            if (recommendationData[4].equals("null")) {
-//                nextMedicalExaminationLabel.setFont(new Font("Consolas Bold", 20.0));
-//                nextMedicalExaminationLabel.setTextAlignment(TextAlignment.CENTER); // to set text to center after text wrapping
-//                nextMedicalExaminationLabel.setAlignment(Pos.CENTER);
-//                nextMedicalExaminationLabel.setWrapText(true);
-//                nextMedicalExaminationLabel.setText("No next medical examination recommended.");
-//                nextMedicalExaminationDateLabel.setVisible(false);
-//                nextMedicalExaminationDateTextLabel.setVisible(false);
-//            } else {
-//                nextMedicalExaminationDateLabel.setVisible(true);
-//                nextMedicalExaminationDateTextLabel.setVisible(true);
-//                nextMedicalExaminationDateLabel.setTextAlignment(TextAlignment.CENTER); // to set text to center after text wrapping
-//                nextMedicalExaminationDateLabel.setAlignment(Pos.CENTER);
-//                nextMedicalExaminationLabel.setTextAlignment(TextAlignment.CENTER); // to set text to center after text wrapping
-//                nextMedicalExaminationLabel.setAlignment(Pos.CENTER);
-//                nextMedicalExaminationLabel.setText(recommendationData[4]);
-//                nextMedicalExaminationDateLabel.setText(recommendationData[3]);
-//            }
-//
-//            recommendationIdLabel.setText("Recommendation ID: " + recommendationData[0]);
+            smiExtentOfThePainLabel.setFont(new Font("Consolas", 20.0));
+            smiExtentOfThePainLabel.setTextAlignment(TextAlignment.LEFT); // to set text to center after text wrapping
+            smiExtentOfThePainLabel.setAlignment(Pos.TOP_LEFT);
+            smiExtentOfThePainLabel.setText(smiData[6]);
+
+            smiWhenThePainSatrtLabel.setFont(new Font("Consolas", 20.0));
+            smiWhenThePainSatrtLabel.setTextAlignment(TextAlignment.LEFT); // to set text to center after text wrapping
+            smiWhenThePainSatrtLabel.setAlignment(Pos.TOP_LEFT);
+            smiWhenThePainSatrtLabel.setText(smiData[7]);
+
+            smiTemperatureLabel.setFont(new Font("Consolas", 20.0));
+            smiTemperatureLabel.setTextAlignment(TextAlignment.CENTER);
+            smiTemperatureLabel.setAlignment(Pos.CENTER);
+            smiTemperatureLabel.setText(smiData[8] + "°C");
+
+            smiAdditionalInformationLabel.setFont(new Font("Consolas", 20.0));
+            smiAdditionalInformationLabel.setTextAlignment(TextAlignment.LEFT); // to set text to center after text wrapping
+            smiAdditionalInformationLabel.setAlignment(Pos.TOP_LEFT);
+            smiAdditionalInformationLabel.setText(smiData[9]);
+
+            smiDateLabel.setFont(new Font("Consolas", 20.0));
+            smiDateLabel.setTextAlignment(TextAlignment.LEFT);
+            smiDateLabel.setAlignment(Pos.CENTER_LEFT);
+            smiDateLabel.setText(smiData[11]);
         }
     }
 
