@@ -143,7 +143,7 @@ public class DoctorEContactController implements Initializable {
 
                     Examination_nr = text.split(":")[1].split("#/#")[0].trim();
 
-                    String patientInfo = text.split("#/#")[1].trim();
+                    String patientInfo = text.split(",")[1].trim();
                     String patientFirstName = patientInfo.split(" ")[1];
                     String patientLastName = patientInfo.split(" ")[2];
 
