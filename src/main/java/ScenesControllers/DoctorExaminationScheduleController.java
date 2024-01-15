@@ -89,7 +89,10 @@ public class DoctorExaminationScheduleController implements Initializable {
                 }
 
                 newExamination.setOnMouseClicked(mouseEvent -> {
-                    descriptionShowLabel.setText(examinationData[3]);
+                    if(examinationData[3].equals("null"))
+                        descriptionShowLabel.setText("No description in this examination.");
+                    else
+                        descriptionShowLabel.setText(examinationData[3]);
                 });
 
                 setColors(newExamination);
