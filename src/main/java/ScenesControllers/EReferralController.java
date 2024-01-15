@@ -173,7 +173,7 @@ public class EReferralController implements Initializable {
             contentStream.beginText();
             tempText = "Issued on " + eReferralDate;
             textWidth = PDType1Font.HELVETICA.getStringWidth(tempText) / 1000 * fontSize;
-            contentStream.newLineAtOffset((595 - textWidth) / 2, 460);
+            contentStream.newLineAtOffset((595 - textWidth) / 2, 480);
             contentStream.showText(tempText);
             contentStream.endText();
 

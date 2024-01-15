@@ -122,7 +122,7 @@ public class EContactController implements Initializable {
                 ContactHourLabel.setText("E-Contact hour: " + hour);
 
                 if (eContactData[5].equals("null")) {
-                    linkLabel.setText("DOCTOR DON'T SEND ANY LINK YET.");
+                    linkLabel.setText("DOCTOR DIDN'T SEND ANY LINK YET.");
                 } else {
                     linkLabel.setText(eContactData[5]);
                 }

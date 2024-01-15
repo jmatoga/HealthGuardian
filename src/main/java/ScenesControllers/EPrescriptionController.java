@@ -163,7 +163,7 @@ public class EPrescriptionController implements Initializable {
             contentStream.beginText();
             tempText = "Issued on " + ePrescriptionDate;
             textWidth = PDType1Font.HELVETICA.getStringWidth(tempText) / 1000 * fontSize;
-            contentStream.newLineAtOffset((595 - textWidth) / 2, 460);
+            contentStream.newLineAtOffset((595 - textWidth) / 2, 500);
             contentStream.showText(tempText);
             contentStream.endText();
 
