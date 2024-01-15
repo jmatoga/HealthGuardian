@@ -16,7 +16,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
-import utils.Color;
 import utils.Message;
 
 import java.io.BufferedReader;
@@ -36,40 +35,22 @@ public class DoctorEContactController implements Initializable {
     public GridPane gridPane;
 
     @FXML
-    public Label PatientFirstNameLabel;
+    public Label PatientFirstNameLabel, PatientLastNameLabel, ExaminationNameLabel, ContactDateLabel, ContactHourLabel, correctLabel;
 
     @FXML
-    public Label PatientLastNameLabel;
-
-    @FXML
-    public Label ExaminationNameLabel;
-
-    @FXML
-    public Label ContactDateLabel;
-
-    @FXML
-    public Label ContactHourLabel;
-
-    @FXML
-    public Button sendButton;
+    public Button sendButton, doctorPanelButton;
 
     @FXML
     public TextField linkTextField;
 
     @FXML
-    private Button doctorPanelButton;
-
-    @FXML
     private Pane copyButton;
-
-    @FXML
-    private Label correctLabel;
 
     private Pane selectedExamination = null;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private LocalDateTime dateTime;
 
-    private String Examination_nr = "";
+    private String examination_nr = "";
 
     @FXML
     private void doctorPanelButtonClicked(ActionEvent event) throws IOException {
@@ -83,9 +64,8 @@ public class DoctorEContactController implements Initializable {
 
     @FXML
     public void sendButtonClicked(ActionEvent actionEvent) throws IOException {
-        message.addLinkToExamination(SendToServer, Client.clientId + "#/#" + Examination_nr + "#/#" + linkTextField.getText());
-        String serverAnswer = ReadFromServer.readLine();
-        System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
+        message.addLinkToExamination(SendToServer, Client.clientId + "#/#" + examination_nr + "#/#" + linkTextField.getText());
+        String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         if (serverAnswer.equals("Examination link added correctly.")) {
             correctLabel.setText("LINK SEND CORRECTLY!");
@@ -129,11 +109,13 @@ public class DoctorEContactController implements Initializable {
                 newExaminationName.setPrefHeight(30);
                 // Set fitting to scroll bar
                 if(examinationsData.length > 6) {
-                    newExaminationName.setPrefWidth(450);
-                    newExaminationDescription.setPrefWidth(450);
+                    newExamination.setPrefWidth(484);
+                    newExaminationName.setPrefWidth(484);
+                    newExaminationDescription.setPrefWidth(484);
                 } else {
-                    newExaminationName.setPrefWidth(480);
-                    newExaminationDescription.setPrefWidth(480);
+                    newExamination.setPrefWidth(498);
+                    newExaminationName.setPrefWidth(498);
+                    newExaminationDescription.setPrefWidth(498);
                 }
 
                 setColors(newExamination);
@@ -141,7 +123,7 @@ public class DoctorEContactController implements Initializable {
                 newExamination.setOnMouseClicked(event -> {
                     String text = newExaminationDescription.getText();
 
-                    Examination_nr = text.split(":")[1].split("#/#")[0].trim();
+                    examination_nr = text.split(":")[1].split(",")[0].trim();
 
                     String patientInfo = text.split(",")[1].trim();
                     String patientFirstName = patientInfo.split(" ")[1];
@@ -171,7 +153,7 @@ public class DoctorEContactController implements Initializable {
                 newExaminationDate.setPrefHeight(40);
                 newExaminationDate.setPrefWidth(100);
                 newExaminationDate.setStyle("-fx-wrap-text: true;");
-                newExaminationDate.setLayoutX(420);
+                newExaminationDate.setLayoutX(415);
                 newExaminationDate.setLayoutY(0);
                 newExaminationDate.setFont(new Font("Consolas Bold", 12.0));
                 newExamination.getChildren().addAll(newExaminationName, newExaminationDescription, newExaminationDate);
@@ -202,11 +184,7 @@ public class DoctorEContactController implements Initializable {
 
                 selectedExamination.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
             }
-
-
             selectedExamination = newExamination;
-
-
             newExamination.setStyle("-fx-background-color: #f2f2f2; -fx-border-radius: 10; -fx-border-color: #00FF00; -fx-border-width: 4");
         });
     }
@@ -228,8 +206,5 @@ public class DoctorEContactController implements Initializable {
         ContactDateLabel.setText("");
         ContactHourLabel.setText("");
         sendButton.setDisable(true);
-
     }
-
-
 }

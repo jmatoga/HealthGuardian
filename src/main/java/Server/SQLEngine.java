@@ -2943,10 +2943,10 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String addSMISql = "UPDATE examination_table SET meeting_link = ? WHERE examination_nr = ?;";
+            String addExaminationLinkSql = "UPDATE examination_table SET meeting_link = ? WHERE examination_nr = ?;";
 
             // insert link into examination_table
-            preparedStatement = connection.prepareStatement(addSMISql);
+            preparedStatement = connection.prepareStatement(addExaminationLinkSql);
             preparedStatement.setString(1, link);
             preparedStatement.setInt(2, Integer.parseInt(examination_nr));
 
