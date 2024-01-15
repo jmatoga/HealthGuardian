@@ -36,6 +36,11 @@ public class Server {
     private static SQLEngine sqlEngine;
     private static final String secretKey = "HealthGuardianKey";
 
+    /**
+     Generates a secret key for encryption using the SHA-256 hashing algorithm.
+     @param secretKey the input key used for generating the secret key
+     @return the generated secret key as a byte array
+     */
     public static byte[] generateKey(String secretKey) {
         try {
             MessageDigest sha = MessageDigest.getInstance("SHA-256");
@@ -48,6 +53,12 @@ public class Server {
         }
     }
 
+    /**
+     Decrypts an encrypted string using the AES algorithm.
+     @param strToDecrypt the string to be decrypted
+     @param key the key used for decryption
+     @return the decrypted string, or null if an error occurs during decryption
+     */
     public static String decrypt(String strToDecrypt, byte[] key) {
         try {
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
@@ -61,6 +72,17 @@ public class Server {
         }
     }
 
+    /**
+     Main method for the server application.
+     Generates a key for encryption.
+     Reads encrypted information from a JSON file containing database connection details.
+     Decrypts the information using the generated key.
+     Creates a server socket on a specified port.
+     Initializes a database engine with the decrypted connection details.
+     Listens for client connections and spawns a new thread to handle each client.
+     @param args command line arguments (not used in this implementation)
+     @throws IOException if an I/O error occurs while reading the JSON file or creating the server socket
+     */
     public static void main(String[] args) throws IOException {
         int clientId = 0;
 

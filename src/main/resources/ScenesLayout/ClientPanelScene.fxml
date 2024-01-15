@@ -7,6 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -21,6 +22,35 @@
             <Image url="@../Images/background_1.png" />
          </image>
       </ImageView>
+      <Pane fx:id="notificationtAlertPane" layoutX="1455.0" layoutY="340.0" onMouseClicked="#notificationtAlertPaneClicked" prefHeight="120.0" prefWidth="350.0" style="-fx-border-radius: 20; -fx-border-width: 5; -fx-border-color: black;" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="340.0">
+         <children>
+            <Pane layoutX="5.0" layoutY="5.0" opacity="0.29" prefHeight="110.0" prefWidth="340.0" style="-fx-background-color: #b0ffff; -fx-background-radius: 18;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Pane>
+            <VBox layoutX="15.0" layoutY="5.0" prefHeight="110.0" prefWidth="275.0">
+               <children>
+                  <Label fx:id="notificationTitleLabel" prefHeight="30.0" prefWidth="275.0" text="TITLE" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas Bold" size="28.0" />
+                     </font>
+                     <padding>
+                        <Insets left="2.0" top="2.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="notificationDescriptionLabel" alignment="TOP_LEFT" prefHeight="80.0" prefWidth="275.0" text="DESCRIPTION OD NOTIFICATION" textFill="#c3c3c3" wrapText="true">
+                     <padding>
+                        <Insets left="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font name="Consolas" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
       <Button fx:id="MessageButton" contentDisplay="GRAPHIC_ONLY" layoutX="1610.0" layoutY="335.0" mnemonicParsing="false" onAction="#messageButtonClicked" prefHeight="70.0" prefWidth="120.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="300.0">
          <graphic>
             <ImageView fitHeight="70.0" fitWidth="70.0">

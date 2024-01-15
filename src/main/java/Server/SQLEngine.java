@@ -1,13 +1,12 @@
 package Server;
 
-import Client.Client;
 import utils.Color;
 
 import java.math.BigInteger;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -43,6 +42,8 @@ public class SQLEngine {
      */
     public Connection connectToDataBase(Connection connection, int clientId) {
         try {
+            // EMERGENCY !!!
+            //connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthguardian", "root", "root");
             connection = DriverManager.getConnection(url, DBusername, DBpassword);
             System.out.println(Color.ColorString("Database connection successful. (For ClientID: ", Color.ANSI_GREEN_BACKGROUND) + Color.ColorBgString(Color.ANSI_GREEN_BACKGROUND, "" + clientId, Color.ANSI_BLACK) + Color.ColorString(")", Color.ANSI_GREEN_BACKGROUND));
         } catch (SQLException e) {
@@ -121,6 +122,287 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * Generates a report containing various statistics and information based on the specified client ID.
+     *
+     * @param clientID the unique identifier of the client for whom the report is generated
+     * @return an ArrayList of Strings containing the report information, or null if an error occurs
+     */
+    ArrayList<String> generateReport(int clientID) {
+        ArrayList<String> returnStatement = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT COUNT(*) AS 'users' " +
+                                 "FROM user_table " +
+                                 "UNION " +
+                                 "SELECT COUNT(*) AS 'doctors' " +
+                                 "FROM doctor_table; ";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+
+            if (rowCount <= 0) {
+                System.out.println("Error in database while getting count of users and doctors.");
+                returnStatement.add("Error");
+                return returnStatement;
+            }
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    if (row == 0)
+                        returnStatement.add("Users: " + resultSet.getString(col + 1));
+                    else
+                        returnStatement.add("Doctors: " + resultSet.getString(col + 1));
+                }
+                row++;
+                returnStatement.add("$/$");
+            }
+            returnStatement.add("&/&");
+
+            sql = "SELECT c.clinic_id, " +
+                          "c.clinic_nr, " +
+                          "c.name AS clinic_name, " +
+                          "c.adress, " +
+                          "c.phone, " +
+                          "CONCAT(d.first_name, ' ', d.last_name) AS clinic_director " +
+                          "FROM " +
+                          "clinic_table c " +
+                          "LEFT JOIN " +
+                          "doctor_table d ON c.director_id = d.doctor_id; ";
+
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            resultSet = preparedStatement.executeQuery();
+
+            rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            columnCount = resultSet.getMetaData().getColumnCount();
+
+            if (rowCount <= 0) {
+                System.out.println("Error in database while getting list of clinics.");
+                returnStatement.add("Error");
+                return returnStatement;
+            }
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    if (col == 0)
+                        returnStatement.add("ID: " + resultSet.getString(col + 1));
+                    else if (col == 1)
+                        returnStatement.add("No: " + resultSet.getString(col + 1));
+                    else if (col == 2)
+                        returnStatement.add("Name: " + resultSet.getString(col + 1));
+                    else if (col == 3)
+                        returnStatement.add("Adress: " + resultSet.getString(col + 1));
+                    else if (col == 4)
+                        returnStatement.add("Phone: " + resultSet.getString(col + 1));
+                    else
+                        returnStatement.add("Director: " + resultSet.getString(col + 1));
+                }
+                row++;
+                returnStatement.add("$/$");
+            }
+            returnStatement.add("&/&");
+
+            sql = "SELECT DATE_FORMAT(date_of_issue, '%Y-%m') AS issued_month, " +
+                          "COUNT(referral_id) AS prescriptions_issued " +
+                          "FROM " +
+                          "e_referral_table " +
+                          "WHERE " +
+                          "date_of_issue >= '2022-01-01' AND date_of_issue <= CURDATE() " +
+                          "GROUP BY " +
+                          "issued_month " +
+                          "ORDER BY issued_month; ";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            resultSet = preparedStatement.executeQuery();
+
+            rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            columnCount = resultSet.getMetaData().getColumnCount();
+
+            if (rowCount <= 0) {
+                System.out.println("Error in database while getting count of prescribed e-referral in each month.");
+                returnStatement.add("Error");
+                return returnStatement;
+            }
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement.add(resultSet.getString(col + 1));
+                }
+                row++;
+                returnStatement.add("$/$");
+            }
+            returnStatement.add("&/&");
+
+            sql = "SELECT DATE_FORMAT(date_of_issue, '%Y-%m') AS issued_month, " +
+                          "COUNT(prescription_id) AS prescriptions_issued " +
+                          "FROM " +
+                          "e_prescription_table " +
+                          "WHERE " +
+                          "date_of_issue >= '2022-01-01' AND date_of_issue <= CURDATE() " +
+                          "GROUP BY " +
+                          "issued_month " +
+                          "ORDER BY issued_month; ";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            resultSet = preparedStatement.executeQuery();
+
+            rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            columnCount = resultSet.getMetaData().getColumnCount();
+
+            if (rowCount <= 0) {
+                System.out.println("Error in database while getting count of prescribed e-prescription in each month.");
+                returnStatement.add("Error");
+                return returnStatement;
+            }
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement.add(resultSet.getString(col + 1));
+                }
+                row++;
+                returnStatement.add("$/$");
+            }
+            returnStatement.add("&/&");
+
+            sql = "SELECT clinic_id, COUNT(user_id) AS number_of_users " +
+                          "FROM user_clinic_table " +
+                          "GROUP BY clinic_id; ";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            resultSet = preparedStatement.executeQuery();
+
+            rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            columnCount = resultSet.getMetaData().getColumnCount();
+
+            if (rowCount <= 0) {
+                System.out.println("Error in database while getting number of users in each clinic.");
+                returnStatement.add("Error");
+                return returnStatement;
+            }
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    if (col == 0)
+                        returnStatement.add("ID: " + resultSet.getString(col + 1));
+                    else
+                        returnStatement.add("Users: " + resultSet.getString(col + 1));
+                }
+                row++;
+                returnStatement.add("$/$");
+            }
+            returnStatement.add("&/&");
+
+            sql = "SELECT clinic_id, COUNT(doctor_id) AS number_of_doctors " +
+                          "FROM doctor_clinic_table " +
+                          "GROUP BY clinic_id; ";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            resultSet = preparedStatement.executeQuery();
+
+            rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            columnCount = resultSet.getMetaData().getColumnCount();
+
+            if (rowCount <= 0) {
+                System.out.println("Error in database while getting number of doctors in each clinic.");
+                returnStatement.add("Error");
+                return returnStatement;
+            }
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    if (col == 0)
+                        returnStatement.add("ID: " + resultSet.getString(col + 1));
+                    else
+                        returnStatement.add("Doctors: " + resultSet.getString(col + 1));
+                }
+                row++;
+                returnStatement.add("$/$");
+            }
+            returnStatement.add("&/&");
+
+            sql = "SELECT * FROM one_time_code_table";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            resultSet = preparedStatement.executeQuery();
+
+            rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            columnCount = resultSet.getMetaData().getColumnCount();
+
+            if (rowCount <= 0) {
+                System.out.println("Error in database while getting one time codes.");
+                returnStatement.add("Error");
+                return returnStatement;
+            }
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement.add(resultSet.getString(col + 1));
+                }
+                row++;
+                returnStatement.add("$/$");
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
+
+    /**
+     * Retrieves data for a specific doctor based on the provided doctor ID.
+     *
+     * @param clientID   the unique identifier of the client for whom the data is retrieved
+     * @param doctor_id  the ID of the doctor for whom the data is requested
+     * @return an array of Strings containing the doctor's first name, last name, and profession,
+     *         or an array of "Error" if an error occurs during the database operation
+     */
     String[] getDoctorData(int clientID, String doctor_id) {
         String[] returnStatement = {"Error", "Error", "Error"};
 
@@ -152,6 +434,14 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * Retrieves data for a specific patient based on the provided PESEL.
+     *
+     * @param clientID the unique identifier of the client for whom the data is retrieved
+     * @param pesel    the PESEL of the patient for whom the data is requested
+     * @return an array of Strings containing the patient's first name, last name, and birth date,
+     *         or an array of "Error" if an error occurs during the database operation
+     */
     String[] getPatient(int clientID, String pesel) {
         String[] returnStatement = {"Error", "Error", "Error"};
 
@@ -237,6 +527,72 @@ public class SQLEngine {
     }
 
     /**
+     * Checks if a doctor with the specified username, email, and clinic exists in the database.
+     *
+     * @param clientID the unique identifier of the client for whom the check is performed
+     * @param username the username to check
+     * @param email    the email to check
+     * @param clinic   the clinic name to check
+     * @return a string indicating the result of the check:
+     *         - "Doctor exists" if the username already exists in the database
+     *         - "Email exists" if the email already exists in the database
+     *         - "Wrong clinic name" if the clinic name is not found in the database
+     *         - "Free to use, clinic ID: {clinic_id}" if username, email, and clinic are free to use
+     *         - "Error" if an error occurs during the database operation
+     * @throws SQLException if a SQL exception occurs during the operation
+     */
+    String checkIfDoctorExists(int clientID, String username, String email, String clinic) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet userResultSet = null;
+        ResultSet emailResultSet = null;
+        ResultSet clinicResultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT username FROM doctor_pass_table WHERE username = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);  // username
+
+            userResultSet = preparedStatement.executeQuery();
+
+            String emailSql = "SELECT email FROM doctor_table WHERE email = ?";
+            preparedStatement = connection.prepareStatement(emailSql);
+            preparedStatement.setString(1, email);  // email
+
+            emailResultSet = preparedStatement.executeQuery();
+
+            String clinicSql = "SELECT clinic_id FROM clinic_table WHERE name = ?";
+            preparedStatement = connection.prepareStatement(clinicSql);
+            preparedStatement.setString(1, clinic);  // clinic
+
+            clinicResultSet = preparedStatement.executeQuery();
+
+            if (userResultSet.next()) { // if username exist in database
+                System.out.println("Doctor exists!");
+                return "Doctor exists";
+            } else if (emailResultSet.next()) { // if email exist in database
+                System.out.println("Email exists!");
+                return "Email exists";
+            } else if (!clinicResultSet.next()) {
+                System.out.println("Wrong clinic name!");
+                return "Wrong clinic name";
+            } else {
+                System.out.println("Correct, username and email free to use, right clinic name.");
+                return "Free to use, clinic ID: " + clinicResultSet.getInt("clinic_id");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            if (clinicResultSet != null)
+                clinicResultSet.close();
+            disconnectFromDataBase(userResultSet, emailResultSet, preparedStatement, connection);
+        }
+        return "Error";
+    }
+
+    /**
      * The checkOneTimeCode method is responsible for checking the one-time code of a user.
      *
      * @param clientID    the ID of the client
@@ -271,7 +627,7 @@ public class SQLEngine {
                 String insertUserSql = "INSERT INTO user_table (user_id, first_name, last_name, phone, email, pesel) VALUES (?, ?, ?, ?, ?, ?)";
                 //String insertUserSqlData = "INSERT INTO user_basic_data_table (user_id) VALUES (?)";
                 String insertUserPassSql = "INSERT INTO user_pass_table (username, password_hash, salt, user_id) VALUES (?, SHA2(CONCAT(?, @salt), 256), @salt, ?)";
-                String insertSettingsSql = "INSERT INTO settings_table (bmi_setting, age_setting, currentDate_setting, settings_no_4, settings_no_5, user_id) VALUES ('false', 'false', 'false', 'false', 'false', ?)";
+                String insertSettingsSql = "INSERT INTO settings_table (bmi_setting, age_setting, currentDate_setting, weightInChart_setting, temperatureInChart_setting, background_setting, user_id) VALUES ('false', 'false', 'false', 'false', 'false', 'false', ?)";
 
                 // get Max user_id from Database
                 preparedStatement = connection.prepareStatement(getMaxUserIdSql);
@@ -315,6 +671,93 @@ public class SQLEngine {
                 System.out.println("Wrong code!");
                 return "false";
             }
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return "error";
+    }
+
+    /**
+     * Adds a new doctor to the database with the provided information.
+     *
+     * @param clientID    the unique identifier of the client for whom the doctor is added
+     * @param firstname   the first name of the doctor
+     * @param lastname    the last name of the doctor
+     * @param phoneNumber the phone number of the doctor
+     * @param email       the email of the doctor
+     * @param gender      the gender of the doctor
+     * @param profession  the profession of the doctor
+     * @param username    the username for the doctor's login
+     * @param password    the password for the doctor's login
+     * @param clinicId    the ID of the clinic to which the doctor is associated
+     * @return a string indicating the result of the operation:
+     *         - "Added new doctor correctly." if the doctor is added successfully
+     *         - "Error while adding new doctor." if an error occurs during the operation
+     */
+    String addNewDoctor(int clientID, String firstname, String lastname, String phoneNumber, String email, String gender, String profession, String username, String password, String clinicId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+
+            String getMaxDoctorIdSql = "SELECT MAX(doctor_id) AS max_doctor_id FROM doctor_table";
+            String getSaltSql = "SET @salt = SUBSTRING(MD5(RAND()), 1, 16)";
+            String insertDoctorSql = "INSERT INTO doctor_table (doctor_id, first_name, last_name, phone, email, gender, profession) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String insertDoctorPassSql = "INSERT INTO doctor_pass_table (username, password_hash, salt, doctor_id) VALUES (?, SHA2(CONCAT(?, @salt), 256), @salt, ?)";
+            String insertSettingsSql = "INSERT INTO doctor_settings_table (bmi_setting, age_setting, currentDate_setting, weightInChart_setting, temperatureInChart_setting, doctor_id) VALUES ('false', 'false', 'false', 'false', 'false', ?)";
+            String insertDoctorClinicSql = "INSERT INTO doctor_clinic_table (doctor_id, clinic_id) VALUES (?, ?)";
+
+            // get Max doctor_id from Database
+            preparedStatement = connection.prepareStatement(getMaxDoctorIdSql);
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            int maxDoctorId = resultSet.getInt("max_doctor_id");
+
+            // generate salt
+            preparedStatement = connection.prepareStatement(getSaltSql);
+            preparedStatement.executeUpdate();
+
+            // insert into doctor table
+            preparedStatement = connection.prepareStatement(insertDoctorSql);
+            preparedStatement.setInt(1, maxDoctorId + 1);
+            preparedStatement.setString(2, firstname);
+            preparedStatement.setString(3, lastname);
+            preparedStatement.setString(4, phoneNumber);
+            preparedStatement.setString(5, email);
+            preparedStatement.setString(6, gender);
+            preparedStatement.setString(7, profession);
+            int rowsAffected1 = preparedStatement.executeUpdate();
+
+            // insert into settings_table
+            preparedStatement = connection.prepareStatement(insertSettingsSql);
+            preparedStatement.setInt(1, maxDoctorId + 1);
+            int rowsAffected2 = preparedStatement.executeUpdate();
+
+            // insert into doctor_pass_table table
+            preparedStatement = connection.prepareStatement(insertDoctorPassSql);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            preparedStatement.setInt(3, maxDoctorId + 1);
+            int rowsAffected3 = preparedStatement.executeUpdate();
+
+            // insert into doctor_clinic_table
+            preparedStatement = connection.prepareStatement(insertDoctorClinicSql);
+            preparedStatement.setInt(1, maxDoctorId + 1);
+            preparedStatement.setInt(2, Integer.parseInt(clinicId));
+            int rowsAffected4 = preparedStatement.executeUpdate();
+
+            if (rowsAffected1 == 1 && rowsAffected2 == 1 && rowsAffected3 == 1 && rowsAffected4 == 1) {
+                System.out.println("Added new doctor correctly.");
+                return "Added new doctor correctly.";
+            } else {
+                System.out.println("Error while adding new doctor. {" + rowsAffected2 + ", " + rowsAffected3 + ", " + rowsAffected4 + "}");
+                return "Error while adding new doctor.";
+            }
+
         } catch (SQLException e) {
             System.err.println("Error while executing SELECT: " + e.getMessage());
         } finally {
@@ -371,6 +814,16 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * Logs in a doctor with the provided username and password.
+     *
+     * @param clientID      the unique identifier of the client for whom the login is performed
+     * @param inputUsername the username entered by the doctor
+     * @param inputPassword the password entered by the doctor
+     * @return an array of Strings containing the login status and doctor ID:
+     *         - {"true", "{doctor_id}"} if the login is successful
+     *         - {"false", "-1"} if the login fails
+     */
     String[] loginToDoctor(int clientID, String inputUsername, String inputPassword) {
         String[] returnStatement = {"false", "-1"};
 
@@ -391,6 +844,52 @@ public class SQLEngine {
             if (resultSet.next()) { // if username and password exist in database in same user
                 returnStatement[0] = "true";
                 returnStatement[1] = String.valueOf(resultSet.getInt("doctor_id"));
+
+                return returnStatement;
+            } else {
+                returnStatement[0] = "false";
+                returnStatement[1] = "-1";
+
+                return returnStatement;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    /**
+     * Logs in an admin with the provided admin ID and password.
+     *
+     * @param clientID      the unique identifier of the client for whom the login is performed
+     * @param adminId       the admin ID entered by the admin
+     * @param inputPassword the password entered by the admin
+     * @return an array of Strings containing the login status and admin ID:
+     *         - {"true", "{admin_id}"} if the login is successful
+     *         - {"false", "-1"} if the login fails
+     */
+    String[] loginToAdmin(int clientID, int adminId, String inputPassword) {
+        String[] returnStatement = {"false", "-1"};
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT admin_id FROM admin_pass_table WHERE admin_id = ? AND password_hash = SHA2(CONCAT(?, (SELECT salt FROM admin_pass_table WHERE admin_id = ?)), 256)";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, adminId);  // password
+            preparedStatement.setString(2, inputPassword);  // password
+            preparedStatement.setInt(3, adminId);  // password
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) { // if username and password exist in database in same user
+                returnStatement[0] = "true";
+                returnStatement[1] = String.valueOf(resultSet.getInt("admin_id"));
 
                 return returnStatement;
             } else {
@@ -585,6 +1084,15 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * Retrieves the settings for a specific doctor from the database.
+     *
+     * @param clientID  the unique identifier of the client for whom the settings are retrieved
+     * @param doctor_id the ID of the doctor for whom the settings are retrieved
+     * @return an array of Strings containing the doctor's settings:
+     *         - {bmi_setting, age_setting, currentDate_setting, weightInChart_setting, temperatureInChart_setting}
+     *         - {"Error", "Error", "Error", "Error", "Error"} if there is an error during the retrieval
+     */
     String[] getDoctorSettings(int clientID, String doctor_id) {
         String[] returnStatement = {"Error", "Error", "Error", "Error", "Error"};
 
@@ -672,6 +1180,19 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * Prescribes an e-prescription for a patient.
+     *
+     * @param clientID    the unique identifier of the client for whom the e-prescription is prescribed
+     * @param medicines   a string containing the prescribed medicines
+     * @param date        the date when the e-prescription is issued
+     * @param doctor_id   the ID of the prescribing doctor
+     * @param pesel       the PESEL of the patient for whom the e-prescription is prescribed
+     * @return a string indicating the status of the e-prescription prescription:
+     *         - "E-prescription prescribed correctly." if the prescription is successful
+     *         - "Error in database while prescribing E-prescription." if an error occurs during prescription
+     *         - "Error" if there is any other error during the process
+     */
     String prescribeEPrescription(int clientID, String medicines, String date, String doctor_id, String pesel) {
         String returnStatement = "Error";
 
@@ -758,6 +1279,81 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * Creates and adds 100 new one-time codes to the database.
+     *
+     * @param clientID the unique identifier of the client initiating the creation of new codes
+     * @return a string indicating the status of the operation:
+     *         - "100 new one-time codes added correctly." if the codes are successfully added
+     *         - "Error in database while adding new one-time codes." if an error occurs during the process
+     *         - "Error" if there is any other error during the process
+     */
+    String createNewOneTimeCodes(int clientID) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+
+            String selectMaxCode = "SELECT MAX(one_time_code) FROM one_time_code_table";
+            preparedStatement = connection.prepareStatement(selectMaxCode);
+            resultSet = preparedStatement.executeQuery();
+
+            int maxCode = 0;
+            if (resultSet.next()) {
+                maxCode = resultSet.getInt(1);
+            }
+
+            // execute the INSERT statement to add 100 new codes
+            String insertNewCodes = "INSERT INTO one_time_code_table (one_time_code) VALUES ";
+            for (int i = 0; i < 100; i++) {
+                maxCode++;
+                insertNewCodes += "(LPAD(" + maxCode + ", 6, '0')),";
+            }
+
+            // Remove the trailing comma and execute the query
+            insertNewCodes = insertNewCodes.substring(0, insertNewCodes.length() - 1);
+            preparedStatement = connection.prepareStatement(insertNewCodes);
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 100) {
+                System.out.println("100 new one-time codes added correctly.");
+                returnStatement = "100 new one-time codes added correctly.";
+            } else {
+                System.out.println("Error in database while adding new one-time codes.");
+                returnStatement = "Error in database while adding new one-time codes.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SQL: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    /**
+     * Adds a new medical recommendation to the database.
+     *
+     * @param clientID              the unique identifier of the client initiating the addition of a recommendation
+     * @param diet                  the recommended diet
+     * @param medicines             the recommended medicines
+     * @param nextCheckUpDate       the date of the next medical check-up
+     * @param nextCheckUpName       the name of the next medical check-up
+     * @param additionalInformation additional information related to the recommendation
+     * @param date                  the date of the recommendation
+     * @param doctor_id             the unique identifier of the doctor providing the recommendation
+     * @param pesel                 the PESEL number of the patient
+     * @return a string indicating the status of the operation:
+     *         - "Recommendation added correctly." if the recommendation is successfully added
+     *         - "Error in database while adding recommendation." if an error occurs during the process
+     *         - "Error" if there is any other error during the process
+     */
     String addRecommendation(int clientID, String diet, String medicines, String nextCheckUpDate, String nextCheckUpName, String additionalInformation, String date, String doctor_id, String pesel) {
         String returnStatement = "Error";
 
@@ -841,6 +1437,19 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * Adds a new medical history entry to the database.
+     *
+     * @param clientID         the unique identifier of the client initiating the addition of a medical history entry
+     * @param medicalCase      the description of the medical case
+     * @param ICD10FirstLetter the first letter of the ICD10 code associated with the medical case
+     * @param ICD10Code        the ICD10 code associated with the medical case
+     * @param pesel            the PESEL number of the patient
+     * @return a string indicating the status of the operation:
+     *         - "Medical history added correctly." if the medical history entry is successfully added
+     *         - "Error in database while adding medical history." if an error occurs during the process
+     *         - "Error" if there is any other error during the process
+     */
     String addMedicalHistory(int clientID, String medicalCase, String ICD10FirstLetter, String ICD10Code, String pesel) {
         String returnStatement = "Error";
 
@@ -850,10 +1459,16 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
+            String getUserIdFromPeselSql = "SELECT user_id FROM user_table WHERE pesel = ?";
             String addMedicalHistorySql = "INSERT INTO user_medical_history_table (ICD10_first_letter, ICD10_code, medical_case, user_id) VALUES (?, ?, ?, ?);";
 
             // get user_id from pesel
-            int user_id = getUserIdFromPesel(pesel);
+            preparedStatement = connection.prepareStatement(getUserIdFromPeselSql);
+            preparedStatement.setString(1, pesel);
+            resultSet = preparedStatement.executeQuery();
+            int user_id = resultSet.getInt("user_id");
+            ;
+
 
             // insert into user_medical_history_table
             preparedStatement = connection.prepareStatement(addMedicalHistorySql);
@@ -882,6 +1497,23 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * Adds a new documentation entry to the database.
+     *
+     * @param clientID          the unique identifier of the client initiating the addition of a documentation entry
+     * @param interview         the details of the interview
+     * @param physicalExamination the details of the physical examination
+     * @param ICD10Code         the ICD10 code associated with the documentation entry
+     * @param recommendationId  the ID of the associated recommendation, can be empty
+     * @param pesel             the PESEL number of the patient
+     * @param date              the date of the documentation entry
+     * @param doctor_id         the ID of the doctor creating the documentation entry
+     * @return a string indicating the status of the operation:
+     *         - "Documentation added correctly." if the documentation entry is successfully added
+     *         - "Error in database while adding documentation." if an error occurs during the process
+     *         - "User not found with the provided PESEL." if the user is not found in the database
+     *         - "Error" if there is any other error during the process
+     */
     String addDocumentation(int clientID, String interview, String physicalExamination, String ICD10Code, String recommendationId, String pesel, String date, String doctor_id) {
         String returnStatement = "Error";
 
@@ -948,6 +1580,17 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * Deletes a documentation entry from the database.
+     *
+     * @param clientID       the unique identifier of the client initiating the deletion of the documentation entry
+     * @param documentationId the ID of the documentation entry to be deleted
+     * @return a string indicating the status of the operation:
+     *         - "Documentation deleted correctly." if the documentation entry is successfully deleted
+     *         - "Error in database while deleting documentation." if an error occurs during the deletion process
+     *         - "Documentation not found with the provided ID." if the documentation entry is not found in the database
+     *         - "Error" if there is any other error during the process
+     */
     String deleteDocumentation(int clientID, String documentationId) {
         String returnStatement = "Error";
 
@@ -983,6 +1626,17 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * Deletes a medical history entry from the database.
+     *
+     * @param clientID         the unique identifier of the client initiating the deletion of the medical history entry
+     * @param medicalHistoryId the ID of the medical history entry to be deleted
+     * @return a string indicating the status of the operation:
+     *         - "Medical history deleted correctly." if the medical history entry is successfully deleted
+     *         - "Error in database while deleting medical history." if an error occurs during the deletion process
+     *         - "Medical history not found with the provided ID." if the medical history entry is not found in the database
+     *         - "Error" if there is any other error during the process
+     */
     String deleteMedicalHistory(int clientID, String medicalHistoryId) {
         String returnStatement = "Error";
 
@@ -1018,6 +1672,19 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * Prescribes an electronic referral (E-referral) and adds it to the database.
+     *
+     * @param clientID       the unique identifier of the client initiating the prescription of the E-referral
+     * @param eReferralName  the name or description of the E-referral
+     * @param date           the date of issue for the E-referral
+     * @param doctor_id      the ID of the doctor prescribing the E-referral
+     * @param pesel          the PESEL (Personal Identification Number) of the patient receiving the E-referral
+     * @return a string indicating the status of the operation:
+     *         - "E-referral prescribed correctly." if the E-referral is successfully prescribed and added to the database
+     *         - "Error in database prescribing E-referral." if an error occurs during the prescription process
+     *         - "Error" if there is any other error during the process
+     */
     String prescribeEReferral(int clientID, String eReferralName, String date, String doctor_id, String pesel) {
         String returnStatement = "Error";
 
@@ -1104,6 +1771,21 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * Updates the settings for a doctor in the database.
+     *
+     * @param clientID                 the unique identifier of the client initiating the settings update
+     * @param doctor_id               the ID of the doctor whose settings need to be updated
+     * @param bmi_setting             the new BMI setting value ("true" or "false")
+     * @param age_setting             the new age setting value ("true" or "false")
+     * @param currentDate_setting     the new current date setting value ("true" or "false")
+     * @param weightInChart_setting   the new weight in chart setting value ("true" or "false")
+     * @param temperatureInChart_setting the new temperature in chart setting value ("true" or "false")
+     * @return a string indicating the status of the operation:
+     *         - "Settings changed correctly." if the settings are successfully updated in the database
+     *         - "Error in database while setting settings." if an error occurs during the update process
+     *         - "Error" if there is any other error during the process
+     */
     String setDoctorSettings(int clientID, String doctor_id, String bmi_setting, String age_setting, String currentDate_setting, String weightInChart_setting, String temperatureInChart_setting) {
         String returnStatement = "Error";
 
@@ -1298,6 +1980,71 @@ public class SQLEngine {
         return null;
     }
 
+    /**
+     * Retrieves notifications for a doctor from the database.
+     *
+     * @param clientID   the unique identifier of the client initiating the notification retrieval
+     * @param doctor_id  the ID of the doctor for whom notifications need to be retrieved
+     * @return a 2D array containing the notifications or a single-element array with an error message:
+     *         - {"No notifications in database"} if there are no notifications
+     *         - {{notification1_col1, notification1_col2, ...}, {notification2_col1, notification2_col2, ...}, ...} if notifications are found
+     *         - null if there is an error during the process
+     */
+    String[][] getDoctorNotifications(int clientID, int doctor_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT * FROM doctor_message_table WHERE doctor_id = ?";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            preparedStatement.setInt(1, doctor_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            if (rowCount == 0) {
+                System.out.println("No notifications in database.");
+                return new String[][]{{"No notifications in database"}};
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
+
+    /**
+     * Retrieves E-Referrals for a user from the database.
+     *
+     * @param clientID the unique identifier of the client initiating the E-Referral retrieval
+     * @param user_id  the ID of the user for whom E-Referrals need to be retrieved
+     * @return a 2D array containing the E-Referrals or a single-element array with an error message:
+     *         - {"No EReferrals in database"} if there are no E-Referrals
+     *         - {{"EReferral1_col1", "EReferral1_col2", ...}, {"EReferral2_col1", "EReferral2_col2", ...}, ...} if E-Referrals are found
+     *         - null if there is an error during the process
+     */
     String[][] getEReferral(int clientID, int user_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -1343,6 +2090,16 @@ public class SQLEngine {
         return null;
     }
 
+    /**
+     * Retrieves findings for a user from the database.
+     *
+     * @param clientID the unique identifier of the client initiating the findings retrieval
+     * @param user_id  the ID of the user for whom findings need to be retrieved
+     * @return a 2D array containing the findings or a single-element array with an error message:
+     *         - {"No findings in database"} if there are no findings
+     *         - {{"Finding1_col1", "Finding1_col2", ...}, {"Finding2_col1", "Finding2_col2", ...}, ...} if findings are found
+     *         - null if there is an error during the process
+     */
     String[][] getFindings(int clientID, int user_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -1388,6 +2145,71 @@ public class SQLEngine {
         return null;
     }
 
+    /**
+     * Retrieves findings for a user identified by their PESEL from the database.
+     *
+     * @param clientID the unique identifier of the client initiating the findings retrieval
+     * @param pesel    the PESEL of the user for whom findings need to be retrieved
+     * @return a 2D array containing the findings or a single-element array with an error message:
+     *         - {"No findings in database"} if there are no findings
+     *         - {{"Finding1_col1", "Finding1_col2", ...}, {"Finding2_col1", "Finding2_col2", ...}, ...} if findings are found
+     *         - null if there is an error during the process
+     */
+    String[][] getDoctorFindings(int clientID, String pesel) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT * FROM findings_table LEFT JOIN user_table ON findings_table.user_id = user_table.user_id WHERE user_table.pesel = ?";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            preparedStatement.setString(1, pesel);
+
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            if (rowCount == 0) {
+                System.out.println("No findings in database.");
+                return new String[][]{{"No findings in database"}};
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return null;
+    }
+
+    /**
+     * Retrieves e-prescriptions for a user identified by their user ID from the database.
+     *
+     * @param clientID the unique identifier of the client initiating the e-prescription retrieval
+     * @param user_id  the user ID for whom e-prescriptions need to be retrieved
+     * @return a 2D array containing the e-prescriptions or a single-element array with an error message:
+     *         - {"No EPrescriptions in database"} if there are no e-prescriptions
+     *         - {{"EPrescription1_col1", "EPrescription1_col2", ...}, {"EPrescription2_col1", "EPrescription2_col2", ...}, ...} if e-prescriptions are found
+     *         - null if there is an error during the process
+     */
     String[][] getEPrescrition(int clientID, int user_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -1433,6 +2255,16 @@ public class SQLEngine {
         return null;
     }
 
+    /**
+     * Retrieves recommendations for a user identified by their user ID from the database.
+     *
+     * @param clientID the unique identifier of the client initiating the recommendation retrieval
+     * @param user_id  the user ID for whom recommendations need to be retrieved
+     * @return a 2D array containing the recommendations or a single-element array with an error message:
+     *         - {"No recommendations in the database"} if there are no recommendations
+     *         - {{"Recommendation1_col1", "Recommendation1_col2", ...}, {"Recommendation2_col1", "Recommendation2_col2", ...}, ...} if recommendations are found
+     *         - null if there is an error during the process
+     */
     String[][] getRecommendation(int clientID, int user_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -1477,7 +2309,18 @@ public class SQLEngine {
         }
         return null;
     }
-    
+
+    /**
+     * Retrieves Short Medical Interview (SMI) details for a user identified by their registration number and PESEL from the database.
+     *
+     * @param clientID         the unique identifier of the client initiating the SMI retrieval
+     * @param registration_nr  the registration number associated with the SMI
+     * @param pesel            the PESEL of the user for whom SMI details need to be retrieved
+     * @return an array containing SMI details or an array with an error message:
+     *         - {"SMI with this code doesn't exist in this user!"} if the SMI with the specified code doesn't exist for the user
+     *         - {"Error", "Error", ..., "Error"} if there is an error during the process
+     *         - {"registration_nr", "what_hurts_you", "pain_symptoms", "other_symptoms", "symptoms_other_symptoms", "medicines", "extent_of_pain", "when_the_pain_started", "temperature", "additional_description", "result_smi", "smi_date", "user_id"} if SMI details are found
+     */
     String[] getSMI(int clientID, int registration_nr, String pesel) {
         String[] returnStatement = {"Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error"};
         Connection connection = null;
@@ -1492,7 +2335,7 @@ public class SQLEngine {
             preparedStatement.setString(2, pesel);
             resultSet = preparedStatement.executeQuery();
 
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 returnStatement[0] = String.valueOf(resultSet.getInt("registration_nr"));
                 returnStatement[1] = resultSet.getString("what_hurts_you");
                 returnStatement[2] = resultSet.getString("pain_symptoms");
@@ -1521,30 +2364,71 @@ public class SQLEngine {
         return null;
     }
 
-    int getUserIdFromPesel(String pesel) {
-        String sql = "SELECT user_id FROM user_table WHERE pesel = ?";
+    /**
+     * Retrieves medical history details for a user identified by their PESEL from the database.
+     *
+     * @param clientID  the unique identifier of the client initiating the medical history retrieval
+     * @param pesel     the PESEL of the user for whom medical history details need to be retrieved
+     * @return a 2D array containing medical history details or a 2D array with a single-row containing an error message:
+     *         - {{"No medical history in database"}} if there is no medical history for the user
+     *         - {{"Error"}} if there is an error during the process
+     *         - {{"column1", "column2", ..., "columnN"}, ..., {"value1", "value2", ..., "valueN"}} if medical history details are found
+     */
+    String[][] getDoctorMedicalHistory(int clientID, String pesel) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
-        try (Connection connection = DriverManager.getConnection(url, DBusername, DBpassword);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        ) {
-
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String sql = "SELECT * FROM user_medical_history_table LEFT JOIN user_table ON user_medical_history_table.user_id = user_table.user_id WHERE user_table.pesel = ?";
+            preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setString(1, pesel);
 
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    return resultSet.getInt("user_id");
-                } else {
-                    System.out.println("Error in database while getting user_id from pesel.");
-                    return -1;
-                }
+            resultSet = preparedStatement.executeQuery();
+
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
             }
+
+            if (rowCount == 0) {
+                System.out.println("No medical history in database.");
+                return new String[][]{{"No medical history in database"}};
+            }
+
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[][] returnStatement = new String[rowCount][columnCount];
+
+            resultSet.beforeFirst(); // Go back to begin of ResultSet
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    returnStatement[row][col] = resultSet.getString(col + 1);
+                }
+                row++;
+            }
+
+            return returnStatement;
+
         } catch (SQLException e) {
             System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
         }
-
-        return -1;
+        return null;
     }
 
+    /**
+     * Retrieves medical history details for a user identified by their user ID from the database.
+     *
+     * @param clientID  the unique identifier of the client initiating the medical history retrieval
+     * @param user_id   the user ID for whom medical history details need to be retrieved
+     * @return a 2D array containing medical history details or a 2D array with a single-row containing an error message:
+     *         - {{"No medical history in database"}} if there is no medical history for the user
+     *         - {{"Error"}} if there is an error during the process
+     *         - {{"column1", "column2", ..., "columnN"}, ..., {"value1", "value2", ..., "valueN"}} if medical history details are found
+     */
     String[][] getMedicalHistory(int clientID, int user_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -1590,16 +2474,26 @@ public class SQLEngine {
         return null;
     }
 
-    String[][] getDocumentations(int clientID, int user_id) {
+    /**
+     * Retrieves documentation details for a user identified by their PESEL from the database.
+     *
+     * @param clientID  the unique identifier of the client initiating the documentation retrieval
+     * @param pesel     the PESEL of the user for whom documentation details need to be retrieved
+     * @return a 2D array containing documentation details or a 2D array with a single-row containing an error message:
+     *         - {{"No documentations in database"}} if there is no documentation for the user
+     *         - {{"Error"}} if there is an error during the process
+     *         - {{"column1", "column2", ..., "columnN"}, ..., {"value1", "value2", ..., "valueN"}} if documentation details are found
+     */
+    String[][] getDocumentations(int clientID, String pesel) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String sql = "SELECT * FROM documentation_table WHERE user_id = ?";
+            String sql = "SELECT * FROM documentation_table LEFT JOIN user_table ON documentation_table.user_id = user_table.user_id WHERE user_table.pesel = ?";
             preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            preparedStatement.setInt(1, user_id);
+            preparedStatement.setString(1, pesel);
 
             resultSet = preparedStatement.executeQuery();
 
@@ -1635,6 +2529,16 @@ public class SQLEngine {
         return null;
     }
 
+    /**
+     * Retrieves blood pressure records for a user identified by their user ID from the database.
+     *
+     * @param clientID  the unique identifier of the client initiating the blood pressure record retrieval
+     * @param user_id   the user ID of the user for whom blood pressure records need to be retrieved
+     * @return a 2D array containing blood pressure records or a 2D array with a single-row containing an error message:
+     *         - {{"No pressures in database"}} if there are no blood pressure records for the user
+     *         - {{"Error"}} if there is an error during the process
+     *         - {{"column1", "column2", ..., "columnN"}, ..., {"value1", "value2", ..., "valueN"}} if blood pressure records are found
+     */
     String[][] getPressure(int clientID, int user_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -1686,6 +2590,8 @@ public class SQLEngine {
     public void checkDataBase() {
         Connection connection = null;
         try {
+            // EMERGENCY !!!
+            //connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthguardian", "root", "root");
             connection = DriverManager.getConnection(url, DBusername, DBpassword);
 
             if (connection != null)
@@ -1710,6 +2616,26 @@ public class SQLEngine {
         }
     }
 
+    /**
+     * Adds a short medical interview record to the database.
+     *
+     * @param clientID                  the unique identifier of the client initiating the addition of the short medical interview record
+     * @param what_hurts_you            the description of what hurts the user
+     * @param pain_symptoms             the description of pain symptoms (can be empty)
+     * @param other_symptoms            the description of other symptoms (can be empty)
+     * @param symptoms_other_symptoms   the description of the relationship between pain symptoms and other symptoms (can be empty)
+     * @param medicines                 the list of medicines
+     * @param extent_of_pain            the extent of pain
+     * @param when_the_pain_started     information about when the pain started
+     * @param temperature               the recorded temperature
+     * @param additional_description    any additional description related to the short medical interview
+     * @param result_smi                the result of the short medical interview
+     * @param smi_date                  the date of the short medical interview
+     * @param user_id                   the user ID associated with the short medical interview
+     * @return a string indicating the outcome of the operation:
+     *         - "SMI added correctly with nr: [registration_nr]" if the short medical interview record is added successfully
+     *         - "Error in database while adding SMI." if there is an error during the process
+     */
     String addShortMedicalInterview(int clientID, String what_hurts_you, String pain_symptoms, String other_symptoms, String symptoms_other_symptoms, String medicines, String extent_of_pain, String when_the_pain_started, String temperature, String additional_description, String result_smi, String smi_date, int user_id) {
         String returnStatement = "Error";
 
@@ -1777,6 +2703,21 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * Adds a short medical interview e-referral record to the database.
+     *
+     * @param clientID          the unique identifier of the client initiating the addition of the short medical interview e-referral record
+     * @param referral_id       the referral ID associated with the e-referral
+     * @param barcode           the barcode associated with the e-referral
+     * @param date_of_issue     the date of issue of the e-referral
+     * @param e_referral_code   the e-referral code
+     * @param referral_name     the name of the referral
+     * @param doctor_id         the doctor ID associated with the e-referral
+     * @param user_id           the user ID associated with the e-referral
+     * @return a string indicating the outcome of the operation:
+     *         - "SMI E-Referral added correctly." if the short medical interview e-referral record is added successfully
+     *         - "Error in database while adding SMI E-Referral." if there is an error during the process
+     */
     String addSMIEreferral(int clientID, String referral_id, String barcode, String date_of_issue, String e_referral_code, String referral_name, int doctor_id, int user_id) {
         String returnStatement = "Error";
 
@@ -1818,6 +2759,68 @@ public class SQLEngine {
         return returnStatement;
     }
 
+    /**
+     * Retrieves the last blood pressure check date and checks if it was done within the last 3 days.
+     *
+     * @param clientID the unique identifier of the client initiating the retrieval and check
+     * @param user_id  the user ID for whom to retrieve the last blood pressure check date
+     * @return a string indicating the outcome of the operation:
+     *         - "User checked blood pressure less than 3 days ago." if the last blood pressure check was done within the last 3 days
+     *         - "User didn't check blood pressure less than 3 days ago." if the last blood pressure check was done more than 3 days ago
+     *         - "Error while checking last blood pressure check." if there is an error during the process
+     */
+    String getLastBloodPressureCheck(int clientID, int user_id) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String getLastBloodPressureCheckSql = "SELECT * FROM user_basic_data_table WHERE user_id = ? ORDER BY entry_date DESC LIMIT 1;";
+
+            preparedStatement = connection.prepareStatement(getLastBloodPressureCheckSql);
+            preparedStatement.setInt(1, user_id);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                LocalDateTime lastBloodPressureCheck = resultSet.getTimestamp("entry_date").toLocalDateTime();
+                LocalDateTime currentDate = LocalDateTime.now();
+                long daysBetween = ChronoUnit.DAYS.between(lastBloodPressureCheck, currentDate);
+                if (daysBetween > 3) {
+                    System.out.println("User didn't checked blood pressure less than 3 days ago.");
+                    returnStatement = "User didn't checked blood pressure less than 3 days ago.";
+                } else {
+                    System.out.println("User checked blood pressure less than 3 days ago.");
+                    returnStatement = "User checked blood pressure less than 3 days ago.";
+                }
+            } else {
+                System.out.println("Error while checking last blood pressure check.");
+                returnStatement = "Error while checking last blood pressure check.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    /**
+     * Retrieves E-Contact information for a user from the database.
+     *
+     * @param clientID the unique identifier of the client initiating the retrieval
+     * @param user_id  the user ID for whom to retrieve E-Contact information
+     * @return a 2D array containing the E-Contact information:
+     *         - Each row represents a record.
+     *         - Each column represents a field of the record (first_name, last_name, profession, name, examination_date, meeting_link).
+     *         - If no E-Contact information is found, a single-row array with a message "No EContact information in database" is returned.
+     */
     String[][] getEContact(int clientID, int user_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -1863,6 +2866,16 @@ public class SQLEngine {
         return null;
     }
 
+    /**
+     * Retrieves examinations scheduled for today for a specific doctor from the database.
+     *
+     * @param clientID  the unique identifier of the client initiating the retrieval
+     * @param doctor_id the doctor ID for whom to retrieve examinations
+     * @return a 2D array containing examination information scheduled for today:
+     *         - Each row represents a record.
+     *         - Each column represents a field of the record (examination_nr, name, examination_date, first_name, last_name, phone).
+     *         - If no examinations are found, a single-row array with a message "No examinations in database" is returned.
+     */
     String[][] getExaminationsForToday(int clientID, int doctor_id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -1908,6 +2921,16 @@ public class SQLEngine {
         return null;
     }
 
+    /**
+     * Adds a meeting link to a specific examination in the database.
+     *
+     * @param clientID        the unique identifier of the client initiating the operation
+     * @param examination_nr  the examination number for which to add the meeting link
+     * @param link            the meeting link to be added
+     * @return a string indicating the outcome of the operation:
+     *         - If the link is added successfully, it returns "Examination link added correctly."
+     *         - If there is an error in the database, it returns "Error in database while adding Examination link."
+     */
     String addExaminationLink(int clientID, String examination_nr, String link) {
         String returnStatement = "Error";
 
