@@ -1468,7 +1468,6 @@ public class SQLEngine {
             preparedStatement.setString(1, pesel);
             resultSet = preparedStatement.executeQuery();
             int user_id = resultSet.getInt("user_id");
-            ;
 
 
             // insert into user_medical_history_table
@@ -3089,7 +3088,7 @@ public class SQLEngine {
 
             if (returnStatements.isEmpty()) {
                 System.out.println("All doctor's hours available!");
-                return new String("All doctor's hours available!");
+                return "All doctor's hours available!";
             }
 
             return String.valueOf(returnStatements);
@@ -3126,9 +3125,9 @@ public class SQLEngine {
             preparedStatement.setString(2, name);
 
             if (!date.isEmpty()) {
-                preparedStatement.setDate(3, java.sql.Date.valueOf(date));
+                preparedStatement.setTimestamp(3, Timestamp.valueOf(date));
             } else {
-                preparedStatement.setNull(3, java.sql.Types.VARCHAR);
+                preparedStatement.setNull(3, Types.TIMESTAMP);
             }
 
             preparedStatement.setNull(4, java.sql.Types.VARCHAR);
@@ -3139,8 +3138,17 @@ public class SQLEngine {
             else
                 preparedStatement.setNull(5, java.sql.Types.VARCHAR);
 
+            System.out.println(short_description);
+
             preparedStatement.setInt(6, doctor_id);
+
+            System.out.println(doctor_id);
+
             preparedStatement.setInt(7, user_id);
+
+            System.out.println(user_id);
+
+
 
             int rowsAffected = preparedStatement.executeUpdate();
 

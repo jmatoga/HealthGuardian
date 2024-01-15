@@ -2,6 +2,7 @@ package ScenesControllers;
 
 import Client.Client;
 import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -52,6 +53,8 @@ public class ExaminationScheduleController implements Initializable {
 
     private String[] examDoctor = new String[3];
 
+    private boolean flag = false;
+
 
     @FXML
     private void userPanelButtonClicked(ActionEvent event) throws IOException {
@@ -85,6 +88,7 @@ public class ExaminationScheduleController implements Initializable {
 
         if (serverAnswer.equals("[[No examinations in database]]")) {
             Pane newExamination = new Pane();
+            newExamination.setId("NoExam");
             Label newExaminationName = new Label("There is no examinations.");
             newExaminationName.setPrefHeight(120);
             newExaminationName.setPrefWidth(704);
@@ -135,6 +139,7 @@ public class ExaminationScheduleController implements Initializable {
                 // Add new examinations to the GridPane on the appropriate row
                 gridPane.add(newExamination, 0, i);
             }
+            gridPane.requestLayout();
         }
     }
 
@@ -163,91 +168,64 @@ public class ExaminationScheduleController implements Initializable {
 
                         message.sendMakeNewExamination(SendToServer, Client.clientId + "#/#" + name + "#/#" + date + "#/#" + appointmentDescriptionTextField.getText() + "#/#" + examDoctor[2] + "#/#" + Client.user_id);
 
-//                        try {
-//                            String serverAnswer = Client.getServerResponse(ReadFromServer);
-//
-//                            if (serverAnswer.startsWith("EXISTING RESULT:") && serverAnswer.substring(16).startsWith("Free to use, clinic ID: ")) {
-//                                message.addNewDoctorMessage(SendToServer, Client.clientId + "#/#" + inputFieldFirstName.getText() + "#/#" + inputFieldLastName.getText() + "#/#" + inputFieldPhone.getText() + "#/#" + inputFieldEmail.getText() + "#/#" + genderChoiceBox.getValue() + "#/#" + inputFieldProfession.getText() + "#/#" + inputFieldUsername.getText() + "#/#" + inputFieldPassword.getText() + "#/#" + serverAnswer.substring(40));
-//                                String serverAnswer1 = Client.getServerResponse(ReadFromServer);
-//
-//                                if (serverAnswer1.equals("Added new doctor correctly.")) {
-//                                    statusLabel.setTextFill(Color.greenGradient());
-//                                    statusLabel.setText(serverAnswer1);
-//                                } else {
-//                                    statusLabel.setTextFill(Color.redGradient());
-//                                    statusLabel.setText("Error: " + serverAnswer1);
-//                                }
-//
-//                                Timeline timeline = new Timeline(
-//                                        new KeyFrame(Duration.millis(2000), TimeEvent -> {
-//                                            statusLabel.setText("");
-//                                        }));
-//                                timeline.setCycleCount(1);
-//                                timeline.play();
-//
-//                            } else if (serverAnswer.startsWith("EXISTING RESULT:") && serverAnswer.substring(16).equals("Doctor exists")) {
-//                                alertEvent.consume(); // cancel closing
-//                                label.setText("Username is used, change it!");
-//                            } else if (serverAnswer.startsWith("EXISTING RESULT:") && serverAnswer.substring(16).equals("Email exists")) {
-//                                alertEvent.consume(); // cancel closing
-//                                label.setText("Email is used, change it!");
-//                            } else if (serverAnswer.startsWith("EXISTING RESULT:") && serverAnswer.substring(16).equals("Wrong clinic name")) {
-//                                alertEvent.consume(); // cancel closing
-//                                label.setText("Wrong clinic name, change it!");
-//                            } else {
-//                                alertEvent.consume(); // cancel closing
-//                                label.setText("Error in database! Try again later.");
-//                                System.out.println(Color.ColorString("Error in database while adding new doctor! Try again later.", Color.ANSI_RED));
-//                            }
-//
-//                        } catch (IOException e) {
-//                            throw new RuntimeException(e);
-//                        }
-                    }
-                    System.out.printf("OK");
-                    appointmentSatusLabel.setTextFill(Color.greenGradient());
-                    appointmentSatusLabel.setText("The date has been successfully booked.");
+                        try {
+                            String serverAnswer = Client.getServerResponse(ReadFromServer);
 
+                            if (serverAnswer.startsWith("Examination added correctly with nr: ")) {
+                                appointmentSatusLabel.setTextFill(Color.greenGradient());
+                                appointmentSatusLabel.setText("The date has been successfully booked.");
+                            } else {
+                                appointmentSatusLabel.setTextFill(Color.redGradient());
+                                appointmentSatusLabel.setText(serverAnswer + " Try later.");
+                            }
+
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                 }
             });
 
-            alert.showAndWait();
-            resetStatusLabel();
-            //reload();
+                alert.showAndWait();
+                resetAllApointments();
+                resetStatusLabel();
         }
     }
 
-    private void resetStatusLabel() {
+    private void resetStatusLabel() throws IOException {
         Timeline timeline = new Timeline(
-                new KeyFrame(Duration.millis(2000), TimeEvent -> {
+                new KeyFrame(Duration.millis(2500), TimeEvent -> {
                     appointmentSatusLabel.setText("");
                 }));
         timeline.setCycleCount(1);
         timeline.play();
     }
 
-    private void reload() {
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.millis(2000), TimeEvent -> {
-                    try {
-                        new SceneSwitch("/ScenesLayout/ExaminationScheduleScene.fxml");
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }));
-        timeline.setCycleCount(1);
-        timeline.play();
-    }
+    private void resetAllApointments() throws IOException {
+        PauseTransition visiblePause = new PauseTransition(
+                Duration.seconds(0.5)
+        );
 
-    private void resetAllApointments() {
-        appointmentDatePicker.setValue(null);
-        //appointmentDoctorChoiceBox.setValue(null);
-        //appointmentHourChoiceBox.setValue(null);
-        appointmentDescriptionTextField.setText("");
-        appointmentDescriptionTextField.setPromptText("Short descripiotn to examination (eg. SMI CODE)");
-        appointmentEContactCheckBox.setSelected(false);
-        appointmentDoctorChoiceBox.setDisable(true);
-        appointmentHourChoiceBox.setDisable(true);
+        gridPane.getChildren().removeIf(node -> "NoExam".equals(node.getId()));
+
+        visiblePause.setOnFinished(event -> {
+            try {
+                getExaminationsFromDB();
+            } catch (IOException e) {
+                e.printStackTrace(); // Możesz dostosować sposób obsługi błędów
+            }
+
+            appointmentDatePicker.setValue(null);
+            appointmentDoctorChoiceBox.getSelectionModel().clearSelection();
+            appointmentHourChoiceBox.getSelectionModel().clearSelection();
+            appointmentDescriptionTextField.setText("");
+            appointmentDescriptionTextField.setPromptText("Short description to examination (e.g., SMI CODE)");
+            appointmentEContactCheckBox.setSelected(false);
+            appointmentDoctorChoiceBox.setDisable(true);
+            appointmentHourChoiceBox.setDisable(true);
+            flag = false;
+        });
+        visiblePause.play();
     }
 
     @FXML
@@ -289,7 +267,7 @@ public class ExaminationScheduleController implements Initializable {
     public void getHoursFromDB() throws IOException {
 
         ArrayList<String> hourArr = new ArrayList<>(Arrays.asList(
-                "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30",
+                "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
                 "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
                 "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00"
         ));
@@ -302,10 +280,7 @@ public class ExaminationScheduleController implements Initializable {
 
         String[] busyHours = serverAnswer.substring(1, serverAnswer.length() - 1).split(", ");
 
-
-        for (String busyHour : busyHours) {
-            hourArr.remove(busyHour);
-        }
+        hourArr.removeIf(busyHoursList -> Arrays.asList(busyHours).contains(busyHoursList));
 
         ObservableList<String> hourObservableList = FXCollections.observableArrayList(hourArr);
         appointmentHourChoiceBox.setItems(hourObservableList);
@@ -314,8 +289,12 @@ public class ExaminationScheduleController implements Initializable {
 
     @FXML
     public void appointmentDoctorPickerChosen(ActionEvent actionEvent) throws IOException {
-        getHoursFromDB();
-        appointmentHourChoiceBox.setDisable(false);
+
+        if(!flag) {
+            getHoursFromDB();
+            appointmentHourChoiceBox.setDisable(false);
+            flag = true;
+        }
     }
 
     private String appointmentNameMaker() {

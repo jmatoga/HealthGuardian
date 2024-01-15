@@ -29,6 +29,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -38,6 +39,11 @@ public class ClientPanelController implements Initializable {
     private static BufferedReader ReadFromServer;
     private static PrintWriter SendToServer;
 
+    @FXML
+    public VBox happyBirthdayPane;
+
+    @FXML
+    public Label happyBirthdayLabel;
 
     @FXML
     private Label notificationTitleLabel, notificationDescriptionLabel, dataUpdatedStatusLabel, dateLabel, firstNameLabel, lastNameLabel, birthDateLabel, weightLabel, heightLabel, temperatureLabel, ageLabel, pressureLabel, dateOfLastUpdateLabel, bmiLabel, bmiStatusLabel;
@@ -385,6 +391,7 @@ public class ClientPanelController implements Initializable {
                 getSettingsFromDB();
                 getUserDataFromDB();
                 notificationtAlertPane.setVisible(false);
+                happyBirthdayPane.setVisible(false);
                 checkNotification();
                 manageNotificationAlert();
             } catch (IOException e) {
@@ -397,6 +404,8 @@ public class ClientPanelController implements Initializable {
                 timeline.play();
             }
         }
+
+        birthday();
     }
 
     private void manageNotificationAlert() {
@@ -504,6 +513,20 @@ public class ClientPanelController implements Initializable {
             }
 
             bmiStatusLabel.setText(String.format(Locale.US, "%.2f", bmi)); // Locale.US to use "." instead of "#/#" in double
+        }
+    }
+
+    void birthday (){
+
+        LocalDate bdDate = LocalDate.parse(birthDateLabel.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        if(LocalDate.now().getDayOfMonth() == bdDate.getDayOfMonth() && LocalDate.now().getMonthValue() == bdDate.getMonthValue())
+        {
+            happyBirthdayLabel.setText("Happy birthday to " + firstNameLabel.getText() + " " + lastNameLabel.getText() + ". Health Guardian team wishes you the best!!!");
+            happyBirthdayPane.setVisible(true);
+        }else
+        {
+            happyBirthdayPane.setVisible(false);
         }
     }
 
