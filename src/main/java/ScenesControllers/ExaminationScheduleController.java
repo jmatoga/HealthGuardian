@@ -108,9 +108,9 @@ public class ExaminationScheduleController implements Initializable {
                 Label newExaminationDescription = new Label("Examination number: " + examinationData[0] + ", with " + examinationData[3] + " " + examinationData[4] + ". Phone: " + examinationData[5]);
                 Label newExaminationDate = new Label(examinationData[2]);
                 newExaminationName.setPrefHeight(40);
-                // Set fitting to scroll bar
 
-                if(examinationsData.length > 6) {
+                // Set fitting to scroll bar
+                if (examinationsData.length > 6) {
                     newExamination.setPrefWidth(705);
                     newExaminationName.setPrefWidth(705);
                     newExaminationDescription.setPrefWidth(705);
@@ -165,7 +165,6 @@ public class ExaminationScheduleController implements Initializable {
             alert.setOnCloseRequest(alertEvent -> {
                 if (alert.getResult() == okButtonType) {
                     if (appointmentDatePicker.getValue() != null && appointmentDoctorChoiceBox.getValue() != null && appointmentHourChoiceBox.getValue() != null) {
-
                         message.sendMakeNewExamination(SendToServer, Client.clientId + "#/#" + name + "#/#" + date + "#/#" + appointmentDescriptionTextField.getText() + "#/#" + examDoctor[2] + "#/#" + Client.user_id);
 
                         try {
@@ -186,13 +185,13 @@ public class ExaminationScheduleController implements Initializable {
                 }
             });
 
-                alert.showAndWait();
-                resetAllApointments();
-                resetStatusLabel();
+            alert.showAndWait();
+            resetAllApointments();
+            resetStatusLabel();
         }
     }
 
-    private void resetStatusLabel() throws IOException {
+    private void resetStatusLabel() {
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.millis(2500), TimeEvent -> {
                     appointmentSatusLabel.setText("");
@@ -201,7 +200,7 @@ public class ExaminationScheduleController implements Initializable {
         timeline.play();
     }
 
-    private void resetAllApointments() throws IOException {
+    private void resetAllApointments() {
         PauseTransition visiblePause = new PauseTransition(
                 Duration.seconds(0.5)
         );
@@ -212,7 +211,7 @@ public class ExaminationScheduleController implements Initializable {
             try {
                 getExaminationsFromDB();
             } catch (IOException e) {
-                e.printStackTrace(); // Możesz dostosować sposób obsługi błędów
+                e.printStackTrace();
             }
 
             appointmentDatePicker.setValue(null);
@@ -230,7 +229,6 @@ public class ExaminationScheduleController implements Initializable {
 
     @FXML
     public void appointmentDatePickerChosen(ActionEvent actionEvent) {
-
         if (appointmentDatePicker.getValue() != null && appointmentDatePicker.getValue().isBefore(LocalDate.now())) {
             appointmentSatusLabel.setTextFill(Color.redGradient());
             appointmentSatusLabel.setText("Choose right date!");
@@ -240,12 +238,9 @@ public class ExaminationScheduleController implements Initializable {
             appointmentSatusLabel.setText("");
             appointmentDoctorChoiceBox.setDisable(false);
         }
-
-
     }
 
     public void getDoctorsFromDB() throws IOException {
-
         message.sendGetDoctorsToExams(SendToServer, Client.clientId + "#/#" + Client.user_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
@@ -254,18 +249,14 @@ public class ExaminationScheduleController implements Initializable {
 
         for (int i = 0; i < doctorsData.length; i++) {
             String[] doctorData = doctorsData[i].split(", ");
-
             doctors[i] = doctorData[2] + " " + doctorData[1] + " - " + doctorData[3].toUpperCase() + " - " + doctorData[0];
-
         }
 
         ObservableList<String> doctorsList = FXCollections.observableArrayList(doctors);
-
         appointmentDoctorChoiceBox.setItems(doctorsList);
     }
 
     public void getHoursFromDB() throws IOException {
-
         ArrayList<String> hourArr = new ArrayList<>(Arrays.asList(
                 "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
                 "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
@@ -279,18 +270,15 @@ public class ExaminationScheduleController implements Initializable {
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
         String[] busyHours = serverAnswer.substring(1, serverAnswer.length() - 1).split(", ");
-
         hourArr.removeIf(busyHoursList -> Arrays.asList(busyHours).contains(busyHoursList));
 
         ObservableList<String> hourObservableList = FXCollections.observableArrayList(hourArr);
         appointmentHourChoiceBox.setItems(hourObservableList);
-
     }
 
     @FXML
     public void appointmentDoctorPickerChosen(ActionEvent actionEvent) throws IOException {
-
-        if(!flag) {
+        if (!flag) {
             getHoursFromDB();
             appointmentHourChoiceBox.setDisable(false);
             flag = true;
@@ -298,7 +286,6 @@ public class ExaminationScheduleController implements Initializable {
     }
 
     private String appointmentNameMaker() {
-
         String name = "";
         if (appointmentEContactCheckBox.isSelected()) {
             name = capitalizeFirstLetter(examDoctor[1]) + " E-Contact";
@@ -310,16 +297,12 @@ public class ExaminationScheduleController implements Initializable {
     }
 
     private static String capitalizeFirstLetter(String input) {
-        if (input == null || input.isEmpty()) {
+        if (input == null || input.isEmpty())
             return input;
-        }
 
         String firstLetter = input.substring(0, 1).toUpperCase();
-
         String restOfText = input.substring(1).toLowerCase();
 
         return firstLetter + restOfText;
     }
-
-
 }

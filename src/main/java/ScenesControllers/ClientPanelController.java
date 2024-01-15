@@ -393,7 +393,6 @@ public class ClientPanelController implements Initializable {
                 notificationtAlertPane.setVisible(false);
                 happyBirthdayPane.setVisible(false);
                 checkNotification();
-                manageNotificationAlert();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -406,12 +405,6 @@ public class ClientPanelController implements Initializable {
         }
 
         birthday();
-    }
-
-    private void manageNotificationAlert() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.minutes(1), event -> checkNotification()));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
     }
 
     private void checkNotification() {
