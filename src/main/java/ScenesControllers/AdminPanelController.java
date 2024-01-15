@@ -109,6 +109,8 @@ public class AdminPanelController implements Initializable {
 
         alert.setOnCloseRequest(alertEvent -> {
             if (alert.getResult() == okButtonType) {
+                alertEvent.consume(); // cancel closing
+
                 if (checkWrittenText(label, inputFieldFirstName.getText(), inputFieldLastName.getText(), inputFieldPhone.getText(), inputFieldEmail.getText(), genderChoiceBox.getValue(), inputFieldProfession.getText(), inputFieldUsername.getText(), inputFieldPassword.getText(), inputFieldClinic.getText())) {
                     message.checkIfDoctorExists(SendToServer, Client.clientId + "#/#" + inputFieldUsername.getText() + "#/#" + inputFieldEmail.getText() + "#/#" + inputFieldClinic.getText());
 
