@@ -2981,7 +2981,7 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String sql = "SELECT examination_nr, name, examination_date, user_table.first_name, user_table.last_name, user_table.phone FROM examination_table INNER JOIN user_table ON examination_table.user_id = user_table.user_id WHERE doctor_id = ? AND DATE(examination_date) >= CURDATE() - INTERVAL 1 DAY;";
+            String sql = "SELECT examination_nr, name, examination_date, short_description, user_table.first_name, user_table.last_name, user_table.phone FROM examination_table INNER JOIN user_table ON examination_table.user_id = user_table.user_id WHERE doctor_id = ? AND DATE(examination_date) >= CURDATE() - INTERVAL 1 DAY;";
             preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setInt(1, doctor_id);
 
@@ -3078,8 +3078,6 @@ public class SQLEngine {
             preparedStatement.setDate(1, Date.valueOf(date));
             preparedStatement.setInt(2, doctor_id);
             resultSet = preparedStatement.executeQuery();
-
-
 
             while (resultSet.next()) {
                 String busyHours = resultSet.getString("busy_hours");

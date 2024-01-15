@@ -30,6 +30,9 @@ public class DoctorExaminationScheduleController implements Initializable {
     @FXML
     private GridPane gridPane;
 
+    @FXML
+    private Label descriptionShowLabel;
+
     private Pane selectedExamination = null;
 
     @FXML
@@ -71,17 +74,23 @@ public class DoctorExaminationScheduleController implements Initializable {
 
                 Pane newExamination = new Pane();
                 Label newExaminationName = new Label(examinationData[1]);
-                Label newExaminationDescription = new Label("Examination number: " + examinationData[0] + ", with " + examinationData[3] + " " + examinationData[4] + ". Phone: " + examinationData[5]);
+                Label newExaminationDescription = new Label("Examination number: " + examinationData[0] + ", with " + examinationData[4] + " " + examinationData[5] + ". Phone: " + examinationData[6]);
                 Label newExaminationDate = new Label(examinationData[2]);
                 newExaminationName.setPrefHeight(40);
                 // Set fitting to scroll bar
                 if(examinationsData.length > 6) {
-                    newExaminationName.setPrefWidth(691);
-                    newExaminationDescription.setPrefWidth(691);
+                    newExamination.setPrefWidth(705);
+                    newExaminationName.setPrefWidth(705);
+                    newExaminationDescription.setPrefWidth(705);
                 } else {
-                    newExaminationName.setPrefWidth(704);
-                    newExaminationDescription.setPrefWidth(704);
+                    newExamination.setPrefWidth(718);
+                    newExaminationName.setPrefWidth(718);
+                    newExaminationDescription.setPrefWidth(718);
                 }
+
+                newExamination.setOnMouseClicked(mouseEvent -> {
+                    descriptionShowLabel.setText(examinationData[3]);
+                });
 
                 setColors(newExamination);
 
