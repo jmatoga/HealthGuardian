@@ -479,6 +479,36 @@
             </Label>
          </children>
       </HBox>
+      <VBox fx:id="happyBirthdayPane" layoutX="515.0" layoutY="290.0" prefHeight="284.0" prefWidth="200.0" visible="false" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="290.0">
+         <children>
+            <ImageView fitHeight="201.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/birthday_cake.gif" />
+               </image>
+            </ImageView>
+            <Label fx:id="happyBirthdayLabel" prefHeight="85.0" prefWidth="200.0" textAlignment="CENTER" wrapText="true">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.06481481343507767" green="1.0" blue="0.26743826270103455" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="0.9895833134651184" blue="0.375" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <font>
+                  <Font name="Consolas Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
 
    </children>
 </AnchorPane>

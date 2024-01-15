@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
@@ -66,8 +67,28 @@
                 </RadialGradient>
             </textFill>
         </Label>
-        <Pane layoutX="817.0" layoutY="168.0" prefHeight="720.0" prefWidth="950.0" style="-fx-border-color: orange; -fx-border-width: 3;" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="170.0" />
-        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="68.0" layoutY="169.0" maxHeight="800.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="720.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="170.0">
+        <Pane layoutX="817.0" layoutY="168.0" prefHeight="500.0" prefWidth="400.0" style="-fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 20;" AnchorPane.rightAnchor="290.0" AnchorPane.topAnchor="290.0">
+         <children>
+            <Pane layoutX="5.0" layoutY="5.0" opacity="0.4" prefHeight="490.0" prefWidth="390.0" style="-fx-background-color: white; -fx-background-radius: 10;" />
+            <VBox prefHeight="500.0" prefWidth="400.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="5.0" prefHeight="90.0" prefWidth="400.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #29c0d3);; -fx-background-radius: 14; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 10;" text="EXAMINATION DESCRIPTION" wrapText="true">
+                     <font>
+                        <Font name="Consolas Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="descriptionShowLabel" alignment="TOP_CENTER" prefHeight="410.0" prefWidth="400.0" textAlignment="CENTER" textFill="#0d0101" wrapText="true">
+                     <padding>
+                        <Insets left="20.0" right="20.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="Consolas" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children></Pane>
+        <ScrollPane blendMode="HARD_LIGHT" centerShape="false" hbarPolicy="NEVER" layoutX="68.0" layoutY="169.0" maxHeight="800.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.8" prefWidth="720.0" stylesheets="@../Styles/scrollPaneStyle.css" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="170.0">
             <content>
                 <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="0.0" layoutY="0.0">
                     <!--                    prefHeight="1600.0"-->

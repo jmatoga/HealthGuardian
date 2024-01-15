@@ -36,6 +36,8 @@ public class RecommendationController implements Initializable {
     @FXML
     private Label doctorNameRecommendationLabel, dateRecommendationLabel, dietLabel, medicinesLabel, additionalInformationLabel, nextMedicalExaminationLabel, nextMedicalExaminationDateLabel, recommendationIdLabel, nextMedicalExaminationDateTextLabel;
 
+    private Pane selectedRecommendation = null;
+
     @FXML
     private void userPanelButtonClicked(ActionEvent event) throws IOException {
         new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml");
@@ -53,11 +55,38 @@ public class RecommendationController implements Initializable {
         }
     }
 
+    void setColors(Pane newRecommendation) {
+        newRecommendation.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+
+        newRecommendation.setOnMouseEntered(mouseEvent -> {
+            if (newRecommendation != selectedRecommendation) {
+                newRecommendation.setStyle("-fx-background-color: #e6e6e6; -fx-border-radius: 10; -fx-border-color: #edae55; -fx-border-width: 4");
+            }
+        });
+
+        newRecommendation.setOnMouseExited(mouseEvent -> {
+            if (newRecommendation != selectedRecommendation) {
+                newRecommendation.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+            }
+        });
+
+        newRecommendation.setOnMousePressed(mouseEvent -> {
+            if (selectedRecommendation != null) {
+                // Przywróć domyślny styl dla poprzednio zaznaczonego panelu
+                selectedRecommendation.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+            }
+
+            selectedRecommendation = newRecommendation;
+
+            newRecommendation.setStyle("-fx-background-color: #f2f2f2; -fx-border-radius: 10; -fx-border-color: #00FF00; -fx-border-width: 4");
+        });
+    }
+
     private void getRecommendationsFromDB() throws IOException {
         message.sendGetRecommendationMessage(SendToServer, Client.clientId + "#/#" + Client.user_id);
         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
-        if (!serverAnswer.equals("[[No recommendations in database]]")) {
+        if (serverAnswer.equals("[[No recommendations in database]]")) {
             Pane newRecommendation = new Pane();
             Label newRecommendationTitle = new Label("There is no recommendations.");
             newRecommendationTitle.setPrefHeight(200);
@@ -69,7 +98,6 @@ public class RecommendationController implements Initializable {
             gridPane.add(newRecommendation, 0, 0);
         } else {
             String[] recommendationsData = serverAnswer.substring(2, serverAnswer.length() - 2).split("], \\[");
-
             for (int i = 0; i < recommendationsData.length; i++) {
                 String[] recommendationData = recommendationsData[i].split(", ");
 
@@ -148,6 +176,8 @@ public class RecommendationController implements Initializable {
                     newRecommendation.setMinWidth(272);
                     newRecommendation.setMaxWidth(272);
                 }
+
+                setColors(newRecommendation);
 
                 Label newRecommendationTitle = new Label("Recommendation " + (i+1));
                 Label newRecommendationNextMedicalExam = new Label("Next medical examination:\n" + recommendationData[4]);

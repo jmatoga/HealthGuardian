@@ -30,6 +30,8 @@ public class DoctorExaminationScheduleController implements Initializable {
     @FXML
     private GridPane gridPane;
 
+    private Pane selectedExamination = null;
+
     @FXML
     private void docotrPanelButtonClicked(ActionEvent event) throws IOException {
         new SceneSwitch("/ScenesLayout/DoctorPanelScene.fxml");
@@ -80,6 +82,9 @@ public class DoctorExaminationScheduleController implements Initializable {
                     newExaminationName.setPrefWidth(704);
                     newExaminationDescription.setPrefWidth(704);
                 }
+
+                setColors(newExamination);
+
                 newExaminationName.setLayoutX(14);
                 newExaminationName.setFont(new Font("Consolas Bold", 36.0));
                 newExaminationDescription.setPrefHeight(120);
@@ -99,5 +104,32 @@ public class DoctorExaminationScheduleController implements Initializable {
                 gridPane.add(newExamination, 0, i);
             }
         }
+    }
+
+    void setColors(Pane newExamination) {
+        newExamination.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+
+        newExamination.setOnMouseEntered(mouseEvent -> {
+            if (newExamination != selectedExamination) {
+                newExamination.setStyle("-fx-background-color: #e6e6e6; -fx-border-radius: 10; -fx-border-color: #edae55; -fx-border-width: 4");
+            }
+        });
+
+        newExamination.setOnMouseExited(mouseEvent -> {
+            if (newExamination != selectedExamination) {
+                newExamination.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+            }
+        });
+
+        newExamination.setOnMousePressed(mouseEvent -> {
+            if (selectedExamination != null) {
+                // Przywróć domyślny styl dla poprzednio zaznaczonego panelu
+                selectedExamination.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1");
+            }
+
+            selectedExamination = newExamination;
+
+            newExamination.setStyle("-fx-background-color: #f2f2f2; -fx-border-radius: 10; -fx-border-color: #00FF00; -fx-border-width: 4");
+        });
     }
 }
