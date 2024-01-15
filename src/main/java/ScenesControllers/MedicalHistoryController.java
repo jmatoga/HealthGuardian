@@ -115,7 +115,10 @@ public class MedicalHistoryController implements Initializable {
             Pane newMedicalHistory = new Pane();
             Label newMedicalHistoryTitle = new Label("There is no medical history.");
             newMedicalHistoryTitle.setPrefHeight(120);
-            newMedicalHistoryTitle.setPrefWidth(1334);
+            newMedicalHistory.setMinWidth(1348);
+            newMedicalHistory.setMaxWidth(1348);
+            newMedicalHistoryTitle.setMinWidth(1348);
+            newMedicalHistoryTitle.setMaxWidth(1348);
             newMedicalHistoryTitle.setLayoutX(14);
             newMedicalHistoryTitle.setAlignment(Pos.CENTER);
             newMedicalHistoryTitle.setFont(new Font("Consolas Bold", 50.0));
