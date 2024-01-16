@@ -23,10 +23,10 @@
     <children>
         <ImageView fitHeight="1200.0" fitWidth="1920.0" layoutX="8.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
-                <Image url="@../Images/bg2.jpg" />
+                <Image url="@../Images/bg1.png" />
             </image>
         </ImageView>
-        <Label layoutX="550.0" layoutY="47.0" styleClass="whiteRed-label" stylesheets="@../Styles/textLabel.css" text="SHORT MEDICAL INTERVIEW" textFill="WHITE" AnchorPane.leftAnchor="550.0" AnchorPane.topAnchor="47.0">
+        <Label layoutX="550.0" layoutY="47.0" styleClass="whiteRed-label" stylesheets="@../Styles/textLabel.css" text="SHORT MEDICAL INTERVIEW" textFill="WHITE" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="47.0">
             <font>
                 <Font name="System Bold" size="70.0" />
             </font>
@@ -55,9 +55,9 @@
                 </RadialGradient>
             </textFill>
         </Button>
-      <Pane layoutX="501.0" layoutY="185.0" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="480.0">
+      <Pane layoutX="501.0" layoutY="185.0" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="440.0">
          <children>
-            <Pane fx:id="smiStage1" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="lightgrey-pane" stylesheets="@../Styles/smiStyle.css">
+            <Pane fx:id="smiStage1" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="blue-pane" stylesheets="@../Styles/smiStyle.css">
                <children>
                   <Button fx:id="stage1nextButton" layoutX="425.0" layoutY="710.0" mnemonicParsing="false" onAction="#stage1nextButtonClicked" prefHeight="55.0" prefWidth="189.0" styleClass="lightgrey-button" stylesheets="@../Styles/buttonsStyle.css" text="NEXT">
                      <font>
@@ -112,7 +112,7 @@
                   </HBox>
                </children>
             </Pane>
-            <Pane fx:id="smiStage2" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="lightgrey-pane" stylesheets="@../Styles/smiStyle.css">
+            <Pane fx:id="smiStage2" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="blue-pane" stylesheets="@../Styles/smiStyle.css">
                <children>
                   <Button fx:id="stage2nextButton" layoutX="425.0" layoutY="710.0" mnemonicParsing="false" onAction="#stage2nextButtonClicked" prefHeight="55.0" prefWidth="189.0" styleClass="lightgrey-button" stylesheets="@../Styles/buttonsStyle.css" text="NEXT">
                      <font>
@@ -151,7 +151,7 @@
                   </VBox>
                </children>
             </Pane>
-            <Pane fx:id="smiStage3" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="lightgrey-pane" stylesheets="@../Styles/smiStyle.css">
+            <Pane fx:id="smiStage3" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="blue-pane" stylesheets="@../Styles/smiStyle.css">
                <children>
                   <Button fx:id="stage3nextButton" layoutX="425.0" layoutY="710.0" mnemonicParsing="false" onAction="#stage3nextButtonClicked" prefHeight="55.0" prefWidth="189.0" styleClass="lightgrey-button" stylesheets="@../Styles/buttonsStyle.css" text="NEXT">
                      <font>
@@ -195,7 +195,7 @@
                   </VBox>
                </children>
             </Pane>
-            <Pane fx:id="smiStage4" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="lightgrey-pane" stylesheets="@../Styles/smiStyle.css">
+            <Pane fx:id="smiStage4" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="blue-pane" stylesheets="@../Styles/smiStyle.css">
                <children>
                   <Button fx:id="stage4nextButton" layoutX="425.0" layoutY="710.0" mnemonicParsing="false" onAction="#stage4nextButtonClicked" prefHeight="55.0" prefWidth="189.0" styleClass="lightgrey-button" stylesheets="@../Styles/buttonsStyle.css" text="NEXT">
                      <font>
@@ -231,7 +231,7 @@
                   </VBox>
                </children>
             </Pane>
-            <Pane fx:id="smiStage5" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="lightgrey-pane" stylesheets="@../Styles/smiStyle.css">
+            <Pane fx:id="smiStage5" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="blue-pane" stylesheets="@../Styles/smiStyle.css">
                <children>
                   <Button fx:id="stage5nextButton" layoutX="425.0" layoutY="710.0" mnemonicParsing="false" onAction="#stage5nextButtonClicked" prefHeight="55.0" prefWidth="189.0" styleClass="lightgrey-button" stylesheets="@../Styles/buttonsStyle.css" text="NEXT">
                      <font>
@@ -265,7 +265,7 @@
                   </TextArea>
                </children>
             </Pane>
-            <Pane fx:id="smiStage6" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="lightgrey-pane" stylesheets="@../Styles/smiStyle.css">
+            <Pane fx:id="smiStage6" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="blue-pane" stylesheets="@../Styles/smiStyle.css">
                <children>
                   <Button fx:id="stage6nextButton" layoutX="425.0" layoutY="710.0" mnemonicParsing="false" onAction="#stage6nextButtonClicked" prefHeight="55.0" prefWidth="189.0" styleClass="lightgrey-button" stylesheets="@../Styles/buttonsStyle.css" text="NEXT">
                      <font>
@@ -299,7 +299,7 @@
                   </TextArea>
                </children>
             </Pane>
-            <Pane fx:id="smiStage7" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="lightgrey-pane" stylesheets="@../Styles/smiStyle.css">
+            <Pane fx:id="smiStage7" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="blue-pane" stylesheets="@../Styles/smiStyle.css">
                <children>
                   <Button fx:id="stage7nextButton" layoutX="425.0" layoutY="710.0" mnemonicParsing="false" onAction="#stage7nextButtonClicked" prefHeight="55.0" prefWidth="189.0" styleClass="lightgrey-button" stylesheets="@../Styles/buttonsStyle.css" text="NEXT">
                      <font>
@@ -333,7 +333,7 @@
                   </TextArea>
                </children>
             </Pane>
-            <Pane fx:id="smiStage8" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="lightgrey-pane" stylesheets="@../Styles/smiStyle.css">
+            <Pane fx:id="smiStage8" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="blue-pane" stylesheets="@../Styles/smiStyle.css">
                <children>
                   <Button fx:id="stage8nextButton" layoutX="425.0" layoutY="710.0" mnemonicParsing="false" onAction="#stage8nextButtonClicked" prefHeight="55.0" prefWidth="189.0" styleClass="lightgrey-button" stylesheets="@../Styles/buttonsStyle.css" text="NEXT">
                      <font>
@@ -367,7 +367,7 @@
                   </TextField>
                </children>
             </Pane>
-            <Pane fx:id="smiStage9" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="lightgrey-pane" stylesheets="@../Styles/smiStyle.css">
+            <Pane fx:id="smiStage9" opacity="0.0" prefHeight="775.0" prefWidth="1038.0" styleClass="blue-pane" stylesheets="@../Styles/smiStyle.css">
                <children>
                   <Button fx:id="endtButton" layoutX="425.0" layoutY="710.0" mnemonicParsing="false" onAction="#endButtonClicked" prefHeight="55.0" prefWidth="189.0" styleClass="lightgrey-button" stylesheets="@../Styles/buttonsStyle.css" text="END">
                      <font>
@@ -401,7 +401,7 @@
                   </TextArea>
                </children>
             </Pane>
-            <Pane fx:id="resultSmiPane" opacity="0.0" prefHeight="777.0" prefWidth="1037.0" styleClass="lightgrey-pane" stylesheets="@../Styles/smiStyle.css">
+            <Pane fx:id="resultSmiPane" opacity="0.0" prefHeight="777.0" prefWidth="1037.0" styleClass="blue-pane" stylesheets="@../Styles/smiStyle.css">
                <children>
                   <ProgressIndicator fx:id="progressProgressIndicator" layoutX="480.0" layoutY="695.0" minHeight="70.0" minWidth="70.0" opacity="0.0" prefHeight="70.0" prefWidth="70.0" progress="0.0" />
                   <Button fx:id="askForAReferralButton" layoutX="401.0" layoutY="708.0" mnemonicParsing="false" onAction="#askForAReferralButtonClicked" prefHeight="55.0" prefWidth="236.0" styleClass="darkblue-20-button" stylesheets="@../Styles/buttonsStyle.css" text="ASK FOR A REFERRAL">
@@ -441,7 +441,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="startSmiPane" opacity="0.0" prefHeight="777.0" prefWidth="1037.0" styleClass="lightgrey-pane" stylesheets="@../Styles/smiStyle.css">
+            <Pane fx:id="startSmiPane" opacity="0.0" prefHeight="777.0" prefWidth="1037.0" styleClass="blue-pane" stylesheets="@../Styles/smiStyle.css" visible="false">
                <children>
                   <Button fx:id="startSmiButton" layoutX="425.0" layoutY="710.0" mnemonicParsing="false" onAction="#startButtonClicked" prefHeight="55.0" prefWidth="189.0" styleClass="lightgrey-button" stylesheets="@../Styles/buttonsStyle.css" text="START SMI">
                      <font>
@@ -486,6 +486,6 @@
             </Pane>
          </children>
       </Pane>
-      <ProgressBar fx:id="ProgressProgressBar" layoutX="498.0" layoutY="1005.0" prefHeight="31.0" prefWidth="1037.0" progress="0.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="480.0" />
+      <ProgressBar fx:id="ProgressProgressBar" layoutX="498.0" layoutY="1005.0" prefHeight="31.0" prefWidth="1037.0" progress="0.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="440.0" />
     </children>
 </AnchorPane>
