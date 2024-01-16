@@ -19,24 +19,24 @@
 
 <AnchorPane fx:id="doctorUserPanelScene" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenesControllers.DoctorUserController">
     <children>
-        <ImageView fx:id="imageView" blendMode="DIFFERENCE" fitHeight="1109.0" fitWidth="2053.0" layoutX="-17.0" layoutY="-4.0" onMouseClicked="#unHighlightOnImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="-17.0" AnchorPane.topAnchor="-4.0">
+        <ImageView fx:id="imageView" fitHeight="1109.0" fitWidth="2053.0" layoutX="-17.0" layoutY="-4.0" onMouseClicked="#unHighlightOnImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="-17.0" AnchorPane.topAnchor="-4.0">
             <image>
-                <Image url="@../Images/background_1.png" />
+                <Image url="@../Images/bg1.png" />
             </image>
         </ImageView>
         <VBox layoutX="171.0" layoutY="168.0" prefHeight="112.0" prefWidth="280.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="170.0">
             <children>
-                <Label fx:id="firstNameLabel" prefHeight="35.0" prefWidth="287.0" textAlignment="CENTER">
+                <Label fx:id="firstNameLabel" prefHeight="35.0" prefWidth="287.0" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="Consolas" size="24.0" />
                     </font>
                 </Label>
-                <Label fx:id="lastNameLabel" prefHeight="35.0" prefWidth="284.0" textAlignment="CENTER">
+                <Label fx:id="lastNameLabel" prefHeight="35.0" prefWidth="284.0" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="Consolas" size="24.0" />
                     </font>
                 </Label>
-                <Label fx:id="birthDateLabel" prefHeight="35.0" prefWidth="287.0" textAlignment="CENTER">
+                <Label fx:id="birthDateLabel" prefHeight="35.0" prefWidth="287.0" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="Consolas" size="24.0" />
                     </font>
@@ -67,7 +67,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-        <Label fx:id="dateLabel" layoutX="17.0" layoutY="1169.0" prefHeight="28.0" prefWidth="220.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="50.0">
+        <Label fx:id="dateLabel" layoutX="17.0" layoutY="1169.0" prefHeight="28.0" prefWidth="220.0" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="50.0">
             <font>
                 <Font name="Consolas" size="20.0" />
             </font>
@@ -85,7 +85,7 @@
             </Label>
          </children>
       </VBox>
-      <Button fx:id="changeMedicalHistoryButton" layoutX="170.0" layoutY="291.0" mnemonicParsing="false" onAction="#changeMedicalHistoryButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHANGE MEDICAL HISTORY " AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="290.0">
+      <Button fx:id="changeMedicalHistoryButton" layoutX="170.0" layoutY="291.0" mnemonicParsing="false" onAction="#changeMedicalHistoryButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHANGE MEDICAL HISTORY " AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="290.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -109,7 +109,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="prescribeEPrescriptionButton" layoutX="170.0" layoutY="384.0" mnemonicParsing="false" onAction="#prescribeEPrescriptionButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRESCRIBE E-PRESCRIPTION" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="385.0">
+      <Button fx:id="prescribeEPrescriptionButton" layoutX="170.0" layoutY="384.0" mnemonicParsing="false" onAction="#prescribeEPrescriptionButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRESCRIBE E-PRESCRIPTION" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="385.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -133,7 +133,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="prescribeEReferralButton" layoutX="170.0" layoutY="477.0" mnemonicParsing="false" onAction="#prescribeEReferralButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRESCRIBE E-REFERRAL" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="480.0">
+      <Button fx:id="prescribeEReferralButton" layoutX="170.0" layoutY="477.0" mnemonicParsing="false" onAction="#prescribeEReferralButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="PRESCRIBE E-REFERRAL" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="480.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -157,7 +157,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="checkFindingsButton" layoutX="170.0" layoutY="571.0" mnemonicParsing="false" onAction="#checkFindingsButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHECK FINDINGS" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="575.0">
+      <Button fx:id="checkFindingsButton" layoutX="170.0" layoutY="571.0" mnemonicParsing="false" onAction="#checkFindingsButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHECK FINDINGS" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="575.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -181,7 +181,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="addRecommendationsButton" layoutX="170.0" layoutY="755.0" mnemonicParsing="false" onAction="#addRecommendationsButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="ADD RECOMMENDATIONS" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="765.0">
+      <Button fx:id="addRecommendationsButton" layoutX="170.0" layoutY="755.0" mnemonicParsing="false" onAction="#addRecommendationsButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="ADD RECOMMENDATIONS" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="765.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -205,7 +205,7 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Button fx:id="checkDocumentationButton" layoutX="170.0" layoutY="663.0" mnemonicParsing="false" onAction="#checkDocumentationButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="lightblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHECK DOCUMENTATION" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="670.0">
+      <Button fx:id="checkDocumentationButton" layoutX="170.0" layoutY="663.0" mnemonicParsing="false" onAction="#checkDocumentationButtonClicked" prefHeight="80.0" prefWidth="333.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="CHECK DOCUMENTATION" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="670.0">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>
@@ -256,7 +256,7 @@
          <children>
             <HBox prefHeight="60.0" prefWidth="800.0">
                <children>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="400.0" text="Enter SMI code: ">
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="400.0" text="Enter SMI code: " textFill="WHITE">
                      <font>
                         <Font name="Consolas Bold" size="26.0" />
                      </font>
@@ -279,7 +279,7 @@
          <children>
             <VBox prefHeight="960.0" prefWidth="800.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="800.0" text="Main field of case" textFill="BLUE">
+                  <Label prefHeight="20.0" prefWidth="800.0" text="Main field of case" textFill="#ffff04">
                      <font>
                         <Font name="Consolas Bold" size="14.0" />
                      </font>
@@ -288,9 +288,12 @@
                      <padding>
                         <Insets left="2.0" />
                      </padding>
+                     <font>
+                        <Font name="Consolas" size="12.0" />
+                     </font>
                   </Label>
                   <Pane prefHeight="10.0" prefWidth="800.0" />
-                  <Label prefHeight="20.0" prefWidth="800.0" text="Medicines" textFill="BLUE">
+                  <Label prefHeight="20.0" prefWidth="800.0" text="Medicines" textFill="#ffff04">
                      <font>
                         <Font name="Consolas Bold" size="14.0" />
                      </font>
@@ -299,9 +302,12 @@
                      <padding>
                         <Insets left="2.0" />
                      </padding>
+                     <font>
+                        <Font name="Consolas" size="12.0" />
+                     </font>
                   </Label>
                   <Pane prefHeight="10.0" prefWidth="800.0" />
-                  <Label prefHeight="20.0" prefWidth="800.0" text="When the pain start and duration of pain" textFill="BLUE">
+                  <Label prefHeight="20.0" prefWidth="800.0" text="When the pain start and duration of pain" textFill="#ffff04">
                      <font>
                         <Font name="Consolas Bold" size="14.0" />
                      </font>
@@ -310,9 +316,12 @@
                      <padding>
                         <Insets left="2.0" />
                      </padding>
+                     <font>
+                        <Font name="Consolas" size="12.0" />
+                     </font>
                   </Label>
                   <Pane prefHeight="10.0" prefWidth="800.0" />
-                  <Label prefHeight="20.0" prefWidth="800.0" text="Extent of the pain" textFill="BLUE">
+                  <Label prefHeight="20.0" prefWidth="800.0" text="Extent of the pain" textFill="#ffff04">
                      <font>
                         <Font name="Consolas Bold" size="14.0" />
                      </font>
@@ -321,31 +330,34 @@
                      <padding>
                         <Insets left="2.0" />
                      </padding>
+                     <font>
+                        <Font name="Consolas" size="12.0" />
+                     </font>
                   </Label>
                   <Pane prefHeight="10.0" prefWidth="800.0" />
                   <Pane prefHeight="68.0" prefWidth="800.0">
                      <children>
-                        <Label layoutX="1.0" prefHeight="20.0" prefWidth="374.0" text="Temperature" textFill="BLUE">
+                        <Label layoutX="1.0" prefHeight="20.0" prefWidth="374.0" text="Temperature" textFill="#ffff04">
                            <font>
                               <Font name="Consolas Bold" size="14.0" />
                            </font>
                         </Label>
                         <Label fx:id="smiTemperatureLabel" layoutX="1.0" layoutY="17.0" prefHeight="40.0" prefWidth="87.0" style="-fx-border-color: black; -fx-border-width: 2; -fx-background-color: white;" wrapText="true">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Consolas" size="20.0" />
                            </font>
                            <padding>
                               <Insets left="5.0" />
                            </padding>
                         </Label>
-                        <Label layoutX="680.0" prefHeight="20.0" prefWidth="120.0" text="Date of SMI" textFill="BLUE">
+                        <Label layoutX="680.0" prefHeight="20.0" prefWidth="120.0" text="Date of SMI" textFill="#ffff04">
                            <font>
                               <Font name="Consolas Bold" size="14.0" />
                            </font>
                         </Label>
                         <Label fx:id="smiDateLabel" layoutX="680.0" layoutY="17.0" prefHeight="40.0" prefWidth="120.0" style="-fx-border-color: black; -fx-border-width: 2; -fx-background-color: white;" wrapText="true">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Consolas" size="20.0" />
                            </font>
                            <padding>
                               <Insets left="5.0" />
@@ -354,7 +366,7 @@
                      </children>
                   </Pane>
                   <Pane prefHeight="10.0" prefWidth="800.0" />
-                  <Label prefHeight="20.0" prefWidth="800.0" text="Additional information" textFill="BLUE">
+                  <Label prefHeight="20.0" prefWidth="800.0" text="Additional information" textFill="#ffff04">
                      <font>
                         <Font name="Consolas Bold" size="14.0" />
                      </font>
@@ -363,6 +375,9 @@
                      <padding>
                         <Insets left="2.0" />
                      </padding>
+                     <font>
+                        <Font name="Consolas" size="12.0" />
+                     </font>
                   </Label>
                   <Pane prefHeight="10.0" prefWidth="800.0" />
                </children>

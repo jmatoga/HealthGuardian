@@ -9,6 +9,17 @@
     -fx-wrap-text: true;
 }
 
+.blue-pane
+{
+    -fx-background-color: radial-gradient(focus-angle 0.0deg, focus-distance 0.0%, center 51.6575% 50.0%, radius 60.6437%, #6aeaff 0.0%, #001e50 100.0%);;
+    -fx-background-radius: 15;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-border-width: 5;
+    -fx-text-fill: radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 50.0% 54.2654%, radius 74.1379%, #46d4b3 0.0%, #007052 100.0%);
+    -fx-wrap-text: true;
+}
+
 .instructions-pane
 {
     -fx-background-color: white;
