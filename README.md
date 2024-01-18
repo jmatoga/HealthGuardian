@@ -12,7 +12,7 @@
 **Java-based**, **multithreaded**, **TCP-based** and **clinet-server** `health application` project to monitor and analyze the user's health condition with a mechanism for assessing the need for a doctor's consultation and the ability to store and share health data history. 
 
 > [!IMPORTANT]
-> When creating the application, an interview was conducted with a ***dr Piotr Pastwa*** (Internist, Pulmonologist). The interview was needed to obtain information about what is most important for the Doctor in such applications. In addition, thanks to this, we were able to professionally prepare the Short Medical Interview panel.
+> While creating the application, an interview was conducted with a ***dr Piotr Pastwa*** (Internist, Pulmonologist). The interview was needed to obtain information about what is most important for the Doctor in such applications. In addition, thanks to this, we were able to professionally prepare the Short Medical Interview panel.
 
 ## Folder Structure
 
