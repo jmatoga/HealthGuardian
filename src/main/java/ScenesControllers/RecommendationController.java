@@ -105,7 +105,7 @@ public class RecommendationController implements Initializable {
                 newRecommendation.setPrefHeight(200);
                 newRecommendation.setId("recommendation" + (i+1));
                 newRecommendation.setOnMouseClicked(mouseEvent -> {
-                    doctorNameRecommendationLabel.setText("From dr. " + recommendationData[9] + " " + recommendationData[10]);
+                    doctorNameRecommendationLabel.setText("From dr " + recommendationData[9] + " " + recommendationData[10]);
                     dateRecommendationLabel.setText(recommendationData[6]);
 
                     if(recommendationData[1].equals("null")) {
@@ -183,7 +183,7 @@ public class RecommendationController implements Initializable {
                 Label newRecommendationNextMedicalExam = new Label("Next medical examination:\n" + recommendationData[4]);
                 Label newRecommendationNextMedicalExamDate = new Label("on: " + recommendationData[3]);
                 Label newRecommendationDate = new Label("Date: " + recommendationData[6]);
-                Label newRecommendationDoctor = new Label("dr. " + recommendationData[9] + " " + recommendationData[10]);
+                Label newRecommendationDoctor = new Label("dr " + recommendationData[9] + " " + recommendationData[10]);
 
                 newRecommendationTitle.setAlignment(Pos.CENTER);
                 newRecommendationTitle.setTextAlignment(TextAlignment.CENTER); // to set text to center after text wrapping

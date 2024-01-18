@@ -94,13 +94,29 @@
       <Pane layoutX="600.0" layoutY="192.0" prefHeight="380.0" prefWidth="700.0" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="190.0">
          <children>
             <Pane opacity="0.4" prefHeight="380.0" prefWidth="700.0" style="-fx-background-color: white; -fx-background-radius: 30;" />
-            <Label alignment="TOP_CENTER" prefHeight="380.0" prefWidth="700.0" text="When you can use the e-contact service below, you will receive a link to the chat in the ZOOM application (you can use it without installation). The link should be sent by the doctor creating the meeting just before the planned visit. Before joining, make sure your microphone, headphones and camera are working properly to make it easier for you and your doctor. You can also use the chat during your visit only if you do not want to use the camera or microphone." textAlignment="CENTER" textFill="#401503" wrapText="true">
+            <Label alignment="TOP_CENTER" prefHeight="380.0" prefWidth="700.0" text="When you can use the e-contact service below, you will receive a link to the chat in the ZOOM application (you can use it without installation). The link should be sent by the doctor creating the meeting just before the planned visit. Before joining, make sure your microphone, headphones and camera are working properly to make it easier for you and your doctor. You can also use the chat during your visit only if you do not want to use the camera or microphone." textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Consolas Bold" size="25.0" />
                </font>
                <padding>
                   <Insets left="5.0" right="5.0" top="5.0" />
                </padding>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.91">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color green="0.08235294371843338" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
             </Label>
          </children>
       </Pane>
@@ -138,7 +154,7 @@
             </Label>
          </children>
       </VBox>
-      <Button fx:id="testScheduleButton" layoutX="1610.0" layoutY="492.0" mnemonicParsing="false" onAction="#testScheduleButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="EXAMINATION&#10;SCHEDULE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="500.0">
+      <Button fx:id="testScheduleButton" layoutX="1610.0" layoutY="492.0" mnemonicParsing="false" onAction="#testScheduleButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="EXAMINATION&#10;SCHEDULE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="500.0">
          <font>
             <Font name="Consolas Bold" size="24.0" />
          </font>

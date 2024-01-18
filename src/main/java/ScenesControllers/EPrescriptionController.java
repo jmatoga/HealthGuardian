@@ -181,7 +181,7 @@ public class EPrescriptionController implements Initializable {
             fontSize = 18;
             contentStream.setFont(font1, fontSize);
             contentStream.beginText();
-            tempText = "by dr. " + ePrescriptionDRFirstName + " " + ePrescriptionDRLastName;
+            tempText = "by dr " + ePrescriptionDRFirstName + " " + ePrescriptionDRLastName;
             textWidth = font1.getStringWidth(tempText) / 1000 * fontSize;
             contentStream.newLineAtOffset((595 - textWidth) / 2, 210);
             contentStream.showText(tempText);
@@ -341,7 +341,7 @@ public class EPrescriptionController implements Initializable {
                 Label newEPrescriptionCode = new Label("Code: " + EPrescriptionData[3]);
                 Label newEPrescriptionMedicines = new Label("Medicines:\n" + EPrescriptionData[4]);
                 Label newEPrescriptionDate = new Label("Date of issue: " + EPrescriptionData[2]);
-                Label newEPrescriptionDoctor = new Label("dr. " + EPrescriptionData[7] + " " + EPrescriptionData[8]);
+                Label newEPrescriptionDoctor = new Label("dr " + EPrescriptionData[7] + " " + EPrescriptionData[8]);
 
                 newEPrescriptionTitle.setAlignment(Pos.CENTER);
                 newEPrescriptionTitle.setTextAlignment(TextAlignment.CENTER); // to set text to center after text wrapping

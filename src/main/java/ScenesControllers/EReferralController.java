@@ -190,7 +190,7 @@ public class EReferralController implements Initializable {
             fontSize = 18;
             contentStream.setFont(font1, fontSize);
             contentStream.beginText();
-            tempText = "by dr. " + eReferralDRFirstName + " " + eReferralDRLastName;
+            tempText = "by dr " + eReferralDRFirstName + " " + eReferralDRLastName;
             textWidth = font1.getStringWidth(tempText) / 1000 * fontSize;
             contentStream.newLineAtOffset((595 - textWidth) / 2, 210);
             contentStream.showText(tempText);
@@ -341,7 +341,7 @@ public class EReferralController implements Initializable {
                 Label newEReferralCode = new Label("Code: " + EReferralData[3]);
                 Label newEReferralBarcode = new Label("Barcode:\n" + EReferralData[1]);
                 Label newEReferralDate = new Label("Date of issue: " + EReferralData[2]);
-                Label newEReferralDoctor = new Label("dr. " + EReferralData[7] + " " + EReferralData[8]);
+                Label newEReferralDoctor = new Label("dr " + EReferralData[7] + " " + EReferralData[8]);
 
                 newEReferralTitle.setAlignment(Pos.CENTER);
                 newEReferralTitle.setTextAlignment(TextAlignment.CENTER); // to set text to center after text wrapping

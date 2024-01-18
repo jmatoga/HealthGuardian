@@ -2831,7 +2831,7 @@ public class SQLEngine {
 
         try {
             connection = connectToDataBase(connection, clientID);
-            String sql = "SELECT d.first_name, d.last_name, d.profession, e.name, e.examination_date, e.meeting_link FROM examination_table e JOIN doctor_table d ON e.doctor_id = d.doctor_id WHERE e.user_id = ? AND e.name LIKE '%E-Contact%' AND (TIMESTAMPADD(HOUR, 1, NOW()) >= TIMESTAMPADD(MINUTE, -10, e.examination_date) AND TIMESTAMPADD(HOUR, 1, NOW()) <= TIMESTAMPADD(MINUTE, 20, e.examination_date)) ORDER BY e.examination_date ASC LIMIT 1;";
+            String sql = "SELECT d.first_name, d.last_name, d.profession, e.name, e.examination_date, e.meeting_link FROM examination_table e JOIN doctor_table d ON e.doctor_id = d.doctor_id WHERE e.user_id = ? AND e.name LIKE '%E-Contact%' AND (TIMESTAMPADD(HOUR, 1, NOW()) >= TIMESTAMPADD(MINUTE, -10, e.examination_date) AND TIMESTAMPADD(HOUR, 1, NOW()) <= TIMESTAMPADD(MINUTE, 20, e.examination_date)) LIMIT 1;";
             preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setInt(1, user_id);
 

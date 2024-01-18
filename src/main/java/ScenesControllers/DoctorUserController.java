@@ -145,8 +145,7 @@ public class DoctorUserController implements Initializable {
         }
     }
 
-    private Alert createMedicalHistoryAlert(GridPane grid, TextArea inputFieldMedicalCase, ButtonType
-                                                                                                   okButtonType, String labelName, TextField inputFieldICD10Code, TextField inputFieldICD10FirstLetter) {
+    private Alert createMedicalHistoryAlert(GridPane grid, TextArea inputFieldMedicalCase, ButtonType okButtonType, String labelName, TextField inputFieldICD10Code, TextField inputFieldICD10FirstLetter) {
         grid.add(new Label("ICD10:"), 0, 3);
         inputFieldICD10FirstLetter.setMaxWidth(45);
         inputFieldICD10FirstLetter.setAlignment(Pos.TOP_LEFT);

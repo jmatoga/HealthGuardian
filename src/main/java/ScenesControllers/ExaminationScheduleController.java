@@ -160,7 +160,7 @@ public class ExaminationScheduleController implements Initializable {
             String name = appointmentNameMaker();
             String date = appointmentDatePicker.getValue().toString() + " " + appointmentHourChoiceBox.getValue().toString() + ":00";
 
-            alert.setContentText(name.toUpperCase() + "\nwith dr. " + examDoctor[0] + " at " + appointmentHourChoiceBox.getValue().toString() + " on " + appointmentDatePicker.getValue().toString() + ". \n\n" + "DECRIPTION FOR EXAMINATION: \n" + appointmentDescriptionTextField.getText());
+            alert.setContentText(name.toUpperCase() + "\nwith dr " + examDoctor[0] + " at " + appointmentHourChoiceBox.getValue().toString() + " on " + appointmentDatePicker.getValue().toString() + ". \n\n" + "DECRIPTION FOR EXAMINATION: \n" + appointmentDescriptionTextField.getText());
 
             alert.setOnCloseRequest(alertEvent -> {
                 if (alert.getResult() == okButtonType) {

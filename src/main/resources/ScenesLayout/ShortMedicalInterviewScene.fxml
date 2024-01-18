@@ -441,7 +441,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="startSmiPane" opacity="0.0" prefHeight="777.0" prefWidth="1037.0" styleClass="blue-pane" stylesheets="@../Styles/smiStyle.css" visible="false">
+            <Pane fx:id="startSmiPane" prefHeight="777.0" prefWidth="1037.0" styleClass="blue-pane" stylesheets="@../Styles/smiStyle.css">
                <children>
                   <Button fx:id="startSmiButton" layoutX="425.0" layoutY="710.0" mnemonicParsing="false" onAction="#startButtonClicked" prefHeight="55.0" prefWidth="189.0" styleClass="lightgrey-button" stylesheets="@../Styles/buttonsStyle.css" text="START SMI">
                      <font>

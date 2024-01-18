@@ -175,7 +175,7 @@ public class FindingsController implements Initializable {
 //            fontSize = 18;
 //            contentStream.setFont(font1, fontSize);
 //            contentStream.beginText();
-//            tempText = "by dr. " + eReferralDRFirstName + " " + eReferralDRLastName;
+//            tempText = "by dr " + eReferralDRFirstName + " " + eReferralDRLastName;
 //            textWidth = font1.getStringWidth(tempText) / 1000 * fontSize;
 //            contentStream.newLineAtOffset((595 - textWidth) / 2, 210);
 //            contentStream.showText(tempText);
@@ -306,7 +306,7 @@ public class FindingsController implements Initializable {
                 Label newFindingId = new Label("ID: " + findingData[0]);
 //                Label newEReferralBarcode = new Label("Barcode:\n" + findingData[1]);
                 Label newFindingDate = new Label("Date of issue: " + findingData[2]);
-//                Label newEReferralDoctor = new Label("dr. " + findingData[7] + " " + findingData[8]);
+//                Label newEReferralDoctor = new Label("dr " + findingData[7] + " " + findingData[8]);
 
                 newFindingTitle.setAlignment(Pos.CENTER);
                 newFindingTitle.setTextAlignment(TextAlignment.CENTER); // to set text to center after text wrapping

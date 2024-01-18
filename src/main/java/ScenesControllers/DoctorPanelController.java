@@ -62,7 +62,7 @@ public class DoctorPanelController implements Initializable {
 
         String[] doctorData = serverAnswer.substring(1,serverAnswer.length()-1).split(", ");
 
-        firstNameLabel.setText("dr. " + doctorData[0]);
+        firstNameLabel.setText("dr " + doctorData[0]);
         lastNameLabel.setText(doctorData[1]);
         professionLabel.setText(doctorData[2]);
     }
