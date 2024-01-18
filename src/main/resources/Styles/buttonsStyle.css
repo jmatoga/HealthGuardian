@@ -49,6 +49,30 @@
     -fx-border-color: #00476e;
 }
 
+.lightgreen-20-button
+{
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #b9f0cc);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5;
+    -fx-border-color: #007052;
+    -fx-border-width: 3;
+    -fx-border-radius: 2;
+    -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 1);
+    -fx-text-fill: radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 50.0% 54.2654%, radius 74.1379%, #46d4b3 0.0%, #007052 100.0%);
+    -fx-font-family: "Consolas bold";
+    -fx-font-size: 20px;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+.lightgreen-20-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #ccffcc, #7be699);
+    -fx-border-color: #005731;
+}
+.lightgreen-20-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #7be699, #ccffcc);
+    -fx-border-color: #007052;
+}
+
 .darkblue-button
 {
     -fx-background-color: linear-gradient(to bottom, #ffffff, #b9d4f0);

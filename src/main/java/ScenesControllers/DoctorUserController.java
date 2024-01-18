@@ -258,7 +258,7 @@ public class DoctorUserController implements Initializable {
                             String serverAnswer1 = Client.getServerResponse(ReadFromServer);
 
                             if (serverAnswer1.equals("Medical history deleted correctly.")) {
-                                peselStatusLabel.setTextFill(Color.greenGradient());
+                                peselStatusLabel.setTextFill(Color.darkGreenGradient());
                                 peselStatusLabel.setText("Medical history deleted correctly!");
                                 setAllVisibleFalse();
                                 addPane.getChildren().remove(newAddButton);
@@ -337,7 +337,7 @@ public class DoctorUserController implements Initializable {
                                 String serverAnswer1 = Client.getServerResponse(ReadFromServer);
 
                                 if (serverAnswer1.equals("Medical history added correctly.")) {
-                                    peselStatusLabel.setTextFill(Color.greenGradient());
+                                    peselStatusLabel.setTextFill(Color.darkGreenGradient());
                                     peselStatusLabel.setText("Medical history added correctly!");
                                     setAllVisibleFalse();
                                     addPane.getChildren().remove(newAddButton);
@@ -466,7 +466,7 @@ public class DoctorUserController implements Initializable {
                         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
                         if (serverAnswer.equals("E-prescription prescribed correctly.")) {
-                            peselStatusLabel.setTextFill(Color.greenGradient());
+                            peselStatusLabel.setTextFill(Color.darkGreenGradient());
                             peselStatusLabel.setText("E-prescription prescribed!");
                         } else {
                             peselStatusLabel.setTextFill(Color.redGradient());
@@ -544,7 +544,7 @@ public class DoctorUserController implements Initializable {
                         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
                         if (serverAnswer.equals("E-referral prescribed correctly.")) {
-                            peselStatusLabel.setTextFill(Color.greenGradient());
+                            peselStatusLabel.setTextFill(Color.darkGreenGradient());
                             peselStatusLabel.setText("E-referral prescribed!");
                         } else {
                             peselStatusLabel.setTextFill(Color.redGradient());
@@ -647,7 +647,7 @@ public class DoctorUserController implements Initializable {
                         String serverAnswer = Client.getServerResponse(ReadFromServer);
 
                         if (serverAnswer.equals("Recommendation added correctly.")) {
-                            peselStatusLabel.setTextFill(Color.greenGradient());
+                            peselStatusLabel.setTextFill(Color.darkGreenGradient());
                             peselStatusLabel.setText("Recommendation added correctly!");
                         } else {
                             peselStatusLabel.setTextFill(Color.redGradient());
@@ -760,7 +760,7 @@ public class DoctorUserController implements Initializable {
                             String serverAnswer1 = Client.getServerResponse(ReadFromServer);
 
                             if (serverAnswer1.equals("Documentation deleted correctly.")) {
-                                peselStatusLabel.setTextFill(Color.greenGradient());
+                                peselStatusLabel.setTextFill(Color.darkGreenGradient());
                                 peselStatusLabel.setText("Documentation deleted correctly!");
                                 setAllVisibleFalse();
                                 addPane.getChildren().remove(newAddButton);
@@ -840,7 +840,7 @@ public class DoctorUserController implements Initializable {
                                 String serverAnswer1 = Client.getServerResponse(ReadFromServer);
 
                                 if (serverAnswer1.equals("Documentation added correctly.")) {
-                                    peselStatusLabel.setTextFill(Color.greenGradient());
+                                    peselStatusLabel.setTextFill(Color.darkGreenGradient());
                                     peselStatusLabel.setText("Documentation added correctly!");
                                     setAllVisibleFalse();
                                     addPane.getChildren().remove(newAddButton);

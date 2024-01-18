@@ -24,7 +24,7 @@
                 <Image url="@../Images/bg2.png" />
             </image>
         </ImageView>
-        <Button fx:id="doctorPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#doctorPanelButtonClicked" prefHeight="60.0" prefWidth="199.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="DOCTOR PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+        <Button fx:id="doctorPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#doctorPanelButtonClicked" prefHeight="60.0" prefWidth="199.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="DOCTOR PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
@@ -48,7 +48,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Label layoutX="720.0" layoutY="44.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="LIST OF CLINICS" AnchorPane.leftAnchor="680.0" AnchorPane.topAnchor="70.0">
+        <Label layoutX="720.0" layoutY="44.0" styleClass="whiteBlue-label" stylesheets="@../Styles/textLabel.css" text="LIST OF CLINICS" AnchorPane.leftAnchor="680.0" AnchorPane.topAnchor="70.0">
             <font>
                 <Font name="Consolas Bold" size="70.0" />
             </font>

@@ -20,7 +20,7 @@
                 <Image url="@../Images/bg2.png" />
             </image>
         </ImageView>
-        <Button fx:id="doctorPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#doctorPanelButtonClicked" prefHeight="60.0" prefWidth="200.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="DOCTOR PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+        <Button fx:id="doctorPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#doctorPanelButtonClicked" prefHeight="60.0" prefWidth="200.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="DOCTOR PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
@@ -44,7 +44,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Label focusTraversable="false" layoutX="709.0" layoutY="57.0" prefHeight="81.0" prefWidth="502.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="NOTIFICATIONS" textAlignment="CENTER" AnchorPane.leftAnchor="709.0" AnchorPane.topAnchor="70.0">
+        <Label focusTraversable="false" layoutX="709.0" layoutY="57.0" prefHeight="81.0" prefWidth="502.0" styleClass="whiteBlue-label" stylesheets="@../Styles/textLabel.css" text="NOTIFICATIONS" textAlignment="CENTER" AnchorPane.leftAnchor="709.0" AnchorPane.topAnchor="70.0">
             <font>
                 <Font name="Consolas Bold" size="70.0" />
             </font>

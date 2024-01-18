@@ -24,7 +24,7 @@
                 <Image url="@../Images/bg2.png" />
             </image>
         </ImageView>
-        <Button fx:id="doctorPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#doctorPanelButtonClicked" prefHeight="60.0" prefWidth="200.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="DOCTOR PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+        <Button fx:id="doctorPanelButton" layoutX="1710.0" layoutY="975.0" mnemonicParsing="false" onAction="#doctorPanelButtonClicked" prefHeight="60.0" prefWidth="200.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="DOCTOR PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
             <font>
                 <Font name="Consolas Bold" size="20.0" />
             </font>
@@ -48,7 +48,7 @@
                 </RadialGradient>
             </textFill>
         </Button>
-        <Label layoutX="792.0" layoutY="69.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="E-CONTACT" AnchorPane.leftAnchor="790.0" AnchorPane.topAnchor="70.0">
+        <Label layoutX="792.0" layoutY="69.0" styleClass="whiteBlue-label" stylesheets="@../Styles/textLabel.css" text="E-CONTACT" AnchorPane.leftAnchor="790.0" AnchorPane.topAnchor="70.0">
             <font>
                 <Font name="Consolas Bold" size="70.0" />
             </font>
@@ -158,7 +158,7 @@
                 </Label>
             </children>
         </VBox>
-        <Button fx:id="testScheduleButton" layoutX="1610.0" layoutY="492.0" mnemonicParsing="false" onAction="#examinationScheduleButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="EXAMINATION&#10;SCHEDULE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="500.0">
+        <Button fx:id="testScheduleButton" layoutX="1610.0" layoutY="492.0" mnemonicParsing="false" onAction="#examinationScheduleButtonClicked" prefHeight="80.0" prefWidth="260.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="EXAMINATION&#10;SCHEDULE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="500.0">
             <font>
                 <Font name="Consolas Bold" size="24.0" />
             </font>

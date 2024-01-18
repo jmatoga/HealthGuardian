@@ -73,4 +73,13 @@ public class Color {
                 new Stop(1, javafx.scene.paint.Color.WHITE)
         );
     }
+
+    public static RadialGradient darkGreenGradient() {
+        return new RadialGradient(
+                0.5165745856353591, 0.5, 0.6264367816091954, 0, 0, true, CycleMethod.NO_CYCLE,
+                new Stop(0, javafx.scene.paint.Color.color(0, 0.5, 0)), // Dark green color
+                new Stop(1, javafx.scene.paint.Color.DARKGREEN)        // Dark green color
+        );
+    }
+
 }

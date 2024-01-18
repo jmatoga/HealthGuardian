@@ -26,7 +26,7 @@
             <children>
                 <VBox prefHeight="550.0" prefWidth="401.0">
                     <children>
-                        <CheckBox fx:id="bmiSettingsCheckBox" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
+                        <CheckBox fx:id="bmiSettingsCheckBox" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
                             <font>
                                 <Font name="System Bold" size="34.0" />
                             </font>
@@ -47,7 +47,7 @@
                                 </RadialGradient>
                             </textFill>
                         </CheckBox>
-                        <Label fx:id="settingsDescription1Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css">
+                        <Label fx:id="settingsDescription1Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css">
                             <font>
                                 <Font name="System Italic" size="18.0" />
                             </font>
@@ -68,7 +68,7 @@
                                 </RadialGradient>
                             </textFill>
                         </Label>
-                        <CheckBox fx:id="ageSettingsCheckBox" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
+                        <CheckBox fx:id="ageSettingsCheckBox" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
                             <font>
                                 <Font name="System Bold" size="34.0" />
                             </font>
@@ -89,7 +89,7 @@
                                 </RadialGradient>
                             </textFill>
                         </CheckBox>
-                        <Label fx:id="settingsDescription2Label" alignment="TOP_LEFT" layoutX="10.0" layoutY="70.0" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css">
+                        <Label fx:id="settingsDescription2Label" alignment="TOP_LEFT" layoutX="10.0" layoutY="70.0" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css">
                             <font>
                                 <Font name="System Italic" size="18.0" />
                             </font>
@@ -110,7 +110,7 @@
                                 </RadialGradient>
                             </textFill>
                         </Label>
-                        <CheckBox fx:id="dateSettingsCheckBox" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css" text="Hide current date">
+                        <CheckBox fx:id="dateSettingsCheckBox" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css" text="Hide current date">
                             <font>
                                 <Font name="System Bold" size="34.0" />
                             </font>
@@ -131,7 +131,7 @@
                                 </RadialGradient>
                             </textFill>
                         </CheckBox>
-                        <Label fx:id="settingsDescription3Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css" text="This setting hides current time and date.">
+                        <Label fx:id="settingsDescription3Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css" text="This setting hides current time and date.">
                             <font>
                                 <Font name="System Italic" size="18.0" />
                             </font>
@@ -152,7 +152,7 @@
                                 </RadialGradient>
                             </textFill>
                         </Label>
-                        <CheckBox fx:id="settingsCheckBox4" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
+                        <CheckBox fx:id="settingsCheckBox4" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
                             <font>
                                 <Font name="System Bold" size="34.0" />
                             </font>
@@ -173,7 +173,7 @@
                                 </RadialGradient>
                             </textFill>
                         </CheckBox>
-                        <Label fx:id="settingsDescription4Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css">
+                        <Label fx:id="settingsDescription4Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css">
                             <font>
                                 <Font name="System Italic" size="18.0" />
                             </font>
@@ -194,7 +194,7 @@
                                 </RadialGradient>
                             </textFill>
                         </Label>
-                        <CheckBox fx:id="settingsCheckBox5" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
+                        <CheckBox fx:id="settingsCheckBox5" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
                             <font>
                                 <Font name="System Bold" size="34.0" />
                             </font>
@@ -215,7 +215,7 @@
                                 </RadialGradient>
                             </textFill>
                         </CheckBox>
-                        <Label fx:id="settingsDescription5Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css">
+                        <Label fx:id="settingsDescription5Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css">
                             <font>
                                 <Font name="System Italic" size="18.0" />
                             </font>
@@ -241,7 +241,7 @@
                 <VBox prefHeight="550.0" prefWidth="245.0" />
                 <VBox prefHeight="550.0" prefWidth="401.0">
                     <children>
-                        <CheckBox fx:id="settingsCheckBox6" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
+                        <CheckBox fx:id="settingsCheckBox6" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
                             <font>
                                 <Font name="System Bold" size="34.0" />
                             </font>
@@ -262,7 +262,7 @@
                                 </RadialGradient>
                             </textFill>
                         </CheckBox>
-                        <Label fx:id="settingsDescription6Label" alignment="TOP_LEFT" layoutX="10.0" layoutY="70.0" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css" text="&#10;">
+                        <Label fx:id="settingsDescription6Label" alignment="TOP_LEFT" layoutX="10.0" layoutY="70.0" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css" text="&#10;">
                             <font>
                                 <Font name="System Italic" size="18.0" />
                             </font>
@@ -283,7 +283,7 @@
                                 </RadialGradient>
                             </textFill>
                         </Label>
-                        <CheckBox fx:id="settingsCheckBox7" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
+                        <CheckBox fx:id="settingsCheckBox7" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
                             <font>
                                 <Font name="System Bold" size="34.0" />
                             </font>
@@ -304,7 +304,7 @@
                                 </RadialGradient>
                             </textFill>
                         </CheckBox>
-                        <Label fx:id="settingsDescription7Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css" text="&#10;">
+                        <Label fx:id="settingsDescription7Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css" text="&#10;">
                             <font>
                                 <Font name="System Italic" size="18.0" />
                             </font>
@@ -325,7 +325,7 @@
                                 </RadialGradient>
                             </textFill>
                         </Label>
-                        <CheckBox fx:id="settingsCheckBox8" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
+                        <CheckBox fx:id="settingsCheckBox8" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
                             <font>
                                 <Font name="System Bold" size="34.0" />
                             </font>
@@ -346,7 +346,7 @@
                                 </RadialGradient>
                             </textFill>
                         </CheckBox>
-                        <Label fx:id="settingsDescription8Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css" text="&#10;">
+                        <Label fx:id="settingsDescription8Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css" text="&#10;">
                             <font>
                                 <Font name="System Italic" size="18.0" />
                             </font>
@@ -367,7 +367,7 @@
                                 </RadialGradient>
                             </textFill>
                         </Label>
-                        <CheckBox fx:id="settingsCheckBox9" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
+                        <CheckBox fx:id="settingsCheckBox9" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
                             <font>
                                 <Font name="System Bold" size="34.0" />
                             </font>
@@ -388,7 +388,7 @@
                                 </RadialGradient>
                             </textFill>
                         </CheckBox>
-                        <Label fx:id="settingsDescription9Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css" text="&#10;">
+                        <Label fx:id="settingsDescription9Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css" text="&#10;">
                             <font>
                                 <Font name="System Italic" size="18.0" />
                             </font>
@@ -409,7 +409,7 @@
                                 </RadialGradient>
                             </textFill>
                         </Label>
-                        <CheckBox fx:id="settingsCheckBox10" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
+                        <CheckBox fx:id="settingsCheckBox10" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css" text="TEST">
                             <font>
                                 <Font name="System Bold" size="34.0" />
                             </font>
@@ -430,7 +430,7 @@
                                 </RadialGradient>
                             </textFill>
                         </CheckBox>
-                        <Label fx:id="settingsDescription10Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColor-Label" stylesheets="@../Styles/textLabel.css" text="&#10;">
+                        <Label fx:id="settingsDescription10Label" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="400.0" styleClass="settingsColorGreen-Label" stylesheets="@../Styles/textLabel.css" text="&#10;">
                             <font>
                                 <Font name="System Italic" size="18.0" />
                             </font>
@@ -455,7 +455,7 @@
                 </VBox>
             </children>
         </HBox>
-        <Label layoutX="809.0" layoutY="65.0" styleClass="whiteGreen-label" stylesheets="@../Styles/textLabel.css" text="SETTINGS" textFill="WHITE" AnchorPane.leftAnchor="810.0" AnchorPane.topAnchor="70.0">
+        <Label layoutX="809.0" layoutY="65.0" styleClass="whiteBlue-label" stylesheets="@../Styles/textLabel.css" text="SETTINGS" textFill="WHITE" AnchorPane.leftAnchor="810.0" AnchorPane.topAnchor="70.0">
             <font>
                 <Font name="System Bold" size="70.0" />
             </font>
@@ -505,7 +505,7 @@
                 </LinearGradient>
             </textFill>
         </Button>
-        <Button fx:id="docotrPanelButton" layoutX="1704.0" layoutY="975.0" mnemonicParsing="false" onAction="#doctorPanelButtonClicked" prefHeight="55.0" prefWidth="200.0" styleClass="darkblue-button" stylesheets="@../Styles/buttonsStyle.css" text="DOCTOR PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+        <Button fx:id="docotrPanelButton" layoutX="1704.0" layoutY="975.0" mnemonicParsing="false" onAction="#doctorPanelButtonClicked" prefHeight="55.0" prefWidth="200.0" styleClass="lightgreen-button" stylesheets="@../Styles/buttonsStyle.css" text="DOCTOR PANEL" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
             <font>
                 <Font name="Consolas Bold" size="24.0" />
             </font>
