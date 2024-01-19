@@ -208,11 +208,21 @@ public class ExaminationScheduleController implements Initializable {
         gridPane.getChildren().removeIf(node -> "NoExam".equals(node.getId()));
 
         visiblePause.setOnFinished(event -> {
-            try {
-                getExaminationsFromDB();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            //try {
+                //getExaminationsFromDB();
+                Timeline timeline = new Timeline(
+                        new KeyFrame(Duration.millis(1300), TimeEvent -> {
+                            try {
+                                new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml");
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }));
+                timeline.setCycleCount(1);
+                timeline.play();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
 
             appointmentDatePicker.setValue(null);
             appointmentDoctorChoiceBox.getSelectionModel().clearSelection();
