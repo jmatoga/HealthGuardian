@@ -230,6 +230,15 @@ public class Message {
     public void sendMakeNewExamination(PrintWriter writer, String message) {
         writer.println("MAKE_NEW_EXAMINATIONS:" + message);
     }
+    public void sendLockHourInDB(PrintWriter writer, String message) {
+        writer.println("LOCK_HOUR_FOR_EXAMINATION:" + message);
+    }
+    public void sendUnlockHourInDB(PrintWriter writer, String message) {
+        writer.println("UNLOCK_HOUR_FOR_EXAMINATION:" + message);
+    }
+    public void unLockHourForExaminationAfter5Minutes(PrintWriter writer, String message) {
+        writer.println("UNLOCK_HOUR_FOR_EXAMINATION_AFTER_5_MIN:" + message);
+    }
 
     public void getLastBloodPressureCheck(PrintWriter writer, String message) {
         writer.println("GET_LAST_BLOOD_PRESSURE_CHECK:" + message);

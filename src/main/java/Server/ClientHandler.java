@@ -510,15 +510,40 @@ class ClientHandler implements Callable<String> {
                 } else if (serverMessage.startsWith("MAKE_NEW_EXAMINATIONS:")) {
                     String[] resources = serverMessage.substring(22).split("#/#");
                     String clientId = resources[0];
-                    String name =resources[1];
+                    String examinationNr = resources[1];
+                    String name = resources[2];
+                    String shortDescription = "Error";
+
+                    if(resources.length == 4)
+                        shortDescription = resources[3];
+                    else
+                        shortDescription = "";
+
+                    String result = sqlEngine.makeNewExaminations(Integer.parseInt(clientId), Integer.parseInt(examinationNr), name, shortDescription);
+                    SendToClient.println(result);
+                } else if (serverMessage.startsWith("LOCK_HOUR_FOR_EXAMINATION:")) {
+                    String[] resources = serverMessage.substring(26).split("#/#");
+                    String clientId = resources[0];
+                    String name = resources[1];
                     String date = resources[2];
-                    String shortDescription = resources[3];
-                    String doctorId = resources[4];
-                    String userId = resources[5];
+                    String doctorId = resources[3];
+                    String userId = resources[4];
 
-                    String messagesResult = sqlEngine.makeNewExaminations(Integer.parseInt(clientId), name, date, shortDescription, Integer.parseInt(doctorId),  Integer.parseInt(userId));
-                    SendToClient.println(messagesResult);
+                    String result = sqlEngine.lockHourForExamination(Integer.parseInt(clientId), name, date, Integer.parseInt(doctorId), Integer.parseInt(userId));
+                    SendToClient.println(result);
+                } else if (serverMessage.startsWith("UNLOCK_HOUR_FOR_EXAMINATION:")) {
+                    String[] resources = serverMessage.substring(28).split("#/#");
+                    String clientId = resources[0];
+                    String examinationNr = resources[1];
 
+                    String result = sqlEngine.unLockHourForExamination(Integer.parseInt(clientId), Integer.parseInt(examinationNr));
+                    SendToClient.println(result);
+                } else if (serverMessage.startsWith("UNLOCK_HOUR_FOR_EXAMINATION_AFTER_5_MIN:")) {
+                    String[] resources = serverMessage.substring(40).split("#/#");
+                    String clientId = resources[0];
+                    String userId = resources[1];
+
+                    sqlEngine.unLockHourForExaminationAfter5Minutes(Integer.parseInt(clientId), Integer.parseInt(userId));
                 } else {
                     System.out.println(Color.ColorString("Something went wrong in ClientHandler (probably wrong substring number)", Color.ANSI_RED));
                     exit(-100);
