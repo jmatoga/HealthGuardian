@@ -2325,7 +2325,7 @@ public class SQLEngine {
      *         - {"registration_nr", "what_hurts_you", "pain_symptoms", "other_symptoms", "symptoms_other_symptoms", "medicines", "extent_of_pain", "when_the_pain_started", "temperature", "additional_description", "result_smi", "smi_date", "user_id"} if SMI details are found
      */
     String[] getSMI(int clientID, int registration_nr, String pesel) {
-        String[] returnStatement = {"Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error", "Error"};
+        String[] returnStatement = {"Error", "$/$", "Error", "$/$", "Error", "$/$", "Error", "$/$", "Error", "$/$", "Error", "$/$", "Error", "$/$", "Error", "$/$", "Error", "$/$", "Error", "$/$", "Error", "$/$", "Error", "$/$", "Error"};
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -2340,18 +2340,18 @@ public class SQLEngine {
 
             if (resultSet.next()) {
                 returnStatement[0] = String.valueOf(resultSet.getInt("registration_nr"));
-                returnStatement[1] = resultSet.getString("what_hurts_you");
-                returnStatement[2] = resultSet.getString("pain_symptoms");
-                returnStatement[3] = resultSet.getString("other_symptoms");
-                returnStatement[4] = resultSet.getString("symptoms_other_symptoms");
-                returnStatement[5] = resultSet.getString("medicines");
-                returnStatement[6] = resultSet.getString("extent_of_pain");
-                returnStatement[7] = resultSet.getString("when_the_pain_started");
-                returnStatement[8] = String.valueOf(resultSet.getDouble("temperature"));
-                returnStatement[9] = resultSet.getString("additional_description");
-                returnStatement[10] = resultSet.getString("result_smi");
-                returnStatement[11] = String.valueOf(resultSet.getDate("smi_date"));
-                returnStatement[12] = String.valueOf(resultSet.getInt("user_id"));
+                returnStatement[2] = resultSet.getString("what_hurts_you");
+                returnStatement[4] = resultSet.getString("pain_symptoms");
+                returnStatement[6] = resultSet.getString("other_symptoms");
+                returnStatement[8] = resultSet.getString("symptoms_other_symptoms");
+                returnStatement[10] = resultSet.getString("medicines");
+                returnStatement[12] = resultSet.getString("extent_of_pain");
+                returnStatement[14] = resultSet.getString("when_the_pain_started");
+                returnStatement[16] = String.valueOf(resultSet.getDouble("temperature"));
+                returnStatement[18] = resultSet.getString("additional_description");
+                returnStatement[20] = resultSet.getString("result_smi");
+                returnStatement[22] = String.valueOf(resultSet.getDate("smi_date"));
+                returnStatement[24] = String.valueOf(resultSet.getInt("user_id"));
             } else {
                 System.out.println("SMI with this code doesn't exist in this user!");
                 return new String[]{"SMI with this code doesn't exist in this user!"};

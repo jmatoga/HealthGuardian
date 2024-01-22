@@ -98,7 +98,7 @@ public class DoctorUserController implements Initializable {
             setAllVisibleFalse();
             smiPanelPane.setVisible(true);
 
-            String[] smiData = serverAnswer.substring(1, serverAnswer.length() - 1).split(", ");
+            String[] smiData = serverAnswer.substring(1, serverAnswer.length() - 1).split(", \\$/\\$, ");
 
             smiMainFieldOfCaseLabel.setFont(new Font("Consolas", 20.0));
             smiMainFieldOfCaseLabel.setTextAlignment(TextAlignment.LEFT); // to set text to center after text wrapping
