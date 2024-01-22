@@ -1,13 +1,16 @@
 package Client;
 
+import Server.SQLEngine;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import utils.Color;
+import utils.Message;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import static java.lang.System.exit;
 
@@ -43,6 +46,9 @@ public class ClientWindow extends Application {
     public void startWindow() {
         launch();
         System.out.println(Color.ColorString("Disconnected from server.",Color.ANSI_PURPLE));
+        // unlock the hour for examination if the client disconnects from the server
+        final Message message = new Message();
+        message.unLockHourForExaminationAfter5Minutes(Client.SendToServer, Client.clientId + "#/#" + Client.user_id);
         exit(0);
     }
 }
