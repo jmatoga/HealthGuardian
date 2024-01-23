@@ -110,6 +110,7 @@ public class Message {
     }
 
     public void addMedicalHistory(PrintWriter writer, String message) {
+        System.out.println("ADD_MEDICAL_HISTORY:" + message);
         writer.println("ADD_MEDICAL_HISTORY:" + message);
     }
 
@@ -229,6 +230,18 @@ public class Message {
     }
     public void sendMakeNewExamination(PrintWriter writer, String message) {
         writer.println("MAKE_NEW_EXAMINATIONS:" + message);
+    }
+    public void sendLockHourInDB(PrintWriter writer, String message) {
+        writer.println("LOCK_HOUR_FOR_EXAMINATION:" + message);
+    }
+    public void sendCheckLockHourInDB(PrintWriter writer, String message) {
+        writer.println("CHECK_LOCK_HOUR_FOR_EXAMINATION:" + message);
+    }
+    public void sendUnlockHourInDB(PrintWriter writer, String message) {
+        writer.println("UNLOCK_HOUR_FOR_EXAMINATION:" + message);
+    }
+    public void unLockHourForExaminationAfterLeave(PrintWriter writer, String message) {
+        writer.println("UNLOCK_HOUR_FOR_EXAMINATION_AFTER_5_MIN:" + message);
     }
 
     public void getLastBloodPressureCheck(PrintWriter writer, String message) {

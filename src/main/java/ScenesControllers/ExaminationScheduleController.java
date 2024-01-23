@@ -12,13 +12,9 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
-import javafx.scene.web.WebView;
 import javafx.util.Duration;
 import utils.Color;
 import utils.Message;
@@ -30,7 +26,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class ExaminationScheduleController implements Initializable {
@@ -55,9 +50,12 @@ public class ExaminationScheduleController implements Initializable {
 
     private boolean flag = false;
 
+    private int currentExaminationNrChoosen = -1;
+
 
     @FXML
     private void userPanelButtonClicked(ActionEvent event) throws IOException {
+        message.unLockHourForExaminationAfterLeave(Client.SendToServer, Client.clientId + "#/#" + Client.user_id);
         new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml");
     }
 
@@ -158,19 +156,19 @@ public class ExaminationScheduleController implements Initializable {
             alert.setTitle("CONFIRMATION");
             alert.setHeaderText("Are you sure you want to make the following appointment?");
             String name = appointmentNameMaker();
-            String date = appointmentDatePicker.getValue().toString() + " " + appointmentHourChoiceBox.getValue().toString() + ":00";
 
             alert.setContentText(name.toUpperCase() + "\nwith dr " + examDoctor[0] + " at " + appointmentHourChoiceBox.getValue().toString() + " on " + appointmentDatePicker.getValue().toString() + ". \n\n" + "DECRIPTION FOR EXAMINATION: \n" + appointmentDescriptionTextField.getText());
 
             alert.setOnCloseRequest(alertEvent -> {
                 if (alert.getResult() == okButtonType) {
                     if (appointmentDatePicker.getValue() != null && appointmentDoctorChoiceBox.getValue() != null && appointmentHourChoiceBox.getValue() != null) {
-                        message.sendMakeNewExamination(SendToServer, Client.clientId + "#/#" + name + "#/#" + date + "#/#" + appointmentDescriptionTextField.getText() + "#/#" + examDoctor[2] + "#/#" + Client.user_id);
+                        message.sendMakeNewExamination(SendToServer, Client.clientId + "#/#" + currentExaminationNrChoosen + "#/#" + name + "#/#" + appointmentDescriptionTextField.getText().trim().replaceAll("\\s+", " "));
 
                         try {
                             String serverAnswer = Client.getServerResponse(ReadFromServer);
 
                             if (serverAnswer.startsWith("Examination added correctly with nr: ")) {
+                                currentExaminationNrChoosen = -1;
                                 appointmentSatusLabel.setTextFill(Color.greenGradient());
                                 appointmentSatusLabel.setText("The date has been successfully booked.");
                             } else {
@@ -181,6 +179,13 @@ public class ExaminationScheduleController implements Initializable {
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
+                    }
+                } else {
+                    message.sendUnlockHourInDB(SendToServer, Client.clientId + "#/#" + currentExaminationNrChoosen);
+                    try {
+                        Client.getServerResponse(ReadFromServer);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                 }
             });
@@ -208,21 +213,16 @@ public class ExaminationScheduleController implements Initializable {
         gridPane.getChildren().removeIf(node -> "NoExam".equals(node.getId()));
 
         visiblePause.setOnFinished(event -> {
-            //try {
-                //getExaminationsFromDB();
-                Timeline timeline = new Timeline(
-                        new KeyFrame(Duration.millis(1300), TimeEvent -> {
-                            try {
-                                new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml");
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }));
-                timeline.setCycleCount(1);
-                timeline.play();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+            Timeline timeline = new Timeline(
+                    new KeyFrame(Duration.millis(2000), TimeEvent -> {
+                        try {
+                            new SceneSwitch("/ScenesLayout/ExaminationScheduleScene.fxml");
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }));
+            timeline.setCycleCount(1);
+            timeline.play();
 
             appointmentDatePicker.setValue(null);
             appointmentDoctorChoiceBox.getSelectionModel().clearSelection();
@@ -325,5 +325,41 @@ public class ExaminationScheduleController implements Initializable {
     @FXML
     public void appointmentHourPickerChosen(ActionEvent actionEvent) {
         appointmentSatusLabel.setText("");
+        if(appointmentHourChoiceBox.getValue() != null)
+            checkLockedHourInDB();
+    }
+
+    private void checkLockedHourInDB() {
+        String date = appointmentDatePicker.getValue().toString() + " " + appointmentHourChoiceBox.getValue().toString() + ":00";
+        message.sendCheckLockHourInDB(SendToServer, Client.clientId + "#/#" + date + "#/#" + examDoctor[2]);
+        try {
+            String serverAnswer = Client.getServerResponse(ReadFromServer);
+
+            if (serverAnswer.startsWith("Hour is locked for examination_nr: ")) {
+                currentExaminationNrChoosen = Integer.parseInt(serverAnswer.split("examination_nr: ")[1]);
+                appointmentSatusLabel.setTextFill(Color.redGradient());
+                appointmentSatusLabel.setText("The date is already booked.");
+                appointmentConfirmButton.setDisable(true);
+            } else {
+                appointmentSatusLabel.setText("");
+                appointmentConfirmButton.setDisable(false);
+                lockHourInDB();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void lockHourInDB() throws IOException {
+        if (currentExaminationNrChoosen != -1) {
+            message.sendUnlockHourInDB(SendToServer, Client.clientId + "#/#" + currentExaminationNrChoosen);
+            Client.getServerResponse(ReadFromServer);
+        }
+
+        if (appointmentHourChoiceBox.getValue() != null) {
+            String date = appointmentDatePicker.getValue().toString() + " " + appointmentHourChoiceBox.getValue().toString() + ":00";
+            message.sendLockHourInDB(SendToServer, Client.clientId + "#/#" + "HourLock" + "#/#" + date + "#/#" + examDoctor[2] + "#/#" + Client.user_id);
+            currentExaminationNrChoosen = Integer.parseInt(Client.getServerResponse(ReadFromServer).split("examination_nr: ")[1]);
+        }
     }
 }

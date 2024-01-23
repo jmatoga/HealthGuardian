@@ -7,6 +7,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -3102,7 +3103,50 @@ public class SQLEngine {
         return null;
     }
 
-    String makeNewExaminations(int clientID, String name, String date, String short_description, int doctor_id, int user_id) {
+    String makeNewExaminations(int clientID, int examination_nr, String name, String short_description) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        System.out.println("1" + examination_nr + " " + name + " " + short_description);
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String updateExaminationSql = "UPDATE examination_table SET name = ?, short_description = ? WHERE examination_nr = ?;";
+
+            // insert into examination_table
+            preparedStatement = connection.prepareStatement(updateExaminationSql);
+            preparedStatement.setString(1, name);
+
+            if (!short_description.isEmpty())
+                preparedStatement.setString(2, short_description);
+            else
+                preparedStatement.setNull(2, java.sql.Types.VARCHAR);
+
+            preparedStatement.setInt(3, examination_nr);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 1) {
+                System.out.println("Examination added correctly with nr: " + examination_nr);
+                returnStatement = "Examination added correctly with nr: " + examination_nr;
+            } else {
+                System.out.println("Error in database while adding Examination.");
+                returnStatement = "Error in database while adding Examination.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    String lockHourForExamination(int clientID, String name, String date, int doctor_id, int user_id) {
         String returnStatement = "Error";
 
         Connection connection = null;
@@ -3124,41 +3168,111 @@ public class SQLEngine {
             preparedStatement = connection.prepareStatement(addExaminationSql);
             preparedStatement.setInt(1, MaxExaminationNr + 1);
             preparedStatement.setString(2, name);
-
-            if (!date.isEmpty()) {
-                preparedStatement.setTimestamp(3, Timestamp.valueOf(date));
-            } else {
-                preparedStatement.setNull(3, Types.TIMESTAMP);
-            }
-
+            preparedStatement.setTimestamp(3, Timestamp.valueOf(date));
             preparedStatement.setNull(4, java.sql.Types.VARCHAR);
-
-
-            if (!short_description.isEmpty())
-                preparedStatement.setString(5, short_description);
-            else
-                preparedStatement.setNull(5, java.sql.Types.VARCHAR);
-
-            System.out.println(short_description);
-
+            preparedStatement.setNull(5, java.sql.Types.VARCHAR);
             preparedStatement.setInt(6, doctor_id);
-
-            System.out.println(doctor_id);
-
             preparedStatement.setInt(7, user_id);
-
-            System.out.println(user_id);
-
-
 
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected == 1) {
-                System.out.println("Examination added correctly with nr: " + (MaxExaminationNr + 1));
-                returnStatement = "Examination added correctly with nr: " + (MaxExaminationNr + 1);
+                System.out.println("Hour locked " + Arrays.toString(date.split(" ")) + " for examination_nr: " + (MaxExaminationNr + 1));
+                returnStatement = "Hour locked " + Arrays.toString(date.split(" ")) + " for examination_nr: " + (MaxExaminationNr + 1);
             } else {
-                System.out.println("Error in database while adding Examination.");
-                returnStatement = "Error in database while adding Examination.";
+                System.out.println("Error in database while locking hour " + Arrays.toString(date.split(" ")) + " for examination.");
+                returnStatement = "Error in database while locking hour " + Arrays.toString(date.split(" ")) + " for examination.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+    String checkLockHourForExamination(int clientID, String date, int doctor_id) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String checkLockHourSql = "SELECT * FROM examination_table WHERE name = 'HourLock' AND examination_date = ? AND doctor_id = ?;";
+
+            // get Max examination_nr from Database
+            preparedStatement = connection.prepareStatement(checkLockHourSql);
+            preparedStatement.setTimestamp(1, Timestamp.valueOf(date));
+            preparedStatement.setInt(2, doctor_id);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int examinationNr = resultSet.getInt("examination_nr");
+                System.out.println("Hour is locked for examination_nr: " + examinationNr);
+                returnStatement = "Hour is locked for examination_nr: " + examinationNr;
+            } else {
+                System.out.println("Hour " + date.split(" ")[1] + " free to lock");
+                returnStatement = "Hour " + date.split(" ")[1] + " free to lock";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+
+    void unLockHourForExaminationAfter5Minutes(int clientID, int user_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String unLockHourSql = "DELETE FROM examination_table WHERE user_id = ? AND name = 'HourLock'";
+
+            // delete from examination_table
+            preparedStatement = connection.prepareStatement(unLockHourSql);
+            preparedStatement.setInt(1, user_id);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+    }
+
+    String unLockHourForExamination(int clientID, int examination_nr) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String unLockHourSql = "DELETE FROM examination_table WHERE examination_nr = ?";
+
+            // delete from examination_table
+            preparedStatement = connection.prepareStatement(unLockHourSql);
+            preparedStatement.setInt(1, examination_nr);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 1) {
+                System.out.println("Hour unlocked for examination_nr: " + examination_nr);
+                returnStatement = "Hour unlocked for examination_nr: " + examination_nr;
+            } else {
+                System.out.println("Error in database while unlocking hour for examination " + examination_nr + ".");
+                returnStatement = "Error in database while unlocking hour for examination " + examination_nr + ".";
             }
 
             return returnStatement;

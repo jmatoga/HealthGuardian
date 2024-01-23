@@ -177,7 +177,6 @@ public class ShortMedicalInterviewController implements Initializable {
     public String resultSmiToDB = "";
     public String SMIcode = "";
 
-
     @FXML
     public void userPanelButtonClicked(ActionEvent actionEvent) throws IOException {
         new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml");
@@ -207,7 +206,6 @@ public class ShortMedicalInterviewController implements Initializable {
     {
         System.out.printf(whatHurtsYouToDB + painSymptomsToDB + otherSymptomsToDB + symptomsOtherSymptomsToDB + medicinesToDB + extentOfPainToDB + whenThePainStartedToDB + temperatureToDB + additionalDescriptionToDB + resultSmiToDB);
     }
-
 
     @FXML
     public void startButtonClicked(ActionEvent actionEvent) throws IOException {
@@ -649,7 +647,7 @@ public class ShortMedicalInterviewController implements Initializable {
         resultSmiPane.setDisable(true);
         stage6nextButton.setDisable(true);
         ProgressProgressBar.setProgress(0.44);
-        medicinesToDB = medicinesTextFiled.getText();
+        medicinesToDB = medicinesTextFiled.getText().trim().replaceAll("\\s+", " ");
     }
 
     @FXML
@@ -669,7 +667,7 @@ public class ShortMedicalInterviewController implements Initializable {
         resultSmiPane.setDisable(true);
         stage7nextButton.setDisable(true);
         ProgressProgressBar.setProgress(0.58);
-        extentOfPainToDB = painDurationTextField.getText();
+        extentOfPainToDB = painDurationTextField.getText().trim().replaceAll("\\s+", " ");
     }
 
     @FXML
@@ -689,7 +687,7 @@ public class ShortMedicalInterviewController implements Initializable {
         resultSmiPane.setDisable(true);
         stage8nextButton.setDisable(true);
         ProgressProgressBar.setProgress(0.72);
-        whenThePainStartedToDB = extentOfThePainTextField.getText();
+        whenThePainStartedToDB = extentOfThePainTextField.getText().trim().replaceAll("\\s+", " ");
     }
 
     @FXML
@@ -709,7 +707,7 @@ public class ShortMedicalInterviewController implements Initializable {
         resultSmiPane.setDisable(true);
         endtButton.setDisable(true);
         ProgressProgressBar.setProgress(0.86);
-        temperatureToDB = currentTemperatureTextFiled.getText();
+        temperatureToDB = currentTemperatureTextFiled.getText().trim().replaceAll("\\s+", " ");
     }
 
     @FXML
@@ -731,9 +729,9 @@ public class ShortMedicalInterviewController implements Initializable {
         progressProgressIndicator.setOpacity(0);
         ProgressProgressBar.setProgress(1);
         doctorResult();
-        additionalDescriptionToDB = additionalDescriptionTextField.getText();
+        additionalDescriptionToDB = additionalDescriptionTextField.getText().trim().replaceAll("\\s+", " ");
         resultSmiToDB = doctorResultLabel.getText();
-        //System.out.println(Client.clientId + "#/#" + whatHurtsYouToDB + "#/#" + painSymptomsToDB + "#/#" + otherSymptomsToDB + "#/#" + symptomsOtherSymptomsToDB + "#/#" + medicinesToDB + "#/#" + painDurationToDB + "#/#" + whenThePainStartedToDB + "#/#" + temperatureToDB + "#/#" + additionalDescriptionToDB + "#/#" + resultSmiToDB + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "#/#" + Client.user_id);
+        System.out.println(Client.clientId + "#/#" + whatHurtsYouToDB + "#/#" + painSymptomsToDB + "#/#" + otherSymptomsToDB + "#/#" + symptomsOtherSymptomsToDB + "#/#" + medicinesToDB + "#/#" + whenThePainStartedToDB + "#/#" + temperatureToDB + "#/#" + additionalDescriptionToDB + "#/#" + resultSmiToDB + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "#/#" + Client.user_id);
         message.addShortMedicalInterview(SendToServer, Client.clientId + "#/#" + whatHurtsYouToDB + "#/#" + painSymptomsToDB + "#/#" + otherSymptomsToDB + "#/#" + symptomsOtherSymptomsToDB + "#/#" + medicinesToDB + "#/#" + extentOfPainToDB + "#/#" + whenThePainStartedToDB + "#/#" + temperatureToDB + "#/#" + additionalDescriptionToDB + "#/#" + resultSmiToDB + "#/#" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "#/#" + Client.user_id);
         String serverAnswer = ReadFromServer.readLine();
         System.out.println(Color.ColorString("Server: ", Color.ANSI_YELLOW) + serverAnswer);
@@ -829,6 +827,15 @@ public class ShortMedicalInterviewController implements Initializable {
                 answer21Choice.setText("Post-traumatic chest pain.");
                 answer22Choice.setText("There is retrosternal pain.");
                 answer23Choice.setText("Chest discomfort without additional symptoms.");
+                //TODO
+//                if("TUTAJ USTAWIĆ WARUNEK POPIERANIA Z BAZY GENDER I JEŻELI KOBIETA TO")
+//                {
+//                    answer24Choice.setText("Breast pain.");
+//                }else
+//                {
+//                    answer24Choice.setDisable(true);
+//                    answer24Choice.setOpacity(0);
+//                }
                 answer24Choice.setText("Breast pain.");
                 answer25Choice.setDisable(true);
                 answer25Choice.setOpacity(0);
@@ -853,6 +860,18 @@ public class ShortMedicalInterviewController implements Initializable {
                 answer24Choice.setText("Defecation disorders (blood in the stool, problems with defecation).");
                 answer25Choice.setText("Male genital disorders.");
                 answer26Choice.setText("Female genital disorders.");
+                //TODO
+//                if("TUTAJ USTAWIĆ WARUNEK POPIERANIA Z BAZY GENDER I JEŻELI KOBIETA TO")
+//                {
+//                answer25Choice.setText("Female genital disorders.");
+//                answer26Choice.setDisable(true);
+//                answer26Choice.setOpacity(0);
+//                }else
+//                {
+//                answer25Choice.setText("Male genital disorders.");
+//                answer26Choice.setDisable(true);
+//                answer26Choice.setOpacity(0);
+//                }
                 break;
             case 10: //arm
                 answer21Choice.setText("Post-traumatic pain in the arm without fracture.");

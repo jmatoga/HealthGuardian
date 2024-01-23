@@ -26,7 +26,7 @@
                 <Image url="@../Images/bg1.png" />
             </image>
         </ImageView>
-        <Label layoutX="550.0" layoutY="47.0" styleClass="whiteRed-label" stylesheets="@../Styles/textLabel.css" text="SHORT MEDICAL INTERVIEW" textFill="WHITE" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="47.0">
+        <Label layoutX="550.0" layoutY="47.0" styleClass="whiteRed-label" stylesheets="@../Styles/textLabel.css" text="SHORT MEDICAL INTERVIEW" textFill="WHITE" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="15.0">
             <font>
                 <Font name="System Bold" size="70.0" />
             </font>
