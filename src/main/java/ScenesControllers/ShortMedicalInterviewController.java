@@ -178,7 +178,7 @@ public class ShortMedicalInterviewController implements Initializable {
     public String SMIcode = "";
 
 
-
+    @FXML
     public void userPanelButtonClicked(ActionEvent actionEvent) throws IOException {
         new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml");
     }
@@ -209,6 +209,7 @@ public class ShortMedicalInterviewController implements Initializable {
     }
 
 
+    @FXML
     public void startButtonClicked(ActionEvent actionEvent) throws IOException {
         startSmiPane.setOpacity(0);
         smiStage1.setOpacity(1);
@@ -227,6 +228,7 @@ public class ShortMedicalInterviewController implements Initializable {
         ProgressProgressBar.setProgress(0.14);
     }
 
+    @FXML
     public void stage1nextButtonClicked(ActionEvent actionEvent) {
 
         if(firstStageNum == 4 || firstStageNum == 14) {
@@ -283,6 +285,7 @@ public class ShortMedicalInterviewController implements Initializable {
 
     }
 
+    @FXML
     public void headChoiceClicked(ActionEvent actionEvent) {
         firstStageNum = 1;
         smiEngine01(firstStageNum);
@@ -290,6 +293,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage1(headChoice);
     }
 
+    @FXML
     public void eyesChoiceClicked(ActionEvent actionEvent) {
         firstStageNum = 2;
         smiEngine01(firstStageNum);
@@ -297,6 +301,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage1(eyesChoice);
     }
 
+    @FXML
     public void earsChoiceClicked(ActionEvent actionEvent) {
         firstStageNum = 3;
         smiEngine01(firstStageNum);
@@ -304,6 +309,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage1(earsChoice);
     }
 
+    @FXML
     public void teethChoiceClicked(ActionEvent actionEvent) {
         firstStageNum = 4;
         smiEngine01(firstStageNum);
@@ -311,6 +317,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage1(teethChoice);
     }
 
+    @FXML
     public void neckChoiceClicked(ActionEvent actionEvent) {
         firstStageNum = 5;
         smiEngine01(firstStageNum);
@@ -318,6 +325,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage1(neckChoice);
     }
 
+    @FXML
     public void throatChoiceClicked(ActionEvent actionEvent) {
         firstStageNum = 6;
         smiEngine01(firstStageNum);
@@ -325,6 +333,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage1(throatChoice);
     }
 
+    @FXML
     public void chestChoiceClicked(ActionEvent actionEvent) {
         firstStageNum = 7;
         smiEngine01(firstStageNum);
@@ -332,6 +341,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage1(chestChoice);
     }
 
+    @FXML
     public void stomachChoiceClicked(ActionEvent actionEvent) {
         firstStageNum = 8;
         smiEngine01(firstStageNum);
@@ -339,6 +349,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage1(stomachChoice);
     }
 
+    @FXML
     public void pelvisChoiceClicked(ActionEvent actionEvent) {
         firstStageNum = 9;
         smiEngine01(firstStageNum);
@@ -346,6 +357,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage1(pelvisChoice);
     }
 
+    @FXML
     public void armChoiceClicked(ActionEvent actionEvent) {
         firstStageNum = 10;
         smiEngine01(firstStageNum);
@@ -353,6 +365,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage1(armChoice);
     }
 
+    @FXML
     public void legChoiceClicked(ActionEvent actionEvent) {
         firstStageNum = 11;
         smiEngine01(firstStageNum);
@@ -360,6 +373,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage1(legChoice);
     }
 
+    @FXML
     public void backChoiceClicked(ActionEvent actionEvent) {
         firstStageNum = 12;
         smiEngine01(firstStageNum);
@@ -367,6 +381,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage1(backChoice);
     }
 
+    @FXML
     public void skinChoiceClicked(ActionEvent actionEvent) {
         firstStageNum = 13;
         smiEngine01(firstStageNum);
@@ -374,6 +389,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage1(skinChoice);
     }
 
+    @FXML
     public void lymphNodesChoiceClicked(ActionEvent actionEvent) {
         firstStageNum = 14;
         smiEngine01(firstStageNum);
@@ -381,6 +397,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage1(lymphNodesChoice);
     }
 
+    @FXML
     public void otherAilmentsChoiceClicked(ActionEvent actionEvent) {
         firstStageNum = 15;
         smiEngine01(firstStageNum);
@@ -388,6 +405,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage1(otherAilmentsChoice);
     }
 
+    @FXML
     public void stage2nextButtonClicked(ActionEvent actionEvent) {
         smiStage2.setOpacity(0);
         smiStage5.setOpacity(1);
@@ -406,42 +424,49 @@ public class ShortMedicalInterviewController implements Initializable {
         ProgressProgressBar.setProgress(0.30);
     }
 
+    @FXML
     public void answer21ChoiceClicked(ActionEvent actionEvent) {
         secondStageNum = 1;
         stage2nextButton.setDisable(false);
         saveStage2(answer21Choice);
     }
 
+    @FXML
     public void answer22ChoiceClicked(ActionEvent actionEvent) {
         secondStageNum = 2;
         stage2nextButton.setDisable(false);
         saveStage2(answer22Choice);
     }
 
+    @FXML
     public void answer23ChoiceClicked(ActionEvent actionEvent) {
         secondStageNum = 3;
         stage2nextButton.setDisable(false);
         saveStage2(answer23Choice);
     }
 
+    @FXML
     public void answer24ChoiceClicked(ActionEvent actionEvent) {
         secondStageNum = 4;
         stage2nextButton.setDisable(false);
         saveStage2(answer24Choice);
     }
 
+    @FXML
     public void answer25ChoiceClicked(ActionEvent actionEvent) {
         secondStageNum = 5;
         stage2nextButton.setDisable(false);
         saveStage2(answer25Choice);
     }
 
+    @FXML
     public void answer26ChoiceClicked(ActionEvent actionEvent) {
         secondStageNum = 6;
         stage2nextButton.setDisable(false);
         saveStage2(answer26Choice);
     }
 
+    @FXML
     public void stage3nextButtonClicked(ActionEvent actionEvent) {
 
         if(thirdStageNum == 1 || thirdStageNum == 2 || thirdStageNum == 3 || thirdStageNum == 5) {
@@ -479,6 +504,7 @@ public class ShortMedicalInterviewController implements Initializable {
         }
     }
 
+    @FXML
     public void runnyNoseChoiceClicked(ActionEvent actionEvent) {
         thirdStageNum = 1;
         smiEngine02(thirdStageNum);
@@ -486,6 +512,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage3(runnyNoseChoice);
     }
 
+    @FXML
     public void coughChoiceClicked(ActionEvent actionEvent) {
         thirdStageNum = 2;
         smiEngine02(thirdStageNum);
@@ -493,6 +520,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage3(coughChoice);
     }
 
+    @FXML
     public void dyspnoeaChoiceClicked(ActionEvent actionEvent) {
         thirdStageNum = 3;
         smiEngine02(thirdStageNum);
@@ -500,6 +528,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage3(dyspnoeaChoice);
     }
 
+    @FXML
     public void swoonChoiceClicked(ActionEvent actionEvent) {
         thirdStageNum = 4;
         smiEngine02(thirdStageNum);
@@ -507,6 +536,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage3(swoonChoice);
     }
 
+    @FXML
     public void diarrheaChoiceClicked(ActionEvent actionEvent) {
         thirdStageNum = 5;
         smiEngine02(thirdStageNum);
@@ -514,6 +544,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage3(diarrheaChoice);
     }
 
+    @FXML
     public void nosebleedChoiceClicked(ActionEvent actionEvent) {
         thirdStageNum = 6;
         smiEngine02(thirdStageNum);
@@ -521,6 +552,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage3(nosebleedChoice);
     }
 
+    @FXML
     public void tickBiteChoiceClicked(ActionEvent actionEvent) {
         thirdStageNum = 7;
         smiEngine02(thirdStageNum);
@@ -528,6 +560,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage3(tickBiteChoice);
     }
 
+    @FXML
     public void feverChoiceClicked(ActionEvent actionEvent) {
         thirdStageNum = 8;
         smiEngine02(thirdStageNum);
@@ -535,6 +568,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage3(feverChoice);
     }
 
+    @FXML
     public void psychoChoiceClicked(ActionEvent actionEvent) {
         thirdStageNum = 9;
         smiEngine02(thirdStageNum);
@@ -542,6 +576,7 @@ public class ShortMedicalInterviewController implements Initializable {
         otherSymptomsToDB = "MENTAL DISORDERS";
     }
 
+    @FXML
     public void pregnacyChoiceClicked(ActionEvent actionEvent) {
         thirdStageNum = 10;
         smiEngine02(thirdStageNum);
@@ -549,6 +584,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage3(pregnancyChoice);
     }
 
+    @FXML
     public void otherAilments3StageChoiceClicked(ActionEvent actionEvent) {
         thirdStageNum = 11;
         smiEngine02(thirdStageNum);
@@ -556,6 +592,7 @@ public class ShortMedicalInterviewController implements Initializable {
         saveStage3(otherAilments3StageChoice);
     }
 
+    @FXML
     public void stage4nextButtonClicked(ActionEvent actionEvent) {
         smiStage4.setOpacity(0);
         smiStage5.setOpacity(1);
@@ -574,24 +611,28 @@ public class ShortMedicalInterviewController implements Initializable {
         ProgressProgressBar.setProgress(0.30);
     }
 
+    @FXML
     public void answer41ChoiceClicked(ActionEvent actionEvent) {
         fourthStageNum = 1;
         stage4nextButton.setDisable(false);
         saveStage4(answer41Choice);
     }
 
+    @FXML
     public void answer42ChoiceClicked(ActionEvent actionEvent) {
         fourthStageNum = 2;
         stage4nextButton.setDisable(false);
         saveStage4(answer42Choice);
     }
 
+    @FXML
     public void answer43ChoiceClicked(ActionEvent actionEvent) {
         fourthStageNum = 3;
         stage4nextButton.setDisable(false);
         saveStage4(answer43Choice);
     }
 
+    @FXML
     public void stage5nextButtonClicked(ActionEvent actionEvent) {
         smiStage5.setOpacity(0);
         smiStage6.setOpacity(1);
@@ -611,6 +652,7 @@ public class ShortMedicalInterviewController implements Initializable {
         medicinesToDB = medicinesTextFiled.getText();
     }
 
+    @FXML
     public void stage6nextButtonClicked(ActionEvent actionEvent) {
         smiStage6.setOpacity(0);
         smiStage7.setOpacity(1);
@@ -630,6 +672,7 @@ public class ShortMedicalInterviewController implements Initializable {
         extentOfPainToDB = painDurationTextField.getText();
     }
 
+    @FXML
     public void stage7nextButtonClicked(ActionEvent actionEvent) {
         smiStage7.setOpacity(0);
         smiStage8.setOpacity(1);
@@ -649,6 +692,7 @@ public class ShortMedicalInterviewController implements Initializable {
         whenThePainStartedToDB = extentOfThePainTextField.getText();
     }
 
+    @FXML
     public void stage8nextButtonClicked(ActionEvent actionEvent) {
         smiStage8.setOpacity(0);
         smiStage9.setOpacity(1);
@@ -668,6 +712,7 @@ public class ShortMedicalInterviewController implements Initializable {
         temperatureToDB = currentTemperatureTextFiled.getText();
     }
 
+    @FXML
     public void endButtonClicked(ActionEvent actionEvent) throws IOException {
         smiStage9.setOpacity(0);
         resultSmiPane.setOpacity(1);
@@ -703,6 +748,7 @@ public class ShortMedicalInterviewController implements Initializable {
 
     }
 
+    @FXML
     public void askForAReferralButtonClicked(ActionEvent actionEvent) throws IOException {
         askForAReferralButton.setDisable(true);
         askForAReferralButton.setVisible(false);
@@ -783,15 +829,6 @@ public class ShortMedicalInterviewController implements Initializable {
                 answer21Choice.setText("Post-traumatic chest pain.");
                 answer22Choice.setText("There is retrosternal pain.");
                 answer23Choice.setText("Chest discomfort without additional symptoms.");
-                //TODO
-//                if("TUTAJ USTAWIĆ WARUNEK POPIERANIA Z BAZY GENDER I JEŻELI KOBIETA TO")
-//                {
-//                    answer24Choice.setText("Breast pain.");
-//                }else
-//                {
-//                    answer24Choice.setDisable(true);
-//                    answer24Choice.setOpacity(0);
-//                }
                 answer24Choice.setText("Breast pain.");
                 answer25Choice.setDisable(true);
                 answer25Choice.setOpacity(0);
@@ -816,18 +853,6 @@ public class ShortMedicalInterviewController implements Initializable {
                 answer24Choice.setText("Defecation disorders (blood in the stool, problems with defecation).");
                 answer25Choice.setText("Male genital disorders.");
                 answer26Choice.setText("Female genital disorders.");
-                //TODO
-//                if("TUTAJ USTAWIĆ WARUNEK POPIERANIA Z BAZY GENDER I JEŻELI KOBIETA TO")
-//                {
-//                answer25Choice.setText("Female genital disorders.");
-//                answer26Choice.setDisable(true);
-//                answer26Choice.setOpacity(0);
-//                }else
-//                {
-//                answer25Choice.setText("Male genital disorders.");
-//                answer26Choice.setDisable(true);
-//                answer26Choice.setOpacity(0);
-//                }
                 break;
             case 10: //arm
                 answer21Choice.setText("Post-traumatic pain in the arm without fracture.");
