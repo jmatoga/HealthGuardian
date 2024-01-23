@@ -121,7 +121,7 @@ public class DoctorEContactController implements Initializable {
                 setColors(newExamination);
 
                 newExamination.setOnMouseClicked(event -> {
-                    String text = newExaminationDescription.getText();
+                    String text = newExaminationDescription.getText().trim().replaceAll("\\s+", " ");
 
                     examination_nr = text.split(":")[1].split(",")[0].trim();
 
@@ -136,7 +136,7 @@ public class DoctorEContactController implements Initializable {
 
                     PatientFirstNameLabel.setText(patientFirstName);
                     PatientLastNameLabel.setText(patientLastName);
-                    ExaminationNameLabel.setText(newExaminationName.getText());
+                    ExaminationNameLabel.setText(newExaminationName.getText().trim().replaceAll("\\s+", " "));
                     ContactDateLabel.setText("E-Contact date: " + date);
                     ContactHourLabel.setText("E-Contact hour: " + hour);
                     sendButton.setDisable(false);

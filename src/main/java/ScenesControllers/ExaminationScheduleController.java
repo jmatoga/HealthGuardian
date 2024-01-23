@@ -162,7 +162,7 @@ public class ExaminationScheduleController implements Initializable {
             alert.setOnCloseRequest(alertEvent -> {
                 if (alert.getResult() == okButtonType) {
                     if (appointmentDatePicker.getValue() != null && appointmentDoctorChoiceBox.getValue() != null && appointmentHourChoiceBox.getValue() != null) {
-                        message.sendMakeNewExamination(SendToServer, Client.clientId + "#/#" + currentExaminationNrChoosen + "#/#" + name + "#/#" + appointmentDescriptionTextField.getText());
+                        message.sendMakeNewExamination(SendToServer, Client.clientId + "#/#" + currentExaminationNrChoosen + "#/#" + name + "#/#" + appointmentDescriptionTextField.getText().trim().replaceAll("\\s+", " "));
 
                         try {
                             String serverAnswer = Client.getServerResponse(ReadFromServer);
