@@ -3177,11 +3177,46 @@ public class SQLEngine {
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected == 1) {
-                System.out.println("Hour locked" + Arrays.toString(date.split(" ")) + " for examination_nr: " + (MaxExaminationNr + 1));
-                returnStatement = "Hour locked" + Arrays.toString(date.split(" ")) + " for examination_nr: " + (MaxExaminationNr + 1);
+                System.out.println("Hour locked " + Arrays.toString(date.split(" ")) + " for examination_nr: " + (MaxExaminationNr + 1));
+                returnStatement = "Hour locked " + Arrays.toString(date.split(" ")) + " for examination_nr: " + (MaxExaminationNr + 1);
             } else {
                 System.out.println("Error in database while locking hour " + Arrays.toString(date.split(" ")) + " for examination.");
                 returnStatement = "Error in database while locking hour " + Arrays.toString(date.split(" ")) + " for examination.";
+            }
+
+            return returnStatement;
+
+        } catch (SQLException e) {
+            System.err.println("Error while executing SELECT: " + e.getMessage());
+        } finally {
+            disconnectFromDataBase(resultSet, preparedStatement, connection);
+        }
+        return returnStatement;
+    }
+    String checkLockHourForExamination(int clientID, String date, int doctor_id) {
+        String returnStatement = "Error";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectToDataBase(connection, clientID);
+            String checkLockHourSql = "SELECT * FROM examination_table WHERE name = 'HourLock' AND examination_date = ? AND doctor_id = ?;";
+
+            // get Max examination_nr from Database
+            preparedStatement = connection.prepareStatement(checkLockHourSql);
+            preparedStatement.setTimestamp(1, Timestamp.valueOf(date));
+            preparedStatement.setInt(2, doctor_id);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int examinationNr = resultSet.getInt("examination_nr");
+                System.out.println("Hour is locked for examination_nr: " + examinationNr);
+                returnStatement = "Hour is locked for examination_nr: " + examinationNr;
+            } else {
+                System.out.println("Hour " + date.split(" ")[1] + " free to lock");
+                returnStatement = "Hour " + date.split(" ")[1] + " free to lock";
             }
 
             return returnStatement;

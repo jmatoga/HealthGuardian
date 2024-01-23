@@ -1,6 +1,8 @@
 package Server;
 
+import Client.Client;
 import utils.Color;
+import utils.Message;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -300,6 +302,7 @@ class ClientHandler implements Callable<String> {
                     SendToClient.println(prescribingResult);
                 } else if (serverMessage.startsWith("ADD_MEDICAL_HISTORY:")) {
                     String[] resources = serverMessage.substring(20).split("#/#");
+                    System.out.println("!" + Arrays.toString(resources));
                     String clientId = resources[0];
                     String medicalCase = resources[1];
                     String ICD10FirstLetter = resources[2];
@@ -530,6 +533,14 @@ class ClientHandler implements Callable<String> {
                     String userId = resources[4];
 
                     String result = sqlEngine.lockHourForExamination(Integer.parseInt(clientId), name, date, Integer.parseInt(doctorId), Integer.parseInt(userId));
+                    SendToClient.println(result);
+                } else if (serverMessage.startsWith("CHECK_LOCK_HOUR_FOR_EXAMINATION:")) {
+                    String[] resources = serverMessage.substring(32).split("#/#");
+                    String clientId = resources[0];
+                    String date = resources[1];
+                    String doctorId = resources[2];
+
+                    String result = sqlEngine.checkLockHourForExamination(Integer.parseInt(clientId), date, Integer.parseInt(doctorId));
                     SendToClient.println(result);
                 } else if (serverMessage.startsWith("UNLOCK_HOUR_FOR_EXAMINATION:")) {
                     String[] resources = serverMessage.substring(28).split("#/#");

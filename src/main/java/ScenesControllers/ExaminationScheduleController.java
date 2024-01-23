@@ -55,6 +55,7 @@ public class ExaminationScheduleController implements Initializable {
 
     @FXML
     private void userPanelButtonClicked(ActionEvent event) throws IOException {
+        message.unLockHourForExaminationAfterLeave(Client.SendToServer, Client.clientId + "#/#" + Client.user_id);
         new SceneSwitch("/ScenesLayout/ClientPanelScene.fxml");
     }
 
@@ -213,7 +214,7 @@ public class ExaminationScheduleController implements Initializable {
 
         visiblePause.setOnFinished(event -> {
             Timeline timeline = new Timeline(
-                    new KeyFrame(Duration.millis(800), TimeEvent -> {
+                    new KeyFrame(Duration.millis(2000), TimeEvent -> {
                         try {
                             new SceneSwitch("/ScenesLayout/ExaminationScheduleScene.fxml");
                         } catch (IOException e) {
@@ -322,9 +323,31 @@ public class ExaminationScheduleController implements Initializable {
     }
 
     @FXML
-    public void appointmentHourPickerChosen(ActionEvent actionEvent) throws IOException {
+    public void appointmentHourPickerChosen(ActionEvent actionEvent) {
         appointmentSatusLabel.setText("");
-        lockHourInDB();
+        if(appointmentHourChoiceBox.getValue() != null)
+            checkLockedHourInDB();
+    }
+
+    private void checkLockedHourInDB() {
+        String date = appointmentDatePicker.getValue().toString() + " " + appointmentHourChoiceBox.getValue().toString() + ":00";
+        message.sendCheckLockHourInDB(SendToServer, Client.clientId + "#/#" + date + "#/#" + examDoctor[2]);
+        try {
+            String serverAnswer = Client.getServerResponse(ReadFromServer);
+
+            if (serverAnswer.startsWith("Hour is locked for examination_nr: ")) {
+                currentExaminationNrChoosen = Integer.parseInt(serverAnswer.split("examination_nr: ")[1]);
+                appointmentSatusLabel.setTextFill(Color.redGradient());
+                appointmentSatusLabel.setText("The date is already booked.");
+                appointmentConfirmButton.setDisable(true);
+            } else {
+                appointmentSatusLabel.setText("");
+                appointmentConfirmButton.setDisable(false);
+                lockHourInDB();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void lockHourInDB() throws IOException {
